@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Modal - Inda Fire</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: #F8F6F2;
+      padding: 0;
+      margin: 0;
+      font-family: var(--font-body);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Timeline History Detail Modal Auto-Opened -->
+  <div class="modal-overlay open" id="timeline-history-modal" role="dialog" aria-modal="true" aria-labelledby="thm-title">
+    <div class="modal-card timeline-history-modal-card">
+      <button type="button" class="modal-close-btn" id="btn-close-timeline-modal" aria-label="Fechar modal">✕</button>
+      
+      <div class="timeline-modal-inner" id="timeline-modal-content">
+        <!-- Dynamically populated via JS -->
+      </div>
+
+      <div class="timeline-modal-footer">
+        <button type="button" class="btn-timeline-nav" id="btn-timeline-modal-prev">
+          <span>⬅ Anterior</span>
+        </button>
+        <div class="timeline-modal-stepper-dots" id="timeline-modal-dots"></div>
+        <button type="button" class="btn-timeline-nav" id="btn-timeline-modal-next">
+          <span>Próximo ➔</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      openTimelineModal(2); // 2008 Inmetro
+    });
+  </script>
+</body>
+</html>

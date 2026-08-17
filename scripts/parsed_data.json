@@ -1,0 +1,76 @@
+{
+  "categories": [],
+  "products": [],
+  "services": [
+    {
+      "id": "fabricacao-de-caixa-dagua-metalica",
+      "name": "Fabricação de caixa d’água metálica",
+      "link": "https://indafire.com.br/servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/serv13.jpg",
+      "categories": []
+    },
+    {
+      "id": "disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos",
+      "name": "Equipe habilitada para eventos ou trabalhos específicos",
+      "link": "https://indafire.com.br/servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/serv12.jpg",
+      "categories": []
+    },
+    {
+      "id": "locacao-de-equipamentos",
+      "name": "Locação de equipamentos",
+      "link": "https://indafire.com.br/servicos_inda_fire/locacao-de-equipamentos/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/PRONTA-5.png",
+      "categories": []
+    },
+    {
+      "id": "sinalizacao-de-emergencia",
+      "name": "Sinalização de Emergência",
+      "link": "https://indafire.com.br/servicos_inda_fire/sinalizacao-de-emergencia/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/serv10.jpg",
+      "categories": []
+    },
+    {
+      "id": "sistemas-de-sprinklers",
+      "name": "Sistemas de Sprinklers",
+      "link": "https://indafire.com.br/servicos_inda_fire/sistemas-de-sprinklers/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/Sprinkler.jpg",
+      "categories": []
+    },
+    {
+      "id": "sistema-de-iluminacao-de-emergencia",
+      "name": "Sistema de iluminação de emergência",
+      "link": "https://indafire.com.br/servicos_inda_fire/sistema-de-iluminacao-de-emergencia/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/iluminacao.jpg",
+      "categories": []
+    },
+    {
+      "id": "sistema-de-deteccao-de-fumaca-e-calor",
+      "name": "Sistema de detecção de fumaça e calor",
+      "link": "https://indafire.com.br/servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/serv9.jpg",
+      "categories": []
+    },
+    {
+      "id": "sistema-de-alarme-de-incendio",
+      "name": "Sistema de alarme de incêndio",
+      "link": "https://indafire.com.br/servicos_inda_fire/sistema-de-alarme-de-incendio/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png",
+      "categories": []
+    },
+    {
+      "id": "sistema-de-hidrantes",
+      "name": "Sistema de Hidrantes",
+      "link": "https://indafire.com.br/servicos_inda_fire/sistema-de-hidrantes/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/hidrantes.jpg",
+      "categories": []
+    },
+    {
+      "id": "inspecao-de-equipamentos",
+      "name": "Inspeção de Equipamentos",
+      "link": "https://indafire.com.br/servicos_inda_fire/inspecao-de-equipamentos/",
+      "image": "https://indafire.com.br/site/wp-content/uploads/2021/10/serv5.jpg",
+      "categories": []
+    }
+  ]
+}

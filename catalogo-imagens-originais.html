@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Completo de Imagens Originais — Inda Fire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <!-- JSZip para Download em Lote -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <style>
+    :root {
+      --fire-red: #D80016;
+      --fire-red-hover: #B80012;
+      --navy-dark: #0B0D12;
+      --navy-card: #141822;
+      --navy-card-hover: #1C2230;
+      --border-color: #262E3E;
+      --text-main: #FFFFFF;
+      --text-muted: #94A3B8;
+      --accent-cyan: #06B6D4;
+      --accent-green: #10B981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--navy-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #06070A;
+      border-bottom: 2px solid var(--fire-red);
+      padding: 1.25rem 2.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .brand-title {
+      font-family: 'Teko', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .brand-title span { color: var(--fire-red); }
+
+    .catalog-badge {
+      background: rgba(216, 0, 22, 0.15);
+      border: 1px solid var(--fire-red);
+      color: #FF4D5E;
+      padding: 0.35rem 0.85rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-action {
+      background: var(--fire-red);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.65rem 1.35rem;
+      border-radius: 4px;
+      font-family: 'Teko', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--fire-red-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(216, 0, 22, 0.4);
+    }
+
+    .btn-secondary {
+      background: #1E2533;
+      border: 1px solid var(--border-color);
+      color: #CBD5E1;
+    }
+
+    .btn-secondary:hover {
+      background: #2D3748;
+      color: #FFFFFF;
+      box-shadow: none;
+    }
+
+    .btn-zip {
+      background: #10B981;
+    }
+
+    .btn-zip:hover {
+      background: #059669;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+    }
+
+    .main-container {
+      max-width: 1480px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      flex: 1;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      border-left: 4px solid var(--fire-red);
+    }
+
+    .stat-value {
+      font-family: 'Teko', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    .filter-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--navy-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.85rem 1.25rem;
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      border-color: var(--fire-red);
+      box-shadow: 0 0 14px rgba(216, 0, 22, 0.25);
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: var(--navy-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.6rem 1.15rem;
+      border-radius: 4px;
+      font-family: 'Teko', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      background: var(--navy-card-hover);
+      color: #FFFFFF;
+    }
+
+    .tab-btn.active {
+      background: var(--fire-red);
+      border-color: var(--fire-red);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(216, 0, 22, 0.35);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .media-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .media-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--fire-red);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+    }
+
+    .media-thumb-box {
+      width: 100%;
+      height: 220px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .media-thumb-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .media-card:hover .media-thumb-box img {
+      transform: scale(1.06);
+    }
+
+    .media-category-pill {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #0B0D12;
+      color: #FFFFFF;
+      font-family: 'Teko', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      border-left: 3px solid var(--fire-red);
+    }
+
+    .media-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .media-title {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+      min-height: 3rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .media-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.25rem;
+    }
+
+    .meta-label { color: #64748B; font-weight: 600; }
+    .meta-val { color: #E2E8F0; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+    .media-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .btn-download-single {
+      background: var(--fire-red);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 0.55rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Teko', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+    }
+
+    .btn-download-single:hover {
+      background: var(--fire-red-hover);
+    }
+
+    .btn-view-single {
+      background: #1E2533;
+      border: 1px solid var(--border-color);
+      color: #CBD5E1;
+      text-align: center;
+      padding: 0.55rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Teko', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+    }
+
+    .btn-view-single:hover {
+      background: #2D3748;
+      color: #FFFFFF;
+    }
+
+    .download-progress-bar {
+      display: none;
+      background: var(--navy-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .download-progress-bar.active {
+      display: flex;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: #1E2533;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--fire-red);
+      transition: width 0.2s ease;
+    }
+
+    footer {
+      background: #06070A;
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <div class="brand-title">INDA<span>FIRE</span></div>
+      <div class="catalog-badge">Catálogo Oficial de Imagens Originais</div>
+    </div>
+    <div class="header-actions">
+      <a href="produtos.html" class="btn-action btn-secondary">← Voltar ao Site</a>
+      <button class="btn-action btn-zip" id="btnZipAll" onclick="downloadAllInZip()">📦 Baixar Todas em ZIP</button>
+      <button class="btn-action" onclick="downloadManifestJSON()">⬇ Manifesto JSON</button>
+    </div>
+  </header>
+
+  <main class="main-container">
+    
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value">26</div>
+        <div class="stat-label">Produtos Homologados Rotulados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">241</div>
+        <div class="stat-label">Mídias e Imagens Originais</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">267</div>
+        <div class="stat-label">Total de Imagens no Catálogo</div>
+      </div>
+    </div>
+
+    <!-- Barra de Progresso ZIP -->
+    <div class="download-progress-bar" id="zipProgressBox">
+      <span id="zipProgressText" style="font-size: 0.85rem; font-weight: 600;">Compactando imagens em ZIP...</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="zipProgressFill"></div>
+      </div>
+      <span id="zipProgressPercent" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">0%</span>
+    </div>
+
+    <div class="filter-controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Buscar imagem por nome, produto, categoria..." oninput="filterMedia()">
+      </div>
+      <div class="category-tabs" id="categoryTabs">
+        <button class="tab-btn active" data-filter="all" onclick="setCategory('all')">TODAS AS IMAGENS (267)</button>
+        <button class="tab-btn" data-filter="Produtos Homologados" onclick="setCategory('Produtos Homologados')">PRODUTOS HOMOLOGADOS</button>
+        <button class="tab-btn" data-filter="Serviços" onclick="setCategory('Serviços')">SERVIÇOS</button>
+        <button class="tab-btn" data-filter="Treinamentos" onclick="setCategory('Treinamentos')">TREINAMENTOS</button>
+        <button class="tab-btn" data-filter="História & Institucional" onclick="setCategory('História & Institucional')">INSTITUCIONAL</button>
+        <button class="tab-btn" data-filter="Ícones & Vetores" onclick="setCategory('Ícones & Vetores')">ÍCONES & VETORES</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Media Cards injected by JS -->
+    </div>
+
+  </main>
+
+  <footer>
+    Inda Fire Extintores &bull; Acervo Completo de Imagens Originais Baixadas &bull; Prontas para Upload e Produção
+  </footer>
+
+  <script>
+    const CATALOG_ITEMS = [{"id":"prod-1","title":"Abrigo Hidrante Caixa","category":"Produtos Homologados","filename":"abrigo-hidrante-caixa.png","localPath":"images/products_original/abrigo-hidrante-caixa.png","sizeKb":"36.2","isProduct":true},{"id":"prod-2","title":"Abrigo Para Extintor","category":"Produtos Homologados","filename":"abrigo-para-extintor.png","localPath":"images/products_original/abrigo-para-extintor.png","sizeKb":"96.8","isProduct":true},{"id":"prod-3","title":"Armario Corta Fogo Seguranca","category":"Produtos Homologados","filename":"armario-corta-fogo-seguranca.png","localPath":"images/products_original/armario-corta-fogo-seguranca.png","sizeKb":"489.1","isProduct":true},{"id":"prod-4","title":"Armario Corta Fogo","category":"Produtos Homologados","filename":"armario-corta-fogo.png","localPath":"images/products_original/armario-corta-fogo.png","sizeKb":"115.4","isProduct":true},{"id":"prod-5","title":"Botoeira Alarme Bomba Incendio","category":"Produtos Homologados","filename":"botoeira-alarme-bomba-incendio.png","localPath":"images/products_original/botoeira-alarme-bomba-incendio.png","sizeKb":"45.5","isProduct":true},{"id":"prod-6","title":"Botoeira De Bomba","category":"Produtos Homologados","filename":"botoeira-de-bomba.png","localPath":"images/products_original/botoeira-de-bomba.png","sizeKb":"101.6","isProduct":true},{"id":"prod-7","title":"Capacete Combate Gallet F1","category":"Produtos Homologados","filename":"capacete-combate-gallet-f1.png","localPath":"images/products_original/capacete-combate-gallet-f1.png","sizeKb":"38.8","isProduct":true},{"id":"prod-8","title":"Capacete Gallet","category":"Produtos Homologados","filename":"capacete-gallet.png","localPath":"images/products_original/capacete-gallet.png","sizeKb":"91.0","isProduct":true},{"id":"prod-9","title":"Cilindro Ar Respiravel 6l","category":"Produtos Homologados","filename":"cilindro-ar-respiravel-6l.png","localPath":"images/products_original/cilindro-ar-respiravel-6l.png","sizeKb":"52.5","isProduct":true},{"id":"prod-10","title":"Cinturao De Seguranca Resgate X Pert Ii","category":"Produtos Homologados","filename":"cinturao-de-seguranca-resgate-x-pert-ii.png","localPath":"images/products_original/cinturao-de-seguranca-resgate-x-pert-ii.png","sizeKb":"708.5","isProduct":true},{"id":"prod-11","title":"Cinturao Paraquedista Resgate Xpert","category":"Produtos Homologados","filename":"cinturao-paraquedista-resgate-xpert.png","localPath":"images/products_original/cinturao-paraquedista-resgate-xpert.png","sizeKb":"57.4","isProduct":true},{"id":"prod-12","title":"Colete Imobilizador Dorsal Ked Adulto","category":"Produtos Homologados","filename":"colete-imobilizador-dorsal-ked-adulto.png","localPath":"images/products_original/colete-imobilizador-dorsal-ked-adulto.png","sizeKb":"94.5","isProduct":true},{"id":"prod-13","title":"Colete Imobilizador Ked","category":"Produtos Homologados","filename":"colete-imobilizador-ked.png","localPath":"images/products_original/colete-imobilizador-ked.png","sizeKb":"61.1","isProduct":true},{"id":"prod-14","title":"Extintor Agua Pressurizada","category":"Produtos Homologados","filename":"extintor-agua-pressurizada.png","localPath":"images/products_original/extintor-agua-pressurizada.png","sizeKb":"31.4","isProduct":true},{"id":"prod-15","title":"Extintor Co2 Gas Carbonico","category":"Produtos Homologados","filename":"extintor-co2-gas-carbonico.png","localPath":"images/products_original/extintor-co2-gas-carbonico.png","sizeKb":"28.5","isProduct":true},{"id":"prod-16","title":"Extintor Po Quimico Bc 4kg","category":"Produtos Homologados","filename":"extintor-po-quimico-bc-4kg.png","localPath":"images/products_original/extintor-po-quimico-bc-4kg.png","sizeKb":"82.1","isProduct":true},{"id":"prod-17","title":"Extintor Pqs Bc 4 Kg 20bc","category":"Produtos Homologados","filename":"extintor-pqs-bc-4-kg-20bc.png","localPath":"images/products_original/extintor-pqs-bc-4-kg-20bc.png","sizeKb":"82.1","isProduct":true},{"id":"prod-18","title":"Mangueira Combate Incendio Tipo 1","category":"Produtos Homologados","filename":"mangueira-combate-incendio-tipo-1.png","localPath":"images/products_original/mangueira-combate-incendio-tipo-1.png","sizeKb":"14.9","isProduct":true},{"id":"prod-19","title":"Mangueira Tipo I","category":"Produtos Homologados","filename":"mangueira-tipo-i.png","localPath":"images/products_original/mangueira-tipo-i.png","sizeKb":"64.9","isProduct":true},{"id":"prod-20","title":"Placa Extintor E5","category":"Produtos Homologados","filename":"placa-extintor-e5.png","localPath":"images/products_original/placa-extintor-e5.png","sizeKb":"61.6","isProduct":true},{"id":"prod-21","title":"Placa Sinalizacao Extintor E5","category":"Produtos Homologados","filename":"placa-sinalizacao-extintor-e5.png","localPath":"images/products_original/placa-sinalizacao-extintor-e5.png","sizeKb":"25.9","isProduct":true},{"id":"prod-22","title":"Suporte De Solo Para Extintor","category":"Produtos Homologados","filename":"suporte-de-solo-para-extintor.png","localPath":"images/products_original/suporte-de-solo-para-extintor.png","sizeKb":"35.8","isProduct":true},{"id":"prod-23","title":"Suporte Solo Extintor Inox","category":"Produtos Homologados","filename":"suporte-solo-extintor-inox.png","localPath":"images/products_original/suporte-solo-extintor-inox.png","sizeKb":"290.7","isProduct":true},{"id":"prod-24","title":"Unidade Central Lux 700 1200 24vdc","category":"Produtos Homologados","filename":"unidade-central-lux-700-1200-24vdc.png","localPath":"images/products_original/unidade-central-lux-700-1200-24vdc.png","sizeKb":"175.4","isProduct":true},{"id":"prod-25","title":"Unidade Central Lux Emergencia","category":"Produtos Homologados","filename":"unidade-central-lux-emergencia.png","localPath":"images/products_original/unidade-central-lux-emergencia.png","sizeKb":"37.9","isProduct":true},{"id":"prod-26","title":"Valvula Globo Angular Hidrante","category":"Produtos Homologados","filename":"valvula-globo-angular-hidrante.png","localPath":"images/products_original/valvula-globo-angular-hidrante.png","sizeKb":"42.4","isProduct":true},{"id":"media-1","title":"0376995521608309e6ea8922fffecade 1138","category":"Geral","filename":"0376995521608309e6ea8922fffecade-1138.jpg","localPath":"images/original_site/0376995521608309e6ea8922fffecade-1138.jpg","sizeKb":"84.1","isProduct":false},{"id":"media-2","title":"0ef88a09357fb0e1b06e791d5bacdcea 1838","category":"Geral","filename":"0ef88a09357fb0e1b06e791d5bacdcea-1838.jpg","localPath":"images/original_site/0ef88a09357fb0e1b06e791d5bacdcea-1838.jpg","sizeKb":"273.5","isProduct":false},{"id":"media-3","title":"1 1344","category":"Ícones & Vetores","filename":"1-1344.svg","localPath":"images/original_site/1-1344.svg","sizeKb":"1.8","isProduct":false},{"id":"media-4","title":"1 1668","category":"Geral","filename":"1-1668.png","localPath":"images/original_site/1-1668.png","sizeKb":"134.6","isProduct":false},{"id":"media-5","title":"1 2132","category":"Geral","filename":"1-2132.jpg","localPath":"images/original_site/1-2132.jpg","sizeKb":"163.9","isProduct":false},{"id":"media-6","title":"1 2312","category":"Ícones & Vetores","filename":"1-2312.svg","localPath":"images/original_site/1-2312.svg","sizeKb":"1.8","isProduct":false},{"id":"media-7","title":"103 1000 215 1000 1478","category":"Geral","filename":"103-1000-215-1000-1478.png","localPath":"images/original_site/103-1000-215-1000-1478.png","sizeKb":"64.9","isProduct":false},{"id":"media-8","title":"10639604 1538289183049362 3959369163680743290 N 797","category":"Geral","filename":"10639604-1538289183049362-3959369163680743290-n-797.jpg","localPath":"images/original_site/10639604-1538289183049362-3959369163680743290-n-797.jpg","sizeKb":"76.2","isProduct":false},{"id":"media-9","title":"1650 2090","category":"Geral","filename":"1650-2090.png","localPath":"images/original_site/1650-2090.png","sizeKb":"708.5","isProduct":false},{"id":"media-10","title":"1996 Fundacao 1699","category":"História & Institucional","filename":"1996-fundacao-1699.png","localPath":"images/original_site/1996-fundacao-1699.png","sizeKb":"175.0","isProduct":false},{"id":"media-11","title":"1996 Fundacao 1712","category":"História & Institucional","filename":"1996-fundacao-1712.png","localPath":"images/original_site/1996-fundacao-1712.png","sizeKb":"533.8","isProduct":false},{"id":"media-12","title":"1997 2007 1700","category":"Geral","filename":"1997-2007-1700.png","localPath":"images/original_site/1997-2007-1700.png","sizeKb":"178.1","isProduct":false},{"id":"media-13","title":"1997 2007 1713","category":"Geral","filename":"1997-2007-1713.png","localPath":"images/original_site/1997-2007-1713.png","sizeKb":"608.6","isProduct":false},{"id":"media-14","title":"19989658 1948403458704597 4436078762636910330 N 793","category":"Geral","filename":"19989658-1948403458704597-4436078762636910330-n-793.jpg","localPath":"images/original_site/19989658-1948403458704597-4436078762636910330-n-793.jpg","sizeKb":"61.6","isProduct":false},{"id":"media-15","title":"1b6bc6f47565f13b197f9c7b60c6c91e 2670","category":"Geral","filename":"1b6bc6f47565f13b197f9c7b60c6c91e-2670.jpg","localPath":"images/original_site/1b6bc6f47565f13b197f9c7b60c6c91e-2670.jpg","sizeKb":"61.9","isProduct":false},{"id":"media-16","title":"1c0ae2205709722b62e843abc0471a55 Xl 2082","category":"Geral","filename":"1c0ae2205709722b62e843abc0471a55-xl-2082.jpg","localPath":"images/original_site/1c0ae2205709722b62e843abc0471a55-xl-2082.jpg","sizeKb":"291.9","isProduct":false},{"id":"media-17","title":"1f23cadf F850 3daf 9604 59886d4d7c77 539","category":"Geral","filename":"1f23cadf-f850-3daf-9604-59886d4d7c77-539.jpg","localPath":"images/original_site/1f23cadf-f850-3daf-9604-59886d4d7c77-539.jpg","sizeKb":"55.9","isProduct":false},{"id":"media-18","title":"2 1345","category":"Ícones & Vetores","filename":"2-1345.svg","localPath":"images/original_site/2-1345.svg","sizeKb":"5.2","isProduct":false},{"id":"media-19","title":"2 1669","category":"Geral","filename":"2-1669.png","localPath":"images/original_site/2-1669.png","sizeKb":"93.4","isProduct":false},{"id":"media-20","title":"2 2139","category":"Geral","filename":"2-2139.jpg","localPath":"images/original_site/2-2139.jpg","sizeKb":"89.9","isProduct":false},{"id":"media-21","title":"2 2313","category":"Ícones & Vetores","filename":"2-2313.svg","localPath":"images/original_site/2-2313.svg","sizeKb":"5.2","isProduct":false},{"id":"media-22","title":"2008 2018 1701","category":"História & Institucional","filename":"2008-2018-1701.png","localPath":"images/original_site/2008-2018-1701.png","sizeKb":"212.5","isProduct":false},{"id":"media-23","title":"2018 1702","category":"História & Institucional","filename":"2018-1702.png","localPath":"images/original_site/2018-1702.png","sizeKb":"160.3","isProduct":false},{"id":"media-24","title":"2018 1715","category":"História & Institucional","filename":"2018-1715.png","localPath":"images/original_site/2018-1715.png","sizeKb":"791.5","isProduct":false},{"id":"media-25","title":"2018 Hoje 1703","category":"História & Institucional","filename":"2018-hoje-1703.jpg","localPath":"images/original_site/2018-hoje-1703.jpg","sizeKb":"101.7","isProduct":false},{"id":"media-26","title":"2069 1000 215 1000 1473","category":"Geral","filename":"2069-1000-215-1000-1473.png","localPath":"images/original_site/2069-1000-215-1000-1473.png","sizeKb":"60.0","isProduct":false},{"id":"media-27","title":"25e93d32 Ab32 35bf 8a13 182b1d25bcee 534","category":"Geral","filename":"25e93d32-ab32-35bf-8a13-182b1d25bcee-534.jpg","localPath":"images/original_site/25e93d32-ab32-35bf-8a13-182b1d25bcee-534.jpg","sizeKb":"176.2","isProduct":false},{"id":"media-28","title":"28776838b5d9e001f410b1d84c4d3f14 1335","category":"Geral","filename":"28776838b5d9e001f410b1d84c4d3f14-1335.jpg","localPath":"images/original_site/28776838b5d9e001f410b1d84c4d3f14-1335.jpg","sizeKb":"113.5","isProduct":false},{"id":"media-29","title":"3 1346","category":"Ícones & Vetores","filename":"3-1346.svg","localPath":"images/original_site/3-1346.svg","sizeKb":"2.3","isProduct":false},{"id":"media-30","title":"3 1670","category":"Geral","filename":"3-1670.png","localPath":"images/original_site/3-1670.png","sizeKb":"319.6","isProduct":false},{"id":"media-31","title":"3 2141","category":"Geral","filename":"3-2141.jpg","localPath":"images/original_site/3-2141.jpg","sizeKb":"66.1","isProduct":false},{"id":"media-32","title":"3 2314","category":"Ícones & Vetores","filename":"3-2314.svg","localPath":"images/original_site/3-2314.svg","sizeKb":"2.3","isProduct":false},{"id":"media-33","title":"30fb45ba475e0cd7858d640ff1b6f659 1337","category":"Geral","filename":"30fb45ba475e0cd7858d640ff1b6f659-1337.jpg","localPath":"images/original_site/30fb45ba475e0cd7858d640ff1b6f659-1337.jpg","sizeKb":"206.5","isProduct":false},{"id":"media-34","title":"4 1347","category":"Ícones & Vetores","filename":"4-1347.svg","localPath":"images/original_site/4-1347.svg","sizeKb":"3.4","isProduct":false},{"id":"media-35","title":"4 1671","category":"Geral","filename":"4-1671.png","localPath":"images/original_site/4-1671.png","sizeKb":"805.3","isProduct":false},{"id":"media-36","title":"4 2142","category":"Geral","filename":"4-2142.jpg","localPath":"images/original_site/4-2142.jpg","sizeKb":"119.0","isProduct":false},{"id":"media-37","title":"4 2315","category":"Ícones & Vetores","filename":"4-2315.svg","localPath":"images/original_site/4-2315.svg","sizeKb":"3.4","isProduct":false},{"id":"media-38","title":"4894 Banners Produtos Indafire Mangueiras 1993","category":"História & Institucional","filename":"4894-banners-produtos-indafire-mangueiras-1993.jpg","localPath":"images/original_site/4894-banners-produtos-indafire-mangueiras-1993.jpg","sizeKb":"350.4","isProduct":false},{"id":"media-39","title":"4894 Banners Produtos Indafire10 Aph 1992","category":"História & Institucional","filename":"4894-banners-produtos-indafire10-aph-1992.jpg","localPath":"images/original_site/4894-banners-produtos-indafire10-aph-1992.jpg","sizeKb":"365.5","isProduct":false},{"id":"media-40","title":"4894 Banners Produtos Indafire11 Epc 1997","category":"História & Institucional","filename":"4894-banners-produtos-indafire11-epc-1997.jpg","localPath":"images/original_site/4894-banners-produtos-indafire11-epc-1997.jpg","sizeKb":"489.1","isProduct":false},{"id":"media-41","title":"4894 Banners Produtos Indafire12 Resgatealtura 2000","category":"História & Institucional","filename":"4894-banners-produtos-indafire12-resgatealtura-2000.jpg","localPath":"images/original_site/4894-banners-produtos-indafire12-resgatealtura-2000.jpg","sizeKb":"241.6","isProduct":false},{"id":"media-42","title":"4894 Banners Produtos Indafire13 Incendio Florestal 1999","category":"História & Institucional","filename":"4894-banners-produtos-indafire13-incendio-florestal-1999.jpg","localPath":"images/original_site/4894-banners-produtos-indafire13-incendio-florestal-1999.jpg","sizeKb":"444.1","isProduct":false},{"id":"media-43","title":"4894 Banners Produtos Indafire14 Bomba Incendio 2002","category":"História & Institucional","filename":"4894-banners-produtos-indafire14-bomba-incendio-2002.jpg","localPath":"images/original_site/4894-banners-produtos-indafire14-bomba-incendio-2002.jpg","sizeKb":"251.9","isProduct":false},{"id":"media-44","title":"4894 Banners Produtos Indafire2 Abrigos 1989","category":"História & Institucional","filename":"4894-banners-produtos-indafire2-abrigos-1989.jpg","localPath":"images/original_site/4894-banners-produtos-indafire2-abrigos-1989.jpg","sizeKb":"379.2","isProduct":false},{"id":"media-45","title":"4894 Banners Produtos Indafire3 Hidrantes 1996","category":"História & Institucional","filename":"4894-banners-produtos-indafire3-hidrantes-1996.jpg","localPath":"images/original_site/4894-banners-produtos-indafire3-hidrantes-1996.jpg","sizeKb":"372.0","isProduct":false},{"id":"media-46","title":"4894 Banners Produtos Indafire4 Alarmes 1991","category":"História & Institucional","filename":"4894-banners-produtos-indafire4-alarmes-1991.jpg","localPath":"images/original_site/4894-banners-produtos-indafire4-alarmes-1991.jpg","sizeKb":"258.3","isProduct":false},{"id":"media-47","title":"4894 Banners Produtos Indafire5 Sinalizacoes 2001","category":"História & Institucional","filename":"4894-banners-produtos-indafire5-sinalizacoes-2001.jpg","localPath":"images/original_site/4894-banners-produtos-indafire5-sinalizacoes-2001.jpg","sizeKb":"278.3","isProduct":false},{"id":"media-48","title":"4894 Banners Produtos Indafire6 Iluminacao 1998","category":"História & Institucional","filename":"4894-banners-produtos-indafire6-iluminacao-1998.jpg","localPath":"images/original_site/4894-banners-produtos-indafire6-iluminacao-1998.jpg","sizeKb":"293.0","isProduct":false},{"id":"media-49","title":"4894 Banners Produtos Indafire7 Acessorios 1990","category":"História & Institucional","filename":"4894-banners-produtos-indafire7-acessorios-1990.jpg","localPath":"images/original_site/4894-banners-produtos-indafire7-acessorios-1990.jpg","sizeKb":"290.7","isProduct":false},{"id":"media-50","title":"4894 Banners Produtos Indafire8 Epi 1995","category":"História & Institucional","filename":"4894-banners-produtos-indafire8-epi-1995.jpg","localPath":"images/original_site/4894-banners-produtos-indafire8-epi-1995.jpg","sizeKb":"344.9","isProduct":false},{"id":"media-51","title":"4894 Banners Produtos Indafire9 Epr 1994","category":"História & Institucional","filename":"4894-banners-produtos-indafire9-epr-1994.jpg","localPath":"images/original_site/4894-banners-produtos-indafire9-epr-1994.jpg","sizeKb":"348.2","isProduct":false},{"id":"media-52","title":"4b1f8e1d4ccfa9cef5b75d23c8e05f5e 1840","category":"Geral","filename":"4b1f8e1d4ccfa9cef5b75d23c8e05f5e-1840.jpg","localPath":"images/original_site/4b1f8e1d4ccfa9cef5b75d23c8e05f5e-1840.jpg","sizeKb":"157.6","isProduct":false},{"id":"media-53","title":"4ece218fd8ac5e01a0cc38d2d2d8cddf 1842","category":"Geral","filename":"4ece218fd8ac5e01a0cc38d2d2d8cddf-1842.jpg","localPath":"images/original_site/4ece218fd8ac5e01a0cc38d2d2d8cddf-1842.jpg","sizeKb":"330.4","isProduct":false},{"id":"media-54","title":"5 1348","category":"Ícones & Vetores","filename":"5-1348.svg","localPath":"images/original_site/5-1348.svg","sizeKb":"3.0","isProduct":false},{"id":"media-55","title":"5 1672","category":"Geral","filename":"5-1672.png","localPath":"images/original_site/5-1672.png","sizeKb":"940.0","isProduct":false},{"id":"media-56","title":"5 2316","category":"Ícones & Vetores","filename":"5-2316.svg","localPath":"images/original_site/5-2316.svg","sizeKb":"3.0","isProduct":false},{"id":"media-57","title":"52 2 2078","category":"Geral","filename":"52-2-2078.png","localPath":"images/original_site/52-2-2078.png","sizeKb":"61.6","isProduct":false},{"id":"media-58","title":"6 1349","category":"Ícones & Vetores","filename":"6-1349.svg","localPath":"images/original_site/6-1349.svg","sizeKb":"4.3","isProduct":false},{"id":"media-59","title":"6 2317","category":"Ícones & Vetores","filename":"6-2317.svg","localPath":"images/original_site/6-2317.svg","sizeKb":"4.3","isProduct":false},{"id":"media-60","title":"7bf9832e64292ac5d9f62b8a410deea0 1844","category":"Geral","filename":"7bf9832e64292ac5d9f62b8a410deea0-1844.jpg","localPath":"images/original_site/7bf9832e64292ac5d9f62b8a410deea0-1844.jpg","sizeKb":"180.1","isProduct":false},{"id":"media-61","title":"83 1000 215 1000 1476","category":"Geral","filename":"83-1000-215-1000-1476.png","localPath":"images/original_site/83-1000-215-1000-1476.png","sizeKb":"96.8","isProduct":false},{"id":"media-62","title":"877cd5a21d013164c699c14a9c871e4f 1850","category":"Geral","filename":"877cd5a21d013164c699c14a9c871e4f-1850.jpg","localPath":"images/original_site/877cd5a21d013164c699c14a9c871e4f-1850.jpg","sizeKb":"302.7","isProduct":false},{"id":"media-63","title":"8f3dda5b1f2475cac30a4a8b34812cbb 1846","category":"Geral","filename":"8f3dda5b1f2475cac30a4a8b34812cbb-1846.jpg","localPath":"images/original_site/8f3dda5b1f2475cac30a4a8b34812cbb-1846.jpg","sizeKb":"262.7","isProduct":false},{"id":"media-64","title":"9df4c4b0213d63f93e3fc8215d94f26f 1848","category":"Geral","filename":"9df4c4b0213d63f93e3fc8215d94f26f-1848.jpg","localPath":"images/original_site/9df4c4b0213d63f93e3fc8215d94f26f-1848.jpg","sizeKb":"173.0","isProduct":false},{"id":"media-65","title":"Abrigos 2007","category":"Geral","filename":"abrigos-2007.jpg","localPath":"images/original_site/abrigos-2007.jpg","sizeKb":"362.1","isProduct":false},{"id":"media-66","title":"Acessorios 1480","category":"Geral","filename":"acessorios-1480.png","localPath":"images/original_site/acessorios-1480.png","sizeKb":"35.8","isProduct":false},{"id":"media-67","title":"Acessorios 2010","category":"Geral","filename":"acessorios-2010.jpg","localPath":"images/original_site/acessorios-2010.jpg","sizeKb":"290.8","isProduct":false},{"id":"media-68","title":"Alarmes Incendio 1484","category":"Geral","filename":"alarmes-incendio-1484.png","localPath":"images/original_site/alarmes-incendio-1484.png","sizeKb":"101.6","isProduct":false},{"id":"media-69","title":"Aph 1482","category":"Geral","filename":"aph-1482.png","localPath":"images/original_site/aph-1482.png","sizeKb":"94.5","isProduct":false},{"id":"media-70","title":"Aspas 1 437","category":"Geral","filename":"aspas-1-437.png","localPath":"images/original_site/aspas-1-437.png","sizeKb":"0.7","isProduct":false},{"id":"media-71","title":"Aspas 2 438","category":"Geral","filename":"aspas-2-438.png","localPath":"images/original_site/aspas-2-438.png","sizeKb":"0.7","isProduct":false},{"id":"media-72","title":"B 566","category":"Geral","filename":"b-566.jpg","localPath":"images/original_site/b-566.jpg","sizeKb":"28.0","isProduct":false},{"id":"media-73","title":"Banner Indafire 400","category":"História & Institucional","filename":"banner-indafire-400.mp4","localPath":"images/original_site/banner-indafire-400.mp4","sizeKb":"87720.6","isProduct":false},{"id":"media-74","title":"Banner Precisando De Ajuda 8212 Falar Com Especilistas 2612","category":"Geral","filename":"banner-precisando-de-ajuda-8212-falar-com-especilistas-2612.png","localPath":"images/original_site/banner-precisando-de-ajuda-8212-falar-com-especilistas-2612.png","sizeKb":"19.9","isProduct":false},{"id":"media-75","title":"Banner Sistemas Completos 8212 Vermelho 2621","category":"Geral","filename":"banner-sistemas-completos-8212-vermelho-2621.png","localPath":"images/original_site/banner-sistemas-completos-8212-vermelho-2621.png","sizeKb":"20.6","isProduct":false},{"id":"media-76","title":"Banner Sprinkler 2053","category":"Geral","filename":"banner-sprinkler-2053.png","localPath":"images/original_site/banner-sprinkler-2053.png","sizeKb":"927.7","isProduct":false},{"id":"media-77","title":"Banner Unid Movel 1751","category":"Geral","filename":"banner-unid-movel-1751.png","localPath":"images/original_site/banner-unid-movel-1751.png","sizeKb":"803.4","isProduct":false},{"id":"media-78","title":"Banneravcb 830","category":"Serviços","filename":"banneravcb-830.jpg","localPath":"images/original_site/banneravcb-830.jpg","sizeKb":"61.9","isProduct":false},{"id":"media-79","title":"Bd90e9d1 4167 3cc4 B887 2a4f40d77778 535","category":"Geral","filename":"bd90e9d1-4167-3cc4-b887-2a4f40d77778-535.jpg","localPath":"images/original_site/bd90e9d1-4167-3cc4-b887-2a4f40d77778-535.jpg","sizeKb":"156.7","isProduct":false},{"id":"media-80","title":"Bombeiro 366","category":"Treinamentos","filename":"bombeiro-366.jpg","localPath":"images/original_site/bombeiro-366.jpg","sizeKb":"65.7","isProduct":false},{"id":"media-81","title":"Caminhao Bombeiro 2538","category":"Treinamentos","filename":"caminhao-bombeiro-2538.png","localPath":"images/original_site/caminhao-bombeiro-2538.png","sizeKb":"253.5","isProduct":false},{"id":"media-82","title":"Capa Artigo Blog Inda Fire 3 2689","category":"História & Institucional","filename":"capa-artigo-blog-inda-fire-3-2689.png","localPath":"images/original_site/capa-artigo-blog-inda-fire-3-2689.png","sizeKb":"2317.2","isProduct":false},{"id":"media-83","title":"Cara 1183","category":"Geral","filename":"cara-1183.png","localPath":"images/original_site/cara-1183.png","sizeKb":"35.8","isProduct":false},{"id":"media-84","title":"Catalogo Inda Fire 696","category":"História & Institucional","filename":"catalogo-inda-fire-696.pdf","localPath":"images/original_site/catalogo-inda-fire-696.pdf","sizeKb":"15990.9","isProduct":false},{"id":"media-85","title":"Central Alarme Incendio 02 545","category":"Geral","filename":"central-alarme-incendio-02-545.jpg","localPath":"images/original_site/central-alarme-incendio-02-545.jpg","sizeKb":"81.4","isProduct":false},{"id":"media-86","title":"Cidade 859","category":"Geral","filename":"cidade-859.jpg","localPath":"images/original_site/cidade-859.jpg","sizeKb":"104.9","isProduct":false},{"id":"media-87","title":"Contato 855","category":"Geral","filename":"contato-855.jpg","localPath":"images/original_site/contato-855.jpg","sizeKb":"91.4","isProduct":false},{"id":"media-88","title":"Contra Capa 03 910","category":"Geral","filename":"contra-capa-03-910.png","localPath":"images/original_site/contra-capa-03-910.png","sizeKb":"241.6","isProduct":false},{"id":"media-89","title":"Contra Capa 03 918","category":"Geral","filename":"contra-capa-03-918.png","localPath":"images/original_site/contra-capa-03-918.png","sizeKb":"360.0","isProduct":false},{"id":"media-90","title":"Contra Capa 03 922","category":"Geral","filename":"contra-capa-03-922.png","localPath":"images/original_site/contra-capa-03-922.png","sizeKb":"232.3","isProduct":false},{"id":"media-91","title":"Cropped Inda 512 Png 36","category":"História & Institucional","filename":"cropped-inda-512-png-36.png","localPath":"images/original_site/cropped-inda-512-png-36.png","sizeKb":"11.9","isProduct":false},{"id":"media-92","title":"D3c2ac72a7dcf1ca7b95cc9d727c417b 1336","category":"Geral","filename":"d3c2ac72a7dcf1ca7b95cc9d727c417b-1336.jpg","localPath":"images/original_site/d3c2ac72a7dcf1ca7b95cc9d727c417b-1336.jpg","sizeKb":"119.5","isProduct":false},{"id":"media-93","title":"Dd2abff1f378fbd77a181c7b850ad83d 1853","category":"Geral","filename":"dd2abff1f378fbd77a181c7b850ad83d-1853.jpg","localPath":"images/original_site/dd2abff1f378fbd77a181c7b850ad83d-1853.jpg","sizeKb":"304.0","isProduct":false},{"id":"media-94","title":"Df00b640832c801ffac83ba1740abeb0 1854","category":"Geral","filename":"df00b640832c801ffac83ba1740abeb0-1854.jpg","localPath":"images/original_site/df00b640832c801ffac83ba1740abeb0-1854.jpg","sizeKb":"205.6","isProduct":false},{"id":"media-95","title":"Email 590","category":"Geral","filename":"email-590.png","localPath":"images/original_site/email-590.png","sizeKb":"26.6","isProduct":false},{"id":"media-96","title":"Envelope 858","category":"Ícones & Vetores","filename":"envelope-858.svg","localPath":"images/original_site/envelope-858.svg","sizeKb":"2.3","isProduct":false},{"id":"media-97","title":"Epc 1486","category":"Geral","filename":"epc-1486.png","localPath":"images/original_site/epc-1486.png","sizeKb":"115.4","isProduct":false},{"id":"media-98","title":"Epc 2012","category":"Geral","filename":"epc-2012.jpg","localPath":"images/original_site/epc-2012.jpg","sizeKb":"377.1","isProduct":false},{"id":"media-99","title":"Epi 1488","category":"Geral","filename":"epi-1488.png","localPath":"images/original_site/epi-1488.png","sizeKb":"91.0","isProduct":false},{"id":"media-100","title":"Epi 2011","category":"Geral","filename":"epi-2011.jpg","localPath":"images/original_site/epi-2011.jpg","sizeKb":"430.2","isProduct":false},{"id":"media-101","title":"Exit Sign 2087","category":"Geral","filename":"exit-sign-2087.png","localPath":"images/original_site/exit-sign-2087.png","sizeKb":"175.4","isProduct":false},{"id":"media-102","title":"Extintor De Espuma 2680","category":"Produtos Homologados","filename":"extintor-de-espuma-2680.webp","localPath":"images/original_site/extintor-de-espuma-2680.webp","sizeKb":"26.4","isProduct":false},{"id":"media-103","title":"Extintor Pqs Bc 4 Kg 8212 20bc 1469","category":"Produtos Homologados","filename":"extintor-pqs-bc-4-kg-8212-20bc-1469.png","localPath":"images/original_site/extintor-pqs-bc-4-kg-8212-20bc-1469.png","sizeKb":"82.1","isProduct":false},{"id":"media-104","title":"F2a42897be48652f1a971fab495c8aad 543","category":"Geral","filename":"f2a42897be48652f1a971fab495c8aad-543.jpg","localPath":"images/original_site/f2a42897be48652f1a971fab495c8aad-543.jpg","sizeKb":"290.2","isProduct":false},{"id":"media-105","title":"Fb0f0ffc 0eb0 322c 8859 567eac6dc758 537","category":"Geral","filename":"fb0f0ffc-0eb0-322c-8859-567eac6dc758-537.jpg","localPath":"images/original_site/fb0f0ffc-0eb0-322c-8859-567eac6dc758-537.jpg","sizeKb":"140.4","isProduct":false},{"id":"media-106","title":"Fire Extinguisher Training Delaware Valley Safety Council Nj Pa De 1795","category":"Geral","filename":"fire-extinguisher-training-delaware-valley-safety-council-nj-pa-de-1795.png","localPath":"images/original_site/fire-extinguisher-training-delaware-valley-safety-council-nj-pa-de-1795.png","sizeKb":"502.2","isProduct":false},{"id":"media-107","title":"Fire Sprinkler In Office Building Blur Background Focus At Selective 2055","category":"Geral","filename":"fire-sprinkler-in-office-building-blur-background-focus-at-selective-2055.jpg","localPath":"images/original_site/fire-sprinkler-in-office-building-blur-background-focus-at-selective-2055.jpg","sizeKb":"34.1","isProduct":false},{"id":"media-108","title":"Fogu 1119","category":"Geral","filename":"fogu-1119.jpg","localPath":"images/original_site/fogu-1119.jpg","sizeKb":"33.6","isProduct":false},{"id":"media-109","title":"Grupo 15888 1173","category":"Geral","filename":"grupo-15888-1173.jpg","localPath":"images/original_site/grupo-15888-1173.jpg","sizeKb":"259.3","isProduct":false},{"id":"media-110","title":"Grupo 15892 1252","category":"Ícones & Vetores","filename":"grupo-15892-1252.svg","localPath":"images/original_site/grupo-15892-1252.svg","sizeKb":"0.5","isProduct":false},{"id":"media-111","title":"Grupo 15893 1253","category":"Ícones & Vetores","filename":"grupo-15893-1253.svg","localPath":"images/original_site/grupo-15893-1253.svg","sizeKb":"0.5","isProduct":false},{"id":"media-112","title":"Grupo 15917 1945","category":"Ícones & Vetores","filename":"grupo-15917-1945.svg","localPath":"images/original_site/grupo-15917-1945.svg","sizeKb":"1.2","isProduct":false},{"id":"media-113","title":"Guia De Uso Indafire Site 2451","category":"História & Institucional","filename":"guia-de-uso-indafire-site-2451.pptx","localPath":"images/original_site/guia-de-uso-indafire-site-2451.pptx","sizeKb":"22654.2","isProduct":false},{"id":"media-114","title":"Hidrantes 2008","category":"História & Institucional","filename":"hidrantes-2008.jpg","localPath":"images/original_site/hidrantes-2008.jpg","sizeKb":"416.4","isProduct":false},{"id":"media-115","title":"Hidrantes 2057","category":"Geral","filename":"hidrantes-2057.jpg","localPath":"images/original_site/hidrantes-2057.jpg","sizeKb":"94.4","isProduct":false},{"id":"media-116","title":"I1 1086","category":"Ícones & Vetores","filename":"i1-1086.svg","localPath":"images/original_site/i1-1086.svg","sizeKb":"1.8","isProduct":false},{"id":"media-117","title":"I1 1109","category":"Ícones & Vetores","filename":"i1-1109.svg","localPath":"images/original_site/i1-1109.svg","sizeKb":"1.9","isProduct":false},{"id":"media-118","title":"I2 1089","category":"Ícones & Vetores","filename":"i2-1089.svg","localPath":"images/original_site/i2-1089.svg","sizeKb":"4.4","isProduct":false},{"id":"media-119","title":"I2 1110","category":"Ícones & Vetores","filename":"i2-1110.svg","localPath":"images/original_site/i2-1110.svg","sizeKb":"2.6","isProduct":false},{"id":"media-120","title":"I3 1087","category":"Ícones & Vetores","filename":"i3-1087.svg","localPath":"images/original_site/i3-1087.svg","sizeKb":"1.0","isProduct":false},{"id":"media-121","title":"I3 1111","category":"Ícones & Vetores","filename":"i3-1111.svg","localPath":"images/original_site/i3-1111.svg","sizeKb":"4.1","isProduct":false},{"id":"media-122","title":"I4 1090","category":"Ícones & Vetores","filename":"i4-1090.svg","localPath":"images/original_site/i4-1090.svg","sizeKb":"2.5","isProduct":false},{"id":"media-123","title":"I5 1088","category":"Ícones & Vetores","filename":"i5-1088.svg","localPath":"images/original_site/i5-1088.svg","sizeKb":"6.3","isProduct":false},{"id":"media-124","title":"I6 1091","category":"Ícones & Vetores","filename":"i6-1091.svg","localPath":"images/original_site/i6-1091.svg","sizeKb":"1.4","isProduct":false},{"id":"media-125","title":"Ico 1 734","category":"Ícones & Vetores","filename":"ico-1-734.svg","localPath":"images/original_site/ico-1-734.svg","sizeKb":"1.7","isProduct":false},{"id":"media-126","title":"Ico 1 863","category":"Ícones & Vetores","filename":"ico-1-863.svg","localPath":"images/original_site/ico-1-863.svg","sizeKb":"0.9","isProduct":false},{"id":"media-127","title":"Ico 1 97","category":"Ícones & Vetores","filename":"ico-1-97.svg","localPath":"images/original_site/ico-1-97.svg","sizeKb":"1.9","isProduct":false},{"id":"media-128","title":"Ico 1 99","category":"Ícones & Vetores","filename":"ico-1-99.svg","localPath":"images/original_site/ico-1-99.svg","sizeKb":"1.9","isProduct":false},{"id":"media-129","title":"Ico 10 214","category":"Ícones & Vetores","filename":"ico-10-214.png","localPath":"images/original_site/ico-10-214.png","sizeKb":"6.3","isProduct":false},{"id":"media-130","title":"Ico 10 215","category":"Ícones & Vetores","filename":"ico-10-215.png","localPath":"images/original_site/ico-10-215.png","sizeKb":"6.3","isProduct":false},{"id":"media-131","title":"Ico 11 218","category":"Ícones & Vetores","filename":"ico-11-218.png","localPath":"images/original_site/ico-11-218.png","sizeKb":"5.1","isProduct":false},{"id":"media-132","title":"Ico 12 221","category":"Ícones & Vetores","filename":"ico-12-221.png","localPath":"images/original_site/ico-12-221.png","sizeKb":"5.7","isProduct":false},{"id":"media-133","title":"Ico 13 224","category":"Ícones & Vetores","filename":"ico-13-224.png","localPath":"images/original_site/ico-13-224.png","sizeKb":"3.9","isProduct":false},{"id":"media-134","title":"Ico 14 227","category":"Ícones & Vetores","filename":"ico-14-227.png","localPath":"images/original_site/ico-14-227.png","sizeKb":"11.1","isProduct":false},{"id":"media-135","title":"Ico 15 230","category":"Ícones & Vetores","filename":"ico-15-230.png","localPath":"images/original_site/ico-15-230.png","sizeKb":"8.2","isProduct":false},{"id":"media-136","title":"Ico 16 233","category":"Ícones & Vetores","filename":"ico-16-233.png","localPath":"images/original_site/ico-16-233.png","sizeKb":"5.9","isProduct":false},{"id":"media-137","title":"Ico 17 237","category":"Ícones & Vetores","filename":"ico-17-237.png","localPath":"images/original_site/ico-17-237.png","sizeKb":"3.4","isProduct":false},{"id":"media-138","title":"Ico 2 100","category":"Ícones & Vetores","filename":"ico-2-100.svg","localPath":"images/original_site/ico-2-100.svg","sizeKb":"2.8","isProduct":false},{"id":"media-139","title":"Ico 2 777","category":"Ícones & Vetores","filename":"ico-2-777.svg","localPath":"images/original_site/ico-2-777.svg","sizeKb":"2.4","isProduct":false},{"id":"media-140","title":"Ico 2 864","category":"Ícones & Vetores","filename":"ico-2-864.svg","localPath":"images/original_site/ico-2-864.svg","sizeKb":"2.1","isProduct":false},{"id":"media-141","title":"Ico 2 98","category":"Ícones & Vetores","filename":"ico-2-98.svg","localPath":"images/original_site/ico-2-98.svg","sizeKb":"2.8","isProduct":false},{"id":"media-142","title":"Ico 3 783","category":"Ícones & Vetores","filename":"ico-3-783.svg","localPath":"images/original_site/ico-3-783.svg","sizeKb":"2.5","isProduct":false},{"id":"media-143","title":"Ico 3 96","category":"Ícones & Vetores","filename":"ico-3-96.svg","localPath":"images/original_site/ico-3-96.svg","sizeKb":"3.2","isProduct":false},{"id":"media-144","title":"Ico 4 792","category":"Ícones & Vetores","filename":"ico-4-792.svg","localPath":"images/original_site/ico-4-792.svg","sizeKb":"4.3","isProduct":false},{"id":"media-145","title":"Ico 4 799","category":"Ícones & Vetores","filename":"ico-4-799.svg","localPath":"images/original_site/ico-4-799.svg","sizeKb":"2.5","isProduct":false},{"id":"media-146","title":"Ico 7 205","category":"Ícones & Vetores","filename":"ico-7-205.png","localPath":"images/original_site/ico-7-205.png","sizeKb":"7.5","isProduct":false},{"id":"media-147","title":"Ico 8 208","category":"Ícones & Vetores","filename":"ico-8-208.png","localPath":"images/original_site/ico-8-208.png","sizeKb":"5.0","isProduct":false},{"id":"media-148","title":"Ico 9 210","category":"Ícones & Vetores","filename":"ico-9-210.png","localPath":"images/original_site/ico-9-210.png","sizeKb":"12.9","isProduct":false},{"id":"media-149","title":"Icone 1 181","category":"Ícones & Vetores","filename":"icone-1-181.png","localPath":"images/original_site/icone-1-181.png","sizeKb":"2.8","isProduct":false},{"id":"media-150","title":"Icone 2 190","category":"Ícones & Vetores","filename":"icone-2-190.png","localPath":"images/original_site/icone-2-190.png","sizeKb":"4.8","isProduct":false},{"id":"media-151","title":"Icone 3 193","category":"Ícones & Vetores","filename":"icone-3-193.png","localPath":"images/original_site/icone-3-193.png","sizeKb":"2.9","isProduct":false},{"id":"media-152","title":"Icone 4 196","category":"Ícones & Vetores","filename":"icone-4-196.png","localPath":"images/original_site/icone-4-196.png","sizeKb":"6.5","isProduct":false},{"id":"media-153","title":"Icone 5 199","category":"Ícones & Vetores","filename":"icone-5-199.png","localPath":"images/original_site/icone-5-199.png","sizeKb":"7.7","isProduct":false},{"id":"media-154","title":"Icone 6 202","category":"Ícones & Vetores","filename":"icone-6-202.png","localPath":"images/original_site/icone-6-202.png","sizeKb":"12.2","isProduct":false},{"id":"media-155","title":"Iii 1862","category":"Geral","filename":"iii-1862.jpg","localPath":"images/original_site/iii-1862.jpg","sizeKb":"94.5","isProduct":false},{"id":"media-156","title":"Iluminacao 2009","category":"Geral","filename":"iluminacao-2009.jpg","localPath":"images/original_site/iluminacao-2009.jpg","sizeKb":"253.6","isProduct":false},{"id":"media-157","title":"Iluminacao 2056","category":"Geral","filename":"iluminacao-2056.jpg","localPath":"images/original_site/iluminacao-2056.jpg","sizeKb":"42.8","isProduct":false},{"id":"media-158","title":"Img 1 467","category":"Geral","filename":"img-1-467.png","localPath":"images/original_site/img-1-467.png","sizeKb":"26.8","isProduct":false},{"id":"media-159","title":"Img 2 468","category":"Geral","filename":"img-2-468.png","localPath":"images/original_site/img-2-468.png","sizeKb":"24.3","isProduct":false},{"id":"media-160","title":"Img 3 469","category":"Geral","filename":"img-3-469.png","localPath":"images/original_site/img-3-469.png","sizeKb":"22.8","isProduct":false},{"id":"media-161","title":"Img 4 470","category":"Geral","filename":"img-4-470.png","localPath":"images/original_site/img-4-470.png","sizeKb":"24.6","isProduct":false},{"id":"media-162","title":"Img1 1142","category":"Geral","filename":"img1-1142.png","localPath":"images/original_site/img1-1142.png","sizeKb":"79.9","isProduct":false},{"id":"media-163","title":"Img2 1143","category":"Geral","filename":"img2-1143.png","localPath":"images/original_site/img2-1143.png","sizeKb":"68.2","isProduct":false},{"id":"media-164","title":"Img3 1144","category":"Geral","filename":"img3-1144.png","localPath":"images/original_site/img3-1144.png","sizeKb":"36.3","isProduct":false},{"id":"media-165","title":"Incendio Florestal 2013","category":"Geral","filename":"incendio-florestal-2013.jpg","localPath":"images/original_site/incendio-florestal-2013.jpg","sizeKb":"443.4","isProduct":false},{"id":"media-166","title":"Inda 512 35","category":"História & Institucional","filename":"inda-512-35.png","localPath":"images/original_site/inda-512-35.png","sizeKb":"12.2","isProduct":false},{"id":"media-167","title":"Inda 760","category":"História & Institucional","filename":"inda-760.jpg","localPath":"images/original_site/inda-760.jpg","sizeKb":"36.3","isProduct":false},{"id":"media-168","title":"Inda Fire 76","category":"História & Institucional","filename":"inda-fire-76.jpg","localPath":"images/original_site/inda-fire-76.jpg","sizeKb":"111.1","isProduct":false},{"id":"media-169","title":"Inda Fundo 909","category":"História & Institucional","filename":"inda-fundo-909.jpg","localPath":"images/original_site/inda-fundo-909.jpg","sizeKb":"90.1","isProduct":false},{"id":"media-170","title":"Inmetro Logo Branco 908","category":"Ícones & Vetores","filename":"inmetro-logo-branco-908.svg","localPath":"images/original_site/inmetro-logo-branco-908.svg","sizeKb":"131.2","isProduct":false},{"id":"media-171","title":"Lektorat Scaled 1797","category":"Geral","filename":"lektorat-scaled-1797.png","localPath":"images/original_site/lektorat-scaled-1797.png","sizeKb":"415.9","isProduct":false},{"id":"media-172","title":"Linha 296","category":"Ícones & Vetores","filename":"linha-296.svg","localPath":"images/original_site/linha-296.svg","sizeKb":"0.4","isProduct":false},{"id":"media-173","title":"Logo Inda Fire 33","category":"Ícones & Vetores","filename":"logo-inda-fire-33.svg","localPath":"images/original_site/logo-inda-fire-33.svg","sizeKb":"17.5","isProduct":false},{"id":"media-174","title":"Mockup 591","category":"Geral","filename":"mockup-591.png","localPath":"images/original_site/mockup-591.png","sizeKb":"17.3","isProduct":false},{"id":"media-175","title":"Note 2539","category":"Geral","filename":"note-2539.png","localPath":"images/original_site/note-2539.png","sizeKb":"700.6","isProduct":false},{"id":"media-176","title":"Noun Person 2897325 1946","category":"Ícones & Vetores","filename":"noun-person-2897325-1946.svg","localPath":"images/original_site/noun-person-2897325-1946.svg","sizeKb":"0.7","isProduct":false},{"id":"media-177","title":"P1 484","category":"Produtos Homologados","filename":"p1-484.png","localPath":"images/original_site/p1-484.png","sizeKb":"33.3","isProduct":false},{"id":"media-178","title":"P10 519","category":"Produtos Homologados","filename":"p10-519.png","localPath":"images/original_site/p10-519.png","sizeKb":"38.8","isProduct":false},{"id":"media-179","title":"P11 520","category":"Produtos Homologados","filename":"p11-520.png","localPath":"images/original_site/p11-520.png","sizeKb":"52.5","isProduct":false},{"id":"media-180","title":"P12 521","category":"Produtos Homologados","filename":"p12-521.png","localPath":"images/original_site/p12-521.png","sizeKb":"61.1","isProduct":false},{"id":"media-181","title":"P13 522","category":"Produtos Homologados","filename":"p13-522.png","localPath":"images/original_site/p13-522.png","sizeKb":"57.4","isProduct":false},{"id":"media-182","title":"P2 485","category":"Produtos Homologados","filename":"p2-485.png","localPath":"images/original_site/p2-485.png","sizeKb":"28.5","isProduct":false},{"id":"media-183","title":"P3 486","category":"Produtos Homologados","filename":"p3-486.png","localPath":"images/original_site/p3-486.png","sizeKb":"31.4","isProduct":false},{"id":"media-184","title":"P4 487","category":"Produtos Homologados","filename":"p4-487.png","localPath":"images/original_site/p4-487.png","sizeKb":"36.2","isProduct":false},{"id":"media-185","title":"P5 510","category":"Produtos Homologados","filename":"p5-510.png","localPath":"images/original_site/p5-510.png","sizeKb":"37.9","isProduct":false},{"id":"media-186","title":"P6 512","category":"Geral","filename":"p6-512.png","localPath":"images/original_site/p6-512.png","sizeKb":"14.9","isProduct":false},{"id":"media-187","title":"P7 513","category":"Geral","filename":"p7-513.png","localPath":"images/original_site/p7-513.png","sizeKb":"42.4","isProduct":false},{"id":"media-188","title":"P8 514","category":"Geral","filename":"p8-514.png","localPath":"images/original_site/p8-514.png","sizeKb":"25.9","isProduct":false},{"id":"media-189","title":"P9 515","category":"Geral","filename":"p9-515.png","localPath":"images/original_site/p9-515.png","sizeKb":"45.5","isProduct":false},{"id":"media-190","title":"Pin 889","category":"Geral","filename":"pin-889.png","localPath":"images/original_site/pin-889.png","sizeKb":"15.5","isProduct":false},{"id":"media-191","title":"Prevencao A Incendio Em Grandes Eventos 2665","category":"Geral","filename":"prevencao-a-incendio-em-grandes-eventos-2665.jpg","localPath":"images/original_site/prevencao-a-incendio-em-grandes-eventos-2665.jpg","sizeKb":"74.9","isProduct":false},{"id":"media-192","title":"Pro 1188","category":"Geral","filename":"pro-1188.png","localPath":"images/original_site/pro-1188.png","sizeKb":"56.5","isProduct":false},{"id":"media-193","title":"Prodotti Antincendio A 1582","category":"Geral","filename":"prodotti-antincendio-a-1582.jpg","localPath":"images/original_site/prodotti-antincendio-a-1582.jpg","sizeKb":"142.0","isProduct":false},{"id":"media-194","title":"Projeto Simplificado 2028","category":"Serviços","filename":"projeto-simplificado-2028.jpg","localPath":"images/original_site/projeto-simplificado-2028.jpg","sizeKb":"102.1","isProduct":false},{"id":"media-195","title":"Pronta 4 1133","category":"Geral","filename":"pronta-4-1133.jpg","localPath":"images/original_site/pronta-4-1133.jpg","sizeKb":"361.7","isProduct":false},{"id":"media-196","title":"Pronta 5 2054","category":"Geral","filename":"pronta-5-2054.png","localPath":"images/original_site/pronta-5-2054.png","sizeKb":"526.2","isProduct":false},{"id":"media-197","title":"Repeticao De Grade 1 1105","category":"Geral","filename":"repeticao-de-grade-1-1105.jpg","localPath":"images/original_site/repeticao-de-grade-1-1105.jpg","sizeKb":"31.3","isProduct":false},{"id":"media-198","title":"Retangulo 339 580","category":"Geral","filename":"retangulo-339-580.jpg","localPath":"images/original_site/retangulo-339-580.jpg","sizeKb":"26.5","isProduct":false},{"id":"media-199","title":"Retangulo 371 1048","category":"Geral","filename":"retangulo-371-1048.png","localPath":"images/original_site/retangulo-371-1048.png","sizeKb":"1.1","isProduct":false},{"id":"media-200","title":"Retangulo 372 939","category":"Geral","filename":"retangulo-372-939.png","localPath":"images/original_site/retangulo-372-939.png","sizeKb":"1.2","isProduct":false},{"id":"media-201","title":"Serv10 223","category":"Serviços","filename":"serv10-223.jpg","localPath":"images/original_site/serv10-223.jpg","sizeKb":"61.8","isProduct":false},{"id":"media-202","title":"Serv11 226","category":"Serviços","filename":"serv11-226.jpg","localPath":"images/original_site/serv11-226.jpg","sizeKb":"80.8","isProduct":false},{"id":"media-203","title":"Serv12 232","category":"Serviços","filename":"serv12-232.jpg","localPath":"images/original_site/serv12-232.jpg","sizeKb":"57.5","isProduct":false},{"id":"media-204","title":"Serv13 235","category":"Serviços","filename":"serv13-235.jpg","localPath":"images/original_site/serv13-235.jpg","sizeKb":"52.8","isProduct":false},{"id":"media-205","title":"Serv14 180","category":"Serviços","filename":"serv14-180.jpg","localPath":"images/original_site/serv14-180.jpg","sizeKb":"74.7","isProduct":false},{"id":"media-206","title":"Serv15 189","category":"Serviços","filename":"serv15-189.jpg","localPath":"images/original_site/serv15-189.jpg","sizeKb":"77.7","isProduct":false},{"id":"media-207","title":"Serv16 192","category":"Serviços","filename":"serv16-192.jpg","localPath":"images/original_site/serv16-192.jpg","sizeKb":"52.7","isProduct":false},{"id":"media-208","title":"Serv17 211","category":"Serviços","filename":"serv17-211.jpg","localPath":"images/original_site/serv17-211.jpg","sizeKb":"68.1","isProduct":false},{"id":"media-209","title":"Serv18 229","category":"Serviços","filename":"serv18-229.jpg","localPath":"images/original_site/serv18-229.jpg","sizeKb":"40.1","isProduct":false},{"id":"media-210","title":"Serv2 195","category":"Serviços","filename":"serv2-195.jpg","localPath":"images/original_site/serv2-195.jpg","sizeKb":"69.0","isProduct":false},{"id":"media-211","title":"Serv2 541","category":"Serviços","filename":"serv2-541.jpg","localPath":"images/original_site/serv2-541.jpg","sizeKb":"116.2","isProduct":false},{"id":"media-212","title":"Serv3 198","category":"Serviços","filename":"serv3-198.jpg","localPath":"images/original_site/serv3-198.jpg","sizeKb":"100.5","isProduct":false},{"id":"media-213","title":"Serv4 201","category":"Serviços","filename":"serv4-201.jpg","localPath":"images/original_site/serv4-201.jpg","sizeKb":"59.4","isProduct":false},{"id":"media-214","title":"Serv5 204","category":"Serviços","filename":"serv5-204.jpg","localPath":"images/original_site/serv5-204.jpg","sizeKb":"51.9","isProduct":false},{"id":"media-215","title":"Serv6 207","category":"Serviços","filename":"serv6-207.jpg","localPath":"images/original_site/serv6-207.jpg","sizeKb":"77.8","isProduct":false},{"id":"media-216","title":"Serv7 217","category":"Serviços","filename":"serv7-217.jpg","localPath":"images/original_site/serv7-217.jpg","sizeKb":"49.5","isProduct":false},{"id":"media-217","title":"Serv8 220","category":"Serviços","filename":"serv8-220.jpg","localPath":"images/original_site/serv8-220.jpg","sizeKb":"46.3","isProduct":false},{"id":"media-218","title":"Serv9 213","category":"Serviços","filename":"serv9-213.jpg","localPath":"images/original_site/serv9-213.jpg","sizeKb":"48.6","isProduct":false},{"id":"media-219","title":"Servicos 724","category":"Serviços","filename":"servicos-724.jpg","localPath":"images/original_site/servicos-724.jpg","sizeKb":"282.0","isProduct":false},{"id":"media-220","title":"Shutterstock 1044591571 Scaled 1768","category":"Geral","filename":"shutterstock-1044591571-scaled-1768.png","localPath":"images/original_site/shutterstock-1044591571-scaled-1768.png","sizeKb":"392.9","isProduct":false},{"id":"media-221","title":"Shutterstock 1297170925 1321","category":"Geral","filename":"shutterstock-1297170925-1321.jpg","localPath":"images/original_site/shutterstock-1297170925-1321.jpg","sizeKb":"210.5","isProduct":false},{"id":"media-222","title":"Shutterstock 1297170925 2320","category":"Geral","filename":"shutterstock-1297170925-2320.jpg","localPath":"images/original_site/shutterstock-1297170925-2320.jpg","sizeKb":"210.5","isProduct":false},{"id":"media-223","title":"Shutterstock 1868912746 1944","category":"Geral","filename":"shutterstock-1868912746-1944.jpg","localPath":"images/original_site/shutterstock-1868912746-1944.jpg","sizeKb":"106.5","isProduct":false},{"id":"media-224","title":"Shutterstock 1902539236 1790","category":"Geral","filename":"shutterstock-1902539236-1790.png","localPath":"images/original_site/shutterstock-1902539236-1790.png","sizeKb":"553.9","isProduct":false},{"id":"media-225","title":"Shutterstock 1913789176 1779","category":"Geral","filename":"shutterstock-1913789176-1779.png","localPath":"images/original_site/shutterstock-1913789176-1779.png","sizeKb":"401.6","isProduct":false},{"id":"media-226","title":"Shutterstock 1913789176 778","category":"Geral","filename":"shutterstock-1913789176-778.jpg","localPath":"images/original_site/shutterstock-1913789176-778.jpg","sizeKb":"165.2","isProduct":false},{"id":"media-227","title":"Shutterstock 525389752 1788","category":"Geral","filename":"shutterstock-525389752-1788.png","localPath":"images/original_site/shutterstock-525389752-1788.png","sizeKb":"796.6","isProduct":false},{"id":"media-228","title":"Shutterstock 558574759 Scaled 1798","category":"Geral","filename":"shutterstock-558574759-scaled-1798.png","localPath":"images/original_site/shutterstock-558574759-scaled-1798.png","sizeKb":"439.1","isProduct":false},{"id":"media-229","title":"Shutterstock 581551369 1759","category":"Geral","filename":"shutterstock-581551369-1759.png","localPath":"images/original_site/shutterstock-581551369-1759.png","sizeKb":"596.0","isProduct":false},{"id":"media-230","title":"Shutterstock 613805072 1800","category":"Geral","filename":"shutterstock-613805072-1800.png","localPath":"images/original_site/shutterstock-613805072-1800.png","sizeKb":"443.9","isProduct":false},{"id":"media-231","title":"Shutterstock 668147359 1772","category":"Geral","filename":"shutterstock-668147359-1772.png","localPath":"images/original_site/shutterstock-668147359-1772.png","sizeKb":"2171.9","isProduct":false},{"id":"media-232","title":"Shutterstock 750909358 Pb 1361","category":"Geral","filename":"shutterstock-750909358-pb-1361.jpg","localPath":"images/original_site/shutterstock-750909358-pb-1361.jpg","sizeKb":"24.3","isProduct":false},{"id":"media-233","title":"Shutterstock 750909358 Pb 1725","category":"Geral","filename":"shutterstock-750909358-pb-1725.png","localPath":"images/original_site/shutterstock-750909358-pb-1725.png","sizeKb":"161.2","isProduct":false},{"id":"media-234","title":"Shutterstock 777406816 784","category":"Geral","filename":"shutterstock-777406816-784.jpg","localPath":"images/original_site/shutterstock-777406816-784.jpg","sizeKb":"86.9","isProduct":false},{"id":"media-235","title":"Sistema Bomba 2014","category":"Geral","filename":"sistema-bomba-2014.jpg","localPath":"images/original_site/sistema-bomba-2014.jpg","sizeKb":"845.1","isProduct":false},{"id":"media-236","title":"Sobrenos 907","category":"História & Institucional","filename":"sobrenos-907.jpg","localPath":"images/original_site/sobrenos-907.jpg","sizeKb":"245.7","isProduct":false},{"id":"media-237","title":"Telefone 856","category":"Ícones & Vetores","filename":"telefone-856.svg","localPath":"images/original_site/telefone-856.svg","sizeKb":"0.8","isProduct":false},{"id":"media-238","title":"Video 10 1 403","category":"Produtos Homologados","filename":"video-10-1-403.mp4","localPath":"images/original_site/video-10-1-403.mp4","sizeKb":"21680.5","isProduct":false},{"id":"media-239","title":"Video 4 54","category":"Produtos Homologados","filename":"video-4-54.mp4","localPath":"images/original_site/video-4-54.mp4","sizeKb":"11739.0","isProduct":false},{"id":"media-240","title":"Whatsapp 857","category":"Ícones & Vetores","filename":"whatsapp-857.svg","localPath":"images/original_site/whatsapp-857.svg","sizeKb":"1.2","isProduct":false},{"id":"media-241","title":"Woocommerce Placeholder 461","category":"Geral","filename":"woocommerce-placeholder-461.png","localPath":"images/original_site/woocommerce-placeholder-461.png","sizeKb":"100.2","isProduct":false}];
+    let currentCategory = 'all';
+
+    function renderGallery(items) {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = items.map(item => `
+        <div class="media-card" data-cat="${item.category}" data-title="${item.title.toLowerCase()}">
+          <div class="media-thumb-box">
+            <span class="media-category-pill">${item.category}</span>
+            <img src="${item.localPath}" alt="${item.title}" loading="lazy" onerror="this.src='brand/logo.svg'" />
+          </div>
+          <div class="media-info">
+            <h4 class="media-title" title="${item.title}">${item.title}</h4>
+            <div class="media-meta-list">
+              <div class="meta-row">
+                <span class="meta-label">Arquivo:</span>
+                <span class="meta-val">${item.filename}</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Tamanho:</span>
+                <span class="meta-val">${item.sizeKb} KB</span>
+              </div>
+            </div>
+            <div class="media-actions">
+              <a href="${item.localPath}" download="${item.filename}" class="btn-download-single">⬇ Baixar</a>
+              <a href="${item.localPath}" target="_blank" class="btn-view-single">👁 Abrir</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-filter') === cat);
+      });
+      filterMedia();
+    }
+
+    function filterMedia() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const filtered = CATALOG_ITEMS.filter(item => {
+        const matchesCat = currentCategory === 'all' || item.category === currentCategory;
+        const matchesQ = !q || item.title.toLowerCase().includes(q) || item.filename.toLowerCase().includes(q) || item.category.toLowerCase().includes(q);
+        return matchesCat && matchesQ;
+      });
+      renderGallery(filtered);
+    }
+
+    function downloadManifestJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(CATALOG_ITEMS, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "indafire-catalogo-original-manifest.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    async function downloadAllInZip() {
+      const btn = document.getElementById('btnZipAll');
+      const progressBox = document.getElementById('zipProgressBox');
+      const progressFill = document.getElementById('zipProgressFill');
+      const progressPercent = document.getElementById('zipProgressPercent');
+      const progressText = document.getElementById('zipProgressText');
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Preparando ZIP...';
+      progressBox.classList.add('active');
+
+      try {
+        const zip = new JSZip();
+        const productsFolder = zip.folder("produtos-homologados-rotulados");
+        const mediaFolder = zip.folder("midias-originais-site");
+
+        let processed = 0;
+        const total = CATALOG_ITEMS.length;
+
+        for (const item of CATALOG_ITEMS) {
+          try {
+            const resp = await fetch(item.localPath);
+            const blob = await resp.blob();
+            if (item.isProduct) {
+              productsFolder.file(item.filename, blob);
+            } else {
+              mediaFolder.file(item.filename, blob);
+            }
+          } catch (err) {
+            console.error('Erro ao adicionar arquivo ao zip:', item.filename, err);
+          }
+          processed++;
+          const pct = Math.round((processed / total) * 100);
+          progressFill.style.width = pct + '%';
+          progressPercent.textContent = pct + '%';
+          progressText.textContent = `Adicionando ao ZIP: ${processed}/${total} imagens...`;
+        }
+
+        progressText.textContent = 'Gerando arquivo .ZIP final...';
+        const zipContent = await zip.generateAsync({ type: "blob" }, (metadata) => {
+          progressFill.style.width = metadata.percent.toFixed(0) + '%';
+          progressPercent.textContent = metadata.percent.toFixed(0) + '%';
+        });
+
+        saveAs(zipContent, "indafire-catalogo-imagens-originais.zip");
+        progressText.textContent = '✅ Download concluído com sucesso!';
+      } catch (err) {
+        alert('Erro ao gerar arquivo ZIP: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '📦 Baixar Todas em ZIP';
+        setTimeout(() => progressBox.classList.remove('active'), 4000);
+      }
+    }
+
+    // Initial render
+    renderGallery(CATALOG_ITEMS);
+  </script>
+</body>
+</html>

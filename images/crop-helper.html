@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><style>body{margin:0;background:transparent;overflow:hidden;}</style></head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const img = new Image();
+img.src = 'clcb_certificate_mockup_1786935059997.jpg';
+img.onload = () => {
+  const canvas = document.getElementById('c');
+  const cropX = img.naturalWidth * 0.088;
+  const cropY = img.naturalHeight * 0.055;
+  const cropW = img.naturalWidth * 0.805;
+  const cropH = img.naturalHeight * 0.865;
+  
+  canvas.width = cropW;
+  canvas.height = cropH;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+  
+  document.body.style.width = cropW + 'px';
+  document.body.style.height = cropH + 'px';
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Serviços - Inda Fire</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: #F1F5F9;
+      padding: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+    <section class="services-section" id="servicos" style="max-width: 1280px; margin: 0 auto; padding: 3rem 0;">
+      <div class="container" style="overflow: visible;">
+        
+        <div class="services-asymmetric-wrapper">
+          
+          <!-- Left Light Box with Carousel -->
+          <div class="services-left-box">
+            <h2 class="services-title-bold">Serviços</h2>
+            <p class="services-subtitle-lead">
+              Atuamos no mercado de equipamentos de combate a incêndios, realizando uma ampla gama de serviços, como:
+            </p>
+
+            <!-- Carousel Row with Navigation Arrows -->
+            <div class="services-carousel-row">
+              
+              <button type="button" class="carousel-nav-arrow" id="carousel-prev-btn" aria-label="Serviço anterior">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+              </button>
+
+              <div class="services-tabs-container" id="carousel-cards-track">
+                
+                <!-- Tab 1: PT -->
+                <div class="service-card-item" data-service-key="pt">
+                  <div class="card-item-icon">
+                    <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+                  </div>
+                  <div class="card-item-title">Projeto Técnico</div>
+                </div>
+
+                <!-- Tab 2: PTS (Active Default) -->
+                <div class="service-card-item active" data-service-key="pts">
+                  <div class="card-item-icon">
+                    <svg width="34" height="34" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm1.5 12.5l-3.5 3.5-2-2 1.4-1.4 0.6 0.6 2.1-2.1 1.4 1.4zM13 9V3.5L18.5 9H13z"/></svg>
+                  </div>
+                  <div class="card-item-title">Processo simplificado (PTS)</div>
+                </div>
+
+                <!-- Tab 3: AVCB/CLCB -->
+                <div class="service-card-item" data-service-key="avcb">
+                  <div class="card-item-icon">
+                    <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </div>
+                  <div class="card-item-title">AVCB/CLCB – Obtenção ou renovação</div>
+                </div>
+
+                <!-- Tab 4: Recarga -->
+                <div class="service-card-item" data-service-key="recarga">
+                  <div class="card-item-icon">
+                    <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4M10 6h4M9 10h6M8 10v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V10"/></svg>
+                  </div>
+                  <div class="card-item-title">Recarga Inmetro</div>
+                </div>
+
+                <!-- Tab 5: Teste Hidrostático -->
+                <div class="service-card-item" data-service-key="hidrostatico">
+                  <div class="card-item-icon">
+                    <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  </div>
+                  <div class="card-item-title">Teste Hidrostático</div>
+                </div>
+
+                <!-- Tab 6: Brigada -->
+                <div class="service-card-item" data-service-key="brigada">
+                  <div class="card-item-icon">
+                    <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  </div>
+                  <div class="card-item-title">Brigada de Incêndio</div>
+                </div>
+
+              </div>
+
+              <button type="button" class="carousel-nav-arrow" id="carousel-next-btn" aria-label="Próximo serviço">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+            </div>
+
+            <!-- Position Indicator Dots -->
+            <div class="services-dots-nav" id="services-dots-nav" aria-label="Indicador de posição dos serviços">
+              <button type="button" class="service-dot" data-index="0" aria-label="Projeto Técnico"></button>
+              <button type="button" class="service-dot active" data-index="1" aria-label="Processo Simplificado (PTS)"></button>
+              <button type="button" class="service-dot" data-index="2" aria-label="AVCB / CLCB"></button>
+              <button type="button" class="service-dot" data-index="3" aria-label="Recarga Inmetro"></button>
+              <button type="button" class="service-dot" data-index="4" aria-label="Teste Hidrostático"></button>
+              <button type="button" class="service-dot" data-index="5" aria-label="Brigada de Incêndio"></button>
+            </div>
+          </div>
+
+          <!-- Right Dark Box with Integrated Side-by-Side Certificate & Details -->
+          <div class="services-right-detail" id="service-detail-panel">
+            
+            <div class="services-detail-inner">
+              <!-- Certificate Document Column -->
+              <div class="detail-cert-wrap">
+                <div class="cert-document-card">
+                  <img id="detail-cert-img" src="images/serv15-500.webp" alt="Certificado Oficial de Licença do Corpo de Bombeiros CLCB" class="cert-document-img" />
+                </div>
+              </div>
+
+              <!-- Text Content Column Beside Document -->
+              <div class="detail-body-text">
+                <h3 class="detail-red-heading" id="detail-title">Processo simplificado (PTS)</h3>
+                <p class="detail-lead-desc" id="detail-desc">
+                  Elaborado para edificações com área construída abaixo de 750 m² e com altura de até 3 pavimentos, nos termos e exceções previstas na IT 42/18.
+                </p>
+                <div class="detail-cta-wrap">
+                  <a href="#contato" class="btn-detail-pill">
+                    Veja em Detalhes
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
