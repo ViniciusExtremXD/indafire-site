@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initServicesCarousel();
   initTimelineCarousel();
   initExpertiseCarousel();
+  initMVVCarousel();
   initProductCatalog();
   initQuoteForm();
   initWhatsAppWidget();
@@ -302,7 +303,7 @@ function initAnimatedCounters() {
       if (entry.isIntersecting) {
         const el = entry.target;
         const target = parseFloat(el.getAttribute('data-counter-target') || '0');
-        const duration = parseInt(el.getAttribute('data-counter-duration') || '1800', 10);
+        const duration = parseInt(el.getAttribute('data-counter-duration') || '2400', 10);
         const prefix = el.getAttribute('data-counter-prefix') || '+';
         const suffix = el.getAttribute('data-counter-suffix') || '';
         
@@ -310,8 +311,8 @@ function initAnimatedCounters() {
         const step = (timestamp) => {
           if (!startTimestamp) startTimestamp = timestamp;
           const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          // Ease-out cubic
-          const easeOut = 1 - Math.pow(1 - progress, 3);
+          // Ultra-smooth ease-out quart
+          const easeOut = 1 - Math.pow(1 - progress, 4);
           const currentVal = Math.floor(easeOut * target);
           
           el.innerHTML = `${prefix}${currentVal.toLocaleString('pt-BR')}${suffix}`;
@@ -436,7 +437,7 @@ function initServicesCarousel() {
   if (currentIndex === -1) currentIndex = 0;
 
   let autoplayTimer = null;
-  const AUTOPLAY_DELAY_MS = 3000;
+  const AUTOPLAY_DELAY_MS = 5200; // 5.2 seconds for a calm, editorial pace
 
   function centerActiveCard(tabEl) {
     if (!track || !tabEl) return;
@@ -855,21 +856,163 @@ function initWhatsAppWidget() {
 }
 
 /* ==========================================================================
-   12. EXPERTISE MATRIX & INTERACTION
+   12. EXPERTISE MATRIX & INTERACTIVE SEQUENTIAL ANIMATION
    ========================================================================== */
 function initExpertiseCarousel() {
   const items = document.querySelectorAll('.expertise-matrix-item');
   if (!items.length) return;
 
-  items.forEach((item) => {
+  let currentIndex = 0;
+  let isHovered = false;
+  let cycleTimer = null;
+  const cycleDuration = 4800; // 4.8s per capability (smooth & calm)
+
+  function setActive(index) {
+    currentIndex = index;
+    items.forEach((item, idx) => {
+      item.classList.toggle('active-highlight', idx === currentIndex);
+    });
+  }
+
+  function nextStep() {
+    if (isHovered) return;
+    currentIndex = (currentIndex + 1) % items.length;
+    setActive(currentIndex);
+  }
+
+  function startCycle() {
+    if (cycleTimer) clearInterval(cycleTimer);
+    cycleTimer = setInterval(nextStep, cycleDuration);
+  }
+
+  function stopCycle() {
+    if (cycleTimer) {
+      clearInterval(cycleTimer);
+      cycleTimer = null;
+    }
+  }
+
+  // Hover & Click events
+  items.forEach((item, idx) => {
     item.addEventListener('mouseenter', () => {
-      items.forEach(i => i.classList.remove('active-highlight'));
-      item.classList.add('active-highlight');
+      isHovered = true;
+      setActive(idx);
     });
+
     item.addEventListener('mouseleave', () => {
-      item.classList.remove('active-highlight');
+      isHovered = false;
     });
+
+    item.addEventListener('click', () => {
+      isHovered = true;
+      setActive(idx);
+      setTimeout(() => { isHovered = false; }, 3000);
+    });
+
+    // Touch support for mobile/tablets
+    item.addEventListener('touchstart', () => {
+      isHovered = true;
+      setActive(idx);
+    }, { passive: true });
   });
+
+  // IntersectionObserver: only cycle when section is visible
+  const section = document.getElementById('diferenciais') || document.querySelector('.expertise-section');
+  if (section && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startCycle();
+        } else {
+          stopCycle();
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  } else {
+    startCycle();
+  }
+
+  // Set initial active state on first item
+  setActive(0);
+}
+
+/* ==========================================================================
+   13. MISSÃO, VISÃO E VALORES (MVV) INTERACTIVE SEQUENTIAL ANIMATION
+   ========================================================================== */
+function initMVVCarousel() {
+  const cards = document.querySelectorAll('.mvv-card');
+  if (!cards.length) return;
+
+  let currentIndex = 0;
+  let isHovered = false;
+  let cycleTimer = null;
+  const cycleDuration = 5200; // 5.2s per card (calm, noble pace)
+
+  function setActive(index) {
+    currentIndex = index;
+    cards.forEach((card, idx) => {
+      card.classList.toggle('active-highlight', idx === currentIndex);
+    });
+  }
+
+  function nextStep() {
+    if (isHovered) return;
+    currentIndex = (currentIndex + 1) % cards.length;
+    setActive(currentIndex);
+  }
+
+  function startCycle() {
+    if (cycleTimer) clearInterval(cycleTimer);
+    cycleTimer = setInterval(nextStep, cycleDuration);
+  }
+
+  function stopCycle() {
+    if (cycleTimer) {
+      clearInterval(cycleTimer);
+      cycleTimer = null;
+    }
+  }
+
+  cards.forEach((card, idx) => {
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+      setActive(idx);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    card.addEventListener('click', () => {
+      isHovered = true;
+      setActive(idx);
+      setTimeout(() => { isHovered = false; }, 2500);
+    });
+
+    card.addEventListener('touchstart', () => {
+      isHovered = true;
+      setActive(idx);
+    }, { passive: true });
+  });
+
+  const section = document.getElementById('missao-visao-valores') || document.querySelector('.mvv-section');
+  if (section && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startCycle();
+        } else {
+          stopCycle();
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  } else {
+    startCycle();
+  }
+
+  setActive(0);
 }
 
 /* ==========================================================================
@@ -987,7 +1130,7 @@ function initTimelineCarousel() {
   let currentIndex = 0;
   let isPaused = false;
   let progress = 0; // 0 to 100
-  const stepDurationMs = 4200; // 4.2 seconds per step
+  const stepDurationMs = 5800; // 5.8 seconds per step (smooth, dignified pace)
   let lastTimestamp = null;
   let animFrameId = null;
 
@@ -1062,6 +1205,8 @@ function initTimelineCarousel() {
     lastTimestamp = performance.now();
     updateVisualState(currentIndex, 0);
   }
+
+  window.goToTimelineStep = goToStep;
 
   // Click on cell or card
   cells.forEach(cell => {
