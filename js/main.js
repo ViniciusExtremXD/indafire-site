@@ -1104,12 +1104,12 @@ const INDAFIRE_TIMELINE_DATA = [
     year: "2024 — Hoje",
     tag: "LIDERANÇA & SOLUÇÕES INTEGRADAS 360°",
     title: "Liderança Nacional & Ecossistema de Proteção",
-    location: "Atendimento Estadual e Nacional — 27+ Anos",
-    shortDesc: "Mais de 12.000 clientes corporativos ativos e mais de 18.500 brigadistas capacitados em mais de 27 anos de história.",
-    fullDesc: "Hoje, com mais de 27 anos de história sólida, a Inda Fire é referência absoluta em soluções 360° de proteção contra incêndios: elaboração de projetos técnicos AVCB/CLCB, inspeções periciais, assessoria contínua, manutenção Inmetro e formação de mais de 18.500 brigadistas para as maiores empresas do Brasil.",
+    location: "Atendimento Estadual e Nacional — +30 Anos",
+    shortDesc: "Mais de 12.000 clientes corporativos ativos e mais de 18.500 brigadistas capacitados em mais de 30 anos de história.",
+    fullDesc: "Hoje, com mais de 30 anos de história sólida, a Inda Fire é referência absoluta em soluções 360° de proteção contra incêndios: elaboração de projetos técnicos AVCB/CLCB, inspeções periciais, assessoria contínua, manutenção Inmetro e formação de mais de 18.500 brigadistas para as maiores empresas do Brasil.",
     image: "assets/img/sede_empresa_banner.png",
     highlights: [
-      "+27 Anos de história e credibilidade",
+      "+30 Anos de história e credibilidade",
       "+12.000 Clientes corporativos atendidos",
       "+18.500 Brigadistas capacitados",
       "Soluções completas: AVCB, Manutenção e Treinamento"

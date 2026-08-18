@@ -46,7 +46,7 @@
             <div class="expertise-grid-matrix" id="expertise-matrix">
               
               <!-- Block 1: Frota & Unidades Móveis -->
-              <div class="expertise-matrix-item active-highlight" data-index="0">
+              <div class="expertise-matrix-item" data-index="0">
                 <div class="expertise-item-icon-box">
                   <svg class="exp-icon icon-fleet" width="34" height="34" viewBox="0 0 36 36" fill="none">
                     <rect x="2" y="10" width="20" height="15" rx="2.5" fill="#1C222E" stroke="#E2E8F0" stroke-width="1.8"/>
@@ -98,12 +98,14 @@
               </div>
 
               <!-- Block 4: Plantão & Prontidão 24/7 -->
-              <div class="expertise-matrix-item" data-index="3">
+              <div class="expertise-matrix-item active-highlight" data-index="3">
                 <div class="expertise-item-icon-box">
                   <svg class="exp-icon icon-clock24" width="34" height="34" viewBox="0 0 36 36" fill="none">
                     <circle cx="18" cy="18" r="14" stroke="#E2E8F0" stroke-width="1.8"/>
                     <circle cx="18" cy="18" r="14" stroke="#D80016" stroke-width="2.2" stroke-dasharray="22 66" class="dial-sweep"/>
-                    <path d="M18 10V18L23 21" stroke="#D80016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="clock-hands"/>
+                    <line x1="18" y1="18" x2="23" y2="18" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" class="clock-hour-hand"/>
+                    <line x1="18" y1="18" x2="18" y2="8" stroke="#D80016" stroke-width="2" stroke-linecap="round" class="clock-minute-hand"/>
+                    <circle cx="18" cy="18" r="1.8" fill="#D80016"/>
                     <rect x="21" y="5" width="13" height="9" rx="2" fill="#0D0E12" stroke="#D80016" stroke-width="1.2" class="badge-24h"/>
                     <text x="27.5" y="11.5" fill="#FFFFFF" font-family="'Barlow Condensed', sans-serif" font-size="7" font-weight="900" text-anchor="middle">24H</text>
                   </svg>
@@ -129,18 +131,18 @@
                 </div>
               </div>
 
-              <!-- Block 6: 27+ Anos de Excelência -->
+              <!-- Block 6: +30 Anos de Excelência -->
               <div class="expertise-matrix-item" data-index="5">
                 <div class="expertise-item-icon-box">
                   <svg class="exp-icon icon-cert" width="34" height="34" viewBox="0 0 36 36" fill="none">
                     <circle cx="18" cy="15" r="10" fill="#1C222E" stroke="#E2E8F0" stroke-width="1.8"/>
                     <path d="M18 8L20 12.5L25 13.2L21.2 16.5L22 21.5L18 19L14 21.5L14.8 16.5L11 13.2L16 12.5L18 8Z" fill="#D80016" fill-opacity="0.3" stroke="#D80016" stroke-width="1.2" class="cert-star"/>
                     <path d="M14 24L11.5 32L18 28.5L24.5 32L22 24" fill="#2A3344" stroke="#E2E8F0" stroke-width="1.8" stroke-linejoin="round" class="cert-ribbon"/>
-                    <text x="18" y="17.5" fill="#FFFFFF" font-family="'Barlow Condensed', sans-serif" font-size="7.5" font-weight="900" text-anchor="middle">27+</text>
+                    <text x="18" y="17.5" fill="#FFFFFF" font-family="'Barlow Condensed', sans-serif" font-size="7.5" font-weight="900" text-anchor="middle">30+</text>
                   </svg>
                 </div>
                 <div class="expertise-item-content">
-                  <h3 class="expertise-item-title">27+ Anos de Excelência</h3>
+                  <h3 class="expertise-item-title">+30 Anos de Excelência</h3>
                   <p class="expertise-item-desc">Pioneirismo desde 1996 com registro oficial Inmetro nº 002874.</p>
                 </div>
               </div>

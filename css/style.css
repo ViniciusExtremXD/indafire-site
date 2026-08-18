@@ -3131,6 +3131,16 @@ button, input, select, textarea {
   to { transform: rotate(360deg); }
 }
 
+@keyframes clockMinuteRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes clockHourRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @keyframes badgePulse24 {
   0%, 100% { filter: none; stroke: #D80016; }
   50% { filter: drop-shadow(0 0 7px rgba(216, 0, 22, 0.85)); stroke: #FF3344; }
@@ -3193,12 +3203,32 @@ button, input, select, textarea {
   animation: helmetLift 3.0s ease-in-out infinite;
 }
 
-/* Block 4: Clock 24/7 */
+/* Block 4: Clock 24/7 (Ponteiros em Movimento Suave & Dial Sweep) */
+.expertise-matrix-item .clock-minute-hand {
+  transform-origin: 18px 18px;
+}
+
+.expertise-matrix-item .clock-hour-hand {
+  transform-origin: 18px 18px;
+}
+
+.expertise-matrix-item:hover .clock-minute-hand,
+.expertise-matrix-item.active-highlight .clock-minute-hand {
+  transform-origin: 18px 18px;
+  animation: clockMinuteRotate 3.6s linear infinite;
+}
+
+.expertise-matrix-item:hover .clock-hour-hand,
+.expertise-matrix-item.active-highlight .clock-hour-hand {
+  transform-origin: 18px 18px;
+  animation: clockHourRotate 21.6s linear infinite;
+}
+
 .expertise-matrix-item:hover .dial-sweep,
 .expertise-matrix-item.active-highlight .dial-sweep {
   transform-box: fill-box;
   transform-origin: center;
-  animation: dialRotate 5.0s linear infinite;
+  animation: dialRotate 6.0s linear infinite;
 }
 
 .expertise-matrix-item:hover .badge-24h,

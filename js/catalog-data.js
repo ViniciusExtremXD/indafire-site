@@ -796,7 +796,7 @@ export const SERVICES = [
     summary: 'Serviço credenciado pelo Inmetro (Nível 1, 2 e 3) para recarga periódica, substituição de agentes extintores, teste de pressão e selagem oficial.',
     normas: ['Portaria Inmetro nº 002874', 'NBR 12962', 'NBR 13485'],
     benefits: [
-      'Primeira empresa da região certificada pelo Inmetro com mais de 27 anos',
+      'Primeira empresa da região certificada pelo Inmetro com mais de 30 anos',
       'Frota própria para coleta e entrega com extintores de reserva provisórios',
       'Laboratório próprio com maquinário de pressurização e balanças aferidas'
     ]
