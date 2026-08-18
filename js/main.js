@@ -501,7 +501,7 @@ function initServicesCarousel() {
 
       if (certBox) {
         certBox.style.opacity = '1';
-        certBox.style.transform = 'rotate(-1.5deg) scale(1)';
+        certBox.style.transform = 'scale(1)';
       }
     }, 120);
   }

@@ -1499,13 +1499,13 @@ button, input, select, textarea {
 }
 
 .services-section .container {
-  max-width: 1280px;
+  max-width: 1320px;
 }
 
 .services-asymmetric-wrapper {
   position: relative;
   display: grid;
-  grid-template-columns: 0.95fr 1.15fr;
+  grid-template-columns: 0.9fr 1.25fr;
   align-items: stretch;
   gap: 0;
 }
@@ -1514,7 +1514,7 @@ button, input, select, textarea {
 .services-left-box {
   background-color: #FFFFFF;
   border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  padding: 3rem 2.25rem;
+  padding: 3.5rem 2.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   position: relative;
   z-index: 10;
@@ -1692,54 +1692,61 @@ button, input, select, textarea {
 .services-right-detail {
   background: linear-gradient(145deg, #1A1D24 0%, #111317 100%);
   border-radius: var(--radius-sm);
-  padding: 3rem 2.5rem;
+  padding: 3.5rem 3rem;
   color: #FFFFFF;
   position: relative;
   z-index: 20;
   margin-left: -1rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.06);
   min-width: 0;
+  min-height: 520px;
 }
 
 .services-detail-inner {
   display: flex;
   align-items: center;
-  gap: 2.25rem;
+  gap: 2.75rem;
   width: 100%;
 }
 
-/* Certificate Document Column (Ampliado para 270px para Máximo Destaque Visual) */
+/* Certificate Document Column (Ampliado para 310px & Perfeitamente Centralizado) */
 .detail-cert-wrap {
   flex-shrink: 0;
-  width: 270px;
+  width: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cert-document-card {
   position: relative;
   background: #FFFFFF;
-  border-radius: 10px;
-  padding: 6px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, opacity 0.3s ease;
-  transform: rotate(-1.5deg);
+  transform: translateY(0);
+  overflow: hidden;
+  width: 100%;
 }
 
 .cert-document-card:hover {
-  transform: rotate(0deg) scale(1.03);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.7);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 28px 58px rgba(0, 0, 0, 0.75);
 }
 
 .cert-document-img {
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 4.3;
   object-fit: cover;
-  border-radius: 6px;
+  object-position: center;
+  border-radius: 8px;
   display: block;
-  background: #FAFAFA;
+  background: #FFFFFF;
 }
 
 /* Detail Text Column Beside Document */
