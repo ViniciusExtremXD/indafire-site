@@ -1245,21 +1245,10 @@ function initTimelineCarousel() {
   initTimelineModal();
 }
 
-function openTimelineModal(index) {
-  const overlay = document.getElementById('timeline-history-modal');
-  const content = document.getElementById('timeline-modal-content');
-  const dotsContainer = document.getElementById('timeline-modal-dots');
-  if (!overlay || !content || typeof INDAFIRE_TIMELINE_DATA === 'undefined') return;
+let isTimelineModalAnimating = false;
 
-  const total = INDAFIRE_TIMELINE_DATA.length;
-  if (index < 0) index = total - 1;
-  if (index >= total) index = 0;
-  activeTimelineModalIndex = index;
-
-  const data = INDAFIRE_TIMELINE_DATA[activeTimelineModalIndex];
-  if (!data) return;
-
-  content.innerHTML = `
+function buildTimelineModalHTML(data) {
+  return `
     <div class="thm-visual-col">
       <span class="thm-year-pill-overlay">${data.year}</span>
       <img src="${data.image}" alt="${data.title}" />
@@ -1288,23 +1277,89 @@ function openTimelineModal(index) {
       </div>
     </div>
   `;
+}
 
-  // Render dots
-  if (dotsContainer) {
-    dotsContainer.innerHTML = INDAFIRE_TIMELINE_DATA.map((_, dIdx) => `
-      <span class="thm-dot ${dIdx === activeTimelineModalIndex ? 'active' : ''}" data-dot-idx="${dIdx}"></span>
-    `).join('');
+function updateTimelineModalDots(index) {
+  const dotsContainer = document.getElementById('timeline-modal-dots');
+  if (!dotsContainer || typeof INDAFIRE_TIMELINE_DATA === 'undefined') return;
 
-    dotsContainer.querySelectorAll('.thm-dot').forEach(dot => {
-      dot.addEventListener('click', () => {
-        const targetIdx = parseInt(dot.getAttribute('data-dot-idx'), 10);
-        openTimelineModal(targetIdx);
-      });
+  dotsContainer.innerHTML = INDAFIRE_TIMELINE_DATA.map((_, dIdx) => `
+    <span class="thm-dot ${dIdx === index ? 'active' : ''}" data-dot-idx="${dIdx}"></span>
+  `).join('');
+
+  dotsContainer.querySelectorAll('.thm-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const targetIdx = parseInt(dot.getAttribute('data-dot-idx'), 10);
+      slideTimelineModal(targetIdx);
     });
-  }
+  });
+}
+
+function openTimelineModal(index) {
+  const overlay = document.getElementById('timeline-history-modal');
+  const content = document.getElementById('timeline-modal-content');
+  if (!overlay || !content || typeof INDAFIRE_TIMELINE_DATA === 'undefined') return;
+
+  const total = INDAFIRE_TIMELINE_DATA.length;
+  if (index < 0) index = total - 1;
+  if (index >= total) index = 0;
+  activeTimelineModalIndex = index;
+
+  const data = INDAFIRE_TIMELINE_DATA[activeTimelineModalIndex];
+  if (!data) return;
+
+  content.className = 'timeline-modal-inner thm-slide-active';
+  content.innerHTML = buildTimelineModalHTML(data);
+  updateTimelineModalDots(activeTimelineModalIndex);
 
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function slideTimelineModal(targetIndex, direction) {
+  const overlay = document.getElementById('timeline-history-modal');
+  const content = document.getElementById('timeline-modal-content');
+  if (!overlay || !content || typeof INDAFIRE_TIMELINE_DATA === 'undefined') return;
+
+  if (!overlay.classList.contains('open')) {
+    openTimelineModal(targetIndex);
+    return;
+  }
+
+  if (isTimelineModalAnimating) return;
+
+  const total = INDAFIRE_TIMELINE_DATA.length;
+  if (targetIndex < 0) targetIndex = total - 1;
+  if (targetIndex >= total) targetIndex = 0;
+  if (targetIndex === activeTimelineModalIndex) return;
+
+  if (!direction) {
+    direction = (targetIndex > activeTimelineModalIndex || (activeTimelineModalIndex === total - 1 && targetIndex === 0)) ? 'next' : 'prev';
+  }
+
+  isTimelineModalAnimating = true;
+  const outClass = direction === 'next' ? 'thm-slide-out-left' : 'thm-slide-out-right';
+  const inClass = direction === 'next' ? 'thm-slide-in-right' : 'thm-slide-in-left';
+
+  content.className = `timeline-modal-inner ${outClass}`;
+
+  setTimeout(() => {
+    activeTimelineModalIndex = targetIndex;
+    const nextData = INDAFIRE_TIMELINE_DATA[activeTimelineModalIndex];
+    content.innerHTML = buildTimelineModalHTML(nextData);
+    updateTimelineModalDots(activeTimelineModalIndex);
+
+    content.className = `timeline-modal-inner ${inClass}`;
+    void content.offsetWidth;
+
+    requestAnimationFrame(() => {
+      content.className = 'timeline-modal-inner thm-slide-active';
+    });
+
+    setTimeout(() => {
+      isTimelineModalAnimating = false;
+    }, 380);
+  }, 160);
 }
 
 function closeTimelineModal() {
@@ -1320,20 +1375,21 @@ function initTimelineModal() {
   const btnPrev = document.getElementById('btn-timeline-modal-prev');
   const btnNext = document.getElementById('btn-timeline-modal-next');
   const overlay = document.getElementById('timeline-history-modal');
+  const content = document.getElementById('timeline-modal-content');
 
   if (btnClose) btnClose.addEventListener('click', closeTimelineModal);
 
   if (btnPrev) {
     btnPrev.addEventListener('click', (e) => {
       e.stopPropagation();
-      openTimelineModal(activeTimelineModalIndex - 1);
+      slideTimelineModal(activeTimelineModalIndex - 1, 'prev');
     });
   }
 
   if (btnNext) {
     btnNext.addEventListener('click', (e) => {
       e.stopPropagation();
-      openTimelineModal(activeTimelineModalIndex + 1);
+      slideTimelineModal(activeTimelineModalIndex + 1, 'next');
     });
   }
 
@@ -1343,11 +1399,32 @@ function initTimelineModal() {
     });
   }
 
+  if (content) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    content.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    content.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diffX = touchStartX - touchEndX;
+      if (Math.abs(diffX) > 45) {
+        if (diffX > 0) {
+          slideTimelineModal(activeTimelineModalIndex + 1, 'next');
+        } else {
+          slideTimelineModal(activeTimelineModalIndex - 1, 'prev');
+        }
+      }
+    }, { passive: true });
+  }
+
   document.addEventListener('keydown', (e) => {
     if (overlay && overlay.classList.contains('open')) {
       if (e.key === 'Escape') closeTimelineModal();
-      if (e.key === 'ArrowLeft') openTimelineModal(activeTimelineModalIndex - 1);
-      if (e.key === 'ArrowRight') openTimelineModal(activeTimelineModalIndex + 1);
+      if (e.key === 'ArrowLeft') slideTimelineModal(activeTimelineModalIndex - 1, 'prev');
+      if (e.key === 'ArrowRight') slideTimelineModal(activeTimelineModalIndex + 1, 'next');
     }
   });
 }
