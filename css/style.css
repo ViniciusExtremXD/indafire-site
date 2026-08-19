@@ -64,7 +64,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 76px;
   font-size: 16px;
+}
+
+section[id] {
+  scroll-margin-top: 76px;
 }
 
 body {
@@ -2250,7 +2255,8 @@ button, input, select, textarea {
 .timeline-light-section {
   position: relative;
   background-color: #F8F6F2;
-  padding: 3.5rem 0 4.5rem 0;
+  padding: 3rem 0 3.75rem 0;
+  scroll-margin-top: 80px;
   overflow: hidden;
 }
 

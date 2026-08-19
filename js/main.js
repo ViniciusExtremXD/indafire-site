@@ -7,6 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initScrollEffects();
   initNavigation();
+  initSmoothScrollNav();
   initMegaMenus();
   initMotionReveal();
   initAnimatedCounters();
@@ -135,6 +136,47 @@ function initNavigation() {
   });
 }
 
+/* ==========================================================================
+   3.0. SMOOTH SCROLL NAVIGATION & PRECISION SECTION CENTERING
+   ========================================================================== */
+function initSmoothScrollNav() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetHref = this.getAttribute('href');
+      if (!targetHref || targetHref === '#' || targetHref === '#home') return;
+
+      const targetEl = document.querySelector(targetHref);
+      if (!targetEl) return;
+
+      e.preventDefault();
+
+      const headerOffset = 76;
+      const elRect = targetEl.getBoundingClientRect();
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      
+      let finalScrollTop = elRect.top + currentScrollY - headerOffset;
+
+      // Special centering for #historia (Nossa História) so the entire infographic fits perfectly in view
+      if (targetHref === '#historia') {
+        const sectionHeight = targetEl.offsetHeight;
+        const availableViewportHeight = window.innerHeight - headerOffset;
+        if (sectionHeight < availableViewportHeight) {
+          const verticalPadding = (availableViewportHeight - sectionHeight) / 2;
+          finalScrollTop = elRect.top + currentScrollY - headerOffset - verticalPadding;
+        }
+      }
+
+      window.scrollTo({
+        top: Math.max(0, Math.round(finalScrollTop)),
+        behavior: 'smooth'
+      });
+
+      if (history.pushState) {
+        history.pushState(null, null, targetHref);
+      }
+    });
+  });
+}
 
 /* ==========================================================================
    3.1. EXPANDED MEGA-MENUS (PRODUTOS & SERVIÇOS)
