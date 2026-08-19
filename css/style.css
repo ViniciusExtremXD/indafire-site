@@ -2083,21 +2083,19 @@ button, input, select, textarea {
 
 
 /* ==========================================================================
-   SECTION 5: QUEM SOMOS / SEDE PRÓPRIA (ORIGINAL COMPOSITION WITH FULL FACADE)
+   SECTION 5: QUEM SOMOS / SEDE PRÓPRIA (FOTO PANORÂMICA OFICIAL DA SEDE)
    ========================================================================== */
 .about-hq-section {
   position: relative;
-  background-color: #F8FAFC;
-  padding: 0 0 3.5rem 0;
+  min-height: 620px;
+  background-color: #0A0B0E;
   overflow: hidden;
+  scroll-margin-top: 80px;
 }
 
 .about-hq-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
+  inset: 0;
   z-index: 1;
   overflow: hidden;
 }
@@ -2106,16 +2104,15 @@ button, input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  opacity: 0.92;
-  filter: contrast(1.04) brightness(1.02);
+  object-position: center right;
+  opacity: 1;
+  filter: contrast(1.05) brightness(1.02);
 }
 
-.about-hq-bg::after {
-  content: '';
+.about-hq-bg-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 65%, #F8FAFC 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 45%, transparent 75%);
   pointer-events: none;
 }
 
@@ -2123,22 +2120,26 @@ button, input, select, textarea {
   position: relative;
   z-index: 10;
   width: 100%;
+  min-height: 620px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .about-hq-container {
   display: flex;
   justify-content: flex-start;
   padding-left: 1.5rem;
+  height: 100%;
 }
 
 .about-red-card {
   background-color: var(--fire-red);
   color: var(--text-white);
   border-radius: 0 0 28px 0;
-  max-width: 590px;
+  max-width: 580px;
   width: 100%;
-  padding: 3.25rem 2.75rem 2.5rem 2.75rem;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.16);
+  padding: 3.5rem 3rem 3rem 3rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
   margin-top: 0;
 }
 
@@ -2176,30 +2177,6 @@ button, input, select, textarea {
 .inmetro-seal-text {
   font-size: 0.88rem;
   line-height: 1.35;
-}
-
-/* Foreground Cutout Building Showcase (Full Front View) */
-.about-hq-building-showcase {
-  position: relative;
-  z-index: 8;
-  max-width: 1280px;
-  margin: -6rem auto 0 auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.about-hq-building-img {
-  width: 100%;
-  max-width: 1120px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.15));
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.about-hq-building-img:hover {
-  transform: scale(1.015);
 }
 
 /* Bottom Overlapping Capsule Button */
