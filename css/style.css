@@ -4247,7 +4247,8 @@ button, input, select, textarea {
 .contact-section {
   background-color: #0A0B0E;
   color: #FFFFFF;
-  padding: 6rem 0 0 0;
+  padding: 3.25rem 0 0 0;
+  scroll-margin-top: 80px;
   position: relative;
 }
 
@@ -4693,8 +4694,9 @@ button, input, select, textarea {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
   display: none;
   align-items: center;
@@ -4703,7 +4705,9 @@ button, input, select, textarea {
 }
 
 .modal-overlay.open {
-  display: flex;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .modal-window {
@@ -4717,6 +4721,20 @@ button, input, select, textarea {
   padding: 2.5rem;
   position: relative;
   border-top: 4px solid var(--fire-red);
+  margin: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .modal-close-btn {

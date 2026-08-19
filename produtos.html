@@ -257,7 +257,7 @@
         <a href="index.html#historia" class="nav-link">Nossa História</a>
         <a href="index.html#contato" class="nav-link">Contato</a>
         <a href="index.html#localizacao" class="nav-link">Como Chegar</a>
-        <a href="http://www.indafire.ind.br/login2.php" target="_blank" rel="noopener noreferrer" class="nav-link">Área do cliente</a>
+        <a href="http://www.indafire.ind.br/login2.php" target="_blank" rel="noopener noreferrer" class="nav-link btn-client-modal">Área do cliente</a>
       </nav>
 
       <!-- Right Header Tools: CTA Quote + Search + Social Icons -->
@@ -586,6 +586,28 @@
 
     </div>
   </footer>
+
+  <!-- Client Area Modal (Executive Centered Dialog) -->
+  <div class="modal-overlay" id="client-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="client-modal-title">
+    <div class="modal-window client-modal-box" style="text-align: center; max-width: 480px; margin: auto; padding: 2.75rem 2.25rem;">
+      <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
+      <div style="display: flex; justify-content: center; margin-bottom: 1.25rem;">
+        <img src="brand/logo.svg" alt="Inda Fire" style="height: 34px; width: auto;" />
+      </div>
+      <h3 id="client-modal-title" style="font-family: var(--font-heading); font-size: 2.1rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.6rem; color: #11141A; letter-spacing: -0.01em;">
+        Área do Cliente
+      </h3>
+      <p style="color: #475569; font-size: 0.95rem; line-height: 1.55; margin-bottom: 1.75rem;">
+        Acesse o portal online para consultar histórico de recargas, laudos de ensaio hidrostático, certificados e ordens de serviço.
+      </p>
+      <a href="http://www.indafire.ind.br/login2.php" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block btn-lg" style="margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none;">
+        <span>Acessar Portal Online</span> ➔
+      </a>
+      <a href="https://wa.me/551938341741?text=Ol%C3%A1,%20preciso%20de%20ajuda%20com%20meu%20acesso%20na%20Área%20do%20Cliente" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none;">
+        <span>Solicitar Acesso / Suporte</span>
+      </a>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script type="module" src="js/catalog-page.js"></script>

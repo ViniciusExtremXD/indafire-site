@@ -139,6 +139,34 @@ function initNavigation() {
 /* ==========================================================================
    3.0. SMOOTH SCROLL NAVIGATION & PRECISION SECTION CENTERING
    ========================================================================== */
+function scrollToSectionCentered(targetEl, targetHref) {
+  if (!targetEl) return;
+  const headerOffset = 76;
+  const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  const availableViewportHeight = window.innerHeight - headerOffset;
+
+  let targetBox = targetEl;
+  if (targetHref === '#contato') {
+    const splitGrid = targetEl.querySelector('.contact-split-grid');
+    if (splitGrid) targetBox = splitGrid;
+  }
+
+  const elRect = targetBox.getBoundingClientRect();
+  const boxHeight = targetBox.offsetHeight;
+
+  let finalScrollTop = elRect.top + currentScrollY - headerOffset;
+
+  if (boxHeight > 0 && boxHeight < availableViewportHeight) {
+    const verticalPadding = (availableViewportHeight - boxHeight) / 2;
+    finalScrollTop = elRect.top + currentScrollY - headerOffset - verticalPadding;
+  }
+
+  window.scrollTo({
+    top: Math.max(0, Math.round(finalScrollTop)),
+    behavior: 'smooth'
+  });
+}
+
 function initSmoothScrollNav() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -149,27 +177,7 @@ function initSmoothScrollNav() {
       if (!targetEl) return;
 
       e.preventDefault();
-
-      const headerOffset = 76;
-      const elRect = targetEl.getBoundingClientRect();
-      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-      
-      let finalScrollTop = elRect.top + currentScrollY - headerOffset;
-
-      // Special centering for #historia (Nossa História) so the entire infographic fits perfectly in view
-      if (targetHref === '#historia') {
-        const sectionHeight = targetEl.offsetHeight;
-        const availableViewportHeight = window.innerHeight - headerOffset;
-        if (sectionHeight < availableViewportHeight) {
-          const verticalPadding = (availableViewportHeight - sectionHeight) / 2;
-          finalScrollTop = elRect.top + currentScrollY - headerOffset - verticalPadding;
-        }
-      }
-
-      window.scrollTo({
-        top: Math.max(0, Math.round(finalScrollTop)),
-        behavior: 'smooth'
-      });
+      scrollToSectionCentered(targetEl, targetHref);
 
       if (history.pushState) {
         history.pushState(null, null, targetHref);
@@ -832,9 +840,9 @@ function initQuoteForm() {
         const contactSection = document.getElementById('contato');
         if (contactSection) {
           e.preventDefault();
-          contactSection.scrollIntoView({ behavior: 'smooth' });
+          scrollToSectionCentered(contactSection, '#contato');
           const nameInput = document.getElementById('form-name');
-          if (nameInput) setTimeout(() => nameInput.focus(), 500);
+          if (nameInput) setTimeout(() => nameInput.focus(), 600);
         }
       }
     });
@@ -846,13 +854,13 @@ function initQuoteForm() {
       const contactSection = document.getElementById('contato');
       if (contactSection) {
         e.preventDefault();
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+        scrollToSectionCentered(contactSection, '#contato');
         const select = document.getElementById('form-service');
         if (select) {
           select.value = 'Treinamento de Brigada de Incêndio';
         }
         const nameInput = document.getElementById('form-name');
-        if (nameInput) setTimeout(() => nameInput.focus(), 500);
+        if (nameInput) setTimeout(() => nameInput.focus(), 600);
       }
     });
   });
