@@ -2241,14 +2241,20 @@ button, input, select, textarea {
 }
 
 @media (max-width: 991px) {
+  .about-hq-grid-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
   .about-red-card {
     border-radius: 16px;
-    margin: 2rem auto 0 auto;
+    margin: 0 auto;
     max-width: 100%;
   }
 
   .about-hq-building-showcase {
     margin-top: 1rem;
+    max-width: 100%;
   }
 }
 
@@ -4819,7 +4825,7 @@ button, input, select, textarea {
     width: 100%;
   }
 
-  .about-diagonal-grid, .about-hq-content-row, .contact-split-grid {
+  .about-diagonal-grid, .about-hq-content-row, .about-hq-grid-container, .contact-split-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
