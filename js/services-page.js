@@ -8,7 +8,68 @@ import { SERVICES } from './catalog-data.js';
 document.addEventListener('DOMContentLoaded', () => {
   initServicesPage();
   initDrawerNav();
+  initHeaderScroll();
+  initMegaMenuNav();
 });
+
+function initHeaderScroll() {
+  const header = document.getElementById('site-header');
+  const progressBar = document.getElementById('scroll-progress');
+  if (!header) return;
+
+  function onScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // Progress Bar
+    if (progressBar && scrollHeight > 0) {
+      progressBar.style.width = `${(scrollTop / scrollHeight) * 100}%`;
+    }
+
+    // Glassmorphism Header state on scroll
+    if (scrollTop > 30) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+function initMegaMenuNav() {
+  const dropdowns = document.querySelectorAll('.nav-item-dropdown');
+  const header = document.getElementById('site-header');
+
+  dropdowns.forEach(d => {
+    const panel = d.querySelector('.mega-menu-panel');
+    if (!panel) return;
+
+    let timeout;
+
+    function openMenu() {
+      clearTimeout(timeout);
+      dropdowns.forEach(other => {
+        if (other !== d) other.querySelector('.mega-menu-panel')?.classList.remove('active');
+      });
+      panel.classList.add('active');
+      if (header) header.classList.add('has-mega-open');
+    }
+
+    function closeMenu() {
+      timeout = setTimeout(() => {
+        panel.classList.remove('active');
+        if (header) header.classList.remove('has-mega-open');
+      }, 150);
+    }
+
+    d.addEventListener('mouseenter', openMenu);
+    d.addEventListener('mouseleave', closeMenu);
+    panel.addEventListener('mouseenter', openMenu);
+    panel.addEventListener('mouseleave', closeMenu);
+  });
+}
 
 function initDrawerNav() {
   const toggleBtn = document.getElementById('mobile-menu-toggle');
