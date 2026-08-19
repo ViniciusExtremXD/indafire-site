@@ -2083,14 +2083,17 @@ button, input, select, textarea {
 
 
 /* ==========================================================================
-   SECTION 5: QUEM SOMOS / SEDE PRÓPRIA (FOTO PANORÂMICA OFICIAL DA SEDE)
+   SECTION 5: QUEM SOMOS / SEDE PRÓPRIA (MONTAGEM OUSADA: CARD + SEDE 3D)
    ========================================================================== */
 .about-hq-section {
   position: relative;
-  min-height: 620px;
-  background-color: #0A0B0E;
+  background-color: #F8F9FA;
+  min-height: 640px;
   overflow: hidden;
   scroll-margin-top: 80px;
+  display: flex;
+  align-items: center;
+  padding: 3.5rem 0;
 }
 
 .about-hq-bg {
@@ -2104,43 +2107,35 @@ button, input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center right;
-  opacity: 1;
-  filter: contrast(1.05) brightness(1.02);
+  object-position: center top;
+  opacity: 0.75;
+  filter: contrast(1.08) brightness(1.02);
 }
 
-.about-hq-bg-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 45%, transparent 75%);
-  pointer-events: none;
-}
-
-.about-hq-top-bar {
+.about-hq-content-wrapper {
   position: relative;
   z-index: 10;
   width: 100%;
-  min-height: 620px;
-  display: flex;
-  align-items: flex-start;
 }
 
-.about-hq-container {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 1.5rem;
-  height: 100%;
+.about-hq-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
 }
 
 .about-red-card {
   background-color: var(--fire-red);
   color: var(--text-white);
-  border-radius: 0 0 28px 0;
-  max-width: 580px;
+  border-radius: 20px;
+  max-width: 540px;
   width: 100%;
-  padding: 3.5rem 3rem 3rem 3rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  margin-top: 0;
+  padding: 3.25rem 2.75rem 2.5rem 2.75rem;
+  box-shadow: 0 25px 60px rgba(216, 0, 22, 0.3), 0 10px 30px rgba(0, 0, 0, 0.18);
+  position: relative;
+  z-index: 12;
 }
 
 .about-card-title {
@@ -2149,19 +2144,19 @@ button, input, select, textarea {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 1.15rem;
-  line-height: 1.08;
+  line-height: 1.05;
   color: #FFFFFF;
 }
 
 .about-card-p {
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 0.95rem;
   opacity: 0.96;
 }
 
 .inmetro-seal-wrap {
-  margin-top: 1.65rem;
+  margin-top: 1.5rem;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
@@ -2170,7 +2165,7 @@ button, input, select, textarea {
 }
 
 .inmetro-logo-svg {
-  height: 48px;
+  height: 46px;
   width: auto;
 }
 
@@ -2178,6 +2173,37 @@ button, input, select, textarea {
   font-size: 0.88rem;
   line-height: 1.35;
 }
+
+/* 3D Cutout Sede Building Showcase */
+.about-hq-building-showcase {
+  position: relative;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-hq-building-frame {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-hq-building-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.35));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-hq-building-img:hover {
+  transform: scale(1.03) translateY(-4px);
+}
+
 
 /* Bottom Overlapping Capsule Button */
 .about-hq-bottom-anchor {
