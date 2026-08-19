@@ -1179,7 +1179,10 @@ function initTimelineCarousel() {
     const delta = timestamp - lastTimestamp;
     lastTimestamp = timestamp;
 
-    if (!isPaused) {
+    const modalEl = document.getElementById('timeline-history-modal');
+    const isModalOpen = modalEl && modalEl.classList.contains('open');
+
+    if (!isPaused && !isModalOpen) {
       progress += (delta / stepDurationMs) * 100;
       if (progress >= 100) {
         progress = 0;
@@ -1228,14 +1231,8 @@ function initTimelineCarousel() {
     });
   });
 
-  // Hover pause
-  if (scrollBox) {
-    scrollBox.addEventListener('mouseenter', () => { isPaused = true; });
-    scrollBox.addEventListener('mouseleave', () => { 
-      isPaused = false; 
-      lastTimestamp = performance.now();
-    });
-  }
+  // Continuous playback: timeline never stops on mouse hover
+  // (Pausado apenas quando o modal de detalhes estiver aberto)
 
   // Start engine
   updateVisualState(0, 0);
