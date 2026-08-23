@@ -8,6 +8,14 @@ images/original_site/*.mp4
 .worktrees/
 screenshots/
 
+# Ignore temporary builds and private audit data
+audit/private/
+dist_gh_pages/
+audit/snapshot/
+staging-local/
+*.sql
+*.sql.gz
+
 # Temporary scripts
 capture-*.js
 test-*.js
@@ -29,4 +37,3 @@ update-*.js
 # OS files
 .DS_Store
 Thumbs.db
-
