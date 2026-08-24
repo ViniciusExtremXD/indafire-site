@@ -3634,8 +3634,11 @@ if(qtde == 0){
 
 
 
+
+
+
 /* =========================================================
-   FIXES MOBILE: ENQUADRAMENTO, DRAWER MENU, TREINAMENTO E WHATSAPP
+   FIXES GLOBAIS: MENU DRAWER, TREINAMENTO (DESKTOP/TABLET/MOBILE) E FORMULÁRIOS
    ========================================================= */
 
 /* Fix mobile hamburger & popup close button */
@@ -3704,8 +3707,6 @@ if(qtde == 0){
   position: relative !important;
   background-color: #ffffff !important;
   background-image: url('https://indafire.com.br/site/wp-content/uploads/2021/10/bombeiro.jpg') !important;
-  background-position: right center !important;
-  background-size: cover !important;
   background-repeat: no-repeat !important;
 }
 
@@ -3742,16 +3743,56 @@ if(qtde == 0){
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Mobile Treinamentos: posiciona o bombeiro abaixo do vídeo sem sobrepor */
-@media (max-width: 768px) {
+/* Desktop (> 991px): Layout Lado a Lado (Texto + Vídeo à esquerda, Bombeiro à direita) */
+@media (min-width: 992px) {
   .elementor-element.elementor-element-3662fd7 {
-    padding-top: 35px !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    padding-bottom: 280px !important; /* Espaço dedicado para o bombeiro aparecer livremente abaixo do vídeo */
+    padding: 60px 40px !important;
+    background-position: right 30px center !important;
+    background-size: contain !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    max-width: 580px !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b > .elementor-column-wrap {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p {
+    text-align: left !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
+    max-width: 580px !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+/* Tablet & Mobile (< 992px): Centralizado com o Bombeiro posicionado abaixo do vídeo */
+@media (max-width: 991px) {
+  .elementor-element.elementor-element-3662fd7 {
+    padding-top: 40px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-bottom: 300px !important; /* Espaço dedicado para o bombeiro aparecer livremente abaixo do vídeo */
     background-position: right -15px bottom -10px !important;
-    background-size: 340px auto !important;
-    background-repeat: no-repeat !important;
+    background-size: 360px auto !important;
+  }
+  
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    max-width: 620px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
   }
   
   .elementor-element.elementor-element-3662fd7 .elementor-element-169964b > .elementor-column-wrap {
@@ -3763,15 +3804,23 @@ if(qtde == 0){
   
   .elementor-element.elementor-element-42aaacd .elementor-heading-title {
     font-size: 0.85rem !important;
+    text-align: center !important;
   }
   
   .elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
-    font-size: 1.8rem !important;
+    font-size: 1.85rem !important;
+    text-align: center !important;
   }
   
   .elementor-element.elementor-element-1c2246b .elementor-text-editor p,
   .elementor-element.elementor-element-1c2246b .elementor-text-editor {
     font-size: 0.95rem !important;
+    text-align: center !important;
+  }
+  
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
+    max-width: 600px !important;
+    margin: 0 auto !important;
   }
 }
 
