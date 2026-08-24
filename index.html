@@ -432,49 +432,6 @@ div#carrosselProdutos {
 
 }
 
-#carrosselProdutos .elementor-main-swiper {
-    overflow: visible;
-}
-
-#carrosselProdutos .elementor-main-swiper .swiper-wrapper {
-    align-items: center;
-}
-
-#carrosselProdutos .elementor-main-swiper .swiper-slide {
-    transition: transform .35s ease, opacity .35s ease;
-    transform: scale(.72);
-    opacity: .82;
-    z-index: 1;
-}
-
-#carrosselProdutos .elementor-main-swiper .swiper-slide-active {
-    transform: scale(1);
-    opacity: 1;
-    z-index: 3;
-}
-
-#carrosselProdutos .elementor-main-swiper .swiper-slide-prev,
-#carrosselProdutos .elementor-main-swiper .swiper-slide-next {
-    transform: scale(.72);
-    opacity: .86;
-    z-index: 2;
-}
-
-@media (min-width: 961px) {
-  #carrosselProdutos .elementor-main-swiper .swiper-slide {
-    width: 33.333333% !important;
-  }
-  #carrosselProdutos .elementor-main-swiper .swiper-slide-active,
-  #carrosselProdutos .elementor-main-swiper .swiper-slide-prev {
-    transform: scale(.72);
-  }
-  #carrosselProdutos .elementor-main-swiper .swiper-slide-next {
-    transform: scale(1);
-    opacity: 1;
-    z-index: 3;
-  }
-}
-
 #carrosselProdutos .swiper-slide {
 
     transition: 0.5s ease all;
@@ -517,12 +474,6 @@ div#carrosselProdutos {
 
 			z-index:1;
 
-	}
-
-	#carrosselProdutos .elementor-main-swiper .swiper-slide-active,
-	#carrosselProdutos .elementor-main-swiper .swiper-slide-prev,
-	#carrosselProdutos .elementor-main-swiper .swiper-slide-next {
-		transform: scale(1);
 	}
 
 	div#carrosselProdutos {
@@ -4081,12 +4032,12 @@ if(qtde == 0){
 		</a>						</div>
 									</div>
 															<div class="swiper-pagination"></div>
-																<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" aria-label="Anterior" tabindex="0">
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+																<div class="elementor-swiper-button elementor-swiper-button-prev">
+							<i aria-hidden="true" class="eicon-chevron-left"></i>
 							<span class="elementor-screen-only">Previous</span>
 						</div>
-						<div class="elementor-swiper-button elementor-swiper-button-next" role="button" aria-label="Próximo" tabindex="0">
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+						<div class="elementor-swiper-button elementor-swiper-button-next">
+							<i aria-hidden="true" class="eicon-chevron-right"></i>
 							<span class="elementor-screen-only">Next</span>
 						</div>
 												</div>
@@ -5399,51 +5350,31 @@ i.eicon-close::before,
   }
 }
 
-/* Product carousel arrows: force the Elementor controls above the slide
-   layers; otherwise the inherited carousel rule collapses them to squares. */
-#carrosselProdutos .elementor-main-swiper .elementor-swiper-button {
-  position: absolute !important;
-  top: 50% !important;
-  bottom: auto !important;
-  width: 42px !important;
-  height: 42px !important;
-  min-width: 42px !important;
-  min-height: 42px !important;
-  margin: -21px 0 0 !important;
+/* Match the original carousel controls: lightweight red Elementor chevrons. */
+#carrosselProdutos .elementor-swiper-button {
+  width: 25px !important;
+  height: 25px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
   padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  overflow: visible !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  z-index: 50 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #e30613 !important;
+}
+
+#carrosselProdutos .elementor-swiper-button:hover {
+  background: transparent !important;
+  color: #e30613 !important;
   transform: none !important;
+  box-shadow: none !important;
 }
 
-#carrosselProdutos .elementor-main-swiper .elementor-swiper-button-prev {
-  left: 8px !important;
-  right: auto !important;
-}
-
-#carrosselProdutos .elementor-main-swiper .elementor-swiper-button-next {
-  right: 8px !important;
-  left: auto !important;
-}
-
-#carrosselProdutos .elementor-main-swiper .elementor-swiper-button svg {
+#carrosselProdutos .elementor-swiper-button i {
   display: block !important;
-  width: 22px !important;
-  height: 22px !important;
-  max-width: none !important;
-  max-height: none !important;
-  stroke: #e30613 !important;
-  stroke-width: 3 !important;
-  fill: none !important;
-}
-
-#carrosselProdutos .elementor-main-swiper .elementor-swiper-button:hover svg {
-  stroke: #ffffff !important;
+  font-size: 25px !important;
+  line-height: 1 !important;
 }
 
 </style>
