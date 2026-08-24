@@ -609,142 +609,376 @@ ul#dce-breadcrumbs {
 }
 	.areaProduto{
 		cursor:pointer;
-	}
-.areaProduto:hover img{
-    transform: translateY(-30px);    
-}
-.areaProduto:hover .areaImagem{
-		background-color:#6A737B !important;
-}	
-	.areaProduto:hover .areaConteudo{
-		background-color:#333 !important;
-	}
-	.areaProduto:hover .elementor-heading-title{
-		color:white !important;
-	}
-.filtrolateral {
-		margin-top:0px !important;
-    margin-bottom: 0px !important;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-figure.woocommerce-product-gallery__wrapper img {
-    max-height: 500px;
-    width: auto !important;
-    margin: 0 auto;
-}	
-.listaCategoria li{
-    width: 100%;
-    margin-bottom: 0px !important;
-}
-.listaCategoria li a{
-    width: 100%;
-    display: block;
-    padding: 5px 15px;
-}
-.listaCategoria li a:before{
-    content: "";
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-color: white;
-    margin-right: 7px;
-    border: 1px solid #CCC;
-    transform: translateY(1px);
-
-}
-.listaCategoria li a:hover{
-background-color: #E6E6E6;    
-}	
-.listaCategoria li a.active {
-    background-color: #E6E6E6;
-    font-weight: bold;
-	  position:relative;
-}	
-.listaCategoria li a.active:after {
-    content: "";
-    width: 7px;
-    height: 7px;
-    background-color: #161616;
-    display: inline-block;
-    border-radius: 100%;
-    position: absolute;
-    left: 19px;
-    top: 13px;
-}	
-button.pswp__button.pswp__button--close:after {
-    content: "Aperte ESC para fechar a imagem";
-    position: fixed;
-    right: 0px !important;
-    top: 75px;
-    padding: 10px;
-    color: #E30613;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-@media only screen and (max-width: 500px) {
-    #timelineInda .dce-posts-container .dce-post-item {
-    position: relative;
-    left: -500px;
-	}
-	
-	.elementor-element.elementor-element-4a357ad.elementor-absolute.elementor-widget__width-inherit.dce_masking-none.elementor-widget.elementor-widget-image {
-    position: relative;
-    top: 70px;
-	}
-
-	#timelineInda .dce-post-block {
-			width: 75%!important;
-	}
-}
-	
-@media only screen and (max-width: 375px) {
-    #timelineInda .dce-posts-container .dce-post-item {
-    position: relative;
-    left: -427px;
-	}
-}
-
-</style>
-
-<script>
-	
-jQuery(document).ready(function(){
-	
-	jQuery(".contatoForm_CTA").click(function(){
-		var idCTA = jQuery(this).attr("id");
-		jQuery(".contatoForm_CTA_active").removeClass("contatoForm_CTA_active");
-		jQuery(this).addClass("contatoForm_CTA_active");
-		jQuery(".formulario_ativo").removeClass("formulario_ativo");
-		jQuery("."+idCTA).addClass("formulario_ativo")
-	});
-	
-	
-	function apagaServicos(){
-		jQuery("#gridServicos article").each(function(){
-			jQuery(this).css("display","none");
-		});
-	}
-	
-	function mudaServicos_home(){
-		apagaServicos();
-		setTimeout(function(){ 
-			var idSlider_meio = jQuery("#carrosselServicos .swiper-slide-next section").attr("id"); 
-			console.log(idSlider_meio);
-			jQuery("."+idSlider_meio).each(function(){
-				jQuery(this).parents("article").css("display","block");
-			});
-		}, 100);			
-	}
-	jQuery("#carrosselServicos .dce-container-navigation").click(function(){ mudaServicos_home(); } );	
-	mudaServicos_home();
-});
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5804965827119596"
-     crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-5804965827119596">
+filter: grayscale(1) opacity(1);
+}
+.contatoForm_CTA_active {
+    filter: grayscale(0) !important;
+}	
+div#contatoForm_CTA_contato.contatoForm_CTA_active {
+    background-color: black;
+}	
+.contatoForm_CTA_active span {
+    color: white !important;
+}	
+div#contatoForm_CTA_trabalhe.contatoForm_CTA_active	{
+		background-color:#9D0009;
+}
+	.contatoForm_CTA_contato, .contatoForm_CTA_trabalhe{
+		display:none;
+	}
+	.formulario_ativo{
+		display:block;
+	}
+	
+.ctaTreinamento img {
+    transition: 0.5s ease all;
+}
+.ctaTreinamento:hover img {
+    transform:translateY(-50px);
+}	
+
+#profissionaisInda .swiper-slide {
+    filter: grayscale(1);
+    transition: 0.5s ease all !important;
+}
+#profissionaisInda .swiper-slide h5{
+    display: none;
+    transition: 0.5s ease all !important;
+}
+#profissionaisInda .swiper-slide .conteudo{
+    display: none;
+}
+#profissionaisInda .swiper-slide img{
+    margin-top: 55px;
+    margin-left: -100px;
+    margin-right: -100px;
+    transition: 0.5s ease all !important;
+}
+#profissionaisInda .swiper-slide-next{
+    filter: grayscale(0);
+}
+#profissionaisInda .swiper-slide-next img{
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px;
+    max-width: 275px !important;
+}
+#profissionaisInda .swiper-slide-next h5{
+    display: block;
+}
+#profissionaisInda .swiper-slide-next .conteudo{
+    display: block;
+}
+#profissionaisInda .swiper-slide-next {
+    width: 375px !important;
+    margin-left: -100px;
+    margin-right: -100px;
+    z-index: 100;
+}
+#profissionaisInda .dce-container-navigation div {
+    background-color: #e30613;
+    border-radius: 100%;
+    width: 100px !important;
+    height: 100px !important;
+}
+#profissionaisInda .dce-container-navigation svg{
+    position: absolute;
+    top: 10px
+}
+#profissionaisInda .dce-container-navigation .swiper-button-prev svg{
+    left: 20px;
+}
+#profissionaisInda .dce-container-navigation .swiper-button-next svg{
+    right: 20px;
+}	
+	
+@media only screen and (max-width: 600px) {
+#profissionaisInda .swiper-slide {
+    filter: initial;
+    transition: initial !important;
+}
+#profissionaisInda .swiper-slide h5{
+    display: initial;
+    transition: initial !important;
+}
+#profissionaisInda .swiper-slide .conteudo{
+    display: initial;
+}
+#profissionaisInda .swiper-slide img{
+    margin-top: initial;
+    margin-left: -initial;
+    margin-right: -initial;
+    transition: initial !important;
+}
+#profissionaisInda .swiper-slide-next{
+    filter: initial;
+}
+#profissionaisInda .swiper-slide-next img{
+    margin-top: initial !important;
+    margin-left: initial !important;
+    margin-right: initial;
+    max-width: initial !important;
+}
+#profissionaisInda .swiper-slide-next h5{
+    display: initial;
+}
+#profissionaisInda .swiper-slide-next .conteudo{
+    display: initial;
+}
+#profissionaisInda .swiper-slide-next {
+    width: initial !important;
+    margin-left: initial;
+    margin-right: initial;
+    z-index: initial;
+}
+#profissionaisInda .dce-container-navigation div {
+    background-color: initial;
+    border-radius: initial;
+    width: initial !important;
+    height: initial !important;
+}
+#profissionaisInda .dce-container-navigation svg{
+    position: initial;
+    top: initial;
+}
+#profissionaisInda .dce-container-navigation .swiper-button-prev svg{
+    left: initial;
+}
+#profissionaisInda .dce-container-navigation .swiper-button-next svg{
+    right: initial;
+}	
+}	
+.abaCustomizada .elementor-tab-title {
+    border-radius: 10px 10px 0px 0px;
+    background-color: #f7f7f7;
+}
+.abaCustomizada	.elementor-tabs-content-wrapper{
+		border-radius: 10px;
+	}	
+	
+.carrosselInda .swiper-slide.swiper-slide-active {
+    transition:0.5s ease all;	
+    transform: translateX(50px) scale(0.85);
+}
+.carrosselInda .swiper-slide.swiper-slide-duplicate-prev {
+    transition:0.5s ease all;
+    transform: translateX(-50px) scale(0.85);
+    z-index: -1;
+}	
+button.view-more-button {
+    font-size: 1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 20px;
+}
+.categoriaSidebar h3.dce-parent-title, .categoriaSidebar h5 {
+    display: none !important;
+}	
+.categoriaSidebar nav.dce-menu.dce-flex-menu.vertical hr {
+    display: none;
+}	
+.categoriaSidebar li {
+    padding: 0px !important;
+}
+.categoriaSidebar a {
+    color: black;
+}	
+.categoriaSidebar a:hover {
+    color: black;
+	  text-decoration:underline;
+}		
+.breadcrumb li.item-current span {
+    color: black !important;
+    font-weight: 500;
+}	
+ul#dce-breadcrumbs {
+    padding: 0px;
+}	
+	
+.areaImagem img{
+    max-height: 195px;
+    width: auto;
+    margin-top: -40px;
+    transition: 0.5s ease all;
+    transform: translateY(0px);
+}
+	.areaProduto{
+		cursor:pointer;
+	}
+.areaProduto:hover img{
+    transform: translateY(-30px);    
+}
+.areaProduto:hover .areaImagem{
+		background-color:#6A737B !important;
+}	
+.areaProduto:hover .areaConteudo{
+    background-color:#333 !important;
+}
+.areaProduto:hover .elementor-heading-title{
+    color:white !important;
+}
+.listaCategoria li{
+    width: 100%;
+    margin-bottom: 0px !important;
+}
+.listaCategoria li a{
+    width: 100%;
+    display: block;
+    padding: 5px 15px;
+}
+.listaCategoria li a:before{
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    margin-right: 7px;
+    border: 1px solid #CCC;
+    transform: translateY(1px);
+}
+.listaCategoria li a:hover{
+    background-color: #E6E6E6;    
+}	
+.listaCategoria li a.active {
+    background-color: #E6E6E6;
+    font-weight: bold;
+    position: relative;
+}	
+.listaCategoria li a.active:after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: #161616;
+    display: inline-block;
+    border-radius: 100%;
+    position: absolute;
+    left: 19px;
+    top: 13px;
+}	
+button.pswp__button.pswp__button--close:after {
+    content: "Aperte ESC para fechar a imagem";
+    position: fixed;
+    right: 0px !important;
+    top: 75px;
+    padding: 10px;
+    color: #E30613;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Hero typography on mobile */
+  .elementor-element.elementor-element-affa771 .elementor-heading-title {
+    font-size: 1.7rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+    padding: 0 10px !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.85);
+  }
+  .elementor-element.elementor-element-29e9bcc .elementor-heading-title {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+    padding: 0 10px !important;
+    letter-spacing: 0.5px !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.85);
+  }
+  
+  /* Counters container on mobile */
+  .elementor-element.elementor-element-573f056 {
+    background-position: center top !important;
+  }
+  .elementor-element.elementor-element-573f056 .elementor-column-wrap {
+    padding: 25px 15px !important;
+  }
+  .elementor-element.elementor-element-1ffb393 {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-8cd1f4d.marginRight {
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 340px !important;
+  }
+  .elementor-element.elementor-element-f195a0e,
+  .elementor-element.elementor-element-c8f1cd7,
+  .elementor-element.elementor-element-8da6b11 {
+    margin: 8px auto !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Lead capture cards on mobile */
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Map container on mobile */
+  #localizacao_mapa iframe {
+    height: 320px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+    #timelineInda .dce-posts-container .dce-post-item {
+    position: relative;
+    left: -500px;
+	}
+	
+	.elementor-element.elementor-element-4a357ad.elementor-absolute.elementor-widget__width-inherit.dce_masking-none.elementor-widget.elementor-widget-image {
+    position: relative;
+    top: 70px;
+	}
+
+	#timelineInda .dce-post-block {
+			width: 75%!important;
+	}
+}
+	
+@media only screen and (max-width: 375px) {
+    #timelineInda .dce-posts-container .dce-post-item {
+    position: relative;
+    left: -427px;
+	}
+}
+
+</style>
+
+<script>
+jQuery(document).ready(function(){
+	jQuery(".contatoForm_CTA").click(function(){
+		var idCTA = jQuery(this).attr("id");
+		jQuery(".contatoForm_CTA_active").removeClass("contatoForm_CTA_active");
+		jQuery(this).addClass("contatoForm_CTA_active");
+		jQuery(".formulario_ativo").removeClass("formulario_ativo");
+		jQuery("."+idCTA).addClass("formulario_ativo");
+	});
+	
+	function apagaServicos(){
+		jQuery("#gridServicos article").each(function(){
+			jQuery(this).css("display","none");
+		});
+	}
+	
+	function mudaServicos_home(){
+		apagaServicos();
+		setTimeout(function(){ 
+			var idSlider_meio = jQuery("#carrosselServicos .swiper-slide-next section").attr("id"); 
+			console.log(idSlider_meio);
+			jQuery("."+idSlider_meio).each(function(){
+				jQuery(this).parents("article").css("display","block");
+			});
+		}, 100);			
+	}
+	jQuery("#carrosselServicos .dce-container-navigation").click(function(){ mudaServicos_home(); } );	
+	mudaServicos_home();
+});
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5804965827119596"
+     crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-5804965827119596">
 
 <link rel="icon" href="./wp-content/uploads/2021/10/cropped-inda-512-32x32.png" sizes="32x32" />
 <link rel="icon" href="./wp-content/uploads/2021/10/cropped-inda-512-192x192.png" sizes="192x192" />
@@ -1640,7 +1874,7 @@ jQuery(document).ready(function(){
 				</div>
 				<div class="elementor-element elementor-element-29e9bcc elementor-invisible elementor-widget elementor-widget-heading" data-id="29e9bcc" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:250}" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-			<div class="elementor-heading-title elementor-size-default">Há 27 anos, somos tradição, confiança e excelência</div>		</div>
+			<div class="elementor-heading-title elementor-size-default">Há 30 anos, somos tradição, confiança e excelência</div>		</div>
 				</div>
 						</div>
 					</div>
@@ -1721,7 +1955,7 @@ jQuery(document).ready(function(){
 					<div class="elementor-counter">
 			<div class="elementor-counter-number-wrapper">
 				<span class="elementor-counter-number-prefix">+</span>
-				<span class="elementor-counter-number" data-duration="2000" data-to-value="25" data-from-value="0" data-delimiter=",">0</span>
+				<span class="elementor-counter-number" data-duration="2000" data-to-value="30" data-from-value="0" data-delimiter=",">0</span>
 				<span class="elementor-counter-number-suffix"> anos</span>
 			</div>
 					</div>
@@ -2468,7 +2702,7 @@ jQuery(document).ready(function(){
 				<div class="elementor-element elementor-element-bbd4bbc elementor-widget elementor-widget-text-editor" data-id="bbd4bbc" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-text-editor elementor-clearfix">
-				A Inda Fire possui mais de 25 anos de experiência no mercado de equipamentos de prevenção e combate a incêndio, também oferece a  fabricação de caixa d&#8217;água metálica.					</div>
+				A Inda Fire possui mais de 30 anos de experiência no mercado de equipamentos de prevenção e combate a incêndio, também oferece a  fabricação de caixa d&#8217;água metálica.					</div>
 						</div>
 				</div>
 				<div class="elementor-element elementor-element-476a878 elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="476a878" data-element_type="widget" data-widget_type="button.default">
@@ -2516,7 +2750,7 @@ jQuery(document).ready(function(){
 				<div class="elementor-element elementor-element-bbd4bbc elementor-widget elementor-widget-text-editor" data-id="bbd4bbc" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-text-editor elementor-clearfix">
-				A Inda Fire utiliza sua experiência de 25 anos de mercado para fornecer equipes de brigada de incêndio para eventos em geral, como: shows, feiras, seminários, workshops, atividades socioculturais, esportivas, entre outros.					</div>
+				A Inda Fire utiliza sua experiência de 30 anos de mercado para fornecer equipes de brigada de incêndio para eventos em geral, como: shows, feiras, seminários, workshops, atividades socioculturais, esportivas, entre outros.					</div>
 						</div>
 				</div>
 				<div class="elementor-element elementor-element-476a878 elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="476a878" data-element_type="widget" data-widget_type="button.default">
