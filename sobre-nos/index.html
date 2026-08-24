@@ -3184,7 +3184,7 @@ if(qtde == 0){
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2130"><a target="_blank" href="http://www.indafire.ind.br/login2.php" class="elementor-item">Área do cliente</a></li>
 </ul>			</nav>
 					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle" aria-expanded="false">
-			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>			<span class="elementor-screen-only">Menu</span>
+			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open fas fa-bars"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close fas fa-times"></i>			<span class="elementor-screen-only">Menu</span>
 		</div>
 			<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" role="navigation" aria-hidden="true">
 				<ul id="menu-2-ebe09d0" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="../produtos/" class="elementor-item" tabindex="-1">Produtos</a></li>
@@ -3640,9 +3640,64 @@ if(qtde == 0){
 
 
 
+
+
+
 /* =========================================================
-   FIXES GLOBAIS: SETAS DE CARROSSEL, MENU DRAWER, TREINAMENTO E FORMULÁRIOS
+   FIXES GLOBAIS: MENU TOGGLES, SETAS DE CARROSSEL, TREINAMENTO E FORMULÁRIOS
    ========================================================= */
+
+/* Fix Footer & Navigation Menu Toggles (Hambúrguer) */
+.elementor-menu-toggle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #242b33 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  width: 44px !important;
+  height: 40px !important;
+  margin: 0 auto 15px auto !important;
+  cursor: pointer !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.elementor-menu-toggle:hover {
+  background-color: #e30613 !important;
+  border-color: #e30613 !important;
+  color: #ffffff !important;
+}
+
+.elementor-menu-toggle i {
+  font-size: 18px !important;
+  color: #ffffff !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+
+.elementor-menu-toggle.elementor-active i.fa-bars,
+.elementor-menu-toggle.elementor-active i.eicon-menu-bar {
+  display: none !important;
+}
+
+.elementor-menu-toggle:not(.elementor-active) i.fa-times,
+.elementor-menu-toggle:not(.elementor-active) i.eicon-close {
+  display: none !important;
+}
+
+.elementor-menu-toggle__icon--open.eicon-menu-bar::before {
+  content: "\f0c9" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+}
+
+.elementor-menu-toggle__icon--close.eicon-close::before {
+  content: "✕" !important;
+  font-family: Arial, sans-serif !important;
+  font-weight: bold !important;
+}
 
 /* Fix Carousel Navigation Arrows (Produtos, Serviços, etc.) */
 .elementor-swiper-button,
@@ -3694,7 +3749,7 @@ if(qtde == 0){
   font-style: normal !important;
 }
 
-/* Fix mobile hamburger & popup close button */
+/* Fix mobile drawer popup close button */
 .dialog-close-button,
 .dialog-lightbox-close-button,
 .elementor-popup-modal .dialog-close-button,
@@ -3725,18 +3780,6 @@ if(qtde == 0){
   font-weight: bold !important;
   color: #161616 !important;
   display: block !important;
-}
-
-.elementor-menu-toggle__icon--open.eicon-menu-bar::before {
-  content: "\f0c9" !important;
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 900 !important;
-}
-
-.elementor-menu-toggle__icon--close.eicon-close::before {
-  content: "✕" !important;
-  font-family: Arial, sans-serif !important;
-  font-weight: bold !important;
 }
 
 /* WhatsApp card responsiveness */
@@ -3837,7 +3880,7 @@ if(qtde == 0){
     padding-top: 40px !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
-    padding-bottom: 300px !important; /* Espaço dedicado para o bombeiro aparecer livremente abaixo do vídeo */
+    padding-bottom: 300px !important;
     background-position: right -15px bottom -10px !important;
     background-size: 360px auto !important;
   }
