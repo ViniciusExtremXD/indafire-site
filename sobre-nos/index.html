@@ -3631,6 +3631,150 @@ if(qtde == 0){
 .ht-ctc .ctc_s_3_1:hover svg stop{stop-color:#25D366;}.ht-ctc .ctc_s_3_1:hover .ht_ctc_padding,.ht-ctc .ctc_s_3_1:hover .ctc_cta_stick{background-color:#25D366 !important;box-shadow:0px 0px 11px rgba(0,0,0,.5);}
 
 
+
+
+
+/* =========================================================
+   FIXES MOBILE: ENQUADRAMENTO, DRAWER MENU, TREINAMENTO E WHATSAPP
+   ========================================================= */
+
+/* Fix mobile hamburger & popup close button */
+.dialog-close-button,
+.dialog-lightbox-close-button,
+.elementor-popup-modal .dialog-close-button,
+.dialog-close-button-default {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 300 !important;
+  color: #161616 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  width: 36px !important;
+  height: 36px !important;
+  top: 15px !important;
+  right: 15px !important;
+  opacity: 0.9 !important;
+  text-decoration: none !important;
+}
+
+.dialog-close-button::before,
+.dialog-lightbox-close-button::before,
+.elementor-popup-modal .dialog-close-button::before {
+  content: "✕" !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  color: #161616 !important;
+  display: block !important;
+}
+
+.elementor-menu-toggle__icon--open.eicon-menu-bar::before {
+  content: "\f0c9" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+}
+
+.elementor-menu-toggle__icon--close.eicon-close::before {
+  content: "✕" !important;
+  font-family: Arial, sans-serif !important;
+  font-weight: bold !important;
+}
+
+/* WhatsApp card responsiveness */
+.indafire-whatsapp-card {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+.indafire-whatsapp-card button[type="submit"] {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+}
+
+/* =========================================================
+   SEÇÃO TREINAMENTOS / BRIGADA DE INCÊNDIO
+   ========================================================= */
+.elementor-element.elementor-element-3662fd7 {
+  position: relative !important;
+  background-color: #ffffff !important;
+  background-image: url('https://indafire.com.br/site/wp-content/uploads/2021/10/bombeiro.jpg') !important;
+  background-position: right center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.elementor-element.elementor-element-42aaacd .elementor-heading-title {
+  color: #161616 !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+}
+
+.elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
+  color: #e30613 !important;
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  line-height: 1.15 !important;
+  margin-bottom: 14px !important;
+}
+
+.elementor-element.elementor-element-1c2246b .elementor-text-editor p,
+.elementor-element.elementor-element-1c2246b .elementor-text-editor {
+  color: #444444 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  margin-bottom: 20px !important;
+}
+
+.elementor-element.elementor-element-989c3cc {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Mobile Treinamentos: posiciona o bombeiro abaixo do vídeo sem sobrepor */
+@media (max-width: 768px) {
+  .elementor-element.elementor-element-3662fd7 {
+    padding-top: 35px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-bottom: 280px !important; /* Espaço dedicado para o bombeiro aparecer livremente abaixo do vídeo */
+    background-position: right -15px bottom -10px !important;
+    background-size: 340px auto !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b > .elementor-column-wrap {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .elementor-element.elementor-element-42aaacd .elementor-heading-title {
+    font-size: 0.85rem !important;
+  }
+  
+  .elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .elementor-element.elementor-element-1c2246b .elementor-text-editor p,
+  .elementor-element.elementor-element-1c2246b .elementor-text-editor {
+    font-size: 0.95rem !important;
+  }
+}
+
 /* =========================================================
    ENQUADRAMENTO DO NEWSLETTER E CATÁLOGO (VERTICAL & HORIZONTAL)
    ========================================================= */
@@ -3884,6 +4028,36 @@ if(qtde == 0){
   #formulariosRodape .elementor-element-faab318 img,
   #formulariosRodape .elementor-element-ba015bc img {
     height: 90px !important;
+  }
+}
+
+/* Telas muito estreitas (< 360px) */
+@media (max-width: 360px) {
+  .indafire-whatsapp-card {
+    padding: 18px 12px !important;
+  }
+  .indafire-whatsapp-card button[type="submit"] {
+    padding: 12px 10px !important;
+    font-size: 12px !important;
+  }
+  .elementor-element.elementor-element-affa771 .elementor-heading-title {
+    font-size: 1.45rem !important;
+  }
+  #formulariosRodape {
+    padding: 25px 10px !important;
+  }
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    padding: 20px 12px !important;
+  }
+  #formulariosRodape .elementor-button {
+    font-size: 12.5px !important;
+    padding: 11px 14px !important;
+    max-width: 100% !important;
+  }
+  #localizacao_mapa a {
+    padding: 9px 14px !important;
+    font-size: 12px !important;
   }
 }
 
