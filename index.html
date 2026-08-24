@@ -5259,6 +5259,58 @@ i.eicon-close::before,
   }
 }
 
+/* Mobile landscape stability: prevent compressed cards, clipped copy and
+   floating contact controls from colliding with the content. */
+@media (max-width: 991px) {
+  html, body { overflow-x: hidden !important; }
+  img, iframe, video { max-width: 100% !important; }
+  .elementor-section, .elementor-container, .elementor-row,
+  .elementor-column, .elementor-column-wrap { min-width: 0 !important; }
+  .elementor-element.elementor-element-3662fd7 {
+    padding-bottom: 260px !important;
+    background-size: min(360px, 70vw) auto !important;
+    background-position: right -10px bottom 0 !important;
+  }
+  .indafire-whatsapp-card { padding: 22px 18px !important; }
+  .indafire-whatsapp-card h3 { font-size: clamp(17px, 3.5vw, 22px) !important; }
+  #formulariosRodape .elementor-field-option { min-width: 0 !important; }
+  #formulariosRodape .elementor-field-option label { overflow-wrap: anywhere !important; }
+  #ht-ctc-chat { right: max(12px, env(safe-area-inset-right)) !important; bottom: max(12px, env(safe-area-inset-bottom)) !important; z-index: 9998 !important; }
+  #ht-ctc-chat .ht_ctc_style { transform: scale(.88); transform-origin: bottom right; }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .elementor-element.elementor-element-3662fd7 {
+    padding: 28px 24px 220px !important;
+    background-size: min(250px, 34vw) auto !important;
+    background-position: right 20px bottom 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    max-width: 62% !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p { text-align: left !important; }
+  .elementor-element.elementor-element-9d7bf30 .elementor-heading-title { font-size: clamp(1.35rem, 4vw, 1.85rem) !important; }
+  .elementor-element.elementor-element-1c2246b .elementor-text-editor p,
+  .elementor-element.elementor-element-1c2246b .elementor-text-editor { font-size: .86rem !important; line-height: 1.45 !important; }
+  #formulariosRodape { padding: 24px 16px !important; }
+  #formulariosRodape .elementor-row { flex-direction: row !important; gap: 16px !important; }
+  #formulariosRodape .elementor-column.elementor-col-50 { flex: 1 1 0 !important; width: 0 !important; }
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap { padding: 20px 16px !important; }
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img { height: 78px !important; }
+  #formulariosRodape .elementor-widget-heading .elementor-heading-title { font-size: 1.1rem !important; }
+  #formulariosRodape .elementor-widget-text-editor { font-size: .8rem !important; margin-bottom: 12px !important; }
+  #formulariosRodape .elementor-field-textual { padding: 9px 11px !important; font-size: 12px !important; }
+  #formulariosRodape .elementor-field-option label { font-size: 10.5px !important; }
+  #formulariosRodape .elementor-button { padding: 10px 16px !important; font-size: 11px !important; margin-top: 6px !important; }
+}
+
 </style>
 
 
