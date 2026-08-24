@@ -3071,63 +3071,98 @@ Indaiatuba &#8211; SP					</div>
 
 
 
+
+
+
 /* =========================================================
-   FIXES GLOBAIS: MENU TOGGLES, SETAS DE CARROSSEL, TREINAMENTO E FORMULÁRIOS
+   FIXES GLOBAIS INDA FIRE (MENU, SETAS, TREINAMENTO, FORMULÁRIOS)
    ========================================================= */
 
-/* Fix Footer & Navigation Menu Toggles (Hambúrguer) */
-.elementor-menu-toggle {
+/* 1. MENU DO RODAPÉ: Sempre visível, elegante e sem botão hambúrguer desnecessário */
+.elementor-element.elementor-element-ebe09d0 .elementor-menu-toggle {
+  display: none !important;
+}
+
+.elementor-element.elementor-element-ebe09d0 .elementor-nav-menu--main {
+  display: block !important;
+}
+
+.elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px 22px !important;
+  padding: 0 !important;
+  margin: 0 auto 20px auto !important;
+  list-style: none !important;
+  width: 100% !important;
+  max-width: 1140px !important;
+}
+
+.elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu li {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu li a {
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  padding: 4px 8px !important;
+  transition: color 0.2s ease !important;
+  display: inline-block !important;
+}
+
+.elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu li a:hover {
+  color: #e30613 !important;
+}
+
+/* 2. BOTÃO DE FECHAR DO MENU LATERAL (POPUP MOBILE DRAWER) */
+.dialog-close-button,
+.dialog-lightbox-close-button,
+.elementor-popup-modal .dialog-close-button,
+.dialog-close-button-default {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  color: #161616 !important;
+  line-height: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: #242b33 !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: 8px !important;
-  width: 44px !important;
-  height: 40px !important;
-  margin: 0 auto 15px auto !important;
   cursor: pointer !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  width: 38px !important;
+  height: 38px !important;
+  top: 15px !important;
+  right: 15px !important;
+  opacity: 0.9 !important;
+  text-decoration: none !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 50% !important;
   transition: all 0.2s ease !important;
 }
 
-.elementor-menu-toggle:hover {
-  background-color: #e30613 !important;
-  border-color: #e30613 !important;
-  color: #ffffff !important;
+.dialog-close-button:hover,
+.elementor-popup-modal .dialog-close-button:hover {
+  background: rgba(227, 6, 19, 0.15) !important;
+  color: #e30613 !important;
 }
 
-.elementor-menu-toggle i {
-  font-size: 18px !important;
-  color: #ffffff !important;
-  display: inline-block !important;
-  line-height: 1 !important;
-}
-
-.elementor-menu-toggle.elementor-active i.fa-bars,
-.elementor-menu-toggle.elementor-active i.eicon-menu-bar {
-  display: none !important;
-}
-
-.elementor-menu-toggle:not(.elementor-active) i.fa-times,
-.elementor-menu-toggle:not(.elementor-active) i.eicon-close {
-  display: none !important;
-}
-
-.elementor-menu-toggle__icon--open.eicon-menu-bar::before {
-  content: "\f0c9" !important;
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 900 !important;
-}
-
-.elementor-menu-toggle__icon--close.eicon-close::before {
+.dialog-close-button::before,
+.dialog-lightbox-close-button::before,
+.elementor-popup-modal .dialog-close-button::before {
   content: "✕" !important;
   font-family: Arial, sans-serif !important;
+  font-size: 20px !important;
   font-weight: bold !important;
+  color: inherit !important;
+  display: block !important;
 }
 
-/* Fix Carousel Navigation Arrows (Produtos, Serviços, etc.) */
+/* 3. SETAS DE NAVEGAÇÃO DOS CARROSSEIS (PRODUTOS, SERVIÇOS, ETC.) */
 .elementor-swiper-button,
 .elementor-swiper-button-prev,
 .elementor-swiper-button-next,
@@ -3139,9 +3174,9 @@ Indaiatuba &#8211; SP					</div>
   justify-content: center !important;
   width: 42px !important;
   height: 42px !important;
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   border-radius: 50% !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
   cursor: pointer !important;
   transition: all 0.25s ease !important;
   z-index: 10 !important;
@@ -3177,40 +3212,7 @@ Indaiatuba &#8211; SP					</div>
   font-style: normal !important;
 }
 
-/* Fix mobile drawer popup close button */
-.dialog-close-button,
-.dialog-lightbox-close-button,
-.elementor-popup-modal .dialog-close-button,
-.dialog-close-button-default {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
-  font-size: 26px !important;
-  font-weight: 300 !important;
-  color: #161616 !important;
-  line-height: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  width: 36px !important;
-  height: 36px !important;
-  top: 15px !important;
-  right: 15px !important;
-  opacity: 0.9 !important;
-  text-decoration: none !important;
-}
-
-.dialog-close-button::before,
-.dialog-lightbox-close-button::before,
-.elementor-popup-modal .dialog-close-button::before {
-  content: "✕" !important;
-  font-family: Arial, sans-serif !important;
-  font-size: 22px !important;
-  font-weight: bold !important;
-  color: #161616 !important;
-  display: block !important;
-}
-
-/* WhatsApp card responsiveness */
+/* 4. WHATSAPP CARD */
 .indafire-whatsapp-card {
   box-sizing: border-box !important;
   max-width: 100% !important;
@@ -3224,9 +3226,7 @@ Indaiatuba &#8211; SP					</div>
   text-align: center !important;
 }
 
-/* =========================================================
-   SEÇÃO TREINAMENTOS / BRIGADA DE INCÊNDIO
-   ========================================================= */
+/* 5. SEÇÃO TREINAMENTOS / BRIGADA DE INCÊNDIO */
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
   background-color: #ffffff !important;
@@ -3267,7 +3267,7 @@ Indaiatuba &#8211; SP					</div>
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Desktop (> 991px): Layout Lado a Lado (Texto + Vídeo à esquerda, Bombeiro à direita) */
+/* Desktop (> 991px): Layout Lado a Lado */
 @media (min-width: 992px) {
   .elementor-element.elementor-element-3662fd7 {
     padding: 60px 40px !important;
@@ -3348,9 +3348,7 @@ Indaiatuba &#8211; SP					</div>
   }
 }
 
-/* =========================================================
-   ENQUADRAMENTO DO NEWSLETTER E CATÁLOGO (VERTICAL & HORIZONTAL)
-   ========================================================= */
+/* 6. ENQUADRAMENTO DO NEWSLETTER E CATÁLOGO */
 #formulariosRodape {
   padding: 60px 20px !important;
   box-sizing: border-box !important;
@@ -3407,7 +3405,6 @@ Indaiatuba &#8211; SP					</div>
   padding: 0 !important;
 }
 
-/* Imagens (Ícone de E-mail e Mockup 3D do Catálogo) */
 #formulariosRodape .elementor-element-faab318,
 #formulariosRodape .elementor-element-ba015bc {
   margin-bottom: 20px !important;
@@ -3425,7 +3422,6 @@ Indaiatuba &#8211; SP					</div>
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) !important;
 }
 
-/* Títulos das caixas */
 #formulariosRodape .elementor-widget-heading .elementor-heading-title {
   color: #ffffff !important;
   font-size: 1.45rem !important;
@@ -3435,7 +3431,6 @@ Indaiatuba &#8211; SP					</div>
   letter-spacing: 0.3px !important;
 }
 
-/* Textos explicativos */
 #formulariosRodape .elementor-widget-text-editor {
   color: #c0c6cc !important;
   font-size: 0.95rem !important;
@@ -3444,7 +3439,6 @@ Indaiatuba &#8211; SP					</div>
   margin-bottom: 24px !important;
 }
 
-/* Inputs de texto e e-mail */
 #formulariosRodape .elementor-field-textual {
   background: rgba(255, 255, 255, 0.07) !important;
   border: 1px solid rgba(255, 255, 255, 0.18) !important;
@@ -3473,7 +3467,6 @@ Indaiatuba &#8211; SP					</div>
   padding: 0 !important;
 }
 
-/* Checkboxes de consentimento / privacidade */
 #formulariosRodape .elementor-field-type-radio,
 #formulariosRodape .elementor-field-type-checkbox {
   margin-top: 4px !important;
@@ -3511,7 +3504,6 @@ Indaiatuba &#8211; SP					</div>
   text-decoration: underline !important;
 }
 
-/* Botões de Ação Enviar / Receber Material */
 #formulariosRodape .elementor-button {
   background-color: #e30613 !important;
   color: #ffffff !important;
@@ -3537,74 +3529,46 @@ Indaiatuba &#8211; SP					</div>
   box-shadow: 0 6px 22px rgba(227, 6, 19, 0.55) !important;
 }
 
-/* Regras Mobile & Tablet (Vertical e Horizontal) */
 @media (max-width: 900px) {
   #formulariosRodape {
     padding: 40px 16px !important;
   }
-  
   #formulariosRodape .elementor-row {
     flex-direction: column !important;
     gap: 28px !important;
     align-items: center !important;
   }
-  
   #formulariosRodape .elementor-column.elementor-col-50 {
     width: 100% !important;
     max-width: 480px !important;
   }
-  
   #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
   #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
     padding: 28px 20px !important;
     border-radius: 16px !important;
   }
-  
   #formulariosRodape .elementor-element-faab318 img,
   #formulariosRodape .elementor-element-ba015bc img {
     height: 120px !important;
   }
-  
-  #formulariosRodape .elementor-widget-heading .elementor-heading-title {
-    font-size: 1.3rem !important;
-  }
-  
-  #formulariosRodape .elementor-widget-text-editor {
-    font-size: 0.9rem !important;
-    margin-bottom: 18px !important;
-  }
 }
 
-/* Landscape Mobile (Altura < 500px na horizontal) */
 @media (max-height: 500px) and (orientation: landscape) {
   #formulariosRodape {
     padding: 30px 16px !important;
   }
-  
   #formulariosRodape .elementor-row {
     flex-direction: row !important;
     gap: 20px !important;
     align-items: stretch !important;
   }
-  
   #formulariosRodape .elementor-column.elementor-col-50 {
     flex: 1 1 calc(50% - 10px) !important;
     max-width: 100% !important;
     min-width: 0 !important;
   }
-  
-  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
-  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
-    padding: 20px 16px !important;
-  }
-  
-  #formulariosRodape .elementor-element-faab318 img,
-  #formulariosRodape .elementor-element-ba015bc img {
-    height: 90px !important;
-  }
 }
 
-/* Telas muito estreitas (< 360px) */
 @media (max-width: 360px) {
   .indafire-whatsapp-card {
     padding: 18px 12px !important;
