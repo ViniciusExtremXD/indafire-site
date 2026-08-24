@@ -3947,7 +3947,7 @@ if(qtde == 0){
 				<p>Equipamentos certificados e adequados para instalações comerciais, industriais ou privadas.</p>					</div>
 						</div>
 				</div>
-				<div class="elementor-element elementor-element-9218be1 elementor-skin-carousel elementor-arrows-yes elementor-pagination-type-bullets elementor-pagination-position-outside elementor-widget elementor-widget-media-carousel" data-id="9218be1" data-element_type="widget" id="carrosselProdutos" data-settings="{&quot;space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;slides_per_view_mobile&quot;:&quot;1&quot;,&quot;skin&quot;:&quot;carousel&quot;,&quot;effect&quot;:&quot;slide&quot;,&quot;show_arrows&quot;:&quot;yes&quot;,&quot;pagination&quot;:&quot;bullets&quot;,&quot;speed&quot;:500,&quot;loop&quot;:&quot;yes&quot;,&quot;space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]}}" data-widget_type="media-carousel.default">
+				<div class="elementor-element elementor-element-9218be1 elementor-skin-carousel elementor-arrows-yes elementor-pagination-type-bullets elementor-pagination-position-outside elementor-widget elementor-widget-media-carousel" data-id="9218be1" data-element_type="widget" id="carrosselProdutos" data-settings="{&quot;space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;slides_per_view&quot;:&quot;3&quot;,&quot;slides_per_view_tablet&quot;:&quot;3&quot;,&quot;slides_per_view_mobile&quot;:&quot;1&quot;,&quot;skin&quot;:&quot;carousel&quot;,&quot;effect&quot;:&quot;slide&quot;,&quot;show_arrows&quot;:&quot;yes&quot;,&quot;pagination&quot;:&quot;bullets&quot;,&quot;speed&quot;:500,&quot;loop&quot;:&quot;yes&quot;,&quot;space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]}}" data-widget_type="media-carousel.default">
 				<div class="elementor-widget-container">
 					<div class="elementor-swiper">
 			<div class="elementor-main-swiper swiper-container">
@@ -5649,6 +5649,42 @@ html.indafire-scroll-header-ready.indafire-header-visible .elementor-location-he
   #formulariosRodape .elementor-field-option label {
     overflow-wrap: anywhere !important;
     word-break: normal !important;
+  }
+}
+
+/* Products carousel: keep scaled slides inside the original gray card. */
+#carrosselProdutos,
+#carrosselProdutos > .elementor-widget-container,
+#carrosselProdutos .elementor-swiper,
+#carrosselProdutos .elementor-main-swiper {
+  overflow: hidden !important;
+}
+
+#carrosselProdutos .elementor-main-swiper {
+  width: 100% !important;
+  height: 450px !important;
+}
+
+#carrosselProdutos .swiper-wrapper {
+  overflow: visible !important;
+}
+
+#carrosselProdutos .swiper-slide {
+  box-sizing: border-box !important;
+}
+
+#carrosselProdutos .elementor-swiper-button-prev {
+  left: 0 !important;
+}
+
+#carrosselProdutos .elementor-swiper-button-next {
+  right: 0 !important;
+}
+
+@media (min-width: 961px) {
+  #carrosselProdutos > .elementor-widget-container {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
   }
 }
 
