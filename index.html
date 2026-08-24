@@ -909,15 +909,265 @@ button.pswp__button.pswp__button--close:after {
     border-radius: 8px !important;
   }
   
-  /* Lead capture cards on mobile */
-  #formulariosRodape .elementor-column.elementor-col-50 {
-    width: 100% !important;
-    margin-bottom: 20px !important;
-  }
-  
   /* Map container on mobile */
   #localizacao_mapa iframe {
     height: 320px !important;
+  }
+}
+
+/* =========================================================
+   ENQUADRAMENTO DO NEWSLETTER E CATÁLOGO (VERTICAL & HORIZONTAL)
+   ========================================================= */
+#formulariosRodape {
+  padding: 60px 20px !important;
+  box-sizing: border-box !important;
+}
+
+#formulariosRodape .elementor-container {
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 32px !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+}
+
+#formulariosRodape .elementor-column.elementor-col-50 {
+  flex: 1 1 calc(50% - 16px) !important;
+  max-width: 530px !important;
+  min-width: 290px !important;
+  width: auto !important;
+  display: flex !important;
+}
+
+#formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+#formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+  background: rgba(22, 27, 34, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 36px 30px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+#formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap:hover,
+#formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap:hover {
+  border-color: rgba(227, 6, 19, 0.5) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 45px rgba(227, 6, 19, 0.15) !important;
+}
+
+#formulariosRodape .elementor-widget-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+/* Imagens (Ícone de E-mail e Mockup 3D do Catálogo) */
+#formulariosRodape .elementor-element-faab318,
+#formulariosRodape .elementor-element-ba015bc {
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+
+#formulariosRodape .elementor-element-faab318 img,
+#formulariosRodape .elementor-element-ba015bc img {
+  height: 140px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) !important;
+}
+
+/* Títulos das caixas */
+#formulariosRodape .elementor-widget-heading .elementor-heading-title {
+  color: #ffffff !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 10px !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Textos explicativos */
+#formulariosRodape .elementor-widget-text-editor {
+  color: #c0c6cc !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+/* Inputs de texto e e-mail */
+#formulariosRodape .elementor-field-textual {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+#formulariosRodape .elementor-field-textual:focus {
+  border-color: #e30613 !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.25) !important;
+}
+
+#formulariosRodape .elementor-field-textual::placeholder {
+  color: #88939e !important;
+}
+
+#formulariosRodape .elementor-field-group {
+  margin-bottom: 12px !important;
+  padding: 0 !important;
+}
+
+/* Checkboxes de consentimento / privacidade */
+#formulariosRodape .elementor-field-type-radio,
+#formulariosRodape .elementor-field-type-checkbox {
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+}
+
+#formulariosRodape .elementor-field-subgroup {
+  display: flex !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 8px !important;
+}
+
+#formulariosRodape .elementor-field-option {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+
+#formulariosRodape .elementor-field-option input {
+  margin-top: 3px !important;
+  accent-color: #e30613 !important;
+  flex-shrink: 0 !important;
+}
+
+#formulariosRodape .elementor-field-option label {
+  color: #b0b8c1 !important;
+  font-size: 12.5px !important;
+  line-height: 1.4 !important;
+  cursor: pointer !important;
+}
+
+#formulariosRodape .elementor-field-option label a {
+  color: #e30613 !important;
+  text-decoration: underline !important;
+}
+
+/* Botões de Ação Enviar / Receber Material */
+#formulariosRodape .elementor-button {
+  background-color: #e30613 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 30px !important;
+  padding: 13px 28px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  width: 100% !important;
+  max-width: 260px !important;
+  margin: 12px auto 0 auto !important;
+  display: block !important;
+  box-shadow: 0 4px 16px rgba(227, 6, 19, 0.4) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+#formulariosRodape .elementor-button:hover {
+  background-color: #c40410 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(227, 6, 19, 0.55) !important;
+}
+
+/* Regras Mobile & Tablet (Vertical e Horizontal) */
+@media (max-width: 900px) {
+  #formulariosRodape {
+    padding: 40px 16px !important;
+  }
+  
+  #formulariosRodape .elementor-row {
+    flex-direction: column !important;
+    gap: 28px !important;
+    align-items: center !important;
+  }
+  
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    width: 100% !important;
+    max-width: 480px !important;
+  }
+  
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    padding: 28px 20px !important;
+    border-radius: 16px !important;
+  }
+  
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img {
+    height: 120px !important;
+  }
+  
+  #formulariosRodape .elementor-widget-heading .elementor-heading-title {
+    font-size: 1.3rem !important;
+  }
+  
+  #formulariosRodape .elementor-widget-text-editor {
+    font-size: 0.9rem !important;
+    margin-bottom: 18px !important;
+  }
+}
+
+/* Landscape Mobile (Altura < 500px na horizontal) */
+@media (max-height: 500px) and (orientation: landscape) {
+  #formulariosRodape {
+    padding: 30px 16px !important;
+  }
+  
+  #formulariosRodape .elementor-row {
+    flex-direction: row !important;
+    gap: 20px !important;
+    align-items: stretch !important;
+  }
+  
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    flex: 1 1 calc(50% - 10px) !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    padding: 20px 16px !important;
+  }
+  
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img {
+    height: 90px !important;
   }
 }
 
