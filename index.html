@@ -5399,6 +5399,53 @@ i.eicon-close::before,
   }
 }
 
+/* Product carousel arrows: force the Elementor controls above the slide
+   layers; otherwise the inherited carousel rule collapses them to squares. */
+#carrosselProdutos .elementor-main-swiper .elementor-swiper-button {
+  position: absolute !important;
+  top: 50% !important;
+  bottom: auto !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  margin: -21px 0 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 50 !important;
+  transform: none !important;
+}
+
+#carrosselProdutos .elementor-main-swiper .elementor-swiper-button-prev {
+  left: 8px !important;
+  right: auto !important;
+}
+
+#carrosselProdutos .elementor-main-swiper .elementor-swiper-button-next {
+  right: 8px !important;
+  left: auto !important;
+}
+
+#carrosselProdutos .elementor-main-swiper .elementor-swiper-button svg {
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+  max-width: none !important;
+  max-height: none !important;
+  stroke: #e30613 !important;
+  stroke-width: 3 !important;
+  fill: none !important;
+}
+
+#carrosselProdutos .elementor-main-swiper .elementor-swiper-button:hover svg {
+  stroke: #ffffff !important;
+}
+
 </style>
 
 
