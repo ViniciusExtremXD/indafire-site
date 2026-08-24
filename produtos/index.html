@@ -3640,11 +3640,69 @@ jQuery("#bannerProdutoINDA").css("background-image","url('https://indafire.com.b
 
 
 
+
+
+
 /* =========================================================
-   FIXES GLOBAIS INDA FIRE (SETAS SVG, MENU, TREINAMENTO, FORMULÁRIOS)
+   FIXES GLOBAIS INDA FIRE (SETAS SVG, DRAWER CLOSE, MENU, TREINAMENTO, FORMULÁRIOS)
    ========================================================= */
 
-/* 1. SETAS DE NAVEGAÇÃO DOS CARROSSEIS (PRODUTOS, SERVIÇOS, ETC.) */
+/* 1. BOTÃO DE FECHAR DO MENU REDUZIDO / DRAWER / POPUP MODAL (✕) */
+.eicon-close,
+.eicon-close::before,
+i.eicon-close,
+i.eicon-close::before,
+.dialog-close-button i,
+.dialog-close-button i::before {
+  content: "" !important;
+  display: none !important;
+  font-family: inherit !important;
+}
+
+.dialog-close-button,
+.dialog-lightbox-close-button,
+.elementor-popup-modal .dialog-close-button,
+.dialog-close-button-default {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  background: rgba(0, 0, 0, 0.07) !important;
+  border-radius: 50% !important;
+  color: #161616 !important;
+  font-size: 0 !important;
+  transition: all 0.2s ease !important;
+  z-index: 99999 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.dialog-close-button:hover,
+.dialog-lightbox-close-button:hover,
+.elementor-popup-modal .dialog-close-button:hover {
+  background: #e30613 !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+}
+
+.dialog-close-button::after,
+.dialog-lightbox-close-button::after,
+.elementor-popup-modal .dialog-close-button::after {
+  content: "✕" !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: inherit !important;
+  line-height: 1 !important;
+  display: block !important;
+}
+
+/* 2. SETAS DE NAVEGAÇÃO DOS CARROSSEIS (PRODUTOS, SERVIÇOS, ETC.) */
 .elementor-swiper-button,
 .elementor-swiper-button-prev,
 .elementor-swiper-button-next,
@@ -3695,7 +3753,7 @@ jQuery("#bannerProdutoINDA").css("background-image","url('https://indafire.com.b
   display: none !important;
 }
 
-/* 2. MENU DO RODAPÉ: Sempre visível, elegante e sem botão hambúrguer desnecessário */
+/* 3. MENU DO RODAPÉ: Sempre visível, elegante e sem botão hambúrguer desnecessário */
 .elementor-element.elementor-element-ebe09d0 .elementor-menu-toggle {
   display: none !important;
 }
@@ -3735,48 +3793,6 @@ jQuery("#bannerProdutoINDA").css("background-image","url('https://indafire.com.b
 
 .elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu li a:hover {
   color: #e30613 !important;
-}
-
-/* 3. BOTÃO DE FECHAR DO MENU LATERAL (POPUP MOBILE DRAWER) */
-.dialog-close-button,
-.dialog-lightbox-close-button,
-.elementor-popup-modal .dialog-close-button,
-.dialog-close-button-default {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
-  font-size: 24px !important;
-  font-weight: 400 !important;
-  color: #161616 !important;
-  line-height: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  width: 38px !important;
-  height: 38px !important;
-  top: 15px !important;
-  right: 15px !important;
-  opacity: 0.9 !important;
-  text-decoration: none !important;
-  background: rgba(0, 0, 0, 0.05) !important;
-  border-radius: 50% !important;
-  transition: all 0.2s ease !important;
-}
-
-.dialog-close-button:hover,
-.elementor-popup-modal .dialog-close-button:hover {
-  background: rgba(227, 6, 19, 0.15) !important;
-  color: #e30613 !important;
-}
-
-.dialog-close-button::before,
-.dialog-lightbox-close-button::before,
-.elementor-popup-modal .dialog-close-button::before {
-  content: "✕" !important;
-  font-family: Arial, sans-serif !important;
-  font-size: 20px !important;
-  font-weight: bold !important;
-  color: inherit !important;
-  display: block !important;
 }
 
 /* 4. WHATSAPP CARD */
