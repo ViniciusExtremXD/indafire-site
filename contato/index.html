@@ -2295,8 +2295,14 @@ jQuery(document).ready(function(){
 															<span class=" elementor-button-icon">
 																										</span>
 																						<span class="elementor-button-text">Enviar</span>
-													</span>
+						</span>
 					</button>
+					<a id="contato-whatsapp" class="elementor-button elementor-size-lg" href="https://api.whatsapp.com/send?phone=551938341741" target="_blank" rel="noopener" aria-label="Enviar mensagem pelo WhatsApp">
+						<span>
+							<span class="elementor-button-icon"><i aria-hidden="true" class="fab fa-whatsapp"></i></span>
+							<span class="elementor-button-text">WhatsApp</span>
+						</span>
+					</a>
 				</div>
 			</div>
 		</form>
@@ -3596,6 +3602,47 @@ i.eicon-close::before,
   }
 }
 
+/* Contact form: keep direct WhatsApp and standard submission side by side. */
+#contato .e-form__buttons {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+#contato .e-form__buttons > .elementor-button {
+  width: auto !important;
+  min-width: 152px !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+#contato #contato-whatsapp {
+  background: #25d366 !important;
+  box-shadow: 0 9px 20px rgba(37, 211, 102, .25) !important;
+}
+
+#contato #contato-whatsapp:hover,
+#contato #contato-whatsapp:focus {
+  background: #1fba59 !important;
+  color: #ffffff !important;
+}
+
+#contato #contato-whatsapp .elementor-button-icon {
+  margin-right: 8px !important;
+}
+
+@media (max-width: 600px) {
+  #contato .e-form__buttons {
+    justify-content: stretch !important;
+    flex-wrap: wrap !important;
+  }
+
+  #contato .e-form__buttons > .elementor-button {
+    flex: 1 1 180px !important;
+  }
+}
+
 </style>
 
 
@@ -4100,5 +4147,30 @@ var jetElements = {"ajaxUrl":"../wp-admin/admin-ajax.php","isMobile":"false","te
 if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
 images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
 if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="../wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('contato');
+  var whatsappButton = document.getElementById('contato-whatsapp');
+
+  if (!form || !whatsappButton) return;
+
+  whatsappButton.addEventListener('click', function () {
+    var field = function (id) {
+      var input = form.querySelector('#' + id);
+      return input ? input.value.trim() : '';
+    };
+    var contatoWhatsappMessage = [
+      'Olá, gostaria de falar com a Inda Fire.',
+      field('form-field-nome') && 'Nome: ' + field('form-field-nome'),
+      field('form-field-email') && 'E-mail: ' + field('form-field-email'),
+      field('form-field-telefone') && 'Telefone: ' + field('form-field-telefone'),
+      field('form-field-empresa') && 'Empresa: ' + field('form-field-empresa'),
+      field('form-field-mensagem') && 'Mensagem: ' + field('form-field-mensagem')
+    ].filter(Boolean).join('\n');
+
+    whatsappButton.href = 'https://api.whatsapp.com/send?phone=551938341741&text=' + encodeURIComponent(contatoWhatsappMessage);
+  });
+});
+</script>
 </body>
 </html>
