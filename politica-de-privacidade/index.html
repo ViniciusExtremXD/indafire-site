@@ -2793,9 +2793,62 @@ jQuery(document).ready(function(){
 
 
 
+
+
+
 /* =========================================================
-   FIXES GLOBAIS: MENU DRAWER, TREINAMENTO (DESKTOP/TABLET/MOBILE) E FORMULÁRIOS
+   FIXES GLOBAIS: SETAS DE CARROSSEL, MENU DRAWER, TREINAMENTO E FORMULÁRIOS
    ========================================================= */
+
+/* Fix Carousel Navigation Arrows (Produtos, Serviços, etc.) */
+.elementor-swiper-button,
+.elementor-swiper-button-prev,
+.elementor-swiper-button-next,
+#carrosselProdutos .elementor-swiper-button {
+  color: #e30613 !important;
+  font-size: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  z-index: 10 !important;
+}
+
+.elementor-swiper-button:hover,
+#carrosselProdutos .elementor-swiper-button:hover {
+  background: #e30613 !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 18px rgba(227, 6, 19, 0.35) !important;
+}
+
+.elementor-swiper-button i,
+#carrosselProdutos .elementor-swiper-button i {
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+.eicon-chevron-left,
+.eicon-chevron-left::before {
+  content: "\f053" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
+}
+
+.eicon-chevron-right,
+.eicon-chevron-right::before {
+  content: "\f054" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
+}
 
 /* Fix mobile hamburger & popup close button */
 .dialog-close-button,
