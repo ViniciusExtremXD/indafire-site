@@ -4032,11 +4032,13 @@ if(qtde == 0){
 		</a>						</div>
 									</div>
 															<div class="swiper-pagination"></div>
-																<div class="elementor-swiper-button elementor-swiper-button-prev">
-							<i aria-hidden="true" class="fas fa-chevron-left"></i>							<span class="elementor-screen-only">Previous</span>
+																<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" aria-label="Anterior" tabindex="0">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+							<span class="elementor-screen-only">Previous</span>
 						</div>
-						<div class="elementor-swiper-button elementor-swiper-button-next">
-							<i aria-hidden="true" class="fas fa-chevron-right"></i>							<span class="elementor-screen-only">Next</span>
+						<div class="elementor-swiper-button elementor-swiper-button-next" role="button" aria-label="Próximo" tabindex="0">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+							<span class="elementor-screen-only">Next</span>
 						</div>
 												</div>
 		</div>
@@ -4713,11 +4715,65 @@ if(qtde == 0){
 
 
 
+
+
+
 /* =========================================================
-   FIXES GLOBAIS INDA FIRE (MENU, SETAS, TREINAMENTO, FORMULÁRIOS)
+   FIXES GLOBAIS INDA FIRE (SETAS SVG, MENU, TREINAMENTO, FORMULÁRIOS)
    ========================================================= */
 
-/* 1. MENU DO RODAPÉ: Sempre visível, elegante e sem botão hambúrguer desnecessário */
+/* 1. SETAS DE NAVEGAÇÃO DOS CARROSSEIS (PRODUTOS, SERVIÇOS, ETC.) */
+.elementor-swiper-button,
+.elementor-swiper-button-prev,
+.elementor-swiper-button-next,
+#carrosselProdutos .elementor-swiper-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  background-color: #ffffff !important;
+  color: #e30613 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  z-index: 20 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.elementor-swiper-button:hover,
+#carrosselProdutos .elementor-swiper-button:hover {
+  background-color: #e30613 !important;
+  color: #ffffff !important;
+  transform: scale(1.12) !important;
+  box-shadow: 0 6px 20px rgba(227, 6, 19, 0.4) !important;
+  border-color: #e30613 !important;
+}
+
+.elementor-swiper-button svg,
+#carrosselProdutos .elementor-swiper-button svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 3px !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.elementor-swiper-button::before,
+.elementor-swiper-button::after,
+.elementor-swiper-button-prev::before,
+.elementor-swiper-button-prev::after,
+.elementor-swiper-button-next::before,
+.elementor-swiper-button-next::after {
+  display: none !important;
+}
+
+/* 2. MENU DO RODAPÉ: Sempre visível, elegante e sem botão hambúrguer desnecessário */
 .elementor-element.elementor-element-ebe09d0 .elementor-menu-toggle {
   display: none !important;
 }
@@ -4759,7 +4815,7 @@ if(qtde == 0){
   color: #e30613 !important;
 }
 
-/* 2. BOTÃO DE FECHAR DO MENU LATERAL (POPUP MOBILE DRAWER) */
+/* 3. BOTÃO DE FECHAR DO MENU LATERAL (POPUP MOBILE DRAWER) */
 .dialog-close-button,
 .dialog-lightbox-close-button,
 .elementor-popup-modal .dialog-close-button,
@@ -4799,56 +4855,6 @@ if(qtde == 0){
   font-weight: bold !important;
   color: inherit !important;
   display: block !important;
-}
-
-/* 3. SETAS DE NAVEGAÇÃO DOS CARROSSEIS (PRODUTOS, SERVIÇOS, ETC.) */
-.elementor-swiper-button,
-.elementor-swiper-button-prev,
-.elementor-swiper-button-next,
-#carrosselProdutos .elementor-swiper-button {
-  color: #e30613 !important;
-  font-size: 22px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 42px !important;
-  height: 42px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  border-radius: 50% !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
-  cursor: pointer !important;
-  transition: all 0.25s ease !important;
-  z-index: 10 !important;
-}
-
-.elementor-swiper-button:hover,
-#carrosselProdutos .elementor-swiper-button:hover {
-  background: #e30613 !important;
-  color: #ffffff !important;
-  transform: scale(1.1) !important;
-  box-shadow: 0 6px 18px rgba(227, 6, 19, 0.35) !important;
-}
-
-.elementor-swiper-button i,
-#carrosselProdutos .elementor-swiper-button i {
-  font-size: 16px !important;
-  line-height: 1 !important;
-}
-
-.eicon-chevron-left,
-.eicon-chevron-left::before {
-  content: "\f053" !important;
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 900 !important;
-  font-style: normal !important;
-}
-
-.eicon-chevron-right,
-.eicon-chevron-right::before {
-  content: "\f054" !important;
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 900 !important;
-  font-style: normal !important;
 }
 
 /* 4. WHATSAPP CARD */
