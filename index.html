@@ -5498,6 +5498,70 @@ html.indafire-scroll-header-ready.indafire-header-visible .elementor-location-he
   box-shadow: 0 4px 18px rgba(0, 0, 0, .12) !important;
 }
 
+/* Mobile Brigada: preserve the complete video frame before the firefighter visual. */
+@media (max-width: 991px) {
+  .elementor-element.elementor-element-3662fd7 {
+    padding: 36px 16px 320px !important;
+    background-position: center bottom !important;
+    background-size: min(420px, 92vw) auto !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-container,
+  .elementor-element.elementor-element-3662fd7 .elementor-row,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    margin: 0 auto !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 24px auto 0 !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-widget-container,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-wrapper {
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-widget-container {
+    height: auto !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-wrapper {
+    position: relative !important;
+    height: 0 !important;
+    aspect-ratio: auto !important;
+    padding-bottom: 56.25% !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc video {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    background: #000000 !important;
+  }
+}
+
+@media (max-width: 991px) and (orientation: landscape) {
+  .elementor-element.elementor-element-3662fd7 {
+    padding-bottom: 240px !important;
+    background-size: min(280px, 42vw) auto !important;
+  }
+}
+
 </style>
 
 
