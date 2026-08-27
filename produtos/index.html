@@ -4732,6 +4732,9 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
 <style id="indafire-mobile-landscape-master-override">
 /* ==========================================================================
    INDAFIRE - MOBILE HORIZONTAL (LANDSCAPE) MASTER OVERRIDE
@@ -4742,7 +4745,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
        (max-height: 620px) and (orientation: landscape),
        (max-width: 1024px) and (max-height: 620px) and (min-aspect-ratio: 13/10) {
 
-  /* 0. Viewport & Header */
+  /* 0. Viewport & Header: Logo à Esquerda, Redes Sociais no Centro, Hamburger à Direita */
   html, body {
     overflow-x: hidden !important;
   }
@@ -4750,15 +4753,131 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   #headerInda {
     height: 48px !important;
     min-height: 48px !important;
-    padding: 2px 12px !important;
+    padding: 0 14px !important;
+    display: block !important;
+    z-index: 999 !important;
   }
-  .elementor-location-header img,
-  #headerInda img {
-    max-height: 28px !important;
+  .elementor-location-header.header-hidden-for-popup,
+  #headerInda.header-hidden-for-popup,
+  body.elementor-popup-modal-open .elementor-location-header,
+  body.elementor-popup-modal-open #headerInda,
+  body:has(#elementor-popup-modal-2519[style*="display: block"]) .elementor-location-header,
+  body:has(#elementor-popup-modal-2519[style*="display: flex"]) .elementor-location-header,
+  body:has(#elementor-popup-modal-2519[style*="display: block"]) #headerInda,
+  body:has(#elementor-popup-modal-2519[style*="display: flex"]) #headerInda,
+  body:has(.dialog-type-lightbox[style*="display: block"]) .elementor-location-header,
+  body:has(.dialog-type-lightbox[style*="display: flex"]) .elementor-location-header,
+  body:has(.dialog-type-lightbox[style*="display: block"]) #headerInda,
+  body:has(.dialog-type-lightbox[style*="display: flex"]) #headerInda {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 48px !important;
+  }
+
+  /* Coluna 1: Logo no Canto Esquerdo */
+  .elementor-element.elementor-element-2e5c5af {
+    order: 1 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-2e5c5af img {
+    max-height: 26px !important;
     width: auto !important;
   }
-  .elementor-37 .elementor-element.elementor-element-712ae1c {
+
+  /* Coluna 3: Redes Sociais no Centro */
+  .elementor-element.elementor-element-3de852d {
+    order: 2 !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-3de852d > .elementor-column-wrap > .elementor-widget-wrap,
+  .elementor-element.elementor-element-3de852d .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-712ae1c {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-icon {
+    width: 25px !important;
+    height: 25px !important;
+    line-height: 25px !important;
+    font-size: 12px !important;
+    border-radius: 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-315d4c1 {
     display: none !important;
+  }
+
+  /* Coluna 2: Menu de Hambúrguer no Canto Direito */
+  .elementor-element.elementor-element-0d060a6 {
+    order: 3 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap,
+  .elementor-element.elementor-element-0d060a6 .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-8755157 {
+    display: block !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-8755157 .elementor-icon {
+    font-size: 15px !important;
+    padding: 4px 8px !important;
+    border: 1.5px solid #d9232a !important;
+    border-radius: 5px !important;
+    color: #d9232a !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* 1. Hero Banner */
@@ -5255,6 +5374,79 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   }
 }
 </style>
+
+<script id="indafire-mobile-landscape-header-control">
+(function() {
+  function handleMenuPopupVisibility() {
+    var popups = document.querySelectorAll('#elementor-popup-modal-2519, .dialog-type-lightbox, [id^="elementor-popup-modal-"]');
+    var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+    var isPopupOpen = false;
+
+    popups.forEach(function(popup) {
+      if (popup && window.getComputedStyle(popup).display !== 'none' && window.getComputedStyle(popup).visibility !== 'hidden' && popup.offsetWidth > 0 && popup.offsetHeight > 0) {
+        isPopupOpen = true;
+      }
+    });
+
+    headers.forEach(function(header) {
+      if (isPopupOpen) {
+        header.classList.add('header-hidden-for-popup');
+        header.style.setProperty('display', 'none', 'important');
+      } else {
+        header.classList.remove('header-hidden-for-popup');
+        header.style.removeProperty('display');
+      }
+    });
+
+    if (isPopupOpen) {
+      document.body.classList.add('elementor-popup-modal-open');
+    } else {
+      document.body.classList.remove('elementor-popup-modal-open');
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initObservers);
+  } else {
+    initObservers();
+  }
+
+  function initObservers() {
+    if (window.jQuery) {
+      jQuery(document).on('elementor/popup/show', function() {
+        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+        headers.forEach(function(h) {
+          h.classList.add('header-hidden-for-popup');
+          h.style.setProperty('display', 'none', 'important');
+        });
+        document.body.classList.add('elementor-popup-modal-open');
+      });
+      jQuery(document).on('elementor/popup/hide', function() {
+        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+        headers.forEach(function(h) {
+          h.classList.remove('header-hidden-for-popup');
+          h.style.removeProperty('display');
+        });
+        document.body.classList.remove('elementor-popup-modal-open');
+      });
+    }
+
+    var observer = new MutationObserver(function() {
+      handleMenuPopupVisibility();
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      attributeFilter: ['style', 'class']
+    });
+
+    window.addEventListener('resize', handleMenuPopupVisibility, { passive: true });
+    window.addEventListener('orientationchange', handleMenuPopupVisibility, { passive: true });
+  }
+})();
+</script>
 
 </body>
 </html>
