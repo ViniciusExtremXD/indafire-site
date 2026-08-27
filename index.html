@@ -6275,6 +6275,9 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 })();
 </script>
 
+
+
+
 <style id="indafire-mobile-landscape-master-override">
 /* ==========================================================================
    INDAFIRE - MOBILE HORIZONTAL (LANDSCAPE) MASTER OVERRIDE
@@ -6299,6 +6302,9 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   #headerInda img {
     max-height: 28px !important;
     width: auto !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-712ae1c {
+    display: none !important;
   }
 
   /* 1. Hero Banner */
@@ -6436,75 +6442,118 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     font-size: 10px !important;
   }
 
-  /* 3. Serviços: Card Ativo em Grid Horizontal (Imagem à esquerda, Texto/Botão à direita) */
+  /* 3. Serviços: 2 Colunas Lado a Lado (Certificação à Esquerda, Imagem à Direita) */
   .servico_unidade_carrossel {
-    padding: 4px 6px !important;
-    min-height: 60px !important;
+    padding: 3px 6px !important;
+    min-height: 48px !important;
   }
   .servico_unidade_carrossel img {
-    max-height: 24px !important;
+    max-height: 18px !important;
     width: auto !important;
+    margin-bottom: 2px !important;
   }
   .servico_unidade_carrossel h4 {
-    font-size: 9.5px !important;
+    font-size: 8.5px !important;
     line-height: 1.1 !important;
+    margin: 0 !important;
   }
   .servicos_exibicao,
   [id^="visualizacao_"] {
     padding: 10px 14px !important;
+    min-height: auto !important;
+  }
+  .servicos_exibicao .elementor-container,
+  [id^="visualizacao_"] .elementor-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .servicos_exibicao .elementor-row,
+  [id^="visualizacao_"] .elementor-row {
+    display: block !important;
+    width: 100% !important;
+  }
+  .servicos_exibicao .elementor-column,
+  [id^="visualizacao_"] .elementor-column {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
   .servicos_exibicao .elementor-widget-wrap,
   [id^="visualizacao_"] .elementor-widget-wrap {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
+    display: grid !important;
+    grid-template-columns: 1.15fr 0.85fr !important;
+    grid-template-rows: auto auto auto !important;
+    grid-template-areas:
+      "title image"
+      "desc  image"
+      "btn   image" !important;
+    gap: 4px 14px !important;
     align-items: center !important;
-    justify-content: flex-start !important;
+    text-align: left !important;
   }
-  .servicos_exibicao .elementor-widget-image,
-  [id^="visualizacao_"] .elementor-widget-image {
-    flex: 0 0 130px !important;
-    width: 130px !important;
-    max-width: 130px !important;
-    margin: 0 14px 0 0 !important;
-    float: left !important;
-  }
-  .servicos_exibicao .elementor-widget-image img,
-  [id^="visualizacao_"] .elementor-widget-image img {
-    max-height: 100px !important;
-    width: 100% !important;
-    object-fit: cover !important;
-    border-radius: 8px !important;
-  }
+
+  /* Lado Esquerdo: Certificação (Título, Descrição, Botão) */
   .servicos_exibicao .elementor-widget-heading,
-  .servicos_exibicao .elementor-widget-text-editor,
-  .servicos_exibicao .elementor-widget-button,
-  [id^="visualizacao_"] .elementor-widget-heading,
-  [id^="visualizacao_"] .elementor-widget-text-editor,
-  [id^="visualizacao_"] .elementor-widget-button {
-    flex: 1 1 calc(100% - 150px) !important;
-    width: calc(100% - 150px) !important;
+  [id^="visualizacao_"] .elementor-widget-heading {
+    grid-area: title !important;
     margin: 0 !important;
     text-align: left !important;
   }
   .servicos_exibicao .elementor-heading-title,
   [id^="visualizacao_"] .elementor-heading-title {
-    font-size: 1rem !important;
+    font-size: clamp(0.95rem, 2.2vw, 1.2rem) !important;
+    line-height: 1.2 !important;
     margin-bottom: 2px !important;
     text-align: left !important;
   }
   .servicos_exibicao .elementor-widget-text-editor,
   [id^="visualizacao_"] .elementor-widget-text-editor {
+    grid-area: desc !important;
+    margin: 0 !important;
+    text-align: left !important;
     font-size: 0.74rem !important;
     line-height: 1.25 !important;
-    margin-bottom: 4px !important;
+  }
+  .servicos_exibicao .elementor-widget-text-editor p,
+  [id^="visualizacao_"] .elementor-widget-text-editor p {
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .servicos_exibicao .elementor-widget-button,
+  [id^="visualizacao_"] .elementor-widget-button {
+    grid-area: btn !important;
+    margin: 3px 0 0 0 !important;
     text-align: left !important;
   }
   .servicos_exibicao .elementor-button,
   [id^="visualizacao_"] .elementor-button {
     padding: 5px 12px !important;
-    font-size: 10px !important;
+    font-size: 9.5px !important;
     display: inline-block !important;
+  }
+
+  /* Lado Direito: Imagem da Certificação */
+  .servicos_exibicao .elementor-widget-image,
+  [id^="visualizacao_"] .elementor-widget-image {
+    grid-area: image !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .servicos_exibicao .elementor-widget-image img,
+  [id^="visualizacao_"] .elementor-widget-image img {
+    max-height: 130px !important;
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
   }
 
   /* 4. Carrossel de Produtos */
