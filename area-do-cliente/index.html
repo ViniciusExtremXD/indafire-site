@@ -3947,6 +3947,14 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -3981,22 +3989,18 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 <style id="indafire-brigada-harmony-override">
 /* ==========================================================================
-   INDAFIRE - HARMONIZAÇÃO GLOBAL & CONTROLE DO HEADER/MENU
+   INDAFIRE - HARMONIZAÇÃO GLOBAL & CONTROLE DO HEADER/MENU (ZERO LOOP)
    ========================================================================== */
 .elementor-invisible {
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Esconder cabeçalho quando o menu gaveta / popup estiver aberto */
+/* PURE CSS: Esconder cabeçalho quando o menu gaveta / popup estiver aberto */
 body:has(.elementor-popup-modal:not([style*="display: none"])),
 body:has(.dialog-widget:not([style*="display: none"])),
 body.elementor-popup-modal-active #headerInda,
-body.elementor-popup-modal-active .elementor-location-header,
-body.indafire-drawer-open #headerInda,
-body.indafire-drawer-open .elementor-location-header,
-html.indafire-drawer-open #headerInda,
-html.indafire-drawer-open .elementor-location-header {
+body.elementor-popup-modal-active .elementor-location-header {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -4908,7 +4912,7 @@ html.indafire-drawer-open .elementor-location-header {
 
 <script id="indafire-mobile-landscape-header-control">
 (function() {
-  // 1. Contador Numérico Animado Suave
+  // 1. Contador Numérico Animado Suave (Executa uma única vez)
   function initCounters() {
     var counters = document.querySelectorAll('.elementor-counter-number');
     if ('IntersectionObserver' in window) {
@@ -4925,7 +4929,7 @@ html.indafire-drawer-open .elementor-location-header {
               function step(timestamp) {
                 if (!startTime) startTime = timestamp;
                 var progress = Math.min((timestamp - startTime) / duration, 1);
-                var easeProgress = progress * (2 - progress); // Ease-out quadratic
+                var easeProgress = progress * (2 - progress);
                 var current = Math.floor(easeProgress * targetVal);
                 var formatted = delimiter ? current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter) : current.toString();
                 el.textContent = formatted;
@@ -4938,6 +4942,7 @@ html.indafire-drawer-open .elementor-location-header {
               }
               window.requestAnimationFrame(step);
             }
+            counterObserver.unobserve(el);
           }
         });
       }, { threshold: 0.15 });
@@ -4974,77 +4979,18 @@ html.indafire-drawer-open .elementor-location-header {
     }
   }
 
-  // 3. Controle Robusto de Esconder/Exibir Cabeçalho ao Abrir o Menu Gaveta (Popup)
+  // 3. Controle Simples e Seguro do Cabeçalho (Sem Loops)
   function initMenuEvents() {
-    function hideHeader() {
-      document.body.classList.add('indafire-drawer-open');
-      document.documentElement.classList.add('indafire-drawer-open');
-      var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-      headers.forEach(function(h) {
-        h.style.setProperty('display', 'none', 'important');
-      });
-    }
-
-    function showHeader() {
-      // Check if any popup is still open
-      var visibleModals = document.querySelectorAll('.elementor-popup-modal, .dialog-widget');
-      var anyOpen = false;
-      visibleModals.forEach(function(m) {
-        if (m.style.display !== 'none' && getComputedStyle(m).display !== 'none') {
-          anyOpen = true;
-        }
-      });
-      if (!anyOpen) {
-        document.body.classList.remove('indafire-drawer-open');
-        document.documentElement.classList.remove('indafire-drawer-open');
-        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-        headers.forEach(function(h) {
-          h.style.removeProperty('display');
-        });
-      }
-    }
-
-    // A. Interceptar cliques no botão de menu hamburguer
-    document.addEventListener('click', function(e) {
-      var btn = e.target.closest('a[href*="popup:open"], .elementor-element-8755157');
-      if (btn) {
-        setTimeout(hideHeader, 10);
-        setTimeout(hideHeader, 100);
-      }
-      var closeBtn = e.target.closest('.dialog-close-button, .dialog-lightbox-close-button, .elementor-popup-modal .dialog-close-button');
-      if (closeBtn) {
-        setTimeout(showHeader, 50);
-        setTimeout(showHeader, 200);
-      }
-    }, true);
-
-    // B. Elementor popup JS hooks
     if (window.jQuery) {
       jQuery(document).on('elementor/popup/show', function() {
-        hideHeader();
+        var h = document.querySelector('#headerInda, .elementor-location-header');
+        if (h) h.style.setProperty('display', 'none', 'important');
       });
       jQuery(document).on('elementor/popup/hide', function() {
-        showHeader();
+        var h = document.querySelector('#headerInda, .elementor-location-header');
+        if (h) h.style.removeProperty('display');
       });
     }
-
-    // C. MutationObserver no body para detectar popup aberto/fechado em tempo real
-    var observer = new MutationObserver(function() {
-      var popups = document.querySelectorAll('.elementor-popup-modal, .dialog-widget');
-      var isOpen = false;
-      popups.forEach(function(p) {
-        if (p.style.display !== 'none' && getComputedStyle(p).display !== 'none') {
-          isOpen = true;
-        }
-      });
-      if (isOpen) {
-        hideHeader();
-      } else if (document.body.classList.contains('indafire-drawer-open')) {
-        showHeader();
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
   }
 
   if (document.readyState === 'loading') {
