@@ -6318,6 +6318,11 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
 <style id="indafire-brigada-harmony-override">
 /* ==========================================================================
    INDAFIRE - HARMONIZAÇÃO VISUAL DA SEÇÃO BRIGADA & TRANSIÇÃO DE DEPOIMENTOS
@@ -6664,41 +6669,92 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     font-size: 10px !important;
   }
 
-  /* 3. Serviços: 2 Colunas Lado a Lado (Certificação à Esquerda, Imagem à Direita) */
+  /* 3. SERVIÇOS: Layout dos Ícones e Painel com Imagem ao Lado */
+  #carrosselServicos {
+    padding: 6px 0 !important;
+  }
   .servico_unidade_carrossel {
-    padding: 3px 6px !important;
-    min-height: 48px !important;
+    min-height: 90px !important;
+    height: 90px !important;
+    padding: 8px 6px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+    margin: 4px !important;
+  }
+  .servico_unidade_carrossel .elementor-column-wrap,
+  .servico_unidade_carrossel .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
   }
   .servico_unidade_carrossel img {
-    max-height: 18px !important;
+    max-height: 28px !important;
     width: auto !important;
-    margin-bottom: 2px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    transition: filter 0.2s ease !important;
   }
   .servico_unidade_carrossel h4 {
-    font-size: 8.5px !important;
-    line-height: 1.1 !important;
+    font-size: 9.5px !important;
+    line-height: 1.15 !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    color: #222222 !important;
     margin: 0 !important;
+  }
+  #carrosselServicos .swiper-slide-next .corFundo .elementor-widget-wrap,
+  #carrosselServicos .swiper-slide-active .corFundo .elementor-widget-wrap {
+    background-color: #e30613 !important;
+    border-radius: 10px !important;
+  }
+  #carrosselServicos .swiper-slide-next .corFundo .elementor-widget-wrap img,
+  #carrosselServicos .swiper-slide-active .corFundo .elementor-widget-wrap img {
+    filter: brightness(0) invert(1) !important;
+  }
+  #carrosselServicos .swiper-slide-next .corFundo .elementor-widget-wrap h4,
+  #carrosselServicos .swiper-slide-active .corFundo .elementor-widget-wrap h4 {
+    color: #ffffff !important;
+  }
+
+  /* Painel de Exibição do Serviço Ativo com Imagem ao Lado */
+  div#gridServicos {
+    height: auto !important;
+    min-height: 190px !important;
   }
   .servicos_exibicao,
   [id^="visualizacao_"] {
-    padding: 10px 14px !important;
-    min-height: auto !important;
+    padding: 12px 14px !important;
+    min-height: 180px !important;
+    background: #2b2b2b !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 !important;
   }
   .servicos_exibicao .elementor-container,
   [id^="visualizacao_"] .elementor-container {
     max-width: 100% !important;
+    width: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
   }
   .servicos_exibicao .elementor-row,
-  [id^="visualizacao_"] .elementor-row {
-    display: block !important;
-    width: 100% !important;
-  }
+  [id^="visualizacao_"] .elementor-row,
   .servicos_exibicao .elementor-column,
   [id^="visualizacao_"] .elementor-column {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
   }
   .servicos_exibicao .elementor-widget-wrap,
   [id^="visualizacao_"] .elementor-widget-wrap {
@@ -6709,12 +6765,15 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
       "title image"
       "desc  image"
       "btn   image" !important;
-    gap: 4px 14px !important;
+    gap: 4px 12px !important;
     align-items: center !important;
     text-align: left !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  /* Lado Esquerdo: Certificação (Título, Descrição, Botão) */
+  /* Título */
   .servicos_exibicao .elementor-widget-heading,
   [id^="visualizacao_"] .elementor-widget-heading {
     grid-area: title !important;
@@ -6722,39 +6781,59 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     text-align: left !important;
   }
   .servicos_exibicao .elementor-heading-title,
-  [id^="visualizacao_"] .elementor-heading-title {
-    font-size: clamp(0.95rem, 2.2vw, 1.2rem) !important;
+  [id^="visualizacao_"] .elementor-heading-title,
+  .servicos_exibicao h3,
+  [id^="visualizacao_"] h3 {
+    font-size: 1rem !important;
     line-height: 1.2 !important;
-    margin-bottom: 2px !important;
+    margin: 0 0 2px 0 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
     text-align: left !important;
   }
+
+  /* Descrição */
   .servicos_exibicao .elementor-widget-text-editor,
   [id^="visualizacao_"] .elementor-widget-text-editor {
     grid-area: desc !important;
     margin: 0 !important;
     text-align: left !important;
-    font-size: 0.74rem !important;
-    line-height: 1.25 !important;
   }
   .servicos_exibicao .elementor-widget-text-editor p,
-  [id^="visualizacao_"] .elementor-widget-text-editor p {
+  .servicos_exibicao .elementor-text-editor,
+  [id^="visualizacao_"] .elementor-widget-text-editor p,
+  [id^="visualizacao_"] .elementor-text-editor {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+    color: #dddddd !important;
     margin: 0 !important;
     text-align: left !important;
+    -webkit-line-clamp: 3 !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
+
+  /* Botão "VEJA EM DETALHES" */
   .servicos_exibicao .elementor-widget-button,
   [id^="visualizacao_"] .elementor-widget-button {
     grid-area: btn !important;
-    margin: 3px 0 0 0 !important;
+    margin: 4px 0 0 0 !important;
     text-align: left !important;
   }
   .servicos_exibicao .elementor-button,
   [id^="visualizacao_"] .elementor-button {
-    padding: 5px 12px !important;
-    font-size: 9.5px !important;
+    padding: 5px 14px !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    border-radius: 20px !important;
+    text-transform: uppercase !important;
     display: inline-block !important;
   }
 
-  /* Lado Direito: Imagem da Certificação */
+  /* Imagem ao Lado */
   .servicos_exibicao .elementor-widget-image,
   [id^="visualizacao_"] .elementor-widget-image {
     grid-area: image !important;
@@ -6764,18 +6843,19 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     justify-content: center !important;
     width: 100% !important;
     max-width: 100% !important;
+    height: 100% !important;
   }
   .servicos_exibicao .elementor-widget-image img,
   [id^="visualizacao_"] .elementor-widget-image img {
-    max-height: 130px !important;
+    max-height: 140px !important;
     max-width: 100% !important;
-    width: auto !important;
-    height: auto !important;
-    object-fit: contain !important;
+    width: 100% !important;
+    height: 130px !important;
+    object-fit: cover !important;
     border-radius: 8px !important;
     margin: 0 auto !important;
     display: block !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
   }
 
   /* 4. Carrossel de Produtos */
