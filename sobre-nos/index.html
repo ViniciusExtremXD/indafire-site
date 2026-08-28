@@ -4681,6 +4681,16 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
+
+
 <style id="indafire-mobile-landscape-master-override">
 /* ==========================================================================
    INDAFIRE - MOBILE HORIZONTAL (LANDSCAPE) MASTER OVERRIDE
@@ -4702,23 +4712,6 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     padding: 0 14px !important;
     display: block !important;
     z-index: 999 !important;
-  }
-  .elementor-location-header.header-hidden-for-popup,
-  #headerInda.header-hidden-for-popup,
-  body.elementor-popup-modal-open .elementor-location-header,
-  body.elementor-popup-modal-open #headerInda,
-  body:has(#elementor-popup-modal-2519[style*="display: block"]) .elementor-location-header,
-  body:has(#elementor-popup-modal-2519[style*="display: flex"]) .elementor-location-header,
-  body:has(#elementor-popup-modal-2519[style*="display: block"]) #headerInda,
-  body:has(#elementor-popup-modal-2519[style*="display: flex"]) #headerInda,
-  body:has(.dialog-type-lightbox[style*="display: block"]) .elementor-location-header,
-  body:has(.dialog-type-lightbox[style*="display: flex"]) .elementor-location-header,
-  body:has(.dialog-type-lightbox[style*="display: block"]) #headerInda,
-  body:has(.dialog-type-lightbox[style*="display: flex"]) #headerInda {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
   }
 
   .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
@@ -5324,7 +5317,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 <script id="indafire-mobile-landscape-header-control">
 (function() {
-  // Lazy video loader
+  // 1. Lazy video loader (IntersectionObserver)
   function initLazyVideos() {
     var lazyVideos = document.querySelectorAll('video.inda-lazy-video, video[data-src]');
     if ('IntersectionObserver' in window) {
@@ -5352,77 +5345,30 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     }
   }
 
-  function handleMenuPopupVisibility() {
-    var popups = document.querySelectorAll('#elementor-popup-modal-2519, .dialog-type-lightbox, [id^="elementor-popup-modal-"]');
-    var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-    var isPopupOpen = false;
-
-    popups.forEach(function(popup) {
-      if (popup && window.getComputedStyle(popup).display !== 'none' && window.getComputedStyle(popup).visibility !== 'hidden' && popup.offsetWidth > 0 && popup.offsetHeight > 0) {
-        isPopupOpen = true;
-      }
-    });
-
-    headers.forEach(function(header) {
-      if (isPopupOpen) {
-        header.classList.add('header-hidden-for-popup');
-        header.style.setProperty('display', 'none', 'important');
-      } else {
-        header.classList.remove('header-hidden-for-popup');
-        header.style.removeProperty('display');
-      }
-    });
-
-    if (isPopupOpen) {
-      document.body.classList.add('elementor-popup-modal-open');
-    } else {
-      document.body.classList.remove('elementor-popup-modal-open');
+  // 2. Mobile drawer menu header hide/show strictly when popup is open on small screens
+  function initMenuEvents() {
+    if (window.jQuery) {
+      jQuery(document).on('elementor/popup/show', function(event, id) {
+        if (window.innerWidth <= 1024) {
+          var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+          headers.forEach(function(h) { h.style.setProperty('display', 'none', 'important'); });
+        }
+      });
+      jQuery(document).on('elementor/popup/hide', function(event, id) {
+        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+        headers.forEach(function(h) { h.style.removeProperty('display'); });
+      });
     }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
-      initObservers();
       initLazyVideos();
+      initMenuEvents();
     });
   } else {
-    initObservers();
     initLazyVideos();
-  }
-
-  function initObservers() {
-    if (window.jQuery) {
-      jQuery(document).on('elementor/popup/show', function() {
-        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-        headers.forEach(function(h) {
-          h.classList.add('header-hidden-for-popup');
-          h.style.setProperty('display', 'none', 'important');
-        });
-        document.body.classList.add('elementor-popup-modal-open');
-      });
-      jQuery(document).on('elementor/popup/hide', function() {
-        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-        headers.forEach(function(h) {
-          h.classList.remove('header-hidden-for-popup');
-          h.style.removeProperty('display');
-        });
-        document.body.classList.remove('elementor-popup-modal-open');
-      });
-    }
-
-    var observer = new MutationObserver(function() {
-      handleMenuPopupVisibility();
-    });
-
-    observer.observe(document.body, {
-      attributes: true,
-      childList: true,
-      subtree: true,
-      attributeFilter: ['style', 'class']
-    });
-
-    window.addEventListener('resize', handleMenuPopupVisibility, { passive: true });
-    window.addEventListener('orientationchange', handleMenuPopupVisibility, { passive: true });
+    initMenuEvents();
   }
 })();
 </script>
