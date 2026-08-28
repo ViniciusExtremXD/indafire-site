@@ -4020,10 +4020,20 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
 <style id="indafire-brigada-harmony-override">
 /* ==========================================================================
-   INDAFIRE - HARMONIZAÇÃO VISUAL DA SEÇÃO BRIGADA & TRANSIÇÃO DE DEPOIMENTOS
+   INDAFIRE - HARMONIZAÇÃO VISUAL GLOBAL
    ========================================================================== */
+.elementor-invisible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
   background-color: #ffffff !important;
@@ -4261,9 +4271,18 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     line-height: 24px !important;
   }
 
-  /* 2. Seção Conteúdo (#conteudo) - Contadores Lado a Lado (3 Colunas) & Sobre Nós */
+  /* 2. Seção Conteúdo (#conteudo) - Preenchimento Harmônico, Cards Amplos e Animações */
   #conteudo {
-    padding: 14px 12px !important;
+    padding: 24px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #conteudo > .elementor-container,
+  .elementor-element.elementor-element-514d62a > .elementor-container {
+    max-width: 95% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
   }
   #conteudo > .elementor-container > .elementor-row,
   .elementor-element.elementor-element-514d62a > .elementor-container > .elementor-row {
@@ -4271,44 +4290,76 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     align-items: center !important;
-    gap: 14px !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    width: 100% !important;
   }
   .elementor-element.elementor-element-1ffb393,
   #conteudo .elementor-column.elementor-col-50:first-child {
-    flex: 1 1 54% !important;
-    width: 54% !important;
-    max-width: 54% !important;
+    flex: 1 1 52% !important;
+    width: 52% !important;
+    max-width: 52% !important;
     min-width: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
   }
   .elementor-element.elementor-element-c91e9f8,
   #conteudo .elementor-column.elementor-col-50:last-child {
-    flex: 1 1 46% !important;
-    width: 46% !important;
-    max-width: 46% !important;
+    flex: 1 1 48% !important;
+    width: 48% !important;
+    max-width: 48% !important;
     min-width: 0 !important;
     margin: 0 !important;
+    padding-left: 10px !important;
   }
+
+  /* Container dos 3 Cards de Estatísticas */
   .elementor-element.elementor-element-bbbbf1b > .elementor-column-wrap > .elementor-widget-wrap,
   .elementor-element.elementor-element-bbbbf1b .elementor-widget-wrap {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
-    gap: 6px !important;
+    gap: 10px !important;
     align-items: stretch !important;
+    justify-content: space-between !important;
+    width: 100% !important;
   }
+
+  /* Cards Individuais com Design Premium e Animação de Hover */
   .elementor-element.elementor-element-f195a0e,
   .elementor-element.elementor-element-c8f1cd7,
   .elementor-element.elementor-element-8da6b11 {
-    flex: 1 1 33.33% !important;
-    width: 33.33% !important;
-    max-width: 33.33% !important;
+    flex: 1 1 32% !important;
+    width: 32% !important;
+    max-width: 32% !important;
     min-width: 0 !important;
-    padding: 6px 4px !important;
+    min-height: 145px !important;
+    padding: 12px 6px !important;
     margin: 0 !important;
-    border-radius: 8px !important;
+    border-radius: 12px !important;
     box-sizing: border-box !important;
-    display: block !important;
+    background: linear-gradient(145deg, #2b2b2b 0%, #151515 100%) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    cursor: default !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  }
+  .elementor-element.elementor-element-f195a0e:hover,
+  .elementor-element.elementor-element-c8f1cd7:hover,
+  .elementor-element.elementor-element-8da6b11:hover {
+    transform: translateY(-5px) scale(1.03) !important;
+    box-shadow: 0 10px 25px rgba(227, 6, 19, 0.4) !important;
+  }
+
+  .elementor-element.elementor-element-f195a0e .elementor-container,
+  .elementor-element.elementor-element-c8f1cd7 .elementor-container,
+  .elementor-element.elementor-element-8da6b11 .elementor-container {
+    padding: 0 !important;
+    width: 100% !important;
   }
   .elementor-element.elementor-element-f195a0e .elementor-row,
   .elementor-element.elementor-element-c8f1cd7 .elementor-row,
@@ -4318,52 +4369,105 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    gap: 2px !important;
+    gap: 4px !important;
     margin: 0 !important;
+    width: 100% !important;
   }
   .elementor-element.elementor-element-f195a0e .elementor-column,
   .elementor-element.elementor-element-c8f1cd7 .elementor-column,
   .elementor-element.elementor-element-8da6b11 .elementor-column {
     width: 100% !important;
+    max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   .elementor-element.elementor-element-f195a0e img,
   .elementor-element.elementor-element-c8f1cd7 img,
   .elementor-element.elementor-element-8da6b11 img {
-    max-height: 22px !important;
+    max-height: 32px !important;
     width: auto !important;
-    margin: 0 auto !important;
+    margin: 0 auto 4px auto !important;
     display: block !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)) !important;
   }
+
+  /* Contador e Números */
   .elementor-element.elementor-element-937bbbc .elementor-counter-number-wrapper,
   .elementor-element.elementor-element-7bcc8f3 .elementor-counter-number-wrapper,
   .elementor-element.elementor-element-a8399ee .elementor-counter-number-wrapper {
-    font-size: 0.95rem !important;
-    line-height: 1 !important;
+    font-size: clamp(1.05rem, 2.3vw, 1.35rem) !important;
+    line-height: 1.1 !important;
     text-align: center !important;
     white-space: nowrap !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    margin-bottom: 2px !important;
+    display: block !important;
+  }
+  .elementor-counter-number-prefix {
+    color: #e30613 !important;
+    font-weight: 800 !important;
+  }
+  .elementor-counter-number-suffix {
+    font-size: 0.85rem !important;
+    color: #e30613 !important;
+    font-weight: 700 !important;
+  }
+
+  /* Título dos Cards (de experiência, etc) */
+  .elementor-element.elementor-element-d2fc79d,
+  .elementor-element.elementor-element-e676369,
+  .elementor-element.elementor-element-ad5453c {
+    width: 100% !important;
+    margin: 0 !important;
   }
   .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
   .elementor-element.elementor-element-e676369 .elementor-heading-title,
   .elementor-element.elementor-element-ad5453c .elementor-heading-title {
-    font-size: 0.62rem !important;
-    line-height: 1.1 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
     text-align: center !important;
+    color: #cccccc !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    white-space: normal !important;
   }
+
+  /* Bloco Sobre Nós (Direita) */
   .elementor-element.elementor-element-83e674d .elementor-heading-title {
-    font-size: 1.2rem !important;
-    margin-bottom: 4px !important;
+    font-size: clamp(1.35rem, 3.2vw, 1.7rem) !important;
+    font-weight: 900 !important;
+    color: #111111 !important;
+    line-height: 1.15 !important;
+    margin-bottom: 6px !important;
+    letter-spacing: -0.5px !important;
   }
   .elementor-element.elementor-element-4d85c96 .elementor-text-editor p,
   .elementor-element.elementor-element-4d85c96 .elementor-text-editor {
-    font-size: 0.75rem !important;
-    line-height: 1.3 !important;
-    margin-bottom: 6px !important;
+    font-size: clamp(0.76rem, 1.7vw, 0.88rem) !important;
+    line-height: 1.4 !important;
+    color: #444444 !important;
+    margin-bottom: 10px !important;
   }
   .elementor-element.elementor-element-af40c63 .elementor-button {
-    padding: 5px 14px !important;
-    font-size: 10px !important;
+    padding: 7px 20px !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    border-radius: 25px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+  }
+  .elementor-element.elementor-element-af40c63 .elementor-button:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 6px 20px rgba(227, 6, 19, 0.5) !important;
   }
 
   /* 3. SERVIÇOS: Layout dos Ícones e Painel com Imagem ao Lado */
@@ -4823,7 +4927,45 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 <script id="indafire-mobile-landscape-header-control">
 (function() {
-  // 1. Lazy video loader (IntersectionObserver)
+  // 1. Contador Numérico Animado Suave
+  function initCounters() {
+    var counters = document.querySelectorAll('.elementor-counter-number');
+    if ('IntersectionObserver' in window) {
+      var counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            var targetVal = parseInt(el.getAttribute('data-to-value'), 10);
+            var delimiter = el.getAttribute('data-delimiter') || '';
+            if (!isNaN(targetVal) && !el.dataset.animated) {
+              el.dataset.animated = 'true';
+              var duration = 1800;
+              var startTime = null;
+              function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                var easeProgress = progress * (2 - progress); // Ease-out quadratic
+                var current = Math.floor(easeProgress * targetVal);
+                var formatted = delimiter ? current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter) : current.toString();
+                el.textContent = formatted;
+                if (progress < 1) {
+                  window.requestAnimationFrame(step);
+                } else {
+                  var finalFormatted = delimiter ? targetVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, delimiter) : targetVal.toString();
+                  el.textContent = finalFormatted;
+                }
+              }
+              window.requestAnimationFrame(step);
+            }
+          }
+        });
+      }, { threshold: 0.15 });
+
+      counters.forEach(function(c) { counterObserver.observe(c); });
+    }
+  }
+
+  // 2. Lazy video loader (IntersectionObserver)
   function initLazyVideos() {
     var lazyVideos = document.querySelectorAll('video.inda-lazy-video, video[data-src]');
     if ('IntersectionObserver' in window) {
@@ -4851,7 +4993,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     }
   }
 
-  // 2. Mobile drawer menu header hide/show strictly when popup is open on small screens
+  // 3. Mobile drawer menu header hide/show strictly when popup is open on small screens
   function initMenuEvents() {
     if (window.jQuery) {
       jQuery(document).on('elementor/popup/show', function(event, id) {
@@ -4869,10 +5011,12 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
+      initCounters();
       initLazyVideos();
       initMenuEvents();
     });
   } else {
+    initCounters();
     initLazyVideos();
     initMenuEvents();
   }
