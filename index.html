@@ -6328,13 +6328,33 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
 <style id="indafire-brigada-harmony-override">
 /* ==========================================================================
-   INDAFIRE - HARMONIZAÇÃO VISUAL GLOBAL
+   INDAFIRE - HARMONIZAÇÃO GLOBAL & CONTROLE DO HEADER/MENU
    ========================================================================== */
 .elementor-invisible {
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* Esconder cabeçalho quando o menu gaveta / popup estiver aberto */
+body:has(.elementor-popup-modal:not([style*="display: none"])),
+body:has(.dialog-widget:not([style*="display: none"])),
+body.elementor-popup-modal-active #headerInda,
+body.elementor-popup-modal-active .elementor-location-header,
+body.indafire-drawer-open #headerInda,
+body.indafire-drawer-open .elementor-location-header,
+html.indafire-drawer-open #headerInda,
+html.indafire-drawer-open .elementor-location-header {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .elementor-element.elementor-element-3662fd7 {
@@ -6432,9 +6452,9 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   }
   .elementor-location-header,
   #headerInda {
-    height: 48px !important;
-    min-height: 48px !important;
-    padding: 0 14px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    padding: 0 16px !important;
     display: block !important;
     z-index: 999 !important;
   }
@@ -6446,7 +6466,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
-    height: 48px !important;
+    height: 50px !important;
   }
 
   /* Coluna 1: Logo no Canto Esquerdo */
@@ -6458,7 +6478,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     padding: 0 !important;
   }
   .elementor-element.elementor-element-2e5c5af img {
-    max-height: 26px !important;
+    max-height: 28px !important;
     width: auto !important;
   }
 
@@ -6479,7 +6499,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     flex-direction: row !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 6px !important;
+    gap: 8px !important;
     margin: 0 auto !important;
     padding: 0 !important;
   }
@@ -6490,16 +6510,16 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper {
     display: flex !important;
     flex-direction: row !important;
-    gap: 6px !important;
+    gap: 8px !important;
     justify-content: center !important;
     align-items: center !important;
   }
   .elementor-element.elementor-element-712ae1c .elementor-icon {
-    width: 25px !important;
-    height: 25px !important;
-    line-height: 25px !important;
-    font-size: 12px !important;
-    border-radius: 4px !important;
+    width: 28px !important;
+    height: 28px !important;
+    line-height: 28px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -6529,24 +6549,36 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     margin: 0 !important;
     padding: 0 !important;
   }
+  /* Ocultar o menu desktop horizontal no landscape */
+  .elementor-element.elementor-element-20668c0,
+  .jet-menu-container {
+    display: none !important;
+  }
+
   .elementor-element.elementor-element-8755157 {
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     margin: 0 !important;
+    padding: 0 !important;
   }
   .elementor-element.elementor-element-8755157 .elementor-icon {
-    font-size: 15px !important;
-    padding: 4px 8px !important;
+    font-size: 16px !important;
+    width: 34px !important;
+    height: 34px !important;
     border: 1.5px solid #d9232a !important;
-    border-radius: 5px !important;
+    border-radius: 6px !important;
     color: #d9232a !important;
+    background: rgba(217, 35, 42, 0.04) !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   /* 1. Hero Banner */
   .elementor-element.elementor-element-f94db1f {
-    min-height: calc(100vh - 48px) !important;
+    min-height: calc(100vh - 50px) !important;
     padding: 12px 14px !important;
   }
   .elementor-element.elementor-element-0f56a59 .elementor-heading-title,
@@ -7296,20 +7328,77 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     }
   }
 
-  // 3. Mobile drawer menu header hide/show strictly when popup is open on small screens
+  // 3. Controle Robusto de Esconder/Exibir Cabeçalho ao Abrir o Menu Gaveta (Popup)
   function initMenuEvents() {
-    if (window.jQuery) {
-      jQuery(document).on('elementor/popup/show', function(event, id) {
-        if (window.innerWidth <= 1024) {
-          var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-          headers.forEach(function(h) { h.style.setProperty('display', 'none', 'important'); });
-        }
-      });
-      jQuery(document).on('elementor/popup/hide', function(event, id) {
-        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
-        headers.forEach(function(h) { h.style.removeProperty('display'); });
+    function hideHeader() {
+      document.body.classList.add('indafire-drawer-open');
+      document.documentElement.classList.add('indafire-drawer-open');
+      var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+      headers.forEach(function(h) {
+        h.style.setProperty('display', 'none', 'important');
       });
     }
+
+    function showHeader() {
+      // Check if any popup is still open
+      var visibleModals = document.querySelectorAll('.elementor-popup-modal, .dialog-widget');
+      var anyOpen = false;
+      visibleModals.forEach(function(m) {
+        if (m.style.display !== 'none' && getComputedStyle(m).display !== 'none') {
+          anyOpen = true;
+        }
+      });
+      if (!anyOpen) {
+        document.body.classList.remove('indafire-drawer-open');
+        document.documentElement.classList.remove('indafire-drawer-open');
+        var headers = document.querySelectorAll('#headerInda, .elementor-location-header');
+        headers.forEach(function(h) {
+          h.style.removeProperty('display');
+        });
+      }
+    }
+
+    // A. Interceptar cliques no botão de menu hamburguer
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('a[href*="popup:open"], .elementor-element-8755157');
+      if (btn) {
+        setTimeout(hideHeader, 10);
+        setTimeout(hideHeader, 100);
+      }
+      var closeBtn = e.target.closest('.dialog-close-button, .dialog-lightbox-close-button, .elementor-popup-modal .dialog-close-button');
+      if (closeBtn) {
+        setTimeout(showHeader, 50);
+        setTimeout(showHeader, 200);
+      }
+    }, true);
+
+    // B. Elementor popup JS hooks
+    if (window.jQuery) {
+      jQuery(document).on('elementor/popup/show', function() {
+        hideHeader();
+      });
+      jQuery(document).on('elementor/popup/hide', function() {
+        showHeader();
+      });
+    }
+
+    // C. MutationObserver no body para detectar popup aberto/fechado em tempo real
+    var observer = new MutationObserver(function() {
+      var popups = document.querySelectorAll('.elementor-popup-modal, .dialog-widget');
+      var isOpen = false;
+      popups.forEach(function(p) {
+        if (p.style.display !== 'none' && getComputedStyle(p).display !== 'none') {
+          isOpen = true;
+        }
+      });
+      if (isOpen) {
+        hideHeader();
+      } else if (document.body.classList.contains('indafire-drawer-open')) {
+        showHeader();
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
   }
 
   if (document.readyState === 'loading') {
