@@ -100,6 +100,9 @@
 }
 </style>
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4382,6 +4385,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4661,7 +4672,249 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   3. SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL (REMOÇÃO DO SPLIT DE FUNDO)
+   3. CORREÇÃO DOS 3 CARDS DE NÚMEROS/EXPERIÊNCIA (#conteudo) EM TODAS AS ESCALAS
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .elementor-element.elementor-element-731cf7e > .elementor-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Cards Individuais */
+  .elementor-element.elementor-element-f195a0e,
+  .elementor-element.elementor-element-c8f1cd7,
+  .elementor-element.elementor-element-8da6b11 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 14px 16px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(145deg, #2b2b2b 0%, #151515 100%) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
+
+  .elementor-element.elementor-element-f195a0e > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-c8f1cd7 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-8da6b11 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Coluna Esquerda: Ícone */
+  .elementor-element.elementor-element-a3dab2c,
+  .elementor-element.elementor-element-b2860d9,
+  .elementor-element.elementor-element-03ad2f7 {
+    flex: 0 0 48px !important;
+    width: 48px !important;
+    max-width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .elementor-element.elementor-element-a3dab2c .elementor-widget-wrap,
+  .elementor-element.elementor-element-b2860d9 .elementor-widget-wrap,
+  .elementor-element.elementor-element-03ad2f7 .elementor-widget-wrap {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .elementor-element.elementor-element-166d00a,
+  .elementor-element.elementor-element-312be29,
+  .elementor-element.elementor-element-3bbd276 {
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-166d00a img,
+  .elementor-element.elementor-element-312be29 img,
+  .elementor-element.elementor-element-3bbd276 img {
+    width: 44px !important;
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    object-fit: contain !important;
+    display: block !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
+  }
+
+  /* Coluna Direita: Números e Textos */
+  .elementor-element.elementor-element-0bb67cf,
+  .elementor-element.elementor-element-d21256a,
+  .elementor-element.elementor-element-e00b83b {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    text-align: left !important;
+  }
+  .elementor-element.elementor-element-0bb67cf .elementor-widget-wrap,
+  .elementor-element.elementor-element-d21256a .elementor-widget-wrap,
+  .elementor-element.elementor-element-e00b83b .elementor-widget-wrap {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 2px !important;
+  }
+
+  /* Contador / Números */
+  .elementor-element.elementor-element-937bbbc,
+  .elementor-element.elementor-element-7bcc8f3,
+  .elementor-element.elementor-element-a8399ee {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-937bbbc > .elementor-widget-container,
+  .elementor-element.elementor-element-7bcc8f3 > .elementor-widget-container,
+  .elementor-element.elementor-element-a8399ee > .elementor-widget-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-937bbbc .elementor-counter,
+  .elementor-element.elementor-element-7bcc8f3 .elementor-counter,
+  .elementor-element.elementor-element-a8399ee .elementor-counter {
+    display: flex !important;
+    align-items: baseline !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-937bbbc .elementor-counter-number-wrapper,
+  .elementor-element.elementor-element-7bcc8f3 .elementor-counter-number-wrapper,
+  .elementor-element.elementor-element-a8399ee .elementor-counter-number-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: baseline !important;
+    justify-content: flex-start !important;
+    font-size: 1.65rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 3px !important;
+  }
+  .elementor-counter-number-prefix {
+    font-size: 1.45rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+  }
+  .elementor-counter-number {
+    font-size: 1.65rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    letter-spacing: -0.5px !important;
+  }
+  .elementor-counter-number-suffix {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin-left: 2px !important;
+  }
+
+  /* Títulos / Legendas dos Números */
+  .elementor-element.elementor-element-d2fc79d,
+  .elementor-element.elementor-element-e676369,
+  .elementor-element.elementor-element-ad5453c {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-d2fc79d > .elementor-widget-container,
+  .elementor-element.elementor-element-e676369 > .elementor-widget-container,
+  .elementor-element.elementor-element-ad5453c > .elementor-widget-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  .elementor-element.elementor-element-ad5453c .elementor-heading-title {
+    font-size: 0.8rem !important;
+    line-height: 1.25 !important;
+    font-weight: 400 !important;
+    color: #e0e0e0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+}
+
+/* Telas Muito Pequenas (<= 360px) */
+@media (max-width: 360px) {
+  .elementor-element.elementor-element-f195a0e,
+  .elementor-element.elementor-element-c8f1cd7,
+  .elementor-element.elementor-element-8da6b11 {
+    padding: 10px 12px !important;
+  }
+  .elementor-element.elementor-element-a3dab2c,
+  .elementor-element.elementor-element-b2860d9,
+  .elementor-element.elementor-element-03ad2f7 {
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+  .elementor-element.elementor-element-166d00a img,
+  .elementor-element.elementor-element-312be29 img,
+  .elementor-element.elementor-element-3bbd276 img {
+    width: 36px !important;
+    height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+  .elementor-counter-number {
+    font-size: 1.45rem !important;
+  }
+  .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  .elementor-element.elementor-element-ad5453c .elementor-heading-title {
+    font-size: 0.72rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL (REMOÇÃO DO SPLIT DE FUNDO)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .elementor-element.elementor-element-3fbc3d7,
@@ -4834,7 +5087,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   4. BRIGADA DE INCÊNDIO & DEPOIMENTOS
+   5. BRIGADA DE INCÊNDIO & DEPOIMENTOS
    -------------------------------------------------------------------------- */
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
@@ -4988,7 +5241,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   5. MOBILE HORIZONTAL (LANDSCAPE)
+   6. MOBILE HORIZONTAL (LANDSCAPE)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) and (orientation: landscape),
        (max-height: 620px) and (orientation: landscape),
