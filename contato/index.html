@@ -130,6 +130,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4492,6 +4495,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4892,7 +4903,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   3. HERO VIDEO NO MOBILE VERTICAL (COBERTURA TOTAL)
+   3. HERO VIDEO NO MOBILE VERTICAL (COBERTURA TOTAL & BOTÃO PRA BAIXO)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .elementor-element.elementor-element-1766569,
@@ -4919,7 +4930,8 @@ body.elementor-popup-modal-active .elementor-location-header {
     justify-content: center !important;
     position: relative !important;
     z-index: 2 !important;
-    padding: 0 !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
   }
 
   .elementor-background-video-container {
@@ -4957,10 +4969,27 @@ body.elementor-popup-modal-active .elementor-location-header {
     z-index: 1 !important;
   }
 
+  .elementor-element.elementor-element-98ce606 > .elementor-container > .elementor-row,
   .elementor-element.elementor-element-88a0cfb,
-  .elementor-element.elementor-element-ac9c795,
-  .elementor-element.elementor-element-038550d {
+  .elementor-element.elementor-element-88a0cfb > .elementor-column-wrap,
+  .elementor-element.elementor-element-88a0cfb > .elementor-column-wrap > .elementor-widget-wrap {
+    height: 100% !important;
+    min-height: 100% !important;
     width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .elementor-element.elementor-element-ac9c795 {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto 40px auto !important;
+    padding: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -4975,26 +5004,48 @@ body.elementor-popup-modal-active .elementor-location-header {
     text-transform: uppercase !important;
     color: #ffffff !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
-    padding: 0 16px !important;
-    margin: 0 0 10px 0 !important;
+    padding: 0 10px !important;
+    margin: 0 0 12px 0 !important;
+    text-align: center !important;
   }
 
   .elementor-element.elementor-element-29e9bcc .elementor-heading-title {
-    font-size: 0.82rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
     font-weight: 500 !important;
     letter-spacing: 0.5px !important;
     color: #f0f0f0 !important;
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7) !important;
-    padding: 0 20px !important;
+    padding: 0 12px !important;
     margin: 0 !important;
+    text-align: center !important;
   }
 
+  /* BOTÃO PRA BAIXO BEM POSICIONADO NO FUNDO */
   .elementor-element.elementor-element-e671c55 {
+    position: absolute !important;
     bottom: 24px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    z-index: 3 !important;
+    margin: 0 auto !important;
+    z-index: 10 !important;
+    display: block !important;
+  }
+
+  .elementor-element.elementor-element-e671c55 .elementor-icon {
+    font-size: 20px !important;
+    width: 44px !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 50% !important;
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.2s ease !important;
   }
 }
 
