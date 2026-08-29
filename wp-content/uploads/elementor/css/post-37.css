@@ -33,107 +33,7 @@
   .elementor-37 .elementor-element.elementor-element-3de852d{width:20.176%;}
 }
 
-/* ==========================================================================
-   MOBILE VERTICAL (<= 767px) - HEADER CRITICO E COMPACTO
-   ========================================================================== */
-@media(max-width:767px){
-  .elementor-location-header,
-  #headerInda {
-    height: 52px !important;
-    min-height: 52px !important;
-    max-height: 52px !important;
-    padding: 0 12px !important;
-    margin: 0 !important;
-    z-index: 999 !important;
-    box-sizing: border-box !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-46583ef {
-    height: 46px !important;
-    min-height: 46px !important;
-    max-height: 46px !important;
-    margin: 3px auto !important;
-    padding: 0 10px !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-    background: #ffffff !important;
-    box-sizing: border-box !important;
-    width: 96% !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-2e5c5af {
-    order: 1 !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: 150px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-2e5c5af > .elementor-element-populated > .elementor-widget-wrap {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-e171195 img {
-    height: 26px !important;
-    max-height: 26px !important;
-    width: auto !important;
-    max-width: 130px !important;
-    object-fit: contain !important;
-    display: block !important;
-    margin: 0 !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-3de852d,
-  .elementor-37 .elementor-element.elementor-element-315d4c1,
-  .elementor-37 .elementor-element.elementor-element-712ae1c,
-  .elementor-37 .elementor-element.elementor-element-20668c0 {
-    display: none !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-0d060a6 {
-    order: 2 !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    margin: 0 0 0 auto !important;
-    padding: 0 !important;
-    display: flex !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-0d060a6 > .elementor-element-populated > .elementor-widget-wrap {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-8755157 {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .elementor-37 .elementor-element.elementor-element-8755157 .elementor-icon {
-    font-size: 16px !important;
-    width: 34px !important;
-    height: 34px !important;
-    border: 1.5px solid #d9232a !important;
-    border-radius: 6px !important;
-    color: #d9232a !important;
-    background: rgba(217, 35, 42, 0.04) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-    padding: 0 !important;
-  }
-}
+
 
 /* ==========================================================================
    TABLET & LANDSCAPE (768px - 1024px)
@@ -149,4 +49,165 @@
   .elementor-37 .elementor-element.elementor-element-712ae1c{width:auto !important; max-width:none !important; margin:0 auto !important;}
   .elementor-37 .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper{display:flex !important; flex-direction:row !important; gap:8px !important; justify-content:center !important; align-items:center !important;}
   .elementor-37 .elementor-element.elementor-element-0d060a6{order:3 !important; width:auto !important; flex:0 0 auto !important; padding:0 !important; margin:0 !important; display:flex !important; justify-content:flex-end !important; align-items:center !important;}
+}
+
+/* ==========================================================================
+   MOBILE VERTICAL (<= 767px) - HEADER CRITICO, COMPACTO E PERFEITAMENTE CENTRALIZADO
+   ========================================================================== */
+@media (max-width: 767px) {
+  .elementor-location-header,
+  .elementor-location-header > .elementor-section-wrap,
+  #headerInda,
+  .elementor-element.elementor-element-c784293 {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 999 !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  #headerInda > .elementor-container,
+  .elementor-element.elementor-element-c784293 > .elementor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 12px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  #headerInda > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-c784293 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-29f20d8,
+  .elementor-element.elementor-element-29f20d8 > .elementor-column-wrap,
+  .elementor-element.elementor-element-29f20d8 > .elementor-column-wrap > .elementor-widget-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-46583ef,
+  .elementor-element.elementor-element-46583ef {
+    height: 46px !important;
+    min-height: 46px !important;
+    max-height: 46px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 14px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-46583ef > .elementor-container,
+  .elementor-element.elementor-element-46583ef > .elementor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-2e5c5af,
+  .elementor-element.elementor-element-2e5c5af {
+    order: 1 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 150px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-2e5c5af > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-e171195 img,
+  .elementor-element.elementor-element-e171195 img,
+  img[src*="logo.svg"] {
+    height: 26px !important;
+    max-height: 26px !important;
+    width: auto !important;
+    max-width: 130px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-3de852d,
+  .elementor-37 .elementor-element.elementor-element-315d4c1,
+  .elementor-37 .elementor-element.elementor-element-712ae1c,
+  .elementor-37 .elementor-element.elementor-element-20668c0 {
+    display: none !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-0d060a6,
+  .elementor-element.elementor-element-0d060a6 {
+    order: 2 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap,
+  .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-8755157,
+  .elementor-element.elementor-element-8755157 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-37 .elementor-element.elementor-element-8755157 .elementor-icon,
+  .elementor-element.elementor-element-8755157 .elementor-icon {
+    font-size: 16px !important;
+    width: 34px !important;
+    height: 34px !important;
+    border: 1.5px solid #d9232a !important;
+    border-radius: 6px !important;
+    color: #d9232a !important;
+    background: rgba(217, 35, 42, 0.04) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+  }
 }
