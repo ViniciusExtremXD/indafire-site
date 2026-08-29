@@ -3963,6 +3963,14 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4176,7 +4184,6 @@ body.elementor-popup-modal-active .elementor-location-header {
    2. CORREÇÃO DA SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL (REMOÇÃO DO SPLIT DE FUNDO)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
-  /* Remover gradientes laterais que cortavam a tela ao meio */
   .elementor-element.elementor-element-3fbc3d7,
   .elementor-element.elementor-element-d88d016,
   .elementor-element.elementor-element-3fbc3d7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
@@ -4185,7 +4192,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     background-color: transparent !important;
   }
 
-  /* Cartão mestre de serviços com fundo claro e limpo */
   .elementor-element.elementor-element-3432f15 > .elementor-column-wrap {
     background: #f7f7f7 !important;
     border-radius: 14px !important;
@@ -4200,7 +4206,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     gap: 16px !important;
   }
 
-  /* Coluna 1: Carrossel de Ícones de Serviços */
   .elementor-element.elementor-element-c99c7c0 {
     width: 100% !important;
     max-width: 100% !important;
@@ -4261,7 +4266,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     color: #ffffff !important;
   }
 
-  /* Coluna 2: Detalhes do Serviço Ativo */
   .elementor-element.elementor-element-c54c22f {
     width: 100% !important;
     max-width: 100% !important;
@@ -4352,6 +4356,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 /* --------------------------------------------------------------------------
    3. BRIGADA DE INCÊNDIO & DEPOIMENTOS
    -------------------------------------------------------------------------- */
+/* Estilo Padrão / Desktop */
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
   background-color: #ffffff !important;
@@ -4426,6 +4431,82 @@ body.elementor-popup-modal-active .elementor-location-header {
 .elementor-element.elementor-element-c323325 .elementor-heading-title {
   color: #ffffff !important;
   margin-bottom: 20px !important;
+}
+
+/* BRIGADA NO MOBILE VERTICAL: Vídeo em Destaque e Bombeiro Logo Abaixo */
+@media (max-width: 767px) {
+  .elementor-element.elementor-element-3662fd7 {
+    background-image: none !important;
+    background-color: #ffffff !important;
+    padding: 30px 16px 0 16px !important;
+    min-height: auto !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title {
+    text-align: center !important;
+    font-size: 11px !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    color: #555555 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title {
+    text-align: center !important;
+    font-size: 1.55rem !important;
+    line-height: 1.2 !important;
+    color: #e30613 !important;
+    font-weight: 800 !important;
+    margin: 4px 0 8px 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p {
+    text-align: center !important;
+    font-size: 0.84rem !important;
+    line-height: 1.4 !important;
+    color: #444444 !important;
+    max-width: 440px !important;
+    margin: 0 auto 14px auto !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+    overflow: hidden !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc video {
+    border-radius: 12px !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  /* Imagem do Bombeiro logo abaixo do vídeo */
+  .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    margin: 16px auto 0 auto !important;
+    background-image: url("./wp-content/uploads/2021/10/bombeiro.jpg") !important;
+    background-position: center bottom !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -4604,7 +4685,7 @@ body.elementor-popup-modal-active .elementor-location-header {
     border-radius: 8px !important;
   }
 
-  /* Brigada de Incêndio */
+  /* Brigada de Incêndio no Landscape */
   .elementor-element.elementor-element-3662fd7 {
     padding: 16px 24px !important;
     min-height: calc(100vh - 48px) !important;
