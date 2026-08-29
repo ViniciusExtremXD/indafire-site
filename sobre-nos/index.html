@@ -115,6 +115,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4933,6 +4936,14 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -5366,25 +5377,29 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   4. SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL (100% SEÇÃO VERTICAL ELEGANTE)
+   4. SEÇÃO DE SERVIÇOS NO MOBILE & TABLET (100% SEÇÃO VERTICAL ELEGANTE)
    -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
+  .elementor-2 .elementor-element.elementor-element-3432f15,
   .elementor-element.elementor-element-3432f15 {
     width: 100% !important;
     max-width: 100% !important;
-    margin: 10px 0 !important;
+    margin: 10px auto !important;
     padding: 0 !important;
     overflow: hidden !important;
+    box-sizing: border-box !important;
   }
   .elementor-element.elementor-element-3432f15 > .elementor-column-wrap {
     background: #f7f7f7 !important;
     border-radius: 16px !important;
     padding: 24px 12px !important;
     box-sizing: border-box !important;
-    width: 95% !important;
+    width: 96% !important;
     margin: 0 auto !important;
   }
 
+  .elementor-2 .elementor-element.elementor-element-3fbc3d7,
+  .elementor-2 .elementor-element.elementor-element-d88d016,
   .elementor-element.elementor-element-3fbc3d7,
   .elementor-element.elementor-element-d88d016,
   .elementor-element.elementor-element-3fbc3d7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
@@ -5415,46 +5430,64 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 auto 16px auto !important;
   }
 
-  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
+  .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
+  .elementor-2 .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
     gap: 16px !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
   }
 
+  .elementor-2 .elementor-element.elementor-element-c99c7c0,
   .elementor-element.elementor-element-c99c7c0 {
     width: 100% !important;
     max-width: 100% !important;
     flex: 1 1 100% !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
     display: block !important;
+    box-sizing: border-box !important;
   }
+
+  /* O CARROSSEL OCUPA A LARGURA TOTAL COM CARDS NÍTIDOS */
   #carrosselServicos {
     width: 100% !important;
-    padding: 4px 0 !important;
+    max-width: 100% !important;
+    padding: 6px 0 !important;
     position: relative !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
   }
   #carrosselServicos .dce-posts-container {
-    padding: 4px 0 !important;
+    padding: 6px 0 !important;
     overflow: hidden !important;
     width: 100% !important;
+  }
+  #carrosselServicos .swiper-container {
+    width: 100% !important;
+    overflow: hidden !important;
+    padding: 4px 0 !important;
   }
   #carrosselServicos .swiper-wrapper {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
+    width: 100% !important;
   }
   #carrosselServicos .swiper-slide {
     width: 140px !important;
     min-width: 140px !important;
-    max-width: 145px !important;
+    max-width: 140px !important;
     height: 140px !important;
     min-height: 140px !important;
+    max-height: 140px !important;
     margin-right: 12px !important;
     box-sizing: border-box !important;
+    flex: 0 0 140px !important;
     flex-shrink: 0 !important;
   }
 
@@ -5462,18 +5495,21 @@ body.elementor-popup-modal-active .elementor-location-header {
   .elementor-element.elementor-element-1a58808 {
     width: 100% !important;
     height: 100% !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
     min-height: 140px !important;
     max-height: 140px !important;
     background: #ffffff !important;
     border-radius: 14px !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
-    padding: 14px 10px !important;
+    padding: 14px 8px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
+    cursor: pointer !important;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   }
   .servico_unidade_carrossel .elementor-container,
@@ -5492,18 +5528,18 @@ body.elementor-popup-modal-active .elementor-location-header {
     background: transparent !important;
   }
   .servico_unidade_carrossel .elementor-widget-image {
-    width: 46px !important;
-    height: 46px !important;
+    width: 44px !important;
+    height: 44px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin: 0 auto 8px auto !important;
+    margin: 0 auto 6px auto !important;
   }
   .servico_unidade_carrossel img {
-    width: 44px !important;
-    height: 44px !important;
-    max-width: 44px !important;
-    max-height: 44px !important;
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
     object-fit: contain !important;
     display: block !important;
     margin: 0 auto !important;
@@ -5522,19 +5558,16 @@ body.elementor-popup-modal-active .elementor-location-header {
     -webkit-box-orient: vertical !important;
   }
 
-  #carrosselServicos .swiper-slide-next .servico_unidade_carrossel,
   #carrosselServicos .swiper-slide-active .servico_unidade_carrossel,
   .servico_unidade_carrossel.item_ativo {
     background-color: #e30613 !important;
     box-shadow: 0 6px 18px rgba(227, 6, 19, 0.4) !important;
-    transform: scale(1.03) !important;
+    transform: scale(1.02) !important;
   }
-  #carrosselServicos .swiper-slide-next .servico_unidade_carrossel img,
   #carrosselServicos .swiper-slide-active .servico_unidade_carrossel img,
   .servico_unidade_carrossel.item_ativo img {
     filter: brightness(0) invert(1) !important;
   }
-  #carrosselServicos .swiper-slide-next .servico_unidade_carrossel h4,
   #carrosselServicos .swiper-slide-active .servico_unidade_carrossel h4,
   .servico_unidade_carrossel.item_ativo h4 {
     color: #ffffff !important;
@@ -5550,20 +5583,24 @@ body.elementor-popup-modal-active .elementor-location-header {
     z-index: 10 !important;
   }
   #carrosselServicos .swiper-button-prev {
-    left: -4px !important;
+    left: 2px !important;
   }
   #carrosselServicos .swiper-button-next {
-    right: -4px !important;
+    right: 2px !important;
   }
 
+  /* DETALHES DO SERVIÇO (100% LARGURA ABAIXO DO CARROSSEL) */
+  .elementor-2 .elementor-element.elementor-element-c54c22f,
   .elementor-element.elementor-element-c54c22f {
     width: 100% !important;
     max-width: 100% !important;
     flex: 1 1 100% !important;
-    margin: 0 !important;
+    margin: 12px auto 0 auto !important;
     padding: 0 !important;
     background: transparent !important;
     display: block !important;
+    position: relative !important;
+    box-sizing: border-box !important;
   }
   .elementor-element.elementor-element-c54c22f > .elementor-column-wrap,
   .elementor-element.elementor-element-c54c22f:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
@@ -5571,20 +5608,24 @@ body.elementor-popup-modal-active .elementor-location-header {
     background-image: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    width: 100% !important;
   }
   div#gridServicos {
     width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     min-height: auto !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
     display: block !important;
   }
   div#gridServicos .dce-posts-container {
     width: 100% !important;
+    max-width: 100% !important;
   }
   div#gridServicos article {
     width: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -5592,12 +5633,13 @@ body.elementor-popup-modal-active .elementor-location-header {
   .servicos_exibicao,
   [id^="visualizacao_"] {
     width: 100% !important;
+    max-width: 100% !important;
     background: #222222 !important;
     border-radius: 14px !important;
     padding: 20px 16px !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
   }
   .servicos_exibicao .elementor-container,
   .servicos_exibicao .elementor-row,
@@ -5673,7 +5715,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 /* --------------------------------------------------------------------------
    5. BRIGADA DE INCÊNDIO (ZERO DUPLICAÇÃO DE FOTO)
    -------------------------------------------------------------------------- */
-/* Desktop / Landscape: A imagem fica no fundo à direita da seção, e a coluna 44bd2a0 é vazia/transparente */
+/* Desktop: A imagem fica no fundo à direita da seção, e a coluna 44bd2a0 é vazia/transparente */
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
   background-color: #ffffff !important;
@@ -6026,74 +6068,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     text-align: center !important;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   }
-
-  /* Painel de Serviços no Landscape */
-  div#gridServicos {
-    height: auto !important;
-    min-height: 190px !important;
-  }
-  .servicos_exibicao,
-  [id^="visualizacao_"] {
-    padding: 12px 14px !important;
-    min-height: 180px !important;
-    background: #2b2b2b !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
-  }
-  .servicos_exibicao .elementor-widget-wrap,
-  [id^="visualizacao_"] .elementor-widget-wrap {
-    display: grid !important;
-    grid-template-columns: 1.15fr 0.85fr !important;
-    grid-template-rows: auto auto auto !important;
-    grid-template-areas:
-      "title image"
-      "desc  image"
-      "btn   image" !important;
-    gap: 4px 12px !important;
-    align-items: center !important;
-    text-align: left !important;
-  }
-  .servicos_exibicao .elementor-widget-heading,
-  [id^="visualizacao_"] .elementor-widget-heading {
-    grid-area: title !important;
-  }
-  .servicos_exibicao .elementor-widget-text-editor,
-  [id^="visualizacao_"] .elementor-widget-text-editor {
-    grid-area: desc !important;
-    text-align: left !important;
-  }
-  .servicos_exibicao .elementor-widget-button,
-  [id^="visualizacao_"] .elementor-widget-button {
-    grid-area: btn !important;
-    text-align: left !important;
-  }
-  .servicos_exibicao .elementor-widget-image,
-  [id^="visualizacao_"] .elementor-widget-image {
-    grid-area: image !important;
-    height: 100% !important;
-  }
-  .servicos_exibicao .elementor-widget-image img,
-  [id^="visualizacao_"] .elementor-widget-image img {
-    max-height: 140px !important;
-    height: 130px !important;
-    object-fit: cover !important;
-    border-radius: 8px !important;
-  }
-
-  /* Brigada no Landscape */
-  .elementor-element.elementor-element-3662fd7 {
-    padding: 16px 24px !important;
-    min-height: calc(100vh - 48px) !important;
-    background-color: #ffffff !important;
-    background-image: url("./wp-content/uploads/2021/10/bombeiro.jpg") !important;
-    background-size: auto 98% !important;
-    background-position: right bottom !important;
-    background-repeat: no-repeat !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
-    background-image: none !important;
-    background: transparent !important;
-  }
 }
 </style>
 
@@ -6164,7 +6138,7 @@ body.elementor-popup-modal-active .elementor-location-header {
     }
   }
 
-  function initMenuEvents() {
+  function initMenuAndServices() {
     if (window.jQuery) {
       jQuery(document).on('elementor/popup/show', function() {
         var h = document.querySelector('#headerInda, .elementor-location-header');
@@ -6175,6 +6149,7 @@ body.elementor-popup-modal-active .elementor-location-header {
         if (h) h.style.removeProperty('display');
       });
 
+      // Interactive Services Selection
       jQuery(document).on('click', '#carrosselServicos .servico_unidade_carrossel, #carrosselServicos .swiper-slide', function() {
         var self = jQuery(this);
         var secId = self.find('section').attr('id') || self.attr('id');
@@ -6187,6 +6162,18 @@ body.elementor-popup-modal-active .elementor-location-header {
           self.closest('.servico_unidade_carrossel').addClass('item_ativo');
         }
       });
+
+      // Default first active item
+      setTimeout(function() {
+        var activeArticles = jQuery('#gridServicos article:visible');
+        if (activeArticles.length === 0) {
+          jQuery('#gridServicos article:first-child').css('display', 'block');
+        }
+        var activeItem = jQuery('#carrosselServicos .servico_unidade_carrossel.item_ativo');
+        if (activeItem.length === 0) {
+          jQuery('#carrosselServicos .swiper-slide:first-child .servico_unidade_carrossel').addClass('item_ativo');
+        }
+      }, 500);
     }
   }
 
@@ -6194,12 +6181,12 @@ body.elementor-popup-modal-active .elementor-location-header {
     document.addEventListener('DOMContentLoaded', function() {
       initCounters();
       initLazyVideos();
-      initMenuEvents();
+      initMenuAndServices();
     });
   } else {
     initCounters();
     initLazyVideos();
-    initMenuEvents();
+    initMenuAndServices();
   }
 })();
 </script>
