@@ -35,21 +35,7 @@
 
 
 
-/* ==========================================================================
-   TABLET & LANDSCAPE (768px - 1024px)
-   ========================================================================== */
-@media(min-width:768px) and (max-width:1024px){
-  .elementor-37 .elementor-element.elementor-element-20668c0{display:none !important;}
-  .elementor-37 .elementor-element.elementor-element-315d4c1{display:none !important;}
-  .elementor-37 .elementor-element.elementor-element-8755157{display:flex !important; align-items:center; justify-content:center;}
-  .elementor-37 .elementor-element.elementor-element-8755157 .elementor-icon{font-size:16px !important; width:34px !important; height:34px !important; border:1.5px solid #d9232a !important; border-radius:6px !important; color:#d9232a !important; background:rgba(217,35,42,0.04) !important; display:inline-flex !important; align-items:center !important; justify-content:center !important;}
-  .elementor-37 .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row{display:flex !important; flex-direction:row !important; flex-wrap:nowrap !important; align-items:center !important; justify-content:space-between !important; width:100% !important;}
-  .elementor-37 .elementor-element.elementor-element-2e5c5af{order:1 !important; width:auto !important; flex:0 0 auto !important; padding:0 !important; margin:0 !important;}
-  .elementor-37 .elementor-element.elementor-element-3de852d{order:2 !important; width:auto !important; flex:1 1 auto !important; padding:0 !important; margin:0 auto !important; display:flex !important; justify-content:center !important; align-items:center !important;}
-  .elementor-37 .elementor-element.elementor-element-712ae1c{width:auto !important; max-width:none !important; margin:0 auto !important;}
-  .elementor-37 .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper{display:flex !important; flex-direction:row !important; gap:8px !important; justify-content:center !important; align-items:center !important;}
-  .elementor-37 .elementor-element.elementor-element-0d060a6{order:3 !important; width:auto !important; flex:0 0 auto !important; padding:0 !important; margin:0 !important; display:flex !important; justify-content:flex-end !important; align-items:center !important;}
-}
+
 
 /* ==========================================================================
    MOBILE VERTICAL (<= 767px) - HEADER CRITICO, COMPACTO E PERFEITAMENTE CENTRALIZADO
