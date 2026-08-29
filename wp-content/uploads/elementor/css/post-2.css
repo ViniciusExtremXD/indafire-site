@@ -192,6 +192,25 @@
   }
 }
 
+
+  .elementor-2 .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    flex: 1 1 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    flex: 1 1 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
 /* ==========================================================================
    MODELO 1: CELULAR NA VERTICAL (PORTRAIT <= 767px)
    ========================================================================== */
