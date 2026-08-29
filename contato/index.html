@@ -121,6 +121,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4459,6 +4462,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4500,19 +4511,98 @@ document.addEventListener('DOMContentLoaded', function () {
   opacity: 1 !important;
 }
 
-/* PURE CSS: Esconder cabeçalho quando o menu gaveta / popup estiver aberto */
-body:has(.elementor-popup-modal:not([style*="display: none"])),
-body:has(.dialog-widget:not([style*="display: none"])),
+/* --------------------------------------------------------------------------
+   1. MENU GAVETA / POPUP 2519 (HAMBÚRGUER PERFEITO)
+   -------------------------------------------------------------------------- */
 body.elementor-popup-modal-active #headerInda,
 body.elementor-popup-modal-active .elementor-location-header {
-  display: none !important;
-  visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
 }
 
+#elementor-popup-modal-2519,
+.dialog-type-lightbox.elementor-popup-modal {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 999999 !important;
+  pointer-events: all !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
+}
+
+#elementor-popup-modal-2519 .dialog-widget-content,
+.dialog-type-lightbox.elementor-popup-modal .dialog-widget-content {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  width: 85vw !important;
+  max-width: 360px !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.25) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+#elementor-popup-modal-2519 .dialog-message,
+.dialog-type-lightbox .dialog-message {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+#elementor-popup-modal-2519 .elementor-2519,
+.dialog-type-lightbox .elementor-location-popup {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: #ffffff !important;
+  padding: 24px 20px !important;
+  height: auto !important;
+  min-height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#elementor-popup-modal-2519 .dialog-close-button,
+.dialog-type-lightbox .dialog-close-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 38px !important;
+  height: 38px !important;
+  font-size: 22px !important;
+  color: #222222 !important;
+  cursor: pointer !important;
+  z-index: 1000000 !important;
+}
+
+#elementor-popup-modal-2519 .elementor-icon-list-item,
+.dialog-type-lightbox .elementor-icon-list-item {
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+#elementor-popup-modal-2519 .elementor-icon-list-item a,
+.dialog-type-lightbox .elementor-icon-list-item a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #1d6896 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
 /* --------------------------------------------------------------------------
-   1. CABEÇALHO NO MOBILE VERTICAL (<= 767px): APENAS LOGO + HAMBÚRGUER COMPACTO
+   2. CABEÇALHO NO MOBILE VERTICAL (<= 767px)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   #headerInda,
@@ -4629,7 +4719,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   2. HERO VIDEO NO MOBILE VERTICAL (COBERTURA TOTAL)
+   3. HERO VIDEO NO MOBILE VERTICAL (COBERTURA TOTAL)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .elementor-element.elementor-element-1766569,
@@ -4736,7 +4826,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   3. CARDS DE EXPERIÊNCIA/NÚMEROS (#conteudo)
+   4. CARDS DE EXPERIÊNCIA/NÚMEROS (#conteudo)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .elementor-element.elementor-element-731cf7e > .elementor-container {
@@ -4892,7 +4982,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   4. SEÇÃO DE SERVIÇOS NO MOBILE & TABLET (100% SEÇÃO VERTICAL ELEGANTE)
+   5. SEÇÃO DE SERVIÇOS NO MOBILE & TABLET (100% SEÇÃO VERTICAL ELEGANTE)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .elementor-2 .elementor-element.elementor-element-3432f15,
@@ -5228,7 +5318,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   5. BRIGADA DE INCÊNDIO (FOTO DO BOMBEIRO DESTACADA E ZERO DUPLICAÇÃO)
+   6. BRIGADA DE INCÊNDIO (FOTO DO BOMBEIRO DESTACADA E ZERO DUPLICAÇÃO)
    -------------------------------------------------------------------------- */
 /* Desktop: A imagem fica no fundo à direita da seção, e a coluna 44bd2a0 é vazia/transparente */
 .elementor-element.elementor-element-3662fd7 {
@@ -5394,7 +5484,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   6. MOBILE HORIZONTAL (LANDSCAPE)
+   7. MOBILE HORIZONTAL (LANDSCAPE)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) and (orientation: landscape),
        (max-height: 620px) and (orientation: landscape),
@@ -5655,13 +5745,14 @@ body.elementor-popup-modal-active .elementor-location-header {
 
   function initMenuAndServices() {
     if (window.jQuery) {
+      // Menu popup open/close header handling
       jQuery(document).on('elementor/popup/show', function() {
         var h = document.querySelector('#headerInda, .elementor-location-header');
-        if (h) h.style.setProperty('display', 'none', 'important');
+        if (h) h.style.setProperty('visibility', 'hidden', 'important');
       });
       jQuery(document).on('elementor/popup/hide', function() {
         var h = document.querySelector('#headerInda, .elementor-location-header');
-        if (h) h.style.removeProperty('display');
+        if (h) h.style.removeProperty('visibility');
       });
 
       // Interactive Services Selection
