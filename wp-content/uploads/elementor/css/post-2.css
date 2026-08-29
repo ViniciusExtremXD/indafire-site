@@ -173,6 +173,25 @@
   }
 }
 
+
+  .elementor-2 .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    flex: 1 1 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    flex: 1 1 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
 /* ==========================================================================
    MODELO 1: CELULAR NA VERTICAL (PORTRAIT <= 767px)
    ========================================================================== */
@@ -262,6 +281,27 @@
   .elementor-2 .elementor-element.elementor-element-d88d016:not(.elementor-motion-effects-element-type-background),
   .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
     background-image: none !important;
+  }
+
+  /* Produtos Carousel Ampliado */
+  .elementor-2 .elementor-element.elementor-element-aa7688d > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 20px 10px !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-9218be1 > .elementor-widget-container {
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-main-swiper {
+    height: 320px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-carousel-image {
+    width: 240px !important;
+    max-width: 240px !important;
+    height: 270px !important;
+    min-height: 270px !important;
+    margin: 0 auto !important;
   }
 }
 
