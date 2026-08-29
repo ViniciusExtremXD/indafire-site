@@ -115,13 +115,7 @@
   }
 }
 
-@media(max-width:1024px){
-  .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
-  .elementor-2 .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-  }
+
   .elementor-2 .elementor-element.elementor-element-c99c7c0,
   .elementor-2 .elementor-element.elementor-element-c54c22f {
     width: 100% !important;
@@ -130,7 +124,68 @@
     margin: 0 auto !important;
   }
 }
-@media(max-width:767px){
+
+  .elementor-2 .elementor-element.elementor-element-83e674d {
+    text-align: center !important;
+    margin-bottom: 14px !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-83e674d .elementor-heading-title {
+    text-align: center !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-4d85c96,
+  .elementor-2 .elementor-element.elementor-element-4d85c96 p {
+    text-align: center !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-af40c63 {
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-3662fd7:not(.elementor-motion-effects-element-type-background),
+  .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+  .elementor-2 .elementor-element.elementor-element-3662fd7 {
+    background-image: none !important;
+    padding-bottom: 0px !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-3fbc3d7:not(.elementor-motion-effects-element-type-background),
+  .elementor-2 .elementor-element.elementor-element-3fbc3d7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+  .elementor-2 .elementor-element.elementor-element-d88d016:not(.elementor-motion-effects-element-type-background),
+  .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-image: none !important;
+  }
+}
+
+/* ==========================================================================
+   MODELO 1: CELULAR NA VERTICAL (PORTRAIT <= 767px)
+   ========================================================================== */
+@media (max-width: 767px) and (orientation: portrait), (max-width: 767px) {
+  .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
+  .elementor-2 .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    float: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    float: none !important;
+    margin: 16px auto 0 auto !important;
+    padding: 0 !important;
+  }
   .elementor-2 .elementor-element.elementor-element-c91e9f8 > .elementor-element-populated > .elementor-widget-wrap {
     padding: 10px 10px !important;
     display: flex !important;
@@ -165,5 +220,37 @@
   .elementor-2 .elementor-element.elementor-element-d88d016:not(.elementor-motion-effects-element-type-background),
   .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
     background-image: none !important;
+  }
+}
+
+/* ==========================================================================
+   MODELO 2: CELULAR NA HORIZONTAL (LANDSCAPE)
+   ========================================================================== */
+@media (max-width: 1024px) and (orientation: landscape),
+       (max-height: 620px) and (orientation: landscape) {
+  .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    flex: 1 1 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    flex: 1 1 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }

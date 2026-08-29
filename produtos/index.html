@@ -136,6 +136,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -5072,6 +5075,14 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -5106,7 +5117,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 <style id="indafire-mobile-portrait-landscape-master-override">
 /* ==========================================================================
-   INDAFIRE - CORREÇÕES GLOBAIS DE MOBILE (VERTICAL & HORIZONTAL)
+   INDAFIRE - MASTER RESPONSIVE OVERRIDE (DUAL MODEL: PORTRAIT & LANDSCAPE)
    ========================================================================== */
 .elementor-invisible {
   visibility: visible !important;
@@ -5114,7 +5125,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 }
 
 /* --------------------------------------------------------------------------
-   1. MENU GAVETA / POPUP 2519 (DESIGN MODERNO & FECHAMENTO PERFEITO)
+   MENU GAVETA / POPUP 2519 (UNIVERSAL)
    -------------------------------------------------------------------------- */
 body.elementor-popup-modal-active #headerInda,
 body.elementor-popup-modal-active .elementor-location-header {
@@ -5182,7 +5193,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   box-sizing: border-box !important;
 }
 
-/* Botão Fechar */
 #elementor-popup-modal-2519 .dialog-close-button,
 .dialog-type-lightbox .dialog-close-button {
   position: absolute !important;
@@ -5208,7 +5218,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   color: #ffffff !important;
 }
 
-/* Logo no Topo */
 .elementor-2519 .elementor-element.elementor-element-0de540b {
   margin: 0 0 16px 0 !important;
   padding-bottom: 14px !important;
@@ -5223,7 +5232,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   margin: 0 !important;
 }
 
-/* Links do Menu Principal (Texto na Esquerda, Seta Vermelha na Direita) */
 .elementor-2519 .elementor-element.elementor-element-6ee6e25 {
   margin: 0 0 14px 0 !important;
 }
@@ -5271,7 +5279,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   justify-content: center !important;
 }
 
-/* Divisores */
 .elementor-2519 .elementor-element.elementor-element-cd75a00,
 .elementor-2519 .elementor-element.elementor-element-b504b34 {
   margin: 10px 0 8px 0 !important;
@@ -5281,7 +5288,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   border-top: 1px solid #f0f0f0 !important;
 }
 
-/* Títulos de Seção (Contato / Endereço) */
 .elementor-2519 .elementor-element.elementor-element-927d68d,
 .elementor-2519 .elementor-element.elementor-element-56111dd {
   margin: 12px 0 8px 0 !important;
@@ -5297,7 +5303,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   margin: 0 !important;
 }
 
-/* Lista de Contato & Endereço (Ícone na Esquerda, Texto na Direita) */
 .elementor-2519 .elementor-element.elementor-element-ad6a302,
 .elementor-2519 .elementor-element.elementor-element-24f1891 {
   margin: 0 !important;
@@ -5354,10 +5359,13 @@ body.elementor-popup-modal-active .elementor-location-header {
   color: #e30613 !important;
 }
 
-/* --------------------------------------------------------------------------
-   2. CABEÇALHO NO MOBILE VERTICAL (<= 767px)
-   -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
+
+/* ==========================================================================
+   MODELO 1: CELULAR NA VERTICAL (PORTRAIT <= 767px)
+   ========================================================================== */
+@media (max-width: 767px) and (orientation: portrait), (max-width: 767px) {
+
+  /* Cabeçalho */
   #headerInda,
   .elementor-location-header {
     height: 52px !important;
@@ -5369,7 +5377,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     box-sizing: border-box !important;
     background: transparent !important;
   }
-
   .elementor-element.elementor-element-46583ef {
     height: 46px !important;
     min-height: 46px !important;
@@ -5383,7 +5390,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     width: 95% !important;
     max-width: 95% !important;
   }
-
   .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
     display: flex !important;
     flex-direction: row !important;
@@ -5395,7 +5401,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 !important;
     padding: 0 !important;
   }
-
   .elementor-element.elementor-element-2e5c5af {
     order: 1 !important;
     flex: 0 0 auto !important;
@@ -5417,14 +5422,12 @@ body.elementor-popup-modal-active .elementor-location-header {
     display: block !important;
     margin: 0 !important;
   }
-
   .elementor-element.elementor-element-3de852d,
   .elementor-element.elementor-element-315d4c1,
   .elementor-element.elementor-element-712ae1c,
   .elementor-element.elementor-element-20668c0 {
     display: none !important;
   }
-
   .elementor-element.elementor-element-0d060a6 {
     order: 2 !important;
     flex: 0 0 auto !important;
@@ -5469,12 +5472,8 @@ body.elementor-popup-modal-active .elementor-location-header {
     box-sizing: border-box !important;
     padding: 0 !important;
   }
-}
 
-/* --------------------------------------------------------------------------
-   3. HERO VIDEO NO MOBILE VERTICAL (COBERTURA TOTAL & BOTÃO PRA BAIXO)
-   -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
+  /* Hero */
   .elementor-element.elementor-element-1766569,
   .elementor-element.elementor-element-e4322a0,
   .elementor-element.elementor-element-e61ec37,
@@ -5490,7 +5489,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     overflow: hidden !important;
     background-color: #1a1a1a !important;
   }
-
   .elementor-element.elementor-element-98ce606 > .elementor-container {
     min-height: calc(100vh - 54px) !important;
     height: 100% !important;
@@ -5502,42 +5500,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     padding: 0 16px !important;
     box-sizing: border-box !important;
   }
-
-  .elementor-background-video-container {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important;
-    z-index: 0 !important;
-  }
-
-  .elementor-background-video-container iframe,
-  .elementor-background-video-embed iframe,
-  .elementor-background-video-container video {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(1.35) !important;
-    min-width: 100% !important;
-    min-height: 100% !important;
-    width: 178vh !important;
-    height: 100vh !important;
-    object-fit: cover !important;
-    pointer-events: none !important;
-  }
-
-  .elementor-element.elementor-element-98ce606 > .elementor-background-overlay {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: rgba(0, 0, 0, 0.45) !important;
-    z-index: 1 !important;
-  }
-
   .elementor-element.elementor-element-98ce606 > .elementor-container > .elementor-row,
   .elementor-element.elementor-element-88a0cfb,
   .elementor-element.elementor-element-88a0cfb > .elementor-column-wrap,
@@ -5553,7 +5515,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 !important;
     padding: 0 !important;
   }
-
   .elementor-element.elementor-element-ac9c795 {
     width: 100% !important;
     max-width: 480px !important;
@@ -5565,7 +5526,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     justify-content: center !important;
     text-align: center !important;
   }
-
   .elementor-element.elementor-element-affa771 .elementor-heading-title {
     font-size: 1.45rem !important;
     line-height: 1.25 !important;
@@ -5577,7 +5537,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 0 12px 0 !important;
     text-align: center !important;
   }
-
   .elementor-element.elementor-element-29e9bcc .elementor-heading-title {
     font-size: 0.8rem !important;
     line-height: 1.4 !important;
@@ -5589,8 +5548,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 !important;
     text-align: center !important;
   }
-
-  /* BOTÃO PRA BAIXO BEM POSICIONADO NO FUNDO */
   .elementor-element.elementor-element-e671c55 {
     position: absolute !important;
     bottom: 24px !important;
@@ -5600,7 +5557,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     z-index: 10 !important;
     display: block !important;
   }
-
   .elementor-element.elementor-element-e671c55 .elementor-icon {
     font-size: 20px !important;
     width: 44px !important;
@@ -5614,27 +5570,14 @@ body.elementor-popup-modal-active .elementor-location-header {
     align-items: center !important;
     justify-content: center !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-    transition: all 0.2s ease !important;
   }
-}
 
-/* --------------------------------------------------------------------------
-   4. CARDS DE EXPERIÊNCIA/NÚMEROS & SOBRE NÓS (#conteudo)
-   -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
+  /* Cards de Experiência (#conteudo) */
   #conteudo {
     padding: 24px 12px 10px 12px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
-
-  #conteudo > .elementor-container {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-  }
-
   #conteudo > .elementor-container > .elementor-row {
     display: flex !important;
     flex-direction: column !important;
@@ -5642,13 +5585,11 @@ body.elementor-popup-modal-active .elementor-location-header {
     width: 100% !important;
     gap: 16px !important;
   }
-
   .elementor-element.elementor-element-1ffb393 {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
   }
-
   .elementor-element.elementor-element-f195a0e,
   .elementor-element.elementor-element-c8f1cd7,
   .elementor-element.elementor-element-8da6b11 {
@@ -5662,7 +5603,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     box-sizing: border-box !important;
     display: block !important;
   }
-
   .elementor-element.elementor-element-f195a0e > .elementor-container > .elementor-row,
   .elementor-element.elementor-element-c8f1cd7 > .elementor-container > .elementor-row,
   .elementor-element.elementor-element-8da6b11 > .elementor-container > .elementor-row {
@@ -5676,7 +5616,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 !important;
     padding: 0 !important;
   }
-
   .elementor-element.elementor-element-a3dab2c,
   .elementor-element.elementor-element-b2860d9,
   .elementor-element.elementor-element-03ad2f7 {
@@ -5691,17 +5630,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     align-items: center !important;
     justify-content: center !important;
   }
-  .elementor-element.elementor-element-a3dab2c .elementor-widget-wrap,
-  .elementor-element.elementor-element-b2860d9 .elementor-widget-wrap,
-  .elementor-element.elementor-element-03ad2f7 .elementor-widget-wrap {
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
   .elementor-element.elementor-element-166d00a img,
   .elementor-element.elementor-element-312be29 img,
   .elementor-element.elementor-element-3bbd276 img {
@@ -5709,91 +5637,11 @@ body.elementor-popup-modal-active .elementor-location-header {
     height: 44px !important;
     max-width: 44px !important;
     max-height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
     object-fit: contain !important;
     display: block !important;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
   }
 
-  .elementor-element.elementor-element-0bb67cf,
-  .elementor-element.elementor-element-d21256a,
-  .elementor-element.elementor-element-e00b83b {
-    flex: 1 1 auto !important;
-    width: auto !important;
-    min-width: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    text-align: left !important;
-  }
-  .elementor-element.elementor-element-0bb67cf .elementor-widget-wrap,
-  .elementor-element.elementor-element-d21256a .elementor-widget-wrap,
-  .elementor-element.elementor-element-e00b83b .elementor-widget-wrap {
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    width: 100% !important;
-    gap: 2px !important;
-  }
-
-  .elementor-element.elementor-element-937bbbc .elementor-counter-number-wrapper,
-  .elementor-element.elementor-element-7bcc8f3 .elementor-counter-number-wrapper,
-  .elementor-element.elementor-element-a8399ee .elementor-counter-number-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: baseline !important;
-    justify-content: flex-start !important;
-    font-size: 1.65rem !important;
-    font-weight: 800 !important;
-    color: #ffffff !important;
-    line-height: 1 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    gap: 3px !important;
-  }
-  .elementor-counter-number-prefix {
-    font-size: 1.45rem !important;
-    font-weight: 800 !important;
-    color: #ffffff !important;
-    line-height: 1 !important;
-  }
-  .elementor-counter-number {
-    font-size: 1.65rem !important;
-    font-weight: 800 !important;
-    color: #ffffff !important;
-    line-height: 1 !important;
-    letter-spacing: -0.5px !important;
-  }
-  .elementor-counter-number-suffix {
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    line-height: 1 !important;
-    margin-left: 2px !important;
-  }
-
-  .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
-  .elementor-element.elementor-element-e676369 .elementor-heading-title,
-  .elementor-element.elementor-element-ad5453c .elementor-heading-title {
-    font-size: 0.8rem !important;
-    line-height: 1.25 !important;
-    font-weight: 400 !important;
-    color: #e0e0e0 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    margin: 0 !important;
-    text-align: left !important;
-  }
-
-  /* SOBRE NÓS (ALINHADO E CENTRALIZADO NO MOBILE) */
+  /* Sobre Nós */
   .elementor-element.elementor-element-c91e9f8 {
     width: 100% !important;
     max-width: 100% !important;
@@ -5817,7 +5665,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     justify-content: center !important;
     text-align: center !important;
   }
-
   .elementor-element.elementor-element-83e674d {
     width: 100% !important;
     margin: 0 0 14px 0 !important;
@@ -5832,7 +5679,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     text-align: center !important;
     margin: 0 !important;
   }
-
   .elementor-element.elementor-element-4d85c96 {
     width: 100% !important;
     max-width: 480px !important;
@@ -5847,7 +5693,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     text-align: center !important;
     margin: 0 0 14px 0 !important;
   }
-
   .elementor-element.elementor-element-af40c63 {
     width: 100% !important;
     display: flex !important;
@@ -5872,15 +5717,9 @@ body.elementor-popup-modal-active .elementor-location-header {
     background-color: #e30613 !important;
     color: #ffffff !important;
     box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
-    text-decoration: none !important;
   }
-}
 
-/* --------------------------------------------------------------------------
-   5. SEÇÃO DE SERVIÇOS NO MOBILE & TABLET (100% SEÇÃO VERTICAL ELEGANTE)
-   -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .elementor-2 .elementor-element.elementor-element-3432f15,
+  /* SERVIÇOS NO MOBILE VERTICAL (COLUNA VERTICAL TOTAL SEM SOBREPOSIÇÃO) */
   .elementor-element.elementor-element-3432f15 {
     width: 100% !important;
     max-width: 100% !important;
@@ -5896,16 +5735,12 @@ body.elementor-popup-modal-active .elementor-location-header {
     box-sizing: border-box !important;
     width: 96% !important;
     margin: 0 auto !important;
+    overflow: hidden !important;
   }
-
-  .elementor-2 .elementor-element.elementor-element-3fbc3d7,
-  .elementor-2 .elementor-element.elementor-element-d88d016,
   .elementor-element.elementor-element-3fbc3d7,
-  .elementor-element.elementor-element-d88d016,
-  .elementor-element.elementor-element-3fbc3d7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
-  .elementor-element.elementor-element-d88d016 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+  .elementor-element.elementor-element-d88d016 {
+    background: transparent !important;
     background-image: none !important;
-    background-color: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
     width: 100% !important;
@@ -5930,79 +5765,80 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 auto 16px auto !important;
   }
 
-  .elementor-2 .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
-  .elementor-2 .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-d88d016 > .elementor-container,
+  .elementor-element.elementor-element-3fbc3d7 > .elementor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
   .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
   .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
     display: flex !important;
     flex-direction: column !important;
+    flex-wrap: wrap !important;
     width: 100% !important;
+    max-width: 100% !important;
     gap: 16px !important;
     margin: 0 auto !important;
     padding: 0 !important;
   }
 
-  .elementor-2 .elementor-element.elementor-element-c99c7c0,
+  /* Coluna 1: Carrossel (100% largura) */
   .elementor-element.elementor-element-c99c7c0 {
     width: 100% !important;
     max-width: 100% !important;
-    flex: 1 1 100% !important;
+    flex: 0 0 100% !important;
+    display: block !important;
+    float: none !important;
     margin: 0 auto !important;
     padding: 0 !important;
-    display: block !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  /* O CARROSSEL OCUPA A LARGURA TOTAL COM CARDS NÍTIDOS */
   #carrosselServicos {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 6px 0 !important;
+    padding: 4px 34px !important;
     position: relative !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
+    overflow: visible !important;
   }
-  #carrosselServicos .dce-posts-container {
-    padding: 6px 0 !important;
-    overflow: hidden !important;
-    width: 100% !important;
-  }
+  #carrosselServicos .dce-posts-container,
   #carrosselServicos .swiper-container {
     width: 100% !important;
+    max-width: 100% !important;
     overflow: hidden !important;
     padding: 4px 0 !important;
+    margin: 0 auto !important;
   }
   #carrosselServicos .swiper-wrapper {
     display: flex !important;
     flex-direction: row !important;
-    align-items: center !important;
+    align-items: stretch !important;
     width: 100% !important;
+    margin: 0 !important;
   }
   #carrosselServicos .swiper-slide {
-    width: 140px !important;
-    min-width: 140px !important;
-    max-width: 140px !important;
-    height: 140px !important;
-    min-height: 140px !important;
-    max-height: 140px !important;
-    margin-right: 12px !important;
+    width: 125px !important;
+    min-width: 125px !important;
+    max-width: 125px !important;
+    height: 130px !important;
+    min-height: 130px !important;
+    margin-right: 10px !important;
+    flex: 0 0 125px !important;
     box-sizing: border-box !important;
-    flex: 0 0 140px !important;
-    flex-shrink: 0 !important;
   }
 
   .servico_unidade_carrossel,
   .elementor-element.elementor-element-1a58808 {
     width: 100% !important;
     height: 100% !important;
-    min-width: 140px !important;
-    max-width: 140px !important;
-    min-height: 140px !important;
-    max-height: 140px !important;
     background: #ffffff !important;
     border-radius: 14px !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
-    padding: 14px 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    padding: 12px 6px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -6028,30 +5864,30 @@ body.elementor-popup-modal-active .elementor-location-header {
     background: transparent !important;
   }
   .servico_unidade_carrossel .elementor-widget-image {
-    width: 44px !important;
-    height: 44px !important;
+    width: 38px !important;
+    height: 38px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     margin: 0 auto 6px auto !important;
   }
   .servico_unidade_carrossel img {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
+    width: 36px !important;
+    height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
     object-fit: contain !important;
     display: block !important;
     margin: 0 auto !important;
   }
   .servico_unidade_carrossel h4 {
-    font-size: 11px !important;
-    line-height: 1.25 !important;
+    font-size: 10.5px !important;
+    line-height: 1.2 !important;
     font-weight: 700 !important;
     color: #222222 !important;
     text-align: center !important;
     margin: 0 !important;
-    max-width: 120px !important;
+    max-width: 110px !important;
     overflow: hidden !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
@@ -6062,7 +5898,6 @@ body.elementor-popup-modal-active .elementor-location-header {
   .servico_unidade_carrossel.item_ativo {
     background-color: #e30613 !important;
     box-shadow: 0 6px 18px rgba(227, 6, 19, 0.4) !important;
-    transform: scale(1.02) !important;
   }
   #carrosselServicos .swiper-slide-active .servico_unidade_carrossel img,
   .servico_unidade_carrossel.item_ativo img {
@@ -6080,7 +5915,8 @@ body.elementor-popup-modal-active .elementor-location-header {
     height: 28px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    z-index: 10 !important;
+    z-index: 20 !important;
+    position: absolute !important;
   }
   #carrosselServicos .swiper-button-prev {
     left: 2px !important;
@@ -6089,21 +5925,19 @@ body.elementor-popup-modal-active .elementor-location-header {
     right: 2px !important;
   }
 
-  /* DETALHES DO SERVIÇO (100% LARGURA ABAIXO DO CARROSSEL) */
-  .elementor-2 .elementor-element.elementor-element-c54c22f,
+  /* Coluna 2: Detalhes do Serviço (Abaixo do Carrossel) */
   .elementor-element.elementor-element-c54c22f {
     width: 100% !important;
     max-width: 100% !important;
-    flex: 1 1 100% !important;
-    margin: 12px auto 0 auto !important;
+    flex: 0 0 100% !important;
+    display: block !important;
+    float: none !important;
+    margin: 8px auto 0 auto !important;
     padding: 0 !important;
     background: transparent !important;
-    display: block !important;
-    position: relative !important;
     box-sizing: border-box !important;
   }
-  .elementor-element.elementor-element-c54c22f > .elementor-column-wrap,
-  .elementor-element.elementor-element-c54c22f:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
+  .elementor-element.elementor-element-c54c22f > .elementor-column-wrap {
     background: transparent !important;
     background-image: none !important;
     padding: 0 !important;
@@ -6113,16 +5947,11 @@ body.elementor-popup-modal-active .elementor-location-header {
   div#gridServicos {
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
     margin: 0 auto !important;
     padding: 0 !important;
     display: block !important;
   }
-  div#gridServicos .dce-posts-container {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
+  div#gridServicos .dce-posts-container,
   div#gridServicos article {
     width: 100% !important;
     max-width: 100% !important;
@@ -6141,36 +5970,14 @@ body.elementor-popup-modal-active .elementor-location-header {
     box-sizing: border-box !important;
     margin: 0 auto !important;
   }
-  .servicos_exibicao .elementor-container,
-  .servicos_exibicao .elementor-row,
-  .servicos_exibicao .elementor-column,
-  .servicos_exibicao .elementor-column-wrap,
-  .servicos_exibicao .elementor-widget-wrap,
-  [id^="visualizacao_"] .elementor-widget-wrap {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    gap: 8px !important;
-  }
-  .servicos_exibicao .elementor-widget-image,
-  [id^="visualizacao_"] .elementor-widget-image {
-    width: 100% !important;
-    max-width: 280px !important;
-    margin: 0 auto 6px auto !important;
-  }
   .servicos_exibicao .elementor-widget-image img,
   [id^="visualizacao_"] .elementor-widget-image img {
     width: 100% !important;
     max-width: 280px !important;
-    height: 150px !important;
-    max-height: 150px !important;
+    height: 140px !important;
+    max-height: 140px !important;
     object-fit: cover !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     display: block !important;
     margin: 0 auto !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
@@ -6178,12 +5985,12 @@ body.elementor-popup-modal-active .elementor-location-header {
   .servicos_exibicao .elementor-heading-title,
   .servicos_exibicao h3,
   [id^="visualizacao_"] h3 {
-    font-size: 1.25rem !important;
+    font-size: 1.2rem !important;
     line-height: 1.25 !important;
     color: #ffffff !important;
     font-weight: 800 !important;
     text-align: center !important;
-    margin: 4px 0 0 0 !important;
+    margin: 6px 0 0 0 !important;
   }
   .servicos_exibicao .elementor-widget-text-editor,
   [id^="visualizacao_"] .elementor-widget-text-editor,
@@ -6194,7 +6001,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     color: #dddddd !important;
     text-align: center !important;
     margin: 0 !important;
-    max-width: 95% !important;
   }
   .servicos_exibicao .elementor-button,
   [id^="visualizacao_"] .elementor-button {
@@ -6207,98 +6013,11 @@ body.elementor-popup-modal-active .elementor-location-header {
     color: #ffffff !important;
     border-radius: 25px !important;
     box-shadow: 0 4px 12px rgba(227, 6, 19, 0.4) !important;
-    margin: 6px auto 0 auto !important;
+    margin: 8px auto 0 auto !important;
     text-decoration: none !important;
   }
-}
 
-/* --------------------------------------------------------------------------
-   6. BRIGADA DE INCÊNDIO (FOTO DO BOMBEIRO DESTACADA E ZERO DUPLICAÇÃO)
-   -------------------------------------------------------------------------- */
-/* Desktop: A imagem fica no fundo à direita da seção, e a coluna 44bd2a0 é vazia/transparente */
-.elementor-element.elementor-element-3662fd7 {
-  position: relative !important;
-  background-color: #ffffff !important;
-  background-image: url("./wp-content/uploads/2021/10/bombeiro.jpg") !important;
-  background-position: right bottom !important;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-  padding: 60px 0 60px 0 !important;
-  min-height: 540px !important;
-  overflow: hidden !important;
-}
-.elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
-  background-image: none !important;
-  background: transparent !important;
-}
-
-.elementor-element.elementor-element-42aaacd > .elementor-widget-container,
-.elementor-element.elementor-element-9d7bf30 > .elementor-widget-container {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.elementor-element.elementor-element-42aaacd .elementor-heading-title {
-  margin: 0 0 4px 0 !important;
-}
-.elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
-  margin: 0 0 8px 0 !important;
-}
-.elementor-element.elementor-element-989c3cc {
-  margin: 16px 0 0 0 !important;
-}
-.elementor-element.elementor-element-989c3cc > .elementor-widget-container {
-  margin: 0 !important;
-  padding: 0 !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18) !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-}
-.elementor-element.elementor-element-989c3cc video {
-  border-radius: 12px !important;
-  display: block !important;
-}
-.elementor-element.elementor-element-08f0d01 {
-  margin: 0 !important;
-  padding: 45px 20px !important;
-  background: #1f1f1f !important;
-  border-radius: 0 !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-.elementor-element.elementor-element-08f0d01 .elementor-container {
-  max-width: 1140px !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-}
-.elementor-element.elementor-element-08f0d01 .elementor-row {
-  display: flex !important;
-  flex-direction: row !important;
-  width: 100% !important;
-}
-.elementor-element.elementor-element-c105b75 {
-  display: none !important;
-}
-.elementor-element.elementor-element-24ac6f3 {
-  width: 100% !important;
-  max-width: 100% !important;
-  flex: 1 1 100% !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-}
-.elementor-element.elementor-element-24ac6f3 > .elementor-column-wrap,
-.elementor-element.elementor-element-24ac6f3:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
-  background: transparent !important;
-}
-.elementor-element.elementor-element-24ac6f3 > .elementor-element-populated > .elementor-widget-wrap {
-  padding: 0 !important;
-}
-.elementor-element.elementor-element-c323325 .elementor-heading-title {
-  color: #ffffff !important;
-  margin-bottom: 20px !important;
-}
-
-/* BRIGADA NO MOBILE VERTICAL (BOMBEIRO MAIOR E DESTACADO) */
-@media (max-width: 767px) {
+  /* Brigada de Incêndio (Mobile Vertical) */
   .elementor-element.elementor-element-3662fd7,
   .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container,
   .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
@@ -6362,8 +6081,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     display: block !important;
     width: 100% !important;
   }
-
-  /* FOTO DO BOMBEIRO MAIOR E DESTACADA */
   .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
     display: block !important;
     width: 100% !important;
@@ -6378,9 +6095,10 @@ body.elementor-popup-modal-active .elementor-location-header {
   }
 }
 
-/* --------------------------------------------------------------------------
-   7. MOBILE HORIZONTAL (LANDSCAPE)
-   -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   MODELO 2: CELULAR NA HORIZONTAL (LANDSCAPE)
+   ========================================================================== */
 @media (max-width: 1024px) and (orientation: landscape),
        (max-height: 620px) and (orientation: landscape),
        (max-width: 1024px) and (max-height: 620px) and (min-aspect-ratio: 13/10) {
@@ -6566,7 +6284,75 @@ body.elementor-popup-modal-active .elementor-location-header {
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  }
+
+  /* SERVIÇOS NO MOBILE HORIZONTAL (LADO A LADO) */
+  .elementor-element.elementor-element-3432f15 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 10px auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .elementor-element.elementor-element-3432f15 > .elementor-column-wrap {
+    background: #f7f7f7 !important;
+    border-radius: 16px !important;
+    padding: 20px 16px !important;
+    box-sizing: border-box !important;
+    width: 98% !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    flex: 1 1 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    flex: 1 1 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #carrosselServicos {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 28px !important;
+    box-sizing: border-box !important;
+  }
+  #carrosselServicos .swiper-slide {
+    width: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    height: 110px !important;
+    min-height: 110px !important;
+    flex: 0 0 110px !important;
+    margin-right: 8px !important;
+  }
+  .servico_unidade_carrossel {
+    width: 110px !important;
+    height: 110px !important;
+    padding: 8px 4px !important;
+  }
+  .servico_unidade_carrossel img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .servico_unidade_carrossel h4 {
+    font-size: 9.5px !important;
   }
 }
 </style>
@@ -6707,7 +6493,7 @@ body.elementor-popup-modal-active .elementor-location-header {
         }
       });
 
-      // Default first active item
+      // Swiper layout update trigger
       setTimeout(function() {
         var activeArticles = jQuery('#gridServicos article:visible');
         if (activeArticles.length === 0) {
@@ -6717,7 +6503,14 @@ body.elementor-popup-modal-active .elementor-location-header {
         if (activeItem.length === 0) {
           jQuery('#carrosselServicos .swiper-slide:first-child .servico_unidade_carrossel').addClass('item_ativo');
         }
+        window.dispatchEvent(new Event('resize'));
       }, 500);
+
+      window.addEventListener('orientationchange', function() {
+        setTimeout(function() {
+          window.dispatchEvent(new Event('resize'));
+        }, 200);
+      });
     }
   }
 
