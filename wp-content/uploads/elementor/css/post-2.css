@@ -154,6 +154,25 @@
   }
 }
 
+
+  .elementor-2 .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    flex: 1 1 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    flex: 1 1 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
 /* ==========================================================================
    MODELO 1: CELULAR NA VERTICAL (PORTRAIT <= 767px)
    ========================================================================== */
@@ -213,7 +232,30 @@
   .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
   .elementor-2 .elementor-element.elementor-element-3662fd7 {
     background-image: none !important;
-    padding-bottom: 0px !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding: 24px 16px 0 16px !important;
+    margin: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-container {
+    min-height: auto !important;
+    height: auto !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
+    margin: 10px auto 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-2 .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 340px !important;
+    min-height: 340px !important;
+    margin: 0 auto 0 auto !important;
+    background-image: url("./wp-content/uploads/2021/10/bombeiro.jpg") !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
   }
   .elementor-2 .elementor-element.elementor-element-3fbc3d7:not(.elementor-motion-effects-element-type-background),
   .elementor-2 .elementor-element.elementor-element-3fbc3d7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
