@@ -106,6 +106,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4404,6 +4407,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4508,6 +4519,7 @@ body.elementor-popup-modal-active .elementor-location-header {
     display: flex !important;
     align-items: center !important;
   }
+  .elementor-element.elementor-element-2e5c5af img,
   .elementor-element.elementor-element-e171195 img,
   img[src*="logo.svg"] {
     height: 26px !important;
@@ -4839,7 +4851,6 @@ body.elementor-popup-modal-active .elementor-location-header {
    4. SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL (100% SEÇÃO VERTICAL ELEGANTE)
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
-  /* Container Principal de Serviços */
   .elementor-element.elementor-element-3432f15 {
     width: 100% !important;
     max-width: 100% !important;
@@ -4856,7 +4867,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 auto !important;
   }
 
-  /* Seções internas sem gradientes divisores */
   .elementor-element.elementor-element-3fbc3d7,
   .elementor-element.elementor-element-d88d016,
   .elementor-element.elementor-element-3fbc3d7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
@@ -4868,7 +4878,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     width: 100% !important;
   }
 
-  /* Títulos da Seção */
   .elementor-element.elementor-element-99db086 .elementor-heading-title {
     font-size: 1.65rem !important;
     line-height: 1.2 !important;
@@ -4888,7 +4897,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 auto 16px auto !important;
   }
 
-  /* Empilhamento 100% Vertical */
   .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
     display: flex !important;
     flex-direction: column !important;
@@ -4898,7 +4906,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     padding: 0 !important;
   }
 
-  /* Coluna 1: Carrossel de Serviços */
   .elementor-element.elementor-element-c99c7c0 {
     width: 100% !important;
     max-width: 100% !important;
@@ -4933,7 +4940,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     flex-shrink: 0 !important;
   }
 
-  /* Card Individual no Carrossel */
   .servico_unidade_carrossel,
   .elementor-element.elementor-element-1a58808 {
     width: 100% !important;
@@ -4998,7 +5004,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     -webkit-box-orient: vertical !important;
   }
 
-  /* Slide Ativo */
   #carrosselServicos .swiper-slide-next .servico_unidade_carrossel,
   #carrosselServicos .swiper-slide-active .servico_unidade_carrossel,
   .servico_unidade_carrossel.item_ativo {
@@ -5017,7 +5022,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     color: #ffffff !important;
   }
 
-  /* Setas do Carrossel */
   #carrosselServicos .swiper-button-prev,
   #carrosselServicos .swiper-button-next {
     display: flex !important;
@@ -5034,7 +5038,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     right: -4px !important;
   }
 
-  /* Coluna 2: Detalhes do Serviço Ativo */
   .elementor-element.elementor-element-c54c22f {
     width: 100% !important;
     max-width: 100% !important;
@@ -5068,7 +5071,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     padding: 0 !important;
   }
 
-  /* Card Escuro de Exibição */
   .servicos_exibicao,
   [id^="visualizacao_"] {
     width: 100% !important;
@@ -5151,8 +5153,9 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   5. BRIGADA DE INCÊNDIO & DEPOIMENTOS
+   5. BRIGADA DE INCÊNDIO (ZERO DUPLICAÇÃO DE FOTO)
    -------------------------------------------------------------------------- */
+/* Desktop / Landscape: A imagem fica no fundo à direita da seção, e a coluna 44bd2a0 é vazia/transparente */
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
   background-color: #ffffff !important;
@@ -5164,6 +5167,11 @@ body.elementor-popup-modal-active .elementor-location-header {
   min-height: 540px !important;
   overflow: hidden !important;
 }
+.elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
+  background-image: none !important;
+  background: transparent !important;
+}
+
 .elementor-element.elementor-element-42aaacd > .elementor-widget-container,
 .elementor-element.elementor-element-9d7bf30 > .elementor-widget-container {
   margin: 0 !important;
@@ -5229,11 +5237,15 @@ body.elementor-popup-modal-active .elementor-location-header {
   margin-bottom: 20px !important;
 }
 
-/* BRIGADA NO MOBILE VERTICAL */
+/* BRIGADA NO MOBILE VERTICAL (ZERO DUPLICAÇÃO) */
 @media (max-width: 767px) {
-  .elementor-element.elementor-element-3662fd7 {
+  .elementor-element.elementor-element-3662fd7,
+  .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container,
+  .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+  .elementor-element.elementor-element-3662fd7 > .elementor-background-overlay {
     background-image: none !important;
     background-color: #ffffff !important;
+    background: #ffffff !important;
     padding: 30px 16px 0 16px !important;
     min-height: auto !important;
   }
@@ -5290,12 +5302,14 @@ body.elementor-popup-modal-active .elementor-location-header {
     display: block !important;
     width: 100% !important;
   }
+
+  /* ÚNICA FOTO DO BOMBEIRO (ABAIXO DO VÍDEO, SEM DUPLICAÇÃO) */
   .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
     display: block !important;
     width: 100% !important;
-    max-width: 360px !important;
-    height: 320px !important;
-    min-height: 320px !important;
+    max-width: 320px !important;
+    height: 280px !important;
+    min-height: 280px !important;
     margin: 16px auto 0 auto !important;
     background-image: url("./wp-content/uploads/2021/10/bombeiro.jpg") !important;
     background-position: center bottom !important;
@@ -5558,6 +5572,10 @@ body.elementor-popup-modal-active .elementor-location-header {
     background-position: right bottom !important;
     background-repeat: no-repeat !important;
   }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
+    background-image: none !important;
+    background: transparent !important;
+  }
 }
 </style>
 
@@ -5639,7 +5657,6 @@ body.elementor-popup-modal-active .elementor-location-header {
         if (h) h.style.removeProperty('display');
       });
 
-      // Ativação suave ao tocar nos cards de serviços
       jQuery(document).on('click', '#carrosselServicos .servico_unidade_carrossel, #carrosselServicos .swiper-slide', function() {
         var self = jQuery(this);
         var secId = self.find('section').attr('id') || self.attr('id');
