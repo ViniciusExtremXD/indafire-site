@@ -124,6 +124,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4470,6 +4473,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4512,7 +4523,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 /* --------------------------------------------------------------------------
-   1. MENU GAVETA / POPUP 2519 (HAMBÚRGUER PERFEITO)
+   1. MENU GAVETA / POPUP 2519 (DESIGN MODERNO, ALINHADO E ELEGANTE)
    -------------------------------------------------------------------------- */
 body.elementor-popup-modal-active #headerInda,
 body.elementor-popup-modal-active .elementor-location-header {
@@ -4527,7 +4538,9 @@ body.elementor-popup-modal-active .elementor-location-header {
   opacity: 1 !important;
   z-index: 999999 !important;
   pointer-events: all !important;
-  background-color: rgba(0, 0, 0, 0.6) !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
   justify-content: flex-end !important;
   align-items: stretch !important;
 }
@@ -4536,18 +4549,19 @@ body.elementor-popup-modal-active .elementor-location-header {
 .dialog-type-lightbox.elementor-popup-modal .dialog-widget-content {
   background-color: #ffffff !important;
   background: #ffffff !important;
-  width: 85vw !important;
-  max-width: 360px !important;
+  width: 86vw !important;
+  max-width: 330px !important;
   height: 100vh !important;
   max-height: 100vh !important;
   overflow-y: auto !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.25) !important;
   margin: 0 !important;
   padding: 0 !important;
   border-radius: 0 !important;
+  position: relative !important;
 }
 
 #elementor-popup-modal-2519 .dialog-message,
@@ -4563,42 +4577,182 @@ body.elementor-popup-modal-active .elementor-location-header {
   visibility: visible !important;
   opacity: 1 !important;
   background-color: #ffffff !important;
-  padding: 24px 20px !important;
+  padding: 24px 20px 32px 20px !important;
   height: auto !important;
   min-height: 100% !important;
   box-sizing: border-box !important;
 }
 
+/* Botão Fechar */
 #elementor-popup-modal-2519 .dialog-close-button,
 .dialog-type-lightbox .dialog-close-button {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: #f0f0f0 !important;
+  border: none !important;
+  color: #444444 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  top: 12px !important;
-  right: 12px !important;
-  width: 38px !important;
-  height: 38px !important;
-  font-size: 22px !important;
-  color: #222222 !important;
+  font-size: 15px !important;
   cursor: pointer !important;
   z-index: 1000000 !important;
+  transition: all 0.2s ease !important;
+}
+#elementor-popup-modal-2519 .dialog-close-button:hover,
+#elementor-popup-modal-2519 .dialog-close-button:active {
+  background: #e30613 !important;
+  color: #ffffff !important;
 }
 
-#elementor-popup-modal-2519 .elementor-icon-list-item,
-.dialog-type-lightbox .elementor-icon-list-item {
-  padding: 12px 0 !important;
+/* Logo no Topo */
+.elementor-2519 .elementor-element.elementor-element-0de540b {
+  margin: 0 0 16px 0 !important;
+  padding-bottom: 14px !important;
   border-bottom: 1px solid #f0f0f0 !important;
+  text-align: left !important;
+}
+.elementor-2519 .elementor-element.elementor-element-0de540b img {
+  width: 130px !important;
+  max-width: 130px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 !important;
 }
 
-#elementor-popup-modal-2519 .elementor-icon-list-item a,
-.dialog-type-lightbox .elementor-icon-list-item a {
+/* Links do Menu Principal (Texto na Esquerda, Seta Vermelha na Direita) */
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 {
+  margin: 0 0 14px 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-items {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item {
+  padding: 10px 8px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  border-bottom: 1px solid #f7f7f7 !important;
+  transition: all 0.2s ease !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item:hover,
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item:active {
+  background: rgba(227, 6, 19, 0.05) !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item a {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  text-decoration: none !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-text {
+  order: 1 !important;
+  font-family: inherit !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #222222 !important;
+  text-align: left !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-icon {
+  order: 2 !important;
+  color: #e30613 !important;
+  font-size: 11px !important;
+  margin: 0 !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  color: #1d6896 !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
+  justify-content: center !important;
+}
+
+/* Divisores */
+.elementor-2519 .elementor-element.elementor-element-cd75a00,
+.elementor-2519 .elementor-element.elementor-element-b504b34 {
+  margin: 10px 0 8px 0 !important;
+  padding: 0 !important;
+}
+.elementor-2519 .elementor-divider-separator {
+  border-top: 1px solid #f0f0f0 !important;
+}
+
+/* Títulos de Seção (Contato / Endereço) */
+.elementor-2519 .elementor-element.elementor-element-927d68d,
+.elementor-2519 .elementor-element.elementor-element-56111dd {
+  margin: 12px 0 8px 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-927d68d .elementor-heading-title,
+.elementor-2519 .elementor-element.elementor-element-56111dd .elementor-heading-title {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #e30613 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+/* Lista de Contato & Endereço (Ícone na Esquerda, Texto na Direita) */
+.elementor-2519 .elementor-element.elementor-element-ad6a302,
+.elementor-2519 .elementor-element.elementor-element-24f1891 {
+  margin: 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-items,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-items {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-item,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-item {
+  padding: 6px 4px !important;
+  margin: 0 !important;
+  border-bottom: none !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-item a,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-item a {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 12px !important;
   text-decoration: none !important;
+  width: 100% !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-icon,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-icon {
+  order: 1 !important;
+  color: #e30613 !important;
+  font-size: 14px !important;
+  width: 22px !important;
+  min-width: 22px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-text,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-text {
+  order: 2 !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #444444 !important;
+  text-align: left !important;
+  word-break: break-word !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-item:hover .elementor-icon-list-text,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-item:hover .elementor-icon-list-text {
+  color: #e30613 !important;
 }
 
 /* --------------------------------------------------------------------------
