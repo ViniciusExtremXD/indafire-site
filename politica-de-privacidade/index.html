@@ -127,6 +127,9 @@
 
 
 
+
+
+
 	<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -4127,6 +4130,14 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4169,7 +4180,7 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 }
 
 /* --------------------------------------------------------------------------
-   1. MENU GAVETA / POPUP 2519 (DESIGN MODERNO, ALINHADO E ELEGANTE)
+   1. MENU GAVETA / POPUP 2519 (DESIGN MODERNO & FECHAMENTO PERFEITO)
    -------------------------------------------------------------------------- */
 body.elementor-popup-modal-active #headerInda,
 body.elementor-popup-modal-active .elementor-location-header {
@@ -4177,18 +4188,26 @@ body.elementor-popup-modal-active .elementor-location-header {
   pointer-events: none !important;
 }
 
-#elementor-popup-modal-2519,
-.dialog-type-lightbox.elementor-popup-modal {
+#elementor-popup-modal-2519:not([style*="display: none"]):not([style*="display:none"]),
+.dialog-type-lightbox.elementor-popup-modal:not([style*="display: none"]):not([style*="display:none"]) {
   display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 999999 !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
   pointer-events: all !important;
   background-color: rgba(0, 0, 0, 0.65) !important;
   backdrop-filter: blur(4px) !important;
   -webkit-backdrop-filter: blur(4px) !important;
-  justify-content: flex-end !important;
-  align-items: stretch !important;
+  z-index: 999999 !important;
+}
+
+#elementor-popup-modal-2519[style*="display: none"],
+#elementor-popup-modal-2519[style*="display:none"],
+.dialog-type-lightbox.elementor-popup-modal[style*="display: none"],
+.dialog-type-lightbox.elementor-popup-modal[style*="display:none"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 #elementor-popup-modal-2519 .dialog-widget-content,
@@ -5544,6 +5563,49 @@ body.elementor-popup-modal-active .elementor-location-header {
   }
 
   function initMenuAndServices() {
+    // Open handler
+    document.addEventListener('click', function(e) {
+      var openBtn = e.target.closest('.elementor-element-8755157 a, [href*="popup%3Aopen%26settings%3DeyJpZCI6IjI1MTki"]');
+      if (openBtn) {
+        e.preventDefault();
+        var modal = document.querySelector('#elementor-popup-modal-2519, .dialog-type-lightbox.elementor-popup-modal');
+        if (modal) {
+          modal.style.setProperty('display', 'flex', 'important');
+        }
+        document.body.classList.add('elementor-popup-modal-active');
+        var h = document.querySelector('#headerInda, .elementor-location-header');
+        if (h) h.style.setProperty('visibility', 'hidden', 'important');
+      }
+
+      // Close handler (Close button OR Backdrop)
+      var closeBtn = e.target.closest('.dialog-close-button, .dialog-close-button-default, [data-elementor-action*="popup:close"]');
+      var isBackdrop = e.target.matches && (e.target.matches('#elementor-popup-modal-2519') || e.target.matches('.dialog-type-lightbox'));
+      if (closeBtn || isBackdrop) {
+        e.preventDefault();
+        e.stopPropagation();
+        var m = document.querySelector('#elementor-popup-modal-2519, .dialog-type-lightbox.elementor-popup-modal');
+        if (m) {
+          m.style.setProperty('display', 'none', 'important');
+        }
+        document.body.classList.remove('elementor-popup-modal-active');
+        var header = document.querySelector('#headerInda, .elementor-location-header');
+        if (header) header.style.removeProperty('visibility');
+      }
+
+      // Close on navigation link click
+      var navLink = e.target.closest('#elementor-popup-modal-2519 a, .elementor-2519 a');
+      if (navLink && !navLink.classList.contains('dialog-close-button')) {
+        var href = navLink.getAttribute('href');
+        if (href && !href.startsWith('#')) {
+          var mNav = document.querySelector('#elementor-popup-modal-2519, .dialog-type-lightbox.elementor-popup-modal');
+          if (mNav) {
+            mNav.style.setProperty('display', 'none', 'important');
+          }
+          document.body.classList.remove('elementor-popup-modal-active');
+        }
+      }
+    }, true);
+
     if (window.jQuery) {
       // Menu popup open/close header handling
       jQuery(document).on('elementor/popup/show', function() {

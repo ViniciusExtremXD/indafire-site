@@ -1,12 +1,26 @@
 
-#elementor-popup-modal-2519 {
+#elementor-popup-modal-2519:not([style*="display: none"]):not([style*="display:none"]),
+.dialog-type-lightbox.elementor-popup-modal:not([style*="display: none"]):not([style*="display:none"]) {
+  display: flex !important;
   justify-content: flex-end !important;
   align-items: stretch !important;
   pointer-events: all !important;
   background-color: rgba(0, 0, 0, 0.65) !important;
   backdrop-filter: blur(4px) !important;
   -webkit-backdrop-filter: blur(4px) !important;
+  z-index: 999999 !important;
 }
+
+#elementor-popup-modal-2519[style*="display: none"],
+#elementor-popup-modal-2519[style*="display:none"],
+.dialog-type-lightbox.elementor-popup-modal[style*="display: none"],
+.dialog-type-lightbox.elementor-popup-modal[style*="display:none"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 #elementor-popup-modal-2519 .dialog-widget-content {
   background-color: #ffffff !important;
   width: 86vw !important;
