@@ -4755,6 +4755,14 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 
+
+
+
+
+
+
+
+
 <script id="indafire-lazy-iframe-loader">
 (function() {
   function loadLazyIframes() {
@@ -4808,14 +4816,14 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   1. CABEÇALHO COMPACTO E ELEGANTE EM QUALQUER RESOLUÇÃO MOBILE (<= 1024px)
+   1. CABEÇALHO NO MOBILE VERTICAL (<= 767px): APENAS LOGO + HAMBÚRGUER
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 767px) {
   #headerInda,
   .elementor-location-header {
-    height: 54px !important;
-    min-height: 54px !important;
-    max-height: 54px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
     padding: 0 12px !important;
     margin: 0 !important;
     z-index: 999 !important;
@@ -4823,9 +4831,9 @@ body.elementor-popup-modal-active .elementor-location-header {
   }
 
   .elementor-element.elementor-element-46583ef {
-    height: 48px !important;
-    min-height: 48px !important;
-    max-height: 48px !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    max-height: 46px !important;
     margin: 3px auto !important;
     padding: 0 10px !important;
     border-radius: 8px !important;
@@ -4845,12 +4853,12 @@ body.elementor-popup-modal-active .elementor-location-header {
     margin: 0 !important;
   }
 
-  /* Coluna 1: Logo */
+  /* Coluna 1: Logo à Esquerda */
   .elementor-element.elementor-element-2e5c5af {
     order: 1 !important;
     flex: 0 0 auto !important;
     width: auto !important;
-    max-width: 140px !important;
+    max-width: 150px !important;
     margin: 0 !important;
     padding: 0 !important;
     display: flex !important;
@@ -4862,67 +4870,25 @@ body.elementor-popup-modal-active .elementor-location-header {
     height: 26px !important;
     max-height: 26px !important;
     width: auto !important;
-    max-width: 125px !important;
+    max-width: 130px !important;
     object-fit: contain !important;
     display: block !important;
     margin: 0 !important;
   }
 
-  /* Coluna 3: Redes Sociais no Centro */
-  .elementor-element.elementor-element-3de852d {
-    order: 2 !important;
-    flex: 1 1 auto !important;
-    width: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-  .elementor-element.elementor-element-3de852d > .elementor-column-wrap > .elementor-widget-wrap,
-  .elementor-element.elementor-element-3de852d .elementor-widget-wrap {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 6px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-  }
+  /* Ocultar Redes Sociais e Busca no Mobile Vertical */
+  .elementor-element.elementor-element-3de852d,
+  .elementor-element.elementor-element-315d4c1,
   .elementor-element.elementor-element-712ae1c {
-    display: block !important;
-    margin: 0 auto !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-  .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 6px !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-  .elementor-element.elementor-element-712ae1c .elementor-icon {
-    width: 26px !important;
-    height: 26px !important;
-    line-height: 26px !important;
-    font-size: 12px !important;
-    border-radius: 5px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-  }
-  .elementor-element.elementor-element-315d4c1 {
     display: none !important;
   }
 
   /* Coluna 2: Botão Hambúrguer no Canto Direito */
   .elementor-element.elementor-element-0d060a6 {
-    order: 3 !important;
+    order: 2 !important;
     flex: 0 0 auto !important;
     width: auto !important;
-    margin: 0 !important;
+    margin: 0 0 0 auto !important;
     padding: 0 !important;
     display: flex !important;
     justify-content: flex-end !important;
@@ -4949,9 +4915,9 @@ body.elementor-popup-modal-active .elementor-location-header {
     padding: 0 !important;
   }
   .elementor-element.elementor-element-8755157 .elementor-icon {
-    font-size: 15px !important;
-    width: 32px !important;
-    height: 32px !important;
+    font-size: 16px !important;
+    width: 34px !important;
+    height: 34px !important;
     border: 1.5px solid #d9232a !important;
     border-radius: 6px !important;
     color: #d9232a !important;
@@ -4965,7 +4931,7 @@ body.elementor-popup-modal-active .elementor-location-header {
 }
 
 /* --------------------------------------------------------------------------
-   2. CORREÇÃO DA SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL (REMOÇÃO DO SPLIT DE FUNDO)
+   2. CORREÇÃO DA SEÇÃO DE SERVIÇOS NO MOBILE VERTICAL
    -------------------------------------------------------------------------- */
 @media (max-width: 767px) {
   .elementor-element.elementor-element-3fbc3d7,
@@ -5140,7 +5106,6 @@ body.elementor-popup-modal-active .elementor-location-header {
 /* --------------------------------------------------------------------------
    3. BRIGADA DE INCÊNDIO & DEPOIMENTOS
    -------------------------------------------------------------------------- */
-/* Estilo Padrão / Desktop */
 .elementor-element.elementor-element-3662fd7 {
   position: relative !important;
   background-color: #ffffff !important;
@@ -5217,7 +5182,7 @@ body.elementor-popup-modal-active .elementor-location-header {
   margin-bottom: 20px !important;
 }
 
-/* BRIGADA NO MOBILE VERTICAL: Vídeo em Destaque e Bombeiro Logo Abaixo */
+/* BRIGADA NO MOBILE VERTICAL */
 @media (max-width: 767px) {
   .elementor-element.elementor-element-3662fd7 {
     background-image: none !important;
@@ -5278,7 +5243,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     display: block !important;
     width: 100% !important;
   }
-  /* Imagem do Bombeiro logo abaixo do vídeo */
   .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
     display: block !important;
     width: 100% !important;
@@ -5337,6 +5301,41 @@ body.elementor-popup-modal-active .elementor-location-header {
     justify-content: center !important;
     align-items: center !important;
   }
+  .elementor-element.elementor-element-3de852d > .elementor-column-wrap > .elementor-widget-wrap,
+  .elementor-element.elementor-element-3de852d .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-712ae1c {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-icon {
+    width: 28px !important;
+    height: 28px !important;
+    line-height: 28px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-315d4c1 {
+    display: none !important;
+  }
   .elementor-element.elementor-element-0d060a6 {
     order: 3 !important;
     flex: 0 0 auto !important;
@@ -5344,6 +5343,39 @@ body.elementor-popup-modal-active .elementor-location-header {
     display: flex !important;
     justify-content: flex-end !important;
     align-items: center !important;
+  }
+  .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap,
+  .elementor-element.elementor-element-0d060a6 .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-20668c0,
+  .jet-menu-container {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-8755157 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-8755157 .elementor-icon {
+    font-size: 16px !important;
+    width: 34px !important;
+    height: 34px !important;
+    border: 1.5px solid #d9232a !important;
+    border-radius: 6px !important;
+    color: #d9232a !important;
+    background: rgba(217, 35, 42, 0.04) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   /* Seção Conteúdo (#conteudo) */
@@ -5416,7 +5448,7 @@ body.elementor-popup-modal-active .elementor-location-header {
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   }
 
-  /* Painel de Serviços com Imagem ao Lado no Landscape */
+  /* Painel de Serviços no Landscape */
   div#gridServicos {
     height: auto !important;
     min-height: 190px !important;
@@ -5469,7 +5501,7 @@ body.elementor-popup-modal-active .elementor-location-header {
     border-radius: 8px !important;
   }
 
-  /* Brigada de Incêndio no Landscape */
+  /* Brigada no Landscape */
   .elementor-element.elementor-element-3662fd7 {
     padding: 16px 24px !important;
     min-height: calc(100vh - 48px) !important;
@@ -5484,7 +5516,6 @@ body.elementor-popup-modal-active .elementor-location-header {
 
 <script id="indafire-mobile-landscape-header-control">
 (function() {
-  // 1. Contador Numérico Animado Suave
   function initCounters() {
     var counters = document.querySelectorAll('.elementor-counter-number');
     if ('IntersectionObserver' in window) {
@@ -5523,7 +5554,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     }
   }
 
-  // 2. Lazy video loader
   function initLazyVideos() {
     var lazyVideos = document.querySelectorAll('video.inda-lazy-video, video[data-src]');
     if ('IntersectionObserver' in window) {
@@ -5551,7 +5581,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     }
   }
 
-  // 3. Controle Seguro do Cabeçalho
   function initMenuEvents() {
     if (window.jQuery) {
       jQuery(document).on('elementor/popup/show', function() {
