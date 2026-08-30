@@ -1452,6 +1452,72 @@ jQuery(document).ready(function(){
 <link rel='stylesheet' id='dce-dynamicPosts-grid-css' href='../wp-content/plugins/dynamic-content-for-elementor/assets/css/dynamic-posts-skin-grid.css?ver=2.6.3' media='all' />
 <link rel='stylesheet' id='e-animations-css' href='../wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.6.7' media='all' />
 
+<style id="indafire-internal-page-polish">
+/* INDAFIRE — shared finishing layer; keeps the established visual system. */
+:root { --inda-focus-ring: rgba(227, 6, 19, 0.46); }
+
+/* JetMenu keeps the overflow item in the DOM with [hidden]. A legacy flex
+   rule can override the browser default and show a stray ellipsis. */
+#headerInda .jet-responsive-menu-available-items[hidden] {
+  display:none!important;
+}
+
+#headerInda a:focus-visible,
+main a:focus-visible,
+main button:focus-visible,
+main input:focus-visible,
+main select:focus-visible,
+main textarea:focus-visible {
+  outline: 3px solid var(--inda-focus-ring) !important;
+  outline-offset: 3px !important;
+}
+
+/* Preserve page imagery and typography, only making interactive feedback
+   consistent at desktop, portrait and landscape sizes. */
+main .elementor-button,
+main input,
+main select,
+main textarea {
+  transition: border-color 160ms ease, box-shadow 160ms ease,
+              transform 160ms ease, background-color 160ms ease;
+}
+
+main .elementor-button:hover {
+  transform: translateY(-1px);
+}
+
+main input:focus,
+main select:focus,
+main textarea:focus {
+  border-color: #e30613 !important;
+  box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.12) !important;
+}
+
+@media (max-width: 767px) {
+  main input:not([type="checkbox"]):not([type="radio"]),
+  main select,
+  main textarea,
+  main .elementor-button {
+    min-height: 44px;
+  }
+
+  main textarea { min-height: 120px; }
+}
+
+@media (max-width: 1024px) and (orientation: landscape),
+       (max-height: 620px) and (orientation: landscape) {
+  main .elementor-button { min-height: 42px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+</style>
 </head>
 <body class="wp-singular page-template page-template-elementor_header_footer page page-id-14 page-parent wp-custom-logo wp-theme-hello-elementor theme-hello-elementor woocommerce-no-js woolentor_current_theme_hello-elementor jet-desktop-menu-active elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-14">
 
