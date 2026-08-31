@@ -1491,6 +1491,29 @@ main textarea:focus {
   box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.12) !important;
 }
 
+/* The exported footer lets the brand asset grow to its intrinsic width on
+   some routes. Keep its familiar treatment while giving it a dependable,
+   proportional cap at every breakpoint. */
+.elementor-element.elementor-element-95a2442 .elementor-image {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.elementor-element.elementor-element-95a2442 img {
+  display: block !important;
+  width: min(100%, 260px) !important;
+  max-width: 260px !important;
+  height: auto !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .elementor-element.elementor-element-95a2442 img {
+    width: min(100%, 210px) !important;
+    max-width: 210px !important;
+  }
+}
+
 @media (max-width: 767px) {
   main input:not([type="checkbox"]):not([type="radio"]),
   main select,
@@ -1500,11 +1523,36 @@ main textarea:focus {
   }
 
   main textarea { min-height: 120px; }
+
+  .elementor-element.elementor-element-95a2442 {
+    width: 100% !important;
+    margin: 20px auto 0 !important;
+  }
+
+  .elementor-element.elementor-element-95a2442 .elementor-image {
+    justify-content: center !important;
+  }
+
+  .elementor-element.elementor-element-95a2442 img {
+    width: min(72vw, 230px) !important;
+    max-width: 230px !important;
+  }
 }
 
 @media (max-width: 1024px) and (orientation: landscape),
        (max-height: 620px) and (orientation: landscape) {
   main .elementor-button { min-height: 42px; }
+
+  /* The archive sliders already animate inside their viewport.  Contain
+     off-screen slides so a landscape phone never gains a page-wide rail. */
+  main .elementor-widget-dce-dynamicposts-v2 .dce-posts-container {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Elementor marks this as hidden on tablet; the exported responsive
+     stylesheet misses the compact landscape range on some routes. */
+  #headerInda .elementor-hidden-tablet { display: none !important; }
 }
 
 @media (prefers-reduced-motion:reduce) {
