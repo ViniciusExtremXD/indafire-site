@@ -47,6 +47,14 @@ class HomeSectionPolishTests(unittest.TestCase):
         self.assertIn("transform: scaleX(1)", rendered)
         self.assertNotIn(".indafire-carousel-progress { display: none", rendered)
         self.assertIn(".elementor-element-f195a0e", rendered)
+        self.assertRegex(
+            rendered,
+            r"(?m)^\.elementor-element-7974cb4\s*\{\s*display:\s*none\s*!important",
+        )
+        self.assertRegex(
+            rendered,
+            r"\.elementor-element-d88d016\s+\.indafire-carousel-progress\s*\{\s*display:\s*none\s*!important",
+        )
 
     def test_adds_only_portrait_repairs_for_brigada_products_and_services(self):
         module = load_module()

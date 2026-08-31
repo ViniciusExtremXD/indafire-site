@@ -18,6 +18,18 @@ TARGETS = (ROOT / "index.html",)
 CSS = r"""
 /* INDAFIRE — Home sectional polish: preserve the existing visual language. */
 
+/* Remove the legacy red connector artwork between the Services cards and
+   detail panel. It is decorative and collides with the modernized spacing. */
+.elementor-element-7974cb4 {
+  display: none !important;
+}
+
+/* The Services carousel already communicates state through the active card.
+   Keep the Products progress indicator, but remove this redundant red rule. */
+.elementor-element-d88d016 .indafire-carousel-progress {
+  display: none !important;
+}
+
 /* At intermediate desktop widths the original 50/50 counter internals were
    narrower than their figures. Stack each card internally to keep every
    value inside its own dark panel. */
