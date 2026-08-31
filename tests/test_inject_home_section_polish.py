@@ -55,6 +55,10 @@ class HomeSectionPolishTests(unittest.TestCase):
             rendered,
             r"\.elementor-element-d88d016\s+\.indafire-carousel-progress\s*\{\s*display:\s*none\s*!important",
         )
+        self.assertRegex(
+            rendered,
+            r"\.indafire-carousel-progress\[data-carousel=\"products\"\]\s*\{\s*display:\s*none\s*!important",
+        )
 
     def test_adds_only_portrait_repairs_for_brigada_products_and_services(self):
         module = load_module()

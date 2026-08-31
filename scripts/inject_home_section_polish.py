@@ -24,9 +24,13 @@ CSS = r"""
   display: none !important;
 }
 
-/* The Services carousel already communicates state through the active card.
-   Keep the Products progress indicator, but remove this redundant red rule. */
+/* Both carousels already communicate state through their cards and bullets.
+   Keep autoplay intact while removing the redundant red progress rules. */
 .elementor-element-d88d016 .indafire-carousel-progress {
+  display: none !important;
+}
+
+.indafire-carousel-progress[data-carousel="products"] {
   display: none !important;
 }
 
