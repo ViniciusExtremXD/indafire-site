@@ -257,6 +257,11 @@ CSS = r"""
 
 /* Phone landscape: compact About and Brigada only. */
 @media (min-width: 768px) and (max-width: 1024px) and (max-height: 620px) and (orientation: landscape) {
+  /* Keep the Services next control clear of the fixed WhatsApp affordance. */
+  body.home .elementor-2 .elementor-element.elementor-element-c629bbc .next-9a752a9 {
+    right: 48px !important;
+  }
+
   body.home .elementor-2 #conteudo {
     min-height: 0 !important;
     padding: 18px 14px !important;

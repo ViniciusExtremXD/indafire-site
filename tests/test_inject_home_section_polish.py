@@ -109,6 +109,20 @@ class HomeSectionPolishTests(unittest.TestCase):
         self.assertNotIn("elementor-element-9218be1", landscape)
         self.assertNotIn("indafire-product", landscape)
 
+    def test_keeps_services_next_arrow_clear_of_whatsapp_in_phone_landscape(self):
+        module = load_module()
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            page = Path(temp_dir) / "index.html"
+            page.write_text("<html><head></head><body></body></html>", encoding="utf-8")
+            module.inject_styles((page,))
+            rendered = page.read_text(encoding="utf-8")
+
+        self.assertRegex(
+            rendered,
+            r"\.next-9a752a9\s*\{\s*right:\s*48px\s*!important",
+        )
+
     def test_ignores_documents_without_a_head(self):
         module = load_module()
         with tempfile.TemporaryDirectory() as temp_dir:
