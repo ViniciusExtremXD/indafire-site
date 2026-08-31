@@ -120,12 +120,10 @@ def inject(source: str) -> str:
 def inject_assets(targets: tuple[Path, ...] | list[Path]) -> int:
     changed = 0
     for page in targets:
-        with page.open("r", encoding="utf-8", newline="") as handle:
-            source = handle.read()
+        source = page.read_text(encoding="utf-8")
         rendered = inject(source)
         if rendered != source:
-            with page.open("w", encoding="utf-8", newline="") as handle:
-                handle.write(rendered)
+            page.write_text(rendered, encoding="utf-8")
             changed += 1
     return changed
 

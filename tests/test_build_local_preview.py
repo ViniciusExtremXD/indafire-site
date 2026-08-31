@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "build_local_preview.py"
 NAV_STYLE = '<style id="indafire-responsive-navigation-style"></style>'
 NAV_SCRIPT = '<script id="indafire-responsive-navigation"></script>'
+HERO_VIDEO_SCRIPT = '<script id="indafire-hero-background-video"></script>'
 
 
 class BuildLocalPreviewTests(unittest.TestCase):
@@ -23,6 +24,7 @@ class BuildLocalPreviewTests(unittest.TestCase):
                 '<style id="indafire-home-section-polish"></style></head>'
                 '<body><script id="indafire-home-service-sync"></script>'
                 '<script id="indafire-home-product-carousel"></script>'
+                f'{HERO_VIDEO_SCRIPT}'
                 '<script id="indafire-responsive-navigation"></script>'
                 'INDAFIRE HOME BRIGADA REFERENCE</body>'
             ),
@@ -58,6 +60,7 @@ class BuildLocalPreviewTests(unittest.TestCase):
             '<head><style id="indafire-internal-page-polish"></style>'
             f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
             '<body><script id="indafire-home-product-carousel"></script>'
+            f'{HERO_VIDEO_SCRIPT}'
             f'{NAV_SCRIPT}'
             'INDAFIRE HOME BRIGADA REFERENCE</body>'
         )
@@ -70,6 +73,7 @@ class BuildLocalPreviewTests(unittest.TestCase):
             f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
             '<body><script id="indafire-home-service-sync"></script>'
             '<script id="indafire-home-product-carousel"></script>'
+            f'{HERO_VIDEO_SCRIPT}'
             f'{NAV_SCRIPT}</body>'
         )
         with self.assertRaisesRegex(ValueError, "Brigada reference"):
@@ -80,9 +84,21 @@ class BuildLocalPreviewTests(unittest.TestCase):
             '<head><style id="indafire-internal-page-polish"></style>'
             f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
             '<body><script id="indafire-home-service-sync"></script>'
+            f'{HERO_VIDEO_SCRIPT}'
             f'{NAV_SCRIPT}INDAFIRE HOME BRIGADA REFERENCE</body>'
         )
         with self.assertRaisesRegex(ValueError, "Products carousel"):
+            validate_documents({"index.html": source})
+
+    def test_rejects_home_without_the_high_resolution_hero_video(self):
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
+            '<body><script id="indafire-home-service-sync"></script>'
+            '<script id="indafire-home-product-carousel"></script>'
+            f'{NAV_SCRIPT}INDAFIRE HOME BRIGADA REFERENCE</body>'
+        )
+        with self.assertRaisesRegex(ValueError, "high-resolution hero video"):
             validate_documents({"index.html": source})
 
     def test_rejects_a_product_route_without_the_catalog_layer(self):
@@ -123,7 +139,7 @@ class BuildLocalPreviewTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn(
             "0 catalog page(s) and 0 internal page(s), 0 home page(s), "
-            "0 responsive navigation page(s), 0 Brigada page(s), "
+            "0 responsive navigation page(s), 0 high-resolution hero video page(s), 0 Brigada page(s), "
             "0 service sync script(s), 0 Products carousel page(s) refreshed",
             result.stdout,
         )

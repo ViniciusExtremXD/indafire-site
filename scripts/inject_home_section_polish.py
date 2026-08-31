@@ -291,15 +291,13 @@ def inject_styles(targets: tuple[Path, ...] | list[Path]) -> int:
     pattern = re.compile(rf'<style id="{re.escape(STYLE_ID)}">.*?</style>\s*', re.DOTALL)
     replacement = style_tag() + "\n"
     for page in targets:
-        with page.open("r", encoding="utf-8", newline="") as handle:
-            source = handle.read()
+        source = page.read_text(encoding="utf-8")
         stripped = pattern.sub("", source)
         if "</head>" not in stripped:
             continue
         rendered = stripped.replace("</head>", f"{replacement}</head>", 1)
         if rendered != source:
-            with page.open("w", encoding="utf-8", newline="") as handle:
-                handle.write(rendered)
+            page.write_text(rendered, encoding="utf-8")
             changed += 1
     return changed
 
