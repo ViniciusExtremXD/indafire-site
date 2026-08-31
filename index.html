@@ -404,7 +404,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='dashicons-css' href='./wp-includes/css/dashicons.min.css?ver=7.1' media='all' />
 <link rel='stylesheet' id='elementor-pro-css' href='./wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.7.2' media='all' />
 <link rel='stylesheet' id='elementor-global-css' href='./wp-content/uploads/elementor/css/global.css?ver=1693855197' media='all' />
-<link rel='stylesheet' id='elementor-post-2-css' href='./wp-content/uploads/elementor/css/post-2.css?ver=1695145555' media='all' />
+<link rel='stylesheet' id='elementor-post-2-css' href='./wp-content/uploads/elementor/css/post-2.css?ver=20260831' media='all' />
 <link rel='stylesheet' id='elementor-post-37-css' href='./wp-content/uploads/elementor/css/post-37.css?ver=1693855197' media='all' />
 <link rel='stylesheet' id='happy-icons-css' href='./wp-content/plugins/happy-elementor-addons/assets/fonts/style.min.css?ver=3.6.2' media='all' />
 <link rel='stylesheet' id='elementor-post-596-css' href='./wp-content/uploads/elementor/css/post-596.css?ver=1722017607' media='all' />
@@ -1476,25 +1476,7 @@ jQuery(document).ready(function(){
 		jQuery(".formulario_ativo").removeClass("formulario_ativo");
 		jQuery("."+idCTA).addClass("formulario_ativo");
 	});
-	
-	function apagaServicos(){
-		jQuery("#gridServicos article").each(function(){
-			jQuery(this).css("display","none");
-		});
-	}
-	
-	function mudaServicos_home(){
-		apagaServicos();
-		setTimeout(function(){ 
-			var idSlider_meio = jQuery("#carrosselServicos .swiper-slide-next section").attr("id"); 
-			console.log(idSlider_meio);
-			jQuery("."+idSlider_meio).each(function(){
-				jQuery(this).parents("article").css("display","block");
-			});
-		}, 100);			
-	}
-	jQuery("#carrosselServicos .dce-container-navigation").click(function(){ mudaServicos_home(); } );	
-	mudaServicos_home();
+
 });
 </script>
 
@@ -1738,117 +1720,6 @@ main textarea:focus {
     overflow-wrap: anywhere;
   }
 
-  html body #carrosselServicos {
-    padding: 4px 42px !important;
-  }
-
-  html body #carrosselServicos > .elementor-widget-container {
-    padding: 0 !important;
-  }
-
-  html body #carrosselServicos .swiper-slide {
-    width: 100% !important;
-    padding: 6px !important;
-  }
-
-  html body #carrosselServicos .swiper-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  html body #carrosselServicos .servico_unidade_carrossel {
-    min-height: 142px !important;
-    padding: 12px 8px !important;
-  }
-
-  html body #carrosselServicos .servico_unidade_carrossel h4 {
-    font-size: 0.76rem !important;
-    line-height: 1.22 !important;
-  }
-
-  html body #carrosselServicos .dce-container-navigation {
-    position: absolute !important;
-    inset: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    pointer-events: none !important;
-  }
-
-  html body #carrosselServicos .swiper-button-prev,
-  html body #carrosselServicos .swiper-button-next {
-    width: 34px !important;
-    height: 34px !important;
-    top: 50% !important;
-    margin: 0 !important;
-    transform: translateY(-50%) !important;
-    pointer-events: auto !important;
-  }
-
-  html body #carrosselServicos .swiper-button-prev { left: -36px !important; }
-  html body #carrosselServicos .swiper-button-next { right: -36px !important; }
-}
-
-@media (max-width: 767px) {
-  /* Portrait phones need the existing carousel and detail card to flow as
-     one readable column; the export keeps these two 50% columns side by
-     side and pushes the detail card outside the viewport. */
-  html body.home .elementor-element-d88d016 > .elementor-container > .elementor-row {
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    height: auto !important;
-  }
-
-  html body .elementor-element-d88d016 > .elementor-container > .elementor-row > .elementor-element-c99c7c0,
-  html body .elementor-element-d88d016 > .elementor-container > .elementor-row > .elementor-element-c54c22f {
-    flex: 0 0 auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-  }
-
-  html body.home .elementor-element-c99c7c0,
-  html body.home .elementor-element-c54c22f {
-    height: auto !important;
-    align-self: flex-start !important;
-  }
-
-  html body .elementor-element-c54c22f {
-    margin-top: 16px !important;
-  }
-
-  html body #gridServicos,
-  html body #gridServicos .dce-posts-container,
-  html body #gridServicos article {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  html body #carrosselServicos { padding-right: 30px !important; padding-left: 30px !important; }
-
-  html body #carrosselServicos > .elementor-widget-container { padding: 0 !important; }
-
-  html body #carrosselServicos .swiper-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  html body #carrosselServicos .swiper-slide { width: 100% !important; }
-
-  html body #carrosselServicos .swiper-button-prev,
-  html body #carrosselServicos .swiper-button-next {
-    width: 30px !important;
-    height: 30px !important;
-    top: 50% !important;
-    margin: 0 !important;
-    transform: translateY(-50%) !important;
-  }
-
-  html body #carrosselServicos .swiper-button-prev { left: -30px !important; }
-  html body #carrosselServicos .swiper-button-next { right: -30px !important; }
 }
 </style>
 </head>
@@ -4327,7 +4198,7 @@ main textarea:focus {
 				<div class="elementor-element elementor-element-1c2246b elementor-widget elementor-widget-text-editor" data-id="1c2246b" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-text-editor elementor-clearfix">
-				<p>Capacitação completa com conteúdo teórico e prático, em total conformidade com a NBR 14276 e decretos estaduais do Corpo de Bombeiros.</p>					</div>
+				<p>Realizamos o treinamento com todo o conteúdo teórico, conforme NBR-14276/06 e decretos estaduais do corpo de bombeiros.</p>					</div>
 						</div>
 				</div>
 				<div class="elementor-element elementor-element-989c3cc dce_masking-none elementor-aspect-ratio-169 elementor-widget elementor-widget-video" data-id="989c3cc" data-element_type="widget" data-settings="{&quot;video_type&quot;:&quot;hosted&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;mute&quot;:&quot;yes&quot;,&quot;loop&quot;:&quot;yes&quot;,&quot;aspect_ratio&quot;:&quot;169&quot;}" data-widget_type="video.default">
@@ -5411,127 +5282,6 @@ i.eicon-close::before,
   text-align: center !important;
 }
 
-/* 5. SEÇÃO TREINAMENTOS / BRIGADA DE INCÊNDIO */
-.elementor-element.elementor-element-3662fd7 {
-  position: relative !important;
-  background-color: #ffffff !important;
-  background-image: url('./wp-content/uploads/2021/10/bombeiro.jpg') !important;
-  background-repeat: no-repeat !important;
-}
-
-.elementor-element.elementor-element-42aaacd .elementor-heading-title {
-  color: #161616 !important;
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 2px !important;
-  text-transform: uppercase !important;
-  margin-bottom: 6px !important;
-}
-
-.elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
-  color: #e30613 !important;
-  font-size: 2.2rem !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  line-height: 1.15 !important;
-  margin-bottom: 14px !important;
-}
-
-.elementor-element.elementor-element-1c2246b .elementor-text-editor p,
-.elementor-element.elementor-element-1c2246b .elementor-text-editor {
-  color: #444444 !important;
-  font-size: 1.05rem !important;
-  line-height: 1.6 !important;
-  font-weight: 400 !important;
-  margin-bottom: 20px !important;
-}
-
-.elementor-element.elementor-element-989c3cc {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Desktop (> 991px): Layout Lado a Lado */
-@media (min-width: 992px) {
-  .elementor-element.elementor-element-3662fd7 {
-    padding: 60px 40px !important;
-    background-position: right 30px center !important;
-    background-size: contain !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-container {
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
-    max-width: 580px !important;
-    margin-left: 0 !important;
-    text-align: left !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b > .elementor-column-wrap {
-    background: transparent !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p {
-    text-align: left !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
-    max-width: 580px !important;
-    width: 100% !important;
-    margin: 0 !important;
-  }
-}
-
-/* Tablet & Mobile (< 992px): Centralizado com o Bombeiro posicionado abaixo do vídeo */
-@media (max-width: 991px) {
-  .elementor-element.elementor-element-3662fd7 {
-    padding-top: 40px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-bottom: 300px !important;
-    background-position: right -15px bottom -10px !important;
-    background-size: 360px auto !important;
-  }
-  
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
-    max-width: 620px !important;
-    margin: 0 auto !important;
-    text-align: center !important;
-  }
-  
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b > .elementor-column-wrap {
-    background: transparent !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  
-  .elementor-element.elementor-element-42aaacd .elementor-heading-title {
-    font-size: 0.85rem !important;
-    text-align: center !important;
-  }
-  
-  .elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
-    font-size: 1.85rem !important;
-    text-align: center !important;
-  }
-  
-  .elementor-element.elementor-element-1c2246b .elementor-text-editor p,
-  .elementor-element.elementor-element-1c2246b .elementor-text-editor {
-    font-size: 0.95rem !important;
-    text-align: center !important;
-  }
-  
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
-    max-width: 600px !important;
-    margin: 0 auto !important;
-  }
-}
 
 /* 6. ENQUADRAMENTO DO NEWSLETTER E CATÁLOGO */
 #formulariosRodape {
@@ -5787,14 +5537,8 @@ i.eicon-close::before,
    floating contact controls from colliding with the content. */
 @media (max-width: 991px) {
   html, body { overflow-x: hidden !important; }
-  img, iframe, video { max-width: 100% !important; }
   .elementor-section, .elementor-container, .elementor-row,
   .elementor-column, .elementor-column-wrap { min-width: 0 !important; }
-  .elementor-element.elementor-element-3662fd7 {
-    padding-bottom: 260px !important;
-    background-size: min(360px, 70vw) auto !important;
-    background-position: right -10px bottom 0 !important;
-  }
   .indafire-whatsapp-card { padding: 22px 18px !important; }
   .indafire-whatsapp-card h3 { font-size: clamp(17px, 3.5vw, 22px) !important; }
   #formulariosRodape .elementor-field-option { min-width: 0 !important; }
@@ -5804,23 +5548,6 @@ i.eicon-close::before,
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
-  .elementor-element.elementor-element-3662fd7 {
-    padding: 28px 24px 220px !important;
-    background-size: min(250px, 34vw) auto !important;
-    background-position: right 20px bottom 0 !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
-    max-width: 62% !important;
-    margin: 0 !important;
-    text-align: left !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p { text-align: left !important; }
-  .elementor-element.elementor-element-9d7bf30 .elementor-heading-title { font-size: clamp(1.35rem, 4vw, 1.85rem) !important; }
-  .elementor-element.elementor-element-1c2246b .elementor-text-editor p,
-  .elementor-element.elementor-element-1c2246b .elementor-text-editor { font-size: .86rem !important; line-height: 1.45 !important; }
   #formulariosRodape { padding: 24px 16px !important; }
   #formulariosRodape .elementor-row { flex-direction: row !important; gap: 16px !important; }
   #formulariosRodape .elementor-column.elementor-col-50 { flex: 1 1 0 !important; width: 0 !important; }
@@ -6028,69 +5755,6 @@ html.indafire-scroll-header-ready.indafire-header-visible .elementor-location-he
   box-shadow: 0 4px 18px rgba(0, 0, 0, .12) !important;
 }
 
-/* Mobile Brigada: preserve the complete video frame before the firefighter visual. */
-@media (max-width: 991px) {
-  .elementor-element.elementor-element-3662fd7 {
-    padding: 36px 16px 320px !important;
-    background-position: center bottom !important;
-    background-size: min(420px, 92vw) auto !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-container,
-  .elementor-element.elementor-element-3662fd7 .elementor-row,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 0 !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
-    margin: 0 auto !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    margin: 24px auto 0 !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-widget-container,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-wrapper {
-    width: 100% !important;
-    min-height: 0 !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-widget-container {
-    height: auto !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-wrapper {
-    position: relative !important;
-    height: 0 !important;
-    aspect-ratio: auto !important;
-    padding-bottom: 56.25% !important;
-  }
-
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc video {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 0 !important;
-    aspect-ratio: auto !important;
-    object-fit: contain !important;
-    background: #000000 !important;
-  }
-}
-
-@media (max-width: 991px) and (orientation: landscape) {
-  .elementor-element.elementor-element-3662fd7 {
-    padding-bottom: 240px !important;
-    background-size: min(280px, 42vw) auto !important;
-  }
-}
 
 /* Mobile newsletter/catalog cards: keep every form control inside its card. */
 @media (max-width: 991px) {
@@ -6218,31 +5882,6 @@ html.indafire-scroll-header-ready.indafire-header-visible .elementor-location-he
   }
 }
 
-/* Brigada video: preserve the complete 16:9 frame on every viewport. */
-.elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-widget-container {
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-.elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc .elementor-wrapper {
-  position: relative !important;
-  width: 100% !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  padding-bottom: 56.25% !important;
-}
-
-.elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc video {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 0 !important;
-  object-fit: contain !important;
-  background: #000000 !important;
-}
 
 </style>
 
@@ -7329,113 +6968,8 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   .elementor-element.elementor-element-712ae1c .elementor-social-icon:hover {
     opacity: 0.85 !important;
     transform: translateY(-2px) !important;
-  }/* DESKTOP BRIGADA REFERENCE */
-  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 {
-    min-height: 585px !important;
-    padding: 0 !important;
-    position: relative !important;
-    background-color: transparent !important;
-    background-image: url("./wp-content/uploads/2021/10/bombeiro.jpg") !important;
-    background-position: bottom center !important;
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
   }
-  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-container {
-    max-width: 1140px !important;
-    min-height: 585px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 .elementor-container > .elementor-row {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    justify-content: normal !important;
-    gap: 0 !important;
-    width: 100% !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-169964b {
-    flex: 1 1 50% !important;
-    width: 50% !important;
-    max-width: 50% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end !important;
-    text-align: left !important;
-    padding: 0 !important;
-    z-index: 3 !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-42aaacd .elementor-heading-title {
-    font-size: 1em !important;
-    letter-spacing: normal !important;
-    text-transform: uppercase !important;
-    color: #333333 !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    margin: 0 !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
-    font-size: 2.5em !important;
-    line-height: normal !important;
-    font-weight: 700 !important;
-    text-transform: none !important;
-    color: #e30613 !important;
-    text-align: left !important;
-    margin: 0 !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-9d7bf30 > .elementor-widget-container { margin: -15px 0 0 !important; }
-  body.home .elementor-2 .elementor-element.elementor-element-1c2246b,
-  body.home .elementor-2 .elementor-element.elementor-element-1c2246b p {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-    color: #555555 !important;
-    text-align: left !important;
-    max-width: none !important;
-    margin: 0 !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-989c3cc {
-    width: 100% !important;
-    max-width: 550px !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    overflow: visible !important;
-    margin: 0 !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-989c3cc > .elementor-widget-container {
-    margin: 0 0 -100px !important;
-    padding: 0 !important;
-    box-shadow: 7px 6px 10px rgba(0, 0, 0, .5) !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-989c3cc video { display: block !important; width: 100% !important; border-radius: 0 !important; }
-  body.home .elementor-2 .elementor-element.elementor-element-44bd2a0 {
-    flex: 1 1 50% !important;
-    width: 50% !important;
-    max-width: 50% !important;
-    min-height: 0 !important;
-    height: auto !important;
-    display: block !important;
-    position: relative !important;
-    border-radius: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    overflow: visible !important;
-  }
-  body.home .elementor-2 .elementor-element.elementor-element-44bd2a0::before,
-  body.home .elementor-2 .elementor-element.elementor-element-44bd2a0::after { content: none !important; }
-  body.home .elementor-2 .elementor-element.elementor-element-08f0d01,
-  body.home .elementor-2 .elementor-element.elementor-element-d3d2086 { display: none !important; height: 0 !important; margin: 0 !important; padding: 0 !important; }
-  body.home .elementor-2 .elementor-element.elementor-element-207ff2b { padding: 110px 0 30px !important; margin: 0 auto !important; display: flex !important; justify-content: center !important; }
-  body.home .elementor-2 .elementor-element.elementor-element-8eed4f7 .elementor-button {
-    padding: 15px 40px !important;
-    font-size: 1em !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    border-radius: 50px !important;
-    background-color: #e30613 !important;
-    color: #ffffff !important;
-    box-shadow: none !important;
-  }
+
 }
 
 /* --------------------------------------------------------------------------
@@ -8130,375 +7664,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
   }
 
-  /* SERVIÇOS NO MOBILE VERTICAL */
-  .elementor-element.elementor-element-c629bbc {
-    margin: 10px 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-  }
-  .elementor-element.elementor-element-3432f15 {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-  }
-  .elementor-element.elementor-element-3432f15 > .elementor-column-wrap,
-  .elementor-element.elementor-element-3432f15 > .elementor-element-populated {
-    background: #f8f9fa !important;
-    border-radius: 16px !important;
-    padding: 20px 10px !important;
-    box-sizing: border-box !important;
-    width: 96% !important;
-    margin: 0 auto !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
-  }
-  .elementor-element.elementor-element-3fbc3d7,
-  .elementor-element.elementor-element-d88d016 {
-    background: transparent !important;
-    background-image: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100% !important;
-  }
-  .elementor-element.elementor-element-99db086 .elementor-heading-title {
-    font-size: 1.65rem !important;
-    line-height: 1.2 !important;
-    font-weight: 800 !important;
-    color: #e30613 !important;
-    text-align: center !important;
-    text-transform: uppercase !important;
-    margin: 0 0 6px 0 !important;
-  }
-  .elementor-element.elementor-element-8c1905f,
-  .elementor-element.elementor-element-8c1905f p {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
-    color: #444444 !important;
-    text-align: center !important;
-    max-width: 440px !important;
-    margin: 0 auto 16px auto !important;
-  }
-  .elementor-element.elementor-element-d88d016 > .elementor-container,
-  .elementor-element.elementor-element-3fbc3d7 > .elementor-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
-  .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
-    display: flex !important;
-    flex-direction: column !important;
-    flex-wrap: wrap !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    gap: 16px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-  }
-
-  /* Coluna 1: Carrossel */
-  .elementor-element.elementor-element-c99c7c0 {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 0 0 100% !important;
-    display: block !important;
-    float: none !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-  }
-  #carrosselServicos {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 4px 30px !important;
-    position: relative !important;
-    margin: 0 auto !important;
-    box-sizing: border-box !important;
-  }
-  #carrosselServicos .dce-posts-container,
-  #carrosselServicos .swiper-container {
-    width: 100% !important;
-    overflow: hidden !important;
-    padding: 6px 0 !important;
-  }
-  #carrosselServicos .swiper-slide {
-    height: auto !important;
-    box-sizing: border-box !important;
-    padding: 4px !important;
-  }
-  .servico_unidade_carrossel,
-  .elementor-element.elementor-element-1a58808 {
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 115px !important;
-    background: #ffffff !important;
-    border-radius: 12px !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07) !important;
-    padding: 10px 6px !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    cursor: pointer !important;
-    transition: all 0.25s ease !important;
-  }
-  .servico_unidade_carrossel .elementor-widget-image {
-    width: 36px !important;
-    height: 36px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 auto 6px auto !important;
-  }
-  .servico_unidade_carrossel img {
-    width: 32px !important;
-    height: 32px !important;
-    max-width: 32px !important;
-    max-height: 32px !important;
-    object-fit: contain !important;
-    display: block !important;
-    margin: 0 auto !important;
-  }
-  .servico_unidade_carrossel h4 {
-    font-size: 10.5px !important;
-    line-height: 1.2 !important;
-    font-weight: 700 !important;
-    color: #222222 !important;
-    text-align: center !important;
-    margin: 0 !important;
-  }
-  .servico_unidade_carrossel.item_ativo,
-  #carrosselServicos .swiper-slide-active .servico_unidade_carrossel {
-    background-color: #e30613 !important;
-    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
-  }
-  .servico_unidade_carrossel.item_ativo img,
-  #carrosselServicos .swiper-slide-active .servico_unidade_carrossel img {
-    filter: brightness(0) invert(1) !important;
-  }
-  .servico_unidade_carrossel.item_ativo h4,
-  #carrosselServicos .swiper-slide-active .servico_unidade_carrossel h4 {
-    color: #ffffff !important;
-  }
-  #carrosselServicos .swiper-button-prev,
-  #carrosselServicos .swiper-button-next {
-    display: flex !important;
-    width: 26px !important;
-    height: 26px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 20 !important;
-    position: absolute !important;
-  }
-  #carrosselServicos .swiper-button-prev { left: 2px !important; }
-  #carrosselServicos .swiper-button-next { right: 2px !important; }
-
-  /* Coluna 2: Detalhes do Serviço */
-  .elementor-element.elementor-element-c54c22f {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 0 0 100% !important;
-    display: block !important;
-    float: none !important;
-    margin: 8px auto 0 auto !important;
-    padding: 0 !important;
-    background: transparent !important;
-    box-sizing: border-box !important;
-  }
-  div#gridServicos {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    display: block !important;
-  }
-  div#gridServicos .dce-posts-container,
-  div#gridServicos article {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-  }
-  .servicos_exibicao,
-  [id^="visualizacao_"] {
-    width: 100% !important;
-    max-width: 330px !important;
-    background: #222222 !important;
-    border-radius: 14px !important;
-    padding: 18px 16px !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
-    box-sizing: border-box !important;
-    margin: 0 auto !important;
-    display: block !important;
-  }
-  .servicos_exibicao .elementor-widget-image img,
-  [id^="visualizacao_"] .elementor-widget-image img {
-    width: 100% !important;
-    max-width: 280px !important;
-    height: 135px !important;
-    max-height: 135px !important;
-    object-fit: cover !important;
-    border-radius: 8px !important;
-    display: block !important;
-    margin: 0 auto 10px auto !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
-  }
-  .servicos_exibicao .elementor-heading-title,
-  .servicos_exibicao h3,
-  [id^="visualizacao_"] h3 {
-    font-size: 1.18rem !important;
-    line-height: 1.25 !important;
-    color: #ffffff !important;
-    font-weight: 800 !important;
-    text-align: center !important;
-    margin: 6px 0 6px 0 !important;
-  }
-  .servicos_exibicao .elementor-widget-text-editor,
-  [id^="visualizacao_"] .elementor-widget-text-editor,
-  .servicos_exibicao p,
-  [id^="visualizacao_"] p {
-    font-size: 0.82rem !important;
-    line-height: 1.45 !important;
-    color: #dddddd !important;
-    text-align: center !important;
-    margin: 0 0 12px 0 !important;
-  }
-  .servicos_exibicao .elementor-button,
-  [id^="visualizacao_"] .elementor-button {
-    display: inline-block !important;
-    padding: 10px 28px !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    background-color: #e30613 !important;
-    color: #ffffff !important;
-    border-radius: 25px !important;
-    box-shadow: 0 4px 12px rgba(227, 6, 19, 0.4) !important;
-    margin: 4px auto 0 auto !important;
-    text-decoration: none !important;
-  }
-
-  /* BRIGADA DE INCÊNDIO NO MOBILE VERTICAL (ZERO ESPAÇO EM BRANCO) */
-  .elementor-element.elementor-element-3662fd7,
-  .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container,
-  .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
-  .elementor-element.elementor-element-3662fd7 > .elementor-background-overlay {
-    background-image: none !important;
-    background-color: #ffffff !important;
-    background: #ffffff !important;
-    padding: 24px 16px 0 16px !important;
-    min-height: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-  }
-  .elementor-element.elementor-element-3662fd7 > .elementor-container {
-    min-height: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-container > .elementor-row {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title {
-    text-align: center !important;
-    font-size: 11px !important;
-    letter-spacing: 1.5px !important;
-    text-transform: uppercase !important;
-    color: #555555 !important;
-    margin: 0 0 4px 0 !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title {
-    text-align: center !important;
-    font-size: 1.65rem !important;
-    line-height: 1.2 !important;
-    color: #e30613 !important;
-    font-weight: 800 !important;
-    margin: 0 0 8px 0 !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
-  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p {
-    text-align: center !important;
-    font-size: 0.86rem !important;
-    line-height: 1.45 !important;
-    color: #444444 !important;
-    max-width: 440px !important;
-    margin: 0 auto 12px auto !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
-    width: 100% !important;
-    max-width: 440px !important;
-    margin: 0 auto !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
-    overflow: hidden !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc video {
-    border-radius: 12px !important;
-    display: block !important;
-    width: 100% !important;
-  }
-  .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
-    display: none !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* DEPOIMENTOS VAZIO & ELEMENTOS RESIDUAIS (TOTALMENTE OCULTOS) */
-  .elementor-element.elementor-element-08f0d01,
-  .elementor-element.elementor-element-d3d2086 {
-    display: none !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* BOTÃO CONHEÇA MAIS BRIGADA (.elementor-element-207ff2b) */
-  .elementor-element.elementor-element-207ff2b {
-    margin: 0 auto !important;
-    padding: 14px 0 20px 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    width: 100% !important;
-  }
-  .elementor-element.elementor-element-8eed4f7 {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-  .elementor-element.elementor-element-8eed4f7 .elementor-button {
-    margin: 0 auto !important;
-    display: inline-block !important;
-    padding: 13px 40px !important;
-    font-size: 0.88rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    border-radius: 50px !important;
-    background-color: #e30613 !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
-  }
 
   /* PRODUTOS (MOBILE VERTICAL) */
   .elementor-element.elementor-element-f63fa97 {
@@ -8794,48 +7959,6 @@ body.elementor-popup-modal-active .elementor-location-header {
     text-align: center !important;
   }
 
-  /* SERVIÇOS NO MOBILE HORIZONTAL (LADO A LADO) */
-  .elementor-element.elementor-element-3432f15 > .elementor-column-wrap {
-    background: #f8f9fa !important;
-    border-radius: 16px !important;
-    padding: 20px 16px !important;
-    box-sizing: border-box !important;
-    width: 98% !important;
-    margin: 0 auto !important;
-  }
-  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    justify-content: space-between !important;
-    gap: 16px !important;
-    width: 100% !important;
-  }
-  .elementor-element.elementor-element-c99c7c0 {
-    display: block !important;
-    flex: 1 1 54% !important;
-    width: 54% !important;
-    max-width: 54% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .elementor-element.elementor-element-c54c22f {
-    display: block !important;
-    flex: 1 1 46% !important;
-    width: 46% !important;
-    max-width: 46% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .elementor-element.elementor-element-08f0d01,
-  .elementor-element.elementor-element-d3d2086 {
-    display: none !important;
-  }
-  .elementor-element.elementor-element-207ff2b {
-    padding: 16px 0 !important;
-    margin: 0 auto !important;
-  }
 }
 
 /* INDAFIRE HOME BRIGADA REFERENCE START */
@@ -9010,13 +8133,13 @@ body.elementor-popup-modal-active .elementor-location-header {
     document.addEventListener('DOMContentLoaded', function() {
       initCounters();
       initLazyVideos();
-      initServicesInteractive();
+
       initMenuDrawer();
     });
   } else {
     initCounters();
     initLazyVideos();
-    initServicesInteractive();
+
     initMenuDrawer();
   }
 })();
@@ -9052,14 +8175,23 @@ body.elementor-popup-modal-active .elementor-location-header {
 </script>
 <script id="indafire-home-service-sync">
 (function () {
+  var servicePreloads = [];
+
   function preloadServiceImages() {
     document.querySelectorAll('#gridServicos img').forEach(function (image) {
       image.loading = 'eager';
       image.decoding = 'async';
-      if (!image.complete || !image.naturalWidth) {
-        var preload = new Image();
-        preload.src = image.currentSrc || image.src;
-      }
+      image.fetchPriority = 'high';
+
+      var source = image.currentSrc || image.src;
+      if (!source) return;
+
+      var preload = new Image();
+      preload.src = source;
+      servicePreloads.push(preload);
+
+      if (typeof image.decode === 'function') image.decode().catch(function () {});
+      if (typeof preload.decode === 'function') preload.decode().catch(function () {});
     });
   }
 
@@ -9071,7 +8203,8 @@ body.elementor-popup-modal-active .elementor-location-header {
 
     var targetId = section.getAttribute('id');
     var number = targetId.replace('servico_', '');
-    document.querySelectorAll('#gridServicos article').forEach(function (article) {
+    var articles = document.querySelectorAll('#gridServicos article');
+    articles.forEach(function (article) {
       var matchingDetail = article.querySelector('.' + targetId + ', #visualizacao_' + number);
       article.style.setProperty('display', matchingDetail ? 'block' : 'none', 'important');
     });
@@ -9084,28 +8217,22 @@ body.elementor-popup-modal-active .elementor-location-header {
 
     preloadServiceImages();
 
-    var timer;
-    var scheduleSync = function () {
-      clearTimeout(timer);
-      timer = setTimeout(syncServiceDetail, 80);
-    };
-
-    new MutationObserver(scheduleSync).observe(wrapper, {
+    new MutationObserver(syncServiceDetail).observe(wrapper, {
       attributes: true,
       subtree: true,
       attributeFilter: ['class']
     });
 
     if (carousel.swiper && typeof carousel.swiper.on === 'function') {
-      ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd'].forEach(function (eventName) {
-        carousel.swiper.on(eventName, scheduleSync);
+      ['slideChange', 'transitionStart', 'slideChangeTransitionEnd', 'transitionEnd'].forEach(function (eventName) {
+        carousel.swiper.on(eventName, syncServiceDetail);
       });
     }
 
-    carousel.addEventListener('transitionend', scheduleSync);
-    scheduleSync();
-    setTimeout(scheduleSync, 500);
-    setTimeout(scheduleSync, 1500);
+    carousel.addEventListener('transitionend', syncServiceDetail);
+    syncServiceDetail();
+    setTimeout(syncServiceDetail, 500);
+    setTimeout(syncServiceDetail, 1500);
   }
 
   if (document.readyState === 'loading') {

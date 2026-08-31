@@ -1,8 +1,7 @@
 """Inject breakpoint-safe polish for the Indafire home sections.
 
-It corrects the narrow desktop/tablet collision in the experience counters,
-keeps the service carousel legible, and leaves the established visual design
-and content unchanged.
+It corrects the narrow desktop/tablet collision in the experience counters
+and leaves the published Services layout and content unchanged.
 """
 
 from __future__ import annotations
@@ -117,117 +116,6 @@ CSS = r"""
     overflow-wrap: anywhere;
   }
 
-  html body #carrosselServicos {
-    padding: 4px 42px !important;
-  }
-
-  html body #carrosselServicos > .elementor-widget-container {
-    padding: 0 !important;
-  }
-
-  html body #carrosselServicos .swiper-slide {
-    width: 100% !important;
-    padding: 6px !important;
-  }
-
-  html body #carrosselServicos .swiper-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  html body #carrosselServicos .servico_unidade_carrossel {
-    min-height: 142px !important;
-    padding: 12px 8px !important;
-  }
-
-  html body #carrosselServicos .servico_unidade_carrossel h4 {
-    font-size: 0.76rem !important;
-    line-height: 1.22 !important;
-  }
-
-  html body #carrosselServicos .dce-container-navigation {
-    position: absolute !important;
-    inset: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    pointer-events: none !important;
-  }
-
-  html body #carrosselServicos .swiper-button-prev,
-  html body #carrosselServicos .swiper-button-next {
-    width: 34px !important;
-    height: 34px !important;
-    top: 50% !important;
-    margin: 0 !important;
-    transform: translateY(-50%) !important;
-    pointer-events: auto !important;
-  }
-
-  html body #carrosselServicos .swiper-button-prev { left: -36px !important; }
-  html body #carrosselServicos .swiper-button-next { right: -36px !important; }
-}
-
-@media (max-width: 767px) {
-  /* Portrait phones need the existing carousel and detail card to flow as
-     one readable column; the export keeps these two 50% columns side by
-     side and pushes the detail card outside the viewport. */
-  html body.home .elementor-element-d88d016 > .elementor-container > .elementor-row {
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    height: auto !important;
-  }
-
-  html body .elementor-element-d88d016 > .elementor-container > .elementor-row > .elementor-element-c99c7c0,
-  html body .elementor-element-d88d016 > .elementor-container > .elementor-row > .elementor-element-c54c22f {
-    flex: 0 0 auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-  }
-
-  html body.home .elementor-element-c99c7c0,
-  html body.home .elementor-element-c54c22f {
-    height: auto !important;
-    align-self: flex-start !important;
-  }
-
-  html body .elementor-element-c54c22f {
-    margin-top: 16px !important;
-  }
-
-  html body #gridServicos,
-  html body #gridServicos .dce-posts-container,
-  html body #gridServicos article {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  html body #carrosselServicos { padding-right: 30px !important; padding-left: 30px !important; }
-
-  html body #carrosselServicos > .elementor-widget-container { padding: 0 !important; }
-
-  html body #carrosselServicos .swiper-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  html body #carrosselServicos .swiper-slide { width: 100% !important; }
-
-  html body #carrosselServicos .swiper-button-prev,
-  html body #carrosselServicos .swiper-button-next {
-    width: 30px !important;
-    height: 30px !important;
-    top: 50% !important;
-    margin: 0 !important;
-    transform: translateY(-50%) !important;
-  }
-
-  html body #carrosselServicos .swiper-button-prev { left: -30px !important; }
-  html body #carrosselServicos .swiper-button-next { right: -30px !important; }
 }
 """.strip()
 

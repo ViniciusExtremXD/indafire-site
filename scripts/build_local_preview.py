@@ -68,8 +68,8 @@ def main() -> None:
     internal_changed = internal.inject_styles(internal.TARGETS)
     home_changed = home_sections.inject_styles(home_sections.TARGETS)
     brigada_changed = home_brigada.inject_styles(home_brigada.TARGETS)
-    service_sync_changed = home_service_sync.inject_scripts(home_service_sync.TARGETS)
     products_changed = home_products.inject_assets(home_products.TARGETS)
+    service_sync_changed = home_service_sync.inject_scripts(home_service_sync.TARGETS)
     validate_documents(documents())
     print(
         "Local static preview ready: "

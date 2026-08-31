@@ -13,6 +13,7 @@ TARGETS = (ROOT / "index.html",)
 
 
 REFERENCE_BLOCK = r'''
+@media (min-width: 1025px) {
   /* DESKTOP BRIGADA REFERENCE */
   .elementor-element.elementor-element-3662fd7 {
     min-height: 585px !important;
@@ -120,7 +121,69 @@ REFERENCE_BLOCK = r'''
     color: #ffffff !important;
     box-shadow: none !important;
   }
+}
 '''.strip().replace("\n  .elementor", "\n  body.home .elementor-2 .elementor")
+
+
+PUBLISHED_COPY = (
+    "Realizamos o treinamento com todo o conteúdo teórico, conforme NBR-14276/06 "
+    "e decretos estaduais do corpo de bombeiros."
+)
+CURRENT_COPY = (
+    "Capacitação completa com conteúdo teórico e prático, em total conformidade com "
+    "a NBR 14276 e decretos estaduais do Corpo de Bombeiros."
+)
+
+
+def strip_legacy_inline_brigada(source: str) -> str:
+    """Remove prior redesign layers so Elementor's published rules can apply."""
+
+    patterns = (
+        re.compile(
+            r'\n/\* 5\. SEÇÃO TREINAMENTOS / BRIGADA DE INCÊNDIO \*/.*?'
+            r'(?=\n/\* 6\. ENQUADRAMENTO DO NEWSLETTER E CATÁLOGO \*/)',
+            re.DOTALL,
+        ),
+        re.compile(
+            r'\n/\* Mobile Brigada: preserve the complete video frame before the firefighter visual\. \*/.*?'
+            r'(?=\n/\* Mobile newsletter/catalog cards:)',
+            re.DOTALL,
+        ),
+        re.compile(
+            r'\n/\* Brigada video: preserve the complete 16:9 frame on every viewport\. \*/.*?'
+            r'(?=\n</style>)',
+            re.DOTALL,
+        ),
+    )
+    cleaned = source
+    for pattern in patterns:
+        cleaned = pattern.sub("\n", cleaned, count=1)
+
+    stability_pattern = re.compile(
+        r'(/\* Mobile landscape stability:.*?\*/)(.*?)(?=/\* Header mobile menu:)',
+        re.DOTALL,
+    )
+
+    def clean_stability(match: re.Match[str]) -> str:
+        body = match.group(2)
+        body = re.sub(
+            r'\n\s*img, iframe, video\s*\{[^{}]*\}',
+            "",
+            body,
+        )
+        for selector in (
+            "elementor-element-3662fd7",
+            "elementor-element-9d7bf30",
+            "elementor-element-1c2246b",
+        ):
+            body = re.sub(
+                rf'\n\s*\.elementor-element[^{{]*{selector}[^{{]*\{{[^{{}}]*\}}',
+                "",
+                body,
+            )
+        return match.group(1) + body
+
+    return stability_pattern.sub(clean_stability, cleaned, count=1)
 
 
 def inject_styles(targets: tuple[Path, ...] | list[Path]) -> int:
@@ -136,27 +199,50 @@ def inject_styles(targets: tuple[Path, ...] | list[Path]) -> int:
         r'  (?:body\.home \.elementor-2 )?\.elementor-element\.elementor-element-8eed4f7 \.elementor-button \{.*?\n  \}\n',
         re.DOTALL,
     )
+    scoped_reference_pattern = re.compile(
+        r'@media \(min-width: 1025px\) \{\s*'
+        r'/\* DESKTOP BRIGADA REFERENCE \*/.*?'
+        r'  body\.home \.elementor-2 \.elementor-element\.elementor-element-8eed4f7 \.elementor-button \{.*?\n  \}\n\}',
+        re.DOTALL,
+    )
     master_pattern = re.compile(rf'(<style id="{MASTER_STYLE_ID}">)(.*?)(</style>)', re.DOTALL)
     marker = f"/* {MARKER} START */\n/* {MARKER} END */"
     for page in targets:
-        source = page.read_text(encoding="utf-8")
+        original_source = page.read_text(encoding="utf-8")
+        source = strip_legacy_inline_brigada(original_source)
         match = master_pattern.search(source)
         if match is None:
             continue
         master_css = marker_pattern.sub("\n", match.group(2))
-        if "DESKTOP BRIGADA" in master_css:
-            master_css, count = reference_pattern.subn(
-                f"{REFERENCE_BLOCK}\n", master_css, count=1
-            )
-            if count != 1:
-                continue
+        mobile_services_pattern = re.compile(
+            r'\n\s*/\* SERVIÇOS NO MOBILE VERTICAL \*/.*?'
+            r'(?=\n\s*/\* PRODUTOS \(MOBILE VERTICAL\) \*/)',
+            re.DOTALL,
+        )
+        landscape_services_pattern = re.compile(
+            r'\n\s*/\* SERVIÇOS NO MOBILE HORIZONTAL \(LADO A LADO\) \*/.*?'
+            r'\}\s*(?=\n\s*\})',
+            re.DOTALL,
+        )
+        residual_landscape_pattern = re.compile(
+            r'\n\s*\}\s*\n\s*\.elementor-element\.elementor-element-d88d016 > '
+            r'\.elementor-container > \.elementor-row\s*\{.*?'
+            r'\.elementor-element\.elementor-element-207ff2b\s*\{.*?\n\s*\}',
+            re.DOTALL,
+        )
+        master_css = mobile_services_pattern.sub("\n", master_css, count=1)
+        master_css = landscape_services_pattern.sub("\n", master_css, count=1)
+        master_css = residual_landscape_pattern.sub("\n", master_css, count=1)
+        if "@media (min-width: 1025px)" in master_css and "DESKTOP BRIGADA REFERENCE" in master_css:
+            master_css = scoped_reference_pattern.sub("\n", master_css, count=1)
+        elif "DESKTOP BRIGADA" in master_css:
+            master_css = reference_pattern.sub("\n", master_css, count=1)
         else:
-            master_css, count = desktop_pattern.subn(f"{REFERENCE_BLOCK}\n", master_css, count=1)
-            if count != 1:
-                continue
+            master_css = desktop_pattern.sub("\n", master_css, count=1)
         master_css = master_css.rstrip() + f"\n\n{marker}\n"
         rendered = source[:match.start()] + match.group(1) + master_css + match.group(3) + source[match.end():]
-        if rendered != source:
+        rendered = rendered.replace(CURRENT_COPY, PUBLISHED_COPY)
+        if rendered != original_source:
             page.write_text(rendered, encoding="utf-8")
             changed += 1
     return changed

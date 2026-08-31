@@ -34,11 +34,8 @@ class HomeSectionPolishTests(unittest.TestCase):
         self.assertEqual(changed, 1)
         self.assertEqual(rendered.count('id="indafire-home-section-polish"'), 1)
         self.assertNotIn(">old</style>", rendered)
-        self.assertIn("#carrosselServicos .swiper-slide", rendered)
-        self.assertIn("#carrosselServicos .swiper-container", rendered)
-        self.assertIn("#carrosselServicos > .elementor-widget-container", rendered)
-        self.assertIn(".elementor-element-d88d016 > .elementor-container > .elementor-row", rendered)
-        self.assertIn("flex-wrap: nowrap", rendered)
+        self.assertNotIn("#carrosselServicos", rendered)
+        self.assertNotIn(".elementor-element-d88d016", rendered)
         self.assertIn(".elementor-element-f195a0e", rendered)
 
     def test_ignores_documents_without_a_head(self):

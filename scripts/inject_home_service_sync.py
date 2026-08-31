@@ -13,14 +13,23 @@ TARGETS = (ROOT / "index.html",)
 
 JS = r"""
 (function () {
+  var servicePreloads = [];
+
   function preloadServiceImages() {
     document.querySelectorAll('#gridServicos img').forEach(function (image) {
       image.loading = 'eager';
       image.decoding = 'async';
-      if (!image.complete || !image.naturalWidth) {
-        var preload = new Image();
-        preload.src = image.currentSrc || image.src;
-      }
+      image.fetchPriority = 'high';
+
+      var source = image.currentSrc || image.src;
+      if (!source) return;
+
+      var preload = new Image();
+      preload.src = source;
+      servicePreloads.push(preload);
+
+      if (typeof image.decode === 'function') image.decode().catch(function () {});
+      if (typeof preload.decode === 'function') preload.decode().catch(function () {});
     });
   }
 
@@ -32,7 +41,8 @@ JS = r"""
 
     var targetId = section.getAttribute('id');
     var number = targetId.replace('servico_', '');
-    document.querySelectorAll('#gridServicos article').forEach(function (article) {
+    var articles = document.querySelectorAll('#gridServicos article');
+    articles.forEach(function (article) {
       var matchingDetail = article.querySelector('.' + targetId + ', #visualizacao_' + number);
       article.style.setProperty('display', matchingDetail ? 'block' : 'none', 'important');
     });
@@ -45,28 +55,22 @@ JS = r"""
 
     preloadServiceImages();
 
-    var timer;
-    var scheduleSync = function () {
-      clearTimeout(timer);
-      timer = setTimeout(syncServiceDetail, 80);
-    };
-
-    new MutationObserver(scheduleSync).observe(wrapper, {
+    new MutationObserver(syncServiceDetail).observe(wrapper, {
       attributes: true,
       subtree: true,
       attributeFilter: ['class']
     });
 
     if (carousel.swiper && typeof carousel.swiper.on === 'function') {
-      ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd'].forEach(function (eventName) {
-        carousel.swiper.on(eventName, scheduleSync);
+      ['slideChange', 'transitionStart', 'slideChangeTransitionEnd', 'transitionEnd'].forEach(function (eventName) {
+        carousel.swiper.on(eventName, syncServiceDetail);
       });
     }
 
-    carousel.addEventListener('transitionend', scheduleSync);
-    scheduleSync();
-    setTimeout(scheduleSync, 500);
-    setTimeout(scheduleSync, 1500);
+    carousel.addEventListener('transitionend', syncServiceDetail);
+    syncServiceDetail();
+    setTimeout(syncServiceDetail, 500);
+    setTimeout(syncServiceDetail, 1500);
   }
 
   if (document.readyState === 'loading') {
@@ -84,7 +88,30 @@ def script_tag() -> str:
 
 def inject(source: str) -> str:
     pattern = re.compile(rf'<script id="{re.escape(SCRIPT_ID)}">.*?</script>\s*', re.DOTALL)
+    legacy_pattern = re.compile(
+        r'\s*function\s+apagaServicos\s*\(\)\s*\{.*?'
+        r'(?=\s*jQuery\s*\(\s*["\']#carrosselServicos \.dce-container-navigation["\'])',
+        re.DOTALL,
+    )
     stripped = pattern.sub("", source)
+    stripped = legacy_pattern.sub("\n", stripped, count=1)
+    stripped = re.sub(
+        r'^\s*jQuery\s*\(\s*["\']#carrosselServicos \.dce-container-navigation["\']\s*\)'
+        r'\.click[^\r\n]*\r?\n?',
+        '',
+        stripped,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    stripped = re.sub(
+        r'^\s*}\s*\);\s*\r?\n\s*mudaServicos_home\(\);\s*$',
+        '',
+        stripped,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    stripped = re.sub(r'^\s*mudaServicos_home\(\);\s*$', '', stripped, count=1, flags=re.MULTILINE)
+    stripped = re.sub(r'^\s*initServicesInteractive\(\);\s*$', '', stripped, flags=re.MULTILINE)
     if "</body>" not in stripped:
         return source
     return stripped.replace("</body>", f"{script_tag()}\n</body>", 1)
