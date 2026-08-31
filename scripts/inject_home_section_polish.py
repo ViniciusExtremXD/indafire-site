@@ -251,6 +251,143 @@ CSS = r"""
   }
 }
 
+/* Phone landscape: compact About and Brigada only. */
+@media (min-width: 768px) and (max-width: 1024px) and (max-height: 620px) and (orientation: landscape) {
+  body.home .elementor-2 #conteudo {
+    min-height: 0 !important;
+    padding: 18px 14px !important;
+  }
+
+  body.home .elementor-2 #conteudo > .elementor-container > .elementor-row {
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-1ffb393 {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-c91e9f8 {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    padding-left: 4px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-bbbbf1b > .elementor-column-wrap > .elementor-widget-wrap {
+    gap: 6px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-f195a0e,
+  body.home .elementor-2 .elementor-element.elementor-element-c8f1cd7,
+  body.home .elementor-2 .elementor-element.elementor-element-8da6b11 {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 112px !important;
+    padding: 8px 4px !important;
+    border-radius: 10px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-f195a0e > .elementor-container > .elementor-row,
+  body.home .elementor-2 .elementor-element.elementor-element-c8f1cd7 > .elementor-container > .elementor-row,
+  body.home .elementor-2 .elementor-element.elementor-element-8da6b11 > .elementor-container > .elementor-row {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-166d00a img,
+  body.home .elementor-2 .elementor-element.elementor-element-312be29 img,
+  body.home .elementor-2 .elementor-element.elementor-element-3bbd276 img {
+    width: 28px !important;
+    height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-f195a0e .elementor-counter-number-wrapper,
+  body.home .elementor-2 .elementor-element.elementor-element-c8f1cd7 .elementor-counter-number-wrapper,
+  body.home .elementor-2 .elementor-element.elementor-element-8da6b11 .elementor-counter-number-wrapper,
+  body.home .elementor-2 .elementor-element.elementor-element-f195a0e .elementor-counter-number-prefix,
+  body.home .elementor-2 .elementor-element.elementor-element-c8f1cd7 .elementor-counter-number-prefix,
+  body.home .elementor-2 .elementor-element.elementor-element-8da6b11 .elementor-counter-number-prefix,
+  body.home .elementor-2 .elementor-element.elementor-element-f195a0e .elementor-counter-number,
+  body.home .elementor-2 .elementor-element.elementor-element-c8f1cd7 .elementor-counter-number,
+  body.home .elementor-2 .elementor-element.elementor-element-8da6b11 .elementor-counter-number {
+    font-size: 1.05rem !important;
+    line-height: 1.1 !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  body.home .elementor-2 .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  body.home .elementor-2 .elementor-element.elementor-element-04ea4f9 .elementor-heading-title {
+    max-width: 72px !important;
+    font-size: .56rem !important;
+    line-height: 1.15 !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-c91e9f8 .elementor-heading-title {
+    font-size: 1.7rem !important;
+    line-height: 1.05 !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-c91e9f8 .elementor-text-editor,
+  body.home .elementor-2 .elementor-element.elementor-element-c91e9f8 .elementor-text-editor p {
+    font-size: .8rem !important;
+    line-height: 1.35 !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 {
+    min-height: 430px !important;
+    padding: 22px 14px 48px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-container {
+    min-height: 360px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-989c3cc {
+    width: 78% !important;
+    max-width: 310px !important;
+    margin: 10px auto 0 !important;
+    overflow: hidden !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-989c3cc > .elementor-widget-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-989c3cc video {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: contain !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-42aaacd .elementor-heading-title {
+    font-size: .72rem !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
+    font-size: 1.7rem !important;
+    line-height: 1.05 !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-1c2246b,
+  body.home .elementor-2 .elementor-element.elementor-element-1c2246b p {
+    font-size: .78rem !important;
+    line-height: 1.35 !important;
+  }
+}
+
 .indafire-carousel-progress {
   position: relative;
   width: min(220px, 58%);

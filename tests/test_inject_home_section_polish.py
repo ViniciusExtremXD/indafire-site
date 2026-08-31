@@ -83,6 +83,28 @@ class HomeSectionPolishTests(unittest.TestCase):
         self.assertIn("padding-bottom: 24px", rendered)
         self.assertIn("var(--indafire-carousel-duration, 2500ms)", rendered)
 
+    def test_compacts_only_about_and_brigada_in_phone_landscape(self):
+        module = load_module()
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            page = Path(temp_dir) / "index.html"
+            page.write_text("<html><head></head><body></body></html>", encoding="utf-8")
+            module.inject_styles((page,))
+            rendered = page.read_text(encoding="utf-8")
+
+        marker = "/* Phone landscape: compact About and Brigada only. */"
+        self.assertIn(marker, rendered)
+        landscape = rendered.split(marker, 1)[1]
+        landscape = landscape.split("@media (prefers-reduced-motion: reduce)", 1)[0]
+        self.assertIn("(max-width: 1024px) and (max-height: 620px)", landscape)
+        self.assertIn("#conteudo", landscape)
+        self.assertIn("min-height: 112px", landscape)
+        self.assertIn("width: 28px", landscape)
+        self.assertIn("max-width: 310px", landscape)
+        self.assertIn("aspect-ratio: 16 / 9", landscape)
+        self.assertNotIn("elementor-element-9218be1", landscape)
+        self.assertNotIn("indafire-product", landscape)
+
     def test_ignores_documents_without_a_head(self):
         module = load_module()
         with tempfile.TemporaryDirectory() as temp_dir:

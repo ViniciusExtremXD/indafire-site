@@ -32,6 +32,7 @@ class ResponsiveNavigationInjectionTests(unittest.TestCase):
         self.assertIn("elementor-element-20668c0", rendered)
         self.assertIn("elementor-element-8755157", rendered)
         self.assertIn("aria-expanded", rendered)
+        self.assertIn(".jet-sub-mega-menu {\n    white-space: normal !important;", rendered)
 
     def test_replaces_its_managed_layers_without_duplication(self):
         from scripts import inject_responsive_navigation as subject
@@ -51,6 +52,82 @@ class ResponsiveNavigationInjectionTests(unittest.TestCase):
         from scripts import inject_responsive_navigation as subject
 
         self.assertEqual(subject.inject("<head></head>"), "<head></head>")
+
+    def test_desktop_mega_menus_recover_auto_height_when_revealed(self):
+        """Hidden Swipers must be measured again when their desktop menu opens."""
+        from scripts import inject_responsive_navigation as subject
+
+        encoded_script = base64.b64encode(subject.JS.encode("utf-8")).decode("ascii")
+        harness = f"""
+const source = Buffer.from('{encoded_script}', 'base64').toString('utf8');
+function makeMegaMenu(height) {{
+  let hoverListener = null;
+  const wrapper = {{ style: {{ height: '' }} }};
+  const activeSlide = {{ scrollHeight: height, style: {{ height: '' }} }};
+  const siblingSlide = {{ scrollHeight: height + 17, style: {{ height: '' }} }};
+  return {{
+    wrapper,
+    addEventListener(type, listener) {{ if (type === 'mouseenter') hoverListener = listener; }},
+    querySelector(selector) {{
+      if (selector === '.swiper-wrapper') return wrapper;
+      if (selector === '.swiper-slide-active') return activeSlide;
+      return null;
+    }},
+    querySelectorAll(selector) {{ return selector === '.swiper-slide' ? [activeSlide, siblingSlide] : []; }},
+    siblingSlide,
+    reveal() {{ if (hoverListener) hoverListener(); }}
+  }};
+}}
+const products = makeMegaMenu(306);
+const services = makeMegaMenu(207);
+const header = {{
+  querySelectorAll(selector) {{
+    if (selector === '#jet-menu-item-29, #jet-menu-item-30') return [products, services];
+    return [];
+  }},
+  querySelector() {{ return null; }}
+}};
+global.window = {{
+  matchMedia(query) {{ return {{ matches: query.indexOf('min-width') !== -1, addEventListener() {{}} }}; }},
+  requestAnimationFrame(callback) {{ callback(); }}
+}};
+global.document = {{
+  readyState: 'complete',
+  querySelector(selector) {{ return selector === '#headerInda' ? header : null; }},
+  addEventListener() {{}}
+}};
+global.MutationObserver = class {{ observe() {{}} }};
+eval(source);
+products.reveal();
+services.reveal();
+console.log(JSON.stringify({{
+  products: products.wrapper.style.height,
+  productSlide: products.querySelector('.swiper-slide-active').style.height,
+  productSibling: products.siblingSlide.style.height,
+  services: services.wrapper.style.height,
+  serviceSlide: services.querySelector('.swiper-slide-active').style.height,
+  serviceSibling: services.siblingSlide.style.height
+}}));
+"""
+        result = subprocess.run(
+            ["node", "-e", harness],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(
+            json.loads(result.stdout),
+            {
+                "products": "323px",
+                "productSlide": "306px",
+                "productSibling": "323px",
+                "services": "224px",
+                "serviceSlide": "207px",
+                "serviceSibling": "224px",
+            },
+        )
 
     def test_compact_layer_mounts_and_opens_the_static_popup_content(self):
         """The static build must not depend on Elementor rebuilding Popup 2519."""
