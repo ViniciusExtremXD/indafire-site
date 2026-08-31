@@ -10,6 +10,8 @@ from scripts.build_local_preview import validate_documents
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "build_local_preview.py"
+NAV_STYLE = '<style id="indafire-responsive-navigation-style"></style>'
+NAV_SCRIPT = '<script id="indafire-responsive-navigation"></script>'
 
 
 class BuildLocalPreviewTests(unittest.TestCase):
@@ -17,14 +19,18 @@ class BuildLocalPreviewTests(unittest.TestCase):
         documents = {
             "index.html": (
                 '<head><style id="indafire-internal-page-polish"></style>'
+                '<style id="indafire-responsive-navigation-style"></style>'
                 '<style id="indafire-home-section-polish"></style></head>'
                 '<body><script id="indafire-home-service-sync"></script>'
                 '<script id="indafire-home-product-carousel"></script>'
+                '<script id="indafire-responsive-navigation"></script>'
                 'INDAFIRE HOME BRIGADA REFERENCE</body>'
             ),
             "produtos/index.html": (
                 '<head><style id="indafire-internal-page-polish"></style>'
+                '<style id="indafire-responsive-navigation-style"></style>'
                 '<style id="indafire-product-catalog-polish"></style></head>'
+                '<body><script id="indafire-responsive-navigation"></script></body>'
             ),
         }
 
@@ -34,16 +40,25 @@ class BuildLocalPreviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "internal polish"):
             validate_documents({"contato/index.html": "<head></head>"})
 
-    def test_rejects_home_without_its_section_polish(self):
+    def test_rejects_a_route_without_responsive_navigation(self):
         source = '<head><style id="indafire-internal-page-polish"></style></head>'
+        with self.assertRaisesRegex(ValueError, "responsive navigation"):
+            validate_documents({"contato/index.html": source})
+
+    def test_rejects_home_without_its_section_polish(self):
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            f'{NAV_STYLE}</head><body>{NAV_SCRIPT}</body>'
+        )
         with self.assertRaisesRegex(ValueError, "home section polish"):
             validate_documents({"index.html": source})
 
     def test_rejects_home_without_service_sync(self):
         source = (
             '<head><style id="indafire-internal-page-polish"></style>'
-            '<style id="indafire-home-section-polish"></style></head>'
+            f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
             '<body><script id="indafire-home-product-carousel"></script>'
+            f'{NAV_SCRIPT}'
             'INDAFIRE HOME BRIGADA REFERENCE</body>'
         )
         with self.assertRaisesRegex(ValueError, "home service sync"):
@@ -52,9 +67,10 @@ class BuildLocalPreviewTests(unittest.TestCase):
     def test_rejects_home_without_brigada_reference_polish(self):
         source = (
             '<head><style id="indafire-internal-page-polish"></style>'
-            '<style id="indafire-home-section-polish"></style></head>'
+            f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
             '<body><script id="indafire-home-service-sync"></script>'
-            '<script id="indafire-home-product-carousel"></script></body>'
+            '<script id="indafire-home-product-carousel"></script>'
+            f'{NAV_SCRIPT}</body>'
         )
         with self.assertRaisesRegex(ValueError, "Brigada reference"):
             validate_documents({"index.html": source})
@@ -62,15 +78,18 @@ class BuildLocalPreviewTests(unittest.TestCase):
     def test_rejects_home_without_the_products_carousel_layer(self):
         source = (
             '<head><style id="indafire-internal-page-polish"></style>'
-            '<style id="indafire-home-section-polish"></style></head>'
+            f'{NAV_STYLE}<style id="indafire-home-section-polish"></style></head>'
             '<body><script id="indafire-home-service-sync"></script>'
-            'INDAFIRE HOME BRIGADA REFERENCE</body>'
+            f'{NAV_SCRIPT}INDAFIRE HOME BRIGADA REFERENCE</body>'
         )
         with self.assertRaisesRegex(ValueError, "Products carousel"):
             validate_documents({"index.html": source})
 
     def test_rejects_a_product_route_without_the_catalog_layer(self):
-        source = '<head><style id="indafire-internal-page-polish"></style></head>'
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            f'{NAV_STYLE}</head><body>{NAV_SCRIPT}</body>'
+        )
         with self.assertRaisesRegex(ValueError, "catalog polish"):
             validate_documents({"produtos/index.html": source})
 
@@ -102,7 +121,12 @@ class BuildLocalPreviewTests(unittest.TestCase):
         )
 
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("0 catalog page(s) and 0 internal page(s), 0 home page(s), 0 Brigada page(s), 0 service sync script(s), 0 Products carousel page(s) refreshed", result.stdout)
+        self.assertIn(
+            "0 catalog page(s) and 0 internal page(s), 0 home page(s), "
+            "0 responsive navigation page(s), 0 Brigada page(s), "
+            "0 service sync script(s), 0 Products carousel page(s) refreshed",
+            result.stdout,
+        )
 
 
 if __name__ == "__main__":

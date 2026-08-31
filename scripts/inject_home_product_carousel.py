@@ -15,23 +15,77 @@ TARGETS = (ROOT / "index.html",)
 
 JS = r"""
 (function () {
+  var AUTOPLAY_DELAY = 2500;
+
+  function createProgress(root) {
+    var existing = root.parentElement && root.parentElement.querySelector(':scope > .indafire-carousel-progress[data-carousel="products"]');
+    if (existing) return existing;
+    var progress = document.createElement('div');
+    progress.className = 'indafire-carousel-progress';
+    progress.dataset.carousel = 'products';
+    progress.setAttribute('aria-hidden', 'true');
+    progress.style.setProperty('--indafire-carousel-duration', AUTOPLAY_DELAY + 'ms');
+    progress.innerHTML = '<span class="indafire-carousel-progress__fill"></span>';
+    root.insertAdjacentElement('afterend', progress);
+    return progress;
+  }
+
   function wireProductsAutoplay() {
     var root = document.querySelector('#carrosselProdutos');
     var next = root && root.querySelector('.elementor-swiper-button-next');
     if (!root || !next) return;
 
-    var paused = false;
-    var pause = function () { paused = true; };
-    var resume = function () { paused = false; };
+    var progress = createProgress(root);
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    progress.dataset.reducedMotion = reducedMotion ? 'true' : 'false';
+    var timer = 0;
+    var hovering = false;
+    var focusing = false;
+    var pointerActive = false;
+    var advancing = false;
 
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', resume);
-    root.addEventListener('focusin', pause);
-    root.addEventListener('focusout', resume);
+    function isPaused() {
+      return hovering || focusing || pointerActive || document.visibilityState !== 'visible';
+    }
 
-    window.setInterval(function () {
-      if (!paused && document.visibilityState === 'visible') next.click();
-    }, 5000);
+    function resetProgress() {
+      var fill = progress.querySelector('.indafire-carousel-progress__fill');
+      progress.classList.remove('is-running', 'is-paused');
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+      progress.classList.add('is-running');
+    }
+
+    function schedule() {
+      window.clearTimeout(timer);
+      resetProgress();
+      if (isPaused()) {
+        progress.classList.add('is-paused');
+        return;
+      }
+      timer = window.setTimeout(function () {
+        advancing = true;
+        next.click();
+        advancing = false;
+        schedule();
+      }, AUTOPLAY_DELAY);
+    }
+
+    root.addEventListener('mouseenter', function () { hovering = true; schedule(); });
+    root.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+    root.addEventListener('focusin', function () { focusing = true; schedule(); });
+    root.addEventListener('focusout', function () {
+      window.setTimeout(function () { focusing = root.contains(document.activeElement); schedule(); }, 0);
+    });
+    root.addEventListener('pointerdown', function () { pointerActive = true; schedule(); });
+    root.addEventListener('pointerup', function () { pointerActive = false; schedule(); });
+    root.addEventListener('pointercancel', function () { pointerActive = false; schedule(); });
+    root.addEventListener('click', function (event) {
+      if (!advancing && event.target.closest('.elementor-swiper-button, .swiper-pagination-bullet')) schedule();
+    });
+    document.addEventListener('visibilitychange', schedule);
+    schedule();
   }
 
   if (document.readyState === 'loading') {

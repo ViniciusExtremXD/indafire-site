@@ -14,6 +14,20 @@ TARGETS = (ROOT / "index.html",)
 JS = r"""
 (function () {
   var servicePreloads = [];
+  var AUTOPLAY_DELAY = 2500;
+
+  function createProgress(root) {
+    var existing = root.parentElement && root.parentElement.querySelector(':scope > .indafire-carousel-progress[data-carousel="services"]');
+    if (existing) return existing;
+    var progress = document.createElement('div');
+    progress.className = 'indafire-carousel-progress';
+    progress.dataset.carousel = 'services';
+    progress.setAttribute('aria-hidden', 'true');
+    progress.style.setProperty('--indafire-carousel-duration', AUTOPLAY_DELAY + 'ms');
+    progress.innerHTML = '<span class="indafire-carousel-progress__fill"></span>';
+    root.insertAdjacentElement('afterend', progress);
+    return progress;
+  }
 
   function preloadServiceImages() {
     document.querySelectorAll('#gridServicos img').forEach(function (image) {
@@ -49,11 +63,20 @@ JS = r"""
   }
 
   function wireServiceCarousel() {
+    var root = document.querySelector('#carrosselServicos');
     var carousel = document.querySelector('#carrosselServicos .swiper-container');
     var wrapper = carousel && carousel.querySelector('.swiper-wrapper');
-    if (!carousel || !wrapper) return;
+    if (!root || !carousel || !wrapper) return;
 
     preloadServiceImages();
+    var progress = createProgress(root);
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    progress.dataset.reducedMotion = reducedMotion ? 'true' : 'false';
+    var timer = 0;
+    var hovering = false;
+    var focusing = false;
+    var pointerActive = false;
+    var advancing = false;
 
     new MutationObserver(syncServiceDetail).observe(wrapper, {
       attributes: true,
@@ -68,9 +91,57 @@ JS = r"""
     }
 
     carousel.addEventListener('transitionend', syncServiceDetail);
+
+    function isPaused() {
+      return hovering || focusing || pointerActive || document.visibilityState !== 'visible';
+    }
+
+    function resetProgress() {
+      var fill = progress.querySelector('.indafire-carousel-progress__fill');
+      progress.classList.remove('is-running', 'is-paused');
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+      progress.classList.add('is-running');
+    }
+
+    function schedule() {
+      window.clearTimeout(timer);
+      resetProgress();
+      if (isPaused()) {
+        progress.classList.add('is-paused');
+        return;
+      }
+      timer = window.setTimeout(function () {
+        advancing = true;
+        if (carousel.swiper && typeof carousel.swiper.slideNext === 'function') carousel.swiper.slideNext();
+        else {
+          var next = root.querySelector('.swiper-button-next');
+          if (next) next.click();
+        }
+        advancing = false;
+        syncServiceDetail();
+        schedule();
+      }, AUTOPLAY_DELAY);
+    }
+
+    root.addEventListener('mouseenter', function () { hovering = true; schedule(); });
+    root.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+    root.addEventListener('focusin', function () { focusing = true; schedule(); });
+    root.addEventListener('focusout', function () {
+      window.setTimeout(function () { focusing = root.contains(document.activeElement); schedule(); }, 0);
+    });
+    root.addEventListener('pointerdown', function () { pointerActive = true; schedule(); });
+    root.addEventListener('pointerup', function () { pointerActive = false; schedule(); });
+    root.addEventListener('pointercancel', function () { pointerActive = false; schedule(); });
+    root.addEventListener('click', function (event) {
+      if (!advancing && event.target.closest('.swiper-button-next, .swiper-button-prev')) schedule();
+    });
+    document.addEventListener('visibilitychange', schedule);
     syncServiceDetail();
     setTimeout(syncServiceDetail, 500);
     setTimeout(syncServiceDetail, 1500);
+    schedule();
   }
 
   if (document.readyState === 'loading') {

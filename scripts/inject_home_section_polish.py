@@ -21,7 +21,7 @@ CSS = r"""
 /* At intermediate desktop widths the original 50/50 counter internals were
    narrower than their figures. Stack each card internally to keep every
    value inside its own dark panel. */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1100px) {
   .elementor-element.elementor-element-bbbbf1b > .elementor-column-wrap > .elementor-widget-wrap {
     display: flex !important;
     flex-direction: row !important;
@@ -116,6 +116,168 @@ CSS = r"""
     overflow-wrap: anywhere;
   }
 
+}
+
+/* Keep Services stacked until both columns have enough room for the original
+   image treatment. This extends Elementor's tablet behavior without changing
+   the desktop composition or any source asset. */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-flow: row wrap !important;
+  }
+
+  .elementor-element.elementor-element-c99c7c0,
+  .elementor-element.elementor-element-c54c22f {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .elementor-element.elementor-element-c54c22f > .elementor-element-populated {
+    margin: 0 0 30px !important;
+  }
+
+  .elementor-319 .elementor-element.elementor-element-ef36f3b {
+    margin-top: 0 !important;
+  }
+
+  #gridServicos {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .elementor-element.elementor-element-3fbc3d7,
+  .elementor-element.elementor-element-d88d016 {
+    background-image: none !important;
+  }
+
+  .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+  }
+
+  .elementor-element.elementor-element-23a9c77 {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .elementor-element.elementor-element-86cf7df {
+    display: none !important;
+  }
+
+  .elementor-element.elementor-element-c54c22f > .elementor-element-populated {
+    background-image: none !important;
+  }
+
+  #gridServicos .dce-posts-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #gridServicos article {
+    width: 100% !important;
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    padding: 0 15px 35px !important;
+  }
+
+  #gridServicos .servicos_exibicao {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: 14px !important;
+    background: #333333 !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .16) !important;
+  }
+
+  #gridServicos .servicos_exibicao > .elementor-container {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+}
+
+/* Portrait-only repairs. Keep the current design intact while giving the
+   firefighter, detail CTA and product artwork the room they need. */
+@media (max-width: 1100px) and (orientation: portrait) {
+  .elementor-element.elementor-element-3662fd7 {
+    min-height: 980px !important;
+    overflow: hidden !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-motion-effects-layer {
+    width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
+    background-size: auto 44% !important;
+    background-position: 65% 100% !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #gridServicos .servicos_exibicao > .elementor-container {
+    box-sizing: border-box !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  body.home .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-main-swiper {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 400px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-carousel-image {
+    width: min(320px, calc(100vw - 72px)) !important;
+    max-width: 320px !important;
+    height: 350px !important;
+    min-height: 350px !important;
+  }
+}
+
+.indafire-carousel-progress {
+  position: relative;
+  width: min(220px, 58%);
+  height: 3px;
+  margin: 14px auto 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(30, 30, 30, .16);
+}
+
+.indafire-carousel-progress__fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #e30613;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.indafire-carousel-progress.is-running .indafire-carousel-progress__fill {
+  animation: indafire-carousel-progress var(--indafire-carousel-duration, 2500ms) linear forwards;
+}
+
+.indafire-carousel-progress.is-paused .indafire-carousel-progress__fill {
+  animation-play-state: paused;
+}
+
+@keyframes indafire-carousel-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indafire-carousel-progress { opacity: .55; }
+  .indafire-carousel-progress .indafire-carousel-progress__fill {
+    animation: none !important;
+    transform: scaleX(1) !important;
+  }
 }
 """.strip()
 

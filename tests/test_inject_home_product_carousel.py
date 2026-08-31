@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 
 
 class HomeProductCarouselInjectionTests(unittest.TestCase):
-    def test_injects_only_autoplay_and_removes_the_previous_visual_layer(self) -> None:
+    def test_injects_autoplay_with_accessible_progress_without_restyling_products(self) -> None:
         from scripts import inject_home_product_carousel as subject
 
         with TemporaryDirectory() as directory:
@@ -26,8 +26,16 @@ class HomeProductCarouselInjectionTests(unittest.TestCase):
         self.assertEqual(changed, 1)
         self.assertIn(f'id="{subject.SCRIPT_ID}"', rendered)
         self.assertNotIn(f'id="{subject.STYLE_ID}"', rendered)
-        self.assertIn("setInterval", rendered)
+        self.assertIn("setTimeout", rendered)
+        self.assertNotIn("setInterval", rendered)
         self.assertIn("elementor-swiper-button-next", rendered)
+        self.assertIn("indafire-carousel-progress", rendered)
+        self.assertIn("aria-hidden", rendered)
+        self.assertIn("visibilityState", rendered)
+        self.assertIn("prefers-reduced-motion", rendered)
+        self.assertIn("var AUTOPLAY_DELAY = 2500;", rendered)
+        self.assertNotIn("if (reducedMotion) return;", rendered)
+        self.assertIn("pointerdown", rendered)
         self.assertNotIn("inda-product-featured", rendered)
         self.assertLess(rendered.index(f'id="{subject.SCRIPT_ID}"'), rendered.index("</body>"))
 

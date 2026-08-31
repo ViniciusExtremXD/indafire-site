@@ -34,9 +34,46 @@ class HomeSectionPolishTests(unittest.TestCase):
         self.assertEqual(changed, 1)
         self.assertEqual(rendered.count('id="indafire-home-section-polish"'), 1)
         self.assertNotIn(">old</style>", rendered)
-        self.assertNotIn("#carrosselServicos", rendered)
-        self.assertNotIn(".elementor-element-d88d016", rendered)
+        self.assertIn("max-width: 1100px", rendered)
+        self.assertIn(".elementor-element-d88d016", rendered)
+        self.assertIn("background-image: none", rendered)
+        self.assertIn(".elementor-element-3fbc3d7", rendered)
+        self.assertIn(".elementor-element-86cf7df", rendered)
+        self.assertIn(".servicos_exibicao", rendered)
+        self.assertIn("max-width: 520px", rendered)
+        self.assertIn("background: #333333", rendered)
+        self.assertIn(".indafire-carousel-progress", rendered)
+        self.assertIn("opacity: .55", rendered)
+        self.assertIn("transform: scaleX(1)", rendered)
+        self.assertNotIn(".indafire-carousel-progress { display: none", rendered)
         self.assertIn(".elementor-element-f195a0e", rendered)
+
+    def test_adds_only_portrait_repairs_for_brigada_products_and_services(self):
+        module = load_module()
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            page = Path(temp_dir) / "index.html"
+            page.write_text("<html><head></head><body></body></html>", encoding="utf-8")
+            module.inject_styles((page,))
+            rendered = page.read_text(encoding="utf-8")
+
+        self.assertIn("@media (max-width: 1100px) and (orientation: portrait)", rendered)
+        self.assertIn(".elementor-element-3662fd7 .elementor-motion-effects-layer", rendered)
+        self.assertIn("background-size: auto 44%", rendered)
+        self.assertIn("background-position: 65% 100%", rendered)
+        self.assertIn(
+            "body.home .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-main-swiper",
+            rendered,
+        )
+        self.assertIn("height: 400px", rendered)
+        self.assertIn(
+            "body.home .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-carousel-image",
+            rendered,
+        )
+        self.assertIn("width: min(320px, calc(100vw - 72px))", rendered)
+        self.assertIn("#gridServicos .servicos_exibicao > .elementor-container", rendered)
+        self.assertIn("padding-bottom: 24px", rendered)
+        self.assertIn("var(--indafire-carousel-duration, 2500ms)", rendered)
 
     def test_ignores_documents_without_a_head(self):
         module = load_module()

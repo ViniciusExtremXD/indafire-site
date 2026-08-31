@@ -1505,6 +1505,163 @@ jQuery(document).ready(function(){
 <link rel='stylesheet' id='elementor-post-702-css' href='./wp-content/uploads/elementor/css/post-702.css?ver=1693855200' media='all' />
 <link rel='stylesheet' id='e-animations-css' href='./wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.6.7' media='all' />
 
+<style id="indafire-responsive-navigation-style">
+/* INDAFIRE — adaptive header; full navigation is shown only when it fits. */
+.indafire-compact-client {
+  display: none !important;
+}
+
+@media (max-width: 1100px) {
+  #headerInda .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-20668c0,
+  #headerInda .jet-menu-container,
+  #headerInda .elementor-element.elementor-element-3de852d {
+    display: none !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-2e5c5af {
+    order: 1 !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-0d060a6 {
+    order: 2 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap,
+  #headerInda .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-8755157.elementor-hidden-desktop,
+  #headerInda .elementor-element.elementor-element-8755157 {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #headerInda .indafire-compact-client {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 36px !important;
+    padding: 8px 14px !important;
+    border: 1px solid #e30613 !important;
+    border-radius: 999px !important;
+    background: #e30613 !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: .02em !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 12px rgba(227, 6, 19, .2) !important;
+    transition: transform 260ms ease, box-shadow 260ms ease, background-color 260ms ease !important;
+  }
+
+  #headerInda .indafire-compact-client:hover,
+  #headerInda .indafire-compact-client:focus-visible {
+    background: #c9000c !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(227, 6, 19, .28) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  #headerInda .elementor-element.elementor-element-46583ef {
+    width: calc(100% - 24px) !important;
+    min-height: 56px !important;
+    margin: 8px auto !important;
+    padding: 4px 16px !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-e171195 img {
+    height: 34px !important;
+    max-height: 34px !important;
+    max-width: 150px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  #headerInda .elementor-element.elementor-element-e171195 img {
+    max-width: 112px !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap {
+    gap: 7px !important;
+  }
+
+  #headerInda .indafire-compact-client {
+    min-height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (min-width: 1101px) {
+  #headerInda .elementor-element.elementor-element-20668c0,
+  #headerInda .jet-menu-container {
+    display: block !important;
+  }
+
+  #headerInda .elementor-element.elementor-element-8755157,
+  #headerInda .indafire-compact-client {
+    display: none !important;
+  }
+}
+
+@keyframes indafire-soft-icon-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#headerInda .elementor-social-icon,
+#headerInda .elementor-element-8755157 .elementor-icon,
+#headerInda .indafire-compact-client {
+  animation: indafire-soft-icon-enter 560ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+#headerInda .elementor-social-icons-wrapper .elementor-grid-item:nth-child(2) .elementor-social-icon { animation-delay: 70ms; }
+#headerInda .elementor-social-icons-wrapper .elementor-grid-item:nth-child(3) .elementor-social-icon { animation-delay: 140ms; }
+#headerInda .elementor-social-icons-wrapper .elementor-grid-item:nth-child(4) .elementor-social-icon { animation-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  #headerInda .elementor-social-icon,
+  #headerInda .elementor-element-8755157 .elementor-icon,
+  #headerInda .indafire-compact-client {
+    animation: none !important;
+    transition-duration: 1ms !important;
+  }
+}
+</style>
 <style id="indafire-internal-page-polish">
 /* INDAFIRE — shared finishing layer; keeps the established visual system. */
 :root { --inda-focus-ring: rgba(227, 6, 19, 0.46); }
@@ -1625,7 +1782,7 @@ main textarea:focus {
 /* At intermediate desktop widths the original 50/50 counter internals were
    narrower than their figures. Stack each card internally to keep every
    value inside its own dark panel. */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1100px) {
   .elementor-element.elementor-element-bbbbf1b > .elementor-column-wrap > .elementor-widget-wrap {
     display: flex !important;
     flex-direction: row !important;
@@ -1720,6 +1877,168 @@ main textarea:focus {
     overflow-wrap: anywhere;
   }
 
+}
+
+/* Keep Services stacked until both columns have enough room for the original
+   image treatment. This extends Elementor's tablet behavior without changing
+   the desktop composition or any source asset. */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-flow: row wrap !important;
+  }
+
+  .elementor-element.elementor-element-c99c7c0,
+  .elementor-element.elementor-element-c54c22f {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .elementor-element.elementor-element-c54c22f > .elementor-element-populated {
+    margin: 0 0 30px !important;
+  }
+
+  .elementor-319 .elementor-element.elementor-element-ef36f3b {
+    margin-top: 0 !important;
+  }
+
+  #gridServicos {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .elementor-element.elementor-element-3fbc3d7,
+  .elementor-element.elementor-element-d88d016 {
+    background-image: none !important;
+  }
+
+  .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+  }
+
+  .elementor-element.elementor-element-23a9c77 {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .elementor-element.elementor-element-86cf7df {
+    display: none !important;
+  }
+
+  .elementor-element.elementor-element-c54c22f > .elementor-element-populated {
+    background-image: none !important;
+  }
+
+  #gridServicos .dce-posts-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #gridServicos article {
+    width: 100% !important;
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    padding: 0 15px 35px !important;
+  }
+
+  #gridServicos .servicos_exibicao {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: 14px !important;
+    background: #333333 !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .16) !important;
+  }
+
+  #gridServicos .servicos_exibicao > .elementor-container {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+}
+
+/* Portrait-only repairs. Keep the current design intact while giving the
+   firefighter, detail CTA and product artwork the room they need. */
+@media (max-width: 1100px) and (orientation: portrait) {
+  .elementor-element.elementor-element-3662fd7 {
+    min-height: 980px !important;
+    overflow: hidden !important;
+  }
+
+  .elementor-element.elementor-element-3662fd7 .elementor-motion-effects-layer {
+    width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
+    background-size: auto 44% !important;
+    background-position: 65% 100% !important;
+    background-repeat: no-repeat !important;
+  }
+
+  #gridServicos .servicos_exibicao > .elementor-container {
+    box-sizing: border-box !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  body.home .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-main-swiper {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 400px !important;
+  }
+
+  body.home .elementor-2 .elementor-element.elementor-element-9218be1 .elementor-carousel-image {
+    width: min(320px, calc(100vw - 72px)) !important;
+    max-width: 320px !important;
+    height: 350px !important;
+    min-height: 350px !important;
+  }
+}
+
+.indafire-carousel-progress {
+  position: relative;
+  width: min(220px, 58%);
+  height: 3px;
+  margin: 14px auto 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(30, 30, 30, .16);
+}
+
+.indafire-carousel-progress__fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #e30613;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.indafire-carousel-progress.is-running .indafire-carousel-progress__fill {
+  animation: indafire-carousel-progress var(--indafire-carousel-duration, 2500ms) linear forwards;
+}
+
+.indafire-carousel-progress.is-paused .indafire-carousel-progress__fill {
+  animation-play-state: paused;
+}
+
+@keyframes indafire-carousel-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indafire-carousel-progress { opacity: .55; }
+  .indafire-carousel-progress .indafire-carousel-progress__fill {
+    animation: none !important;
+    transform: scaleX(1) !important;
+  }
 }
 </style>
 </head>
@@ -8145,25 +8464,151 @@ body.elementor-popup-modal-active .elementor-location-header {
 })();
 </script>
 
+<script id="indafire-responsive-navigation">
+(function () {
+  var compactQuery = window.matchMedia('(max-width: 1100px)');
+
+  function normalized(value) {
+    return (value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  function modalIsOpen(modal) {
+    if (!modal) return false;
+    var style = window.getComputedStyle(modal);
+    return style.display !== 'none' && style.visibility !== 'hidden' && modal.getAttribute('aria-hidden') !== 'true';
+  }
+
+  function setupResponsiveNavigation() {
+    var header = document.querySelector('#headerInda');
+    var menuWidget = header && header.querySelector('.elementor-element-20668c0');
+    var hamburger = header && header.querySelector('.elementor-element-8755157');
+    var hamburgerLink = hamburger && hamburger.querySelector('a');
+    var actionWrap = hamburger && hamburger.parentElement;
+    if (!header || !menuWidget || !hamburger || !hamburgerLink || !actionWrap) return;
+
+    var clientSource = Array.prototype.find.call(header.querySelectorAll('a'), function (link) {
+      return normalized(link.textContent).indexOf('area do cliente') !== -1;
+    });
+
+    if (clientSource && !header.querySelector('.indafire-compact-client')) {
+      var clientLink = document.createElement('a');
+      clientLink.className = 'indafire-compact-client';
+      clientLink.href = clientSource.href;
+      clientLink.textContent = 'Área do cliente';
+      clientLink.setAttribute('aria-label', 'Acessar a Área do cliente');
+      if (clientSource.target) clientLink.target = clientSource.target;
+      if (clientSource.rel) clientLink.rel = clientSource.rel;
+      actionWrap.insertBefore(clientLink, hamburger);
+    }
+
+    function syncState() {
+      var compact = compactQuery.matches;
+      var modal = document.querySelector('#elementor-popup-modal-2519');
+      document.documentElement.classList.toggle('indafire-compact-nav', compact);
+
+      if (!compact && modalIsOpen(modal)) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('elementor-popup-modal-active');
+      }
+
+      hamburgerLink.setAttribute('aria-expanded', String(compact && modalIsOpen(modal)));
+    }
+
+    hamburgerLink.setAttribute('aria-controls', 'elementor-popup-modal-2519');
+    hamburgerLink.setAttribute('aria-haspopup', 'dialog');
+    hamburgerLink.setAttribute('aria-expanded', 'false');
+    hamburgerLink.addEventListener('click', function () { window.setTimeout(syncState, 0); });
+
+    new MutationObserver(syncState).observe(document.body, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      attributeFilter: ['class', 'style', 'aria-hidden']
+    });
+
+    if (typeof compactQuery.addEventListener === 'function') compactQuery.addEventListener('change', syncState);
+    else compactQuery.addListener(syncState);
+    syncState();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupResponsiveNavigation);
+  else setupResponsiveNavigation();
+})();
+</script>
 <script id="indafire-home-product-carousel">
 (function () {
+  var AUTOPLAY_DELAY = 2500;
+
+  function createProgress(root) {
+    var existing = root.parentElement && root.parentElement.querySelector(':scope > .indafire-carousel-progress[data-carousel="products"]');
+    if (existing) return existing;
+    var progress = document.createElement('div');
+    progress.className = 'indafire-carousel-progress';
+    progress.dataset.carousel = 'products';
+    progress.setAttribute('aria-hidden', 'true');
+    progress.style.setProperty('--indafire-carousel-duration', AUTOPLAY_DELAY + 'ms');
+    progress.innerHTML = '<span class="indafire-carousel-progress__fill"></span>';
+    root.insertAdjacentElement('afterend', progress);
+    return progress;
+  }
+
   function wireProductsAutoplay() {
     var root = document.querySelector('#carrosselProdutos');
     var next = root && root.querySelector('.elementor-swiper-button-next');
     if (!root || !next) return;
 
-    var paused = false;
-    var pause = function () { paused = true; };
-    var resume = function () { paused = false; };
+    var progress = createProgress(root);
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    progress.dataset.reducedMotion = reducedMotion ? 'true' : 'false';
+    var timer = 0;
+    var hovering = false;
+    var focusing = false;
+    var pointerActive = false;
+    var advancing = false;
 
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', resume);
-    root.addEventListener('focusin', pause);
-    root.addEventListener('focusout', resume);
+    function isPaused() {
+      return hovering || focusing || pointerActive || document.visibilityState !== 'visible';
+    }
 
-    window.setInterval(function () {
-      if (!paused && document.visibilityState === 'visible') next.click();
-    }, 5000);
+    function resetProgress() {
+      var fill = progress.querySelector('.indafire-carousel-progress__fill');
+      progress.classList.remove('is-running', 'is-paused');
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+      progress.classList.add('is-running');
+    }
+
+    function schedule() {
+      window.clearTimeout(timer);
+      resetProgress();
+      if (isPaused()) {
+        progress.classList.add('is-paused');
+        return;
+      }
+      timer = window.setTimeout(function () {
+        advancing = true;
+        next.click();
+        advancing = false;
+        schedule();
+      }, AUTOPLAY_DELAY);
+    }
+
+    root.addEventListener('mouseenter', function () { hovering = true; schedule(); });
+    root.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+    root.addEventListener('focusin', function () { focusing = true; schedule(); });
+    root.addEventListener('focusout', function () {
+      window.setTimeout(function () { focusing = root.contains(document.activeElement); schedule(); }, 0);
+    });
+    root.addEventListener('pointerdown', function () { pointerActive = true; schedule(); });
+    root.addEventListener('pointerup', function () { pointerActive = false; schedule(); });
+    root.addEventListener('pointercancel', function () { pointerActive = false; schedule(); });
+    root.addEventListener('click', function (event) {
+      if (!advancing && event.target.closest('.elementor-swiper-button, .swiper-pagination-bullet')) schedule();
+    });
+    document.addEventListener('visibilitychange', schedule);
+    schedule();
   }
 
   if (document.readyState === 'loading') {
@@ -8176,6 +8621,20 @@ body.elementor-popup-modal-active .elementor-location-header {
 <script id="indafire-home-service-sync">
 (function () {
   var servicePreloads = [];
+  var AUTOPLAY_DELAY = 2500;
+
+  function createProgress(root) {
+    var existing = root.parentElement && root.parentElement.querySelector(':scope > .indafire-carousel-progress[data-carousel="services"]');
+    if (existing) return existing;
+    var progress = document.createElement('div');
+    progress.className = 'indafire-carousel-progress';
+    progress.dataset.carousel = 'services';
+    progress.setAttribute('aria-hidden', 'true');
+    progress.style.setProperty('--indafire-carousel-duration', AUTOPLAY_DELAY + 'ms');
+    progress.innerHTML = '<span class="indafire-carousel-progress__fill"></span>';
+    root.insertAdjacentElement('afterend', progress);
+    return progress;
+  }
 
   function preloadServiceImages() {
     document.querySelectorAll('#gridServicos img').forEach(function (image) {
@@ -8211,11 +8670,20 @@ body.elementor-popup-modal-active .elementor-location-header {
   }
 
   function wireServiceCarousel() {
+    var root = document.querySelector('#carrosselServicos');
     var carousel = document.querySelector('#carrosselServicos .swiper-container');
     var wrapper = carousel && carousel.querySelector('.swiper-wrapper');
-    if (!carousel || !wrapper) return;
+    if (!root || !carousel || !wrapper) return;
 
     preloadServiceImages();
+    var progress = createProgress(root);
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    progress.dataset.reducedMotion = reducedMotion ? 'true' : 'false';
+    var timer = 0;
+    var hovering = false;
+    var focusing = false;
+    var pointerActive = false;
+    var advancing = false;
 
     new MutationObserver(syncServiceDetail).observe(wrapper, {
       attributes: true,
@@ -8230,9 +8698,57 @@ body.elementor-popup-modal-active .elementor-location-header {
     }
 
     carousel.addEventListener('transitionend', syncServiceDetail);
+
+    function isPaused() {
+      return hovering || focusing || pointerActive || document.visibilityState !== 'visible';
+    }
+
+    function resetProgress() {
+      var fill = progress.querySelector('.indafire-carousel-progress__fill');
+      progress.classList.remove('is-running', 'is-paused');
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+      progress.classList.add('is-running');
+    }
+
+    function schedule() {
+      window.clearTimeout(timer);
+      resetProgress();
+      if (isPaused()) {
+        progress.classList.add('is-paused');
+        return;
+      }
+      timer = window.setTimeout(function () {
+        advancing = true;
+        if (carousel.swiper && typeof carousel.swiper.slideNext === 'function') carousel.swiper.slideNext();
+        else {
+          var next = root.querySelector('.swiper-button-next');
+          if (next) next.click();
+        }
+        advancing = false;
+        syncServiceDetail();
+        schedule();
+      }, AUTOPLAY_DELAY);
+    }
+
+    root.addEventListener('mouseenter', function () { hovering = true; schedule(); });
+    root.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+    root.addEventListener('focusin', function () { focusing = true; schedule(); });
+    root.addEventListener('focusout', function () {
+      window.setTimeout(function () { focusing = root.contains(document.activeElement); schedule(); }, 0);
+    });
+    root.addEventListener('pointerdown', function () { pointerActive = true; schedule(); });
+    root.addEventListener('pointerup', function () { pointerActive = false; schedule(); });
+    root.addEventListener('pointercancel', function () { pointerActive = false; schedule(); });
+    root.addEventListener('click', function (event) {
+      if (!advancing && event.target.closest('.swiper-button-next, .swiper-button-prev')) schedule();
+    });
+    document.addEventListener('visibilitychange', schedule);
     syncServiceDetail();
     setTimeout(syncServiceDetail, 500);
     setTimeout(syncServiceDetail, 1500);
+    schedule();
   }
 
   if (document.readyState === 'loading') {
