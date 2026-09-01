@@ -16,6 +16,7 @@ STYLE_ID = "indafire-internal-page-polish"
 TARGETS = (
     ROOT / "index.html",
     ROOT / "produtos" / "index.html",
+    ROOT / "servicos" / "index.html",
     ROOT / "categoria-produto" / "extintores" / "index.html",
     ROOT / "produto" / "unidade-central-lux-700-1200-24vdc" / "index.html",
     ROOT / "produto" / "extintor-pqs-bc-4-kg-20bc" / "index.html",
