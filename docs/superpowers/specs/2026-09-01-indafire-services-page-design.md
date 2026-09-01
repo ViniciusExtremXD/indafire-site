@@ -25,18 +25,20 @@ A página terá esta sequência:
 1. Cabeçalho responsivo existente, incluindo ocultação ao rolar para baixo e reaparecimento ao rolar para cima.
 2. Hero com a fotografia original `servicos.jpg`, overlay escuro e título “SERVIÇOS”.
 3. Introdução de Engenharia e Consultoria com a fotografia original de projeto/consultoria e a composição grafite, branca e vermelha observada no site original.
-4. Grade com os três serviços confirmados na referência:
-   - AVCB/CLCB — Obtenção ou renovação;
-   - Processo simplificado (PTS);
-   - Projeto Técnico.
-5. Cada card usará fotografia original, título, descrição curta e link para a rota original correspondente quando ela estiver disponível no export estático; links indisponíveis não criarão páginas fictícias.
+4. Grupos e serviços confirmados no HTML original, mesmo quando o carregamento legado deixa os cards visualmente vazios:
+   - Engenharia e Consultoria: AVCB/CLCB — Obtenção ou renovação; Processo simplificado (PTS); Projeto Técnico.
+   - Manutenções e Inspeções: Inspeção de Equipamentos; Instalação e venda de extintores; Recarga de Extintores; Teste Hidrostático em Mangueiras de Incêndios.
+   - Sistemas de Prevenção e Combate a Incêndio: Sinalização de Emergência; Sistema de alarme de incêndio; Sistema de detecção de fumaça e calor; Sistema de Hidrantes; Sistema de iluminação de emergência; Sistemas de Sprinklers.
+   - Treinamentos: Brigada de Incêndio.
+   - Serviços Especiais: Equipe habilitada para eventos ou trabalhos específicos; Fabricação de caixa d’água metálica; Locação de equipamentos.
+5. Cada card usará fotografia original, título e link para a rota original correspondente. Links sem export estático local poderão continuar apontando para a rota real do domínio original; não serão criadas páginas fictícias.
 6. Formulário comercial de WhatsApp no mesmo padrão de `/produtos/`, com assunto previamente orientado a Serviços.
 7. Mapa idêntico ao da Home.
 8. Newsletter, catálogo e rodapé já existentes, sem mudanças de conteúdo.
 
 ## Responsividade
 
-- Desktop: introdução em duas colunas e serviços em três cards.
+- Desktop: introdução em duas colunas e cada grupo de serviços em até três cards por linha.
 - Celular vertical: fluxo em uma coluna, cards com imagens sem corte e formulário empilhado.
 - Celular horizontal: introdução e formulário em duas colunas compactas; cards em três colunas quando houver espaço útil e duas colunas quando necessário.
 - Nenhum breakpoint poderá gerar overflow horizontal, sobreposição do cabeçalho ou corte dos CTAs.
