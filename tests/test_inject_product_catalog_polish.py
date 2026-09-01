@@ -60,6 +60,45 @@ class ProductCatalogPolishTests(unittest.TestCase):
             self.assertEqual(changed, 0)
             self.assertEqual(page.read_text(encoding="utf-8"), original)
 
+    def test_injects_commercial_whatsapp_form_before_footer_once(self):
+        module = load_module()
+        footer = '<div data-elementor-type="footer">Footer</div>'
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            page = Path(temp_dir) / "produtos" / "index.html"
+            page.parent.mkdir(parents=True)
+            page.write_text(
+                f"<!doctype html><html><head></head><body>Catalog{footer}</body></html>",
+                encoding="utf-8",
+            )
+
+            first_change = module.inject_commercial_form(page)
+            second_change = module.inject_commercial_form(page)
+            rendered = page.read_text(encoding="utf-8")
+
+        self.assertEqual(first_change, 1)
+        self.assertEqual(second_change, 0)
+        self.assertEqual(rendered.count('id="indafire-commercial-whatsapp"'), 1)
+        self.assertIn("Ficou com d\u00favida sobre algum produto ou servi\u00e7o?", rendered)
+        self.assertIn("https://wa.me/551938341741", rendered)
+        self.assertLess(
+            rendered.index('id="indafire-commercial-whatsapp"'),
+            rendered.index('data-elementor-type="footer"'),
+        )
+
+    def test_commercial_form_leaves_pages_without_footer_anchor_unchanged(self):
+        module = load_module()
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            page = Path(temp_dir) / "index.html"
+            original = "<!doctype html><html><body>Catalog</body></html>"
+            page.write_text(original, encoding="utf-8")
+
+            changed = module.inject_commercial_form(page)
+
+            self.assertEqual(changed, 0)
+            self.assertEqual(page.read_text(encoding="utf-8"), original)
+
 
 if __name__ == "__main__":
     unittest.main()

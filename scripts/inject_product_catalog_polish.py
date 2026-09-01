@@ -13,8 +13,11 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 STYLE_ID = "indafire-product-catalog-polish"
+COMMERCIAL_FORM_ID = "indafire-commercial-whatsapp"
+COMMERCIAL_SCRIPT_ID = "indafire-commercial-whatsapp-script"
+PRODUCTS_PAGE = ROOT / "produtos" / "index.html"
 TARGETS = (
-    ROOT / "produtos" / "index.html",
+    PRODUCTS_PAGE,
     ROOT / "categoria-produto" / "extintores" / "index.html",
     ROOT / "produto" / "unidade-central-lux-700-1200-24vdc" / "index.html",
     ROOT / "produto" / "extintor-pqs-bc-4-kg-20bc" / "index.html",
@@ -221,16 +224,34 @@ CSS = r"""
 
 .woocommerce-shop .dce-post-item .areaImagem,
 .tax-product_cat .dce-post-item .areaImagem {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  height: 205px !important;
   min-height: 205px !important;
   background: #f5f6f7 !important;
 }
 
+.woocommerce-shop .dce-post-item .areaImagem .elementor-widget-container,
+.woocommerce-shop .dce-post-item .areaImagem .elementor-image,
+.tax-product_cat .dce-post-item .areaImagem .elementor-widget-container,
+.tax-product_cat .dce-post-item .areaImagem .elementor-image {
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
 .woocommerce-shop .dce-post-item .areaImagem img,
 .tax-product_cat .dce-post-item .areaImagem img {
-  width: 100% !important;
-  height: 205px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 195px !important;
   object-fit: contain !important;
-  padding: 18px !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
   transition: transform 220ms ease !important;
 }
 
@@ -307,6 +328,129 @@ CSS = r"""
   transform: translateY(-1px) !important;
 }
 
+/* Commercial contact follows the existing WhatsApp language and sits between
+   the catalog and the original location/newsletter footer. */
+#indafire-commercial-whatsapp {
+  padding: clamp(48px, 6vw, 76px) 20px !important;
+  background: #f5f6f7 !important;
+}
+
+#indafire-commercial-whatsapp .indafire-commercial-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(30px, 5vw, 68px);
+  align-items: center;
+  width: min(100%, 1040px);
+  margin: 0 auto;
+}
+
+#indafire-commercial-whatsapp .indafire-commercial-eyebrow {
+  display: inline-flex;
+  margin: 0 0 14px;
+  color: var(--inda-red);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+#indafire-commercial-whatsapp h2 {
+  margin: 0 0 14px;
+  color: var(--inda-ink);
+  font-size: clamp(1.8rem, 3.1vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+#indafire-commercial-whatsapp p {
+  max-width: 46ch;
+  margin: 0;
+  color: #60646a;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+#indafire-commercial-whatsapp form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid var(--inda-line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--inda-shadow);
+}
+
+#indafire-commercial-whatsapp .indafire-commercial-field {
+  min-width: 0;
+}
+
+#indafire-commercial-whatsapp .indafire-commercial-field--wide {
+  grid-column: 1 / -1;
+}
+
+#indafire-commercial-whatsapp label {
+  display: block;
+  margin: 0 0 6px;
+  color: #34373b;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+#indafire-commercial-whatsapp input,
+#indafire-commercial-whatsapp select,
+#indafire-commercial-whatsapp textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+  border: 1px solid #d8dade;
+  border-radius: 8px;
+  background: #fff;
+  color: #25272a;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+#indafire-commercial-whatsapp textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+#indafire-commercial-whatsapp input:focus,
+#indafire-commercial-whatsapp select:focus,
+#indafire-commercial-whatsapp textarea:focus {
+  border-color: #25d366;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.14);
+  outline: 0;
+}
+
+#indafire-commercial-whatsapp button {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(37, 211, 102, 0.25);
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+#indafire-commercial-whatsapp button:hover {
+  background: #1fbd5b;
+  box-shadow: 0 9px 22px rgba(37, 211, 102, 0.32);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 767px) {
   .woocommerce-shop #bannerProdutoINDA,
   .tax-product_cat #bannerProdutoINDA {
@@ -365,13 +509,13 @@ CSS = r"""
 
   .woocommerce-shop .dce-post-item .areaImagem,
   .tax-product_cat .dce-post-item .areaImagem {
+    height: 188px !important;
     min-height: 188px !important;
   }
 
   .woocommerce-shop .dce-post-item .areaImagem img,
   .tax-product_cat .dce-post-item .areaImagem img {
-    height: 188px !important;
-    padding: 14px !important;
+    max-height: 178px !important;
   }
 
   .woocommerce-shop .dce-post-item .areaConteudo,
@@ -383,6 +527,26 @@ CSS = r"""
   .woocommerce-shop .dce-post-item:hover .areaProduto > .elementor-column-wrap,
   .tax-product_cat .dce-post-item:hover .areaProduto > .elementor-column-wrap {
     transform: none !important;
+  }
+
+  #indafire-commercial-whatsapp {
+    padding: 42px 16px !important;
+  }
+
+  #indafire-commercial-whatsapp .indafire-commercial-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  #indafire-commercial-whatsapp form {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+  }
+
+  #indafire-commercial-whatsapp .indafire-commercial-field,
+  #indafire-commercial-whatsapp .indafire-commercial-field--wide,
+  #indafire-commercial-whatsapp button {
+    grid-column: 1;
   }
 }
 
@@ -412,11 +576,27 @@ CSS = r"""
   }
 
   .woocommerce-shop .dce-post-item .areaImagem,
-  .tax-product_cat .dce-post-item .areaImagem,
-  .woocommerce-shop .dce-post-item .areaImagem img,
-  .tax-product_cat .dce-post-item .areaImagem img {
+  .tax-product_cat .dce-post-item .areaImagem {
     min-height: 150px !important;
     height: 150px !important;
+  }
+
+  .woocommerce-shop .dce-post-item .areaImagem img,
+  .tax-product_cat .dce-post-item .areaImagem img {
+    max-height: 142px !important;
+  }
+
+  #indafire-commercial-whatsapp {
+    padding: 34px 18px !important;
+  }
+
+  #indafire-commercial-whatsapp .indafire-commercial-inner {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 24px;
+  }
+
+  #indafire-commercial-whatsapp form {
+    padding: 18px;
   }
 }
 
@@ -430,6 +610,54 @@ CSS = r"""
     animation-iteration-count: 1 !important;
   }
 }
+""".strip()
+
+
+COMMERCIAL_FORM = r"""
+<section id="indafire-commercial-whatsapp" aria-labelledby="indafire-commercial-title">
+  <div class="indafire-commercial-inner">
+    <div class="indafire-commercial-copy">
+      <span class="indafire-commercial-eyebrow">Atendimento comercial</span>
+      <h2 id="indafire-commercial-title">Ficou com dúvida sobre algum produto ou serviço?</h2>
+      <p>Envie uma mensagem para nossa equipe. Ajudamos você a encontrar a solução adequada e preparar sua cotação.</p>
+    </div>
+    <form id="indafire-commercial-form">
+      <div class="indafire-commercial-field">
+        <label for="indafire-commercial-name">Nome ou empresa *</label>
+        <input id="indafire-commercial-name" name="name" type="text" autocomplete="organization" required placeholder="Como podemos chamar você?">
+      </div>
+      <div class="indafire-commercial-field">
+        <label for="indafire-commercial-interest">Assunto *</label>
+        <select id="indafire-commercial-interest" name="interest" required>
+          <option value="" selected disabled>Selecione</option>
+          <option value="Produto">Produto</option>
+          <option value="Serviço">Serviço</option>
+          <option value="Produto e serviço">Produto e serviço</option>
+        </select>
+      </div>
+      <div class="indafire-commercial-field indafire-commercial-field--wide">
+        <label for="indafire-commercial-message">Mensagem *</label>
+        <textarea id="indafire-commercial-message" name="message" required placeholder="Conte brevemente o que você precisa"></textarea>
+      </div>
+      <button type="submit" aria-label="Enviar mensagem comercial pelo WhatsApp">Enviar mensagem pelo WhatsApp</button>
+    </form>
+  </div>
+  <script id="indafire-commercial-whatsapp-script">
+  (() => {
+    const form = document.getElementById('indafire-commercial-form');
+    if (!form || form.dataset.ready === 'true') return;
+    form.dataset.ready = 'true';
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('indafire-commercial-name').value.trim();
+      const interest = document.getElementById('indafire-commercial-interest').value;
+      const message = document.getElementById('indafire-commercial-message').value.trim();
+      const text = `Olá! Meu nome/empresa é ${name}. Tenho interesse em ${interest.toLowerCase()}. ${message}`;
+      window.open(`https://wa.me/551938341741?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    });
+  })();
+  </script>
+</section>
 """.strip()
 
 
@@ -473,12 +701,43 @@ def inject_styles(targets: tuple[Path, ...] | list[Path]) -> int:
     return changed
 
 
+def inject_commercial_form(page: Path) -> int:
+    """Place the commercial WhatsApp form before the existing footer."""
+    with page.open("r", encoding="utf-8", newline="") as handle:
+        source = handle.read()
+
+    section_pattern = re.compile(
+        rf'<section id="{re.escape(COMMERCIAL_FORM_ID)}".*?</section>\s*',
+        re.DOTALL,
+    )
+    stripped = section_pattern.sub("", source)
+    footer_anchor = '<div data-elementor-type="footer"'
+    if footer_anchor not in stripped:
+        return 0
+
+    rendered = stripped.replace(
+        footer_anchor,
+        f"{COMMERCIAL_FORM}\n{footer_anchor}",
+        1,
+    )
+    if rendered == source:
+        return 0
+    with page.open("w", encoding="utf-8", newline="") as handle:
+        handle.write(rendered)
+    return 1
+
+
 def main() -> None:
     missing = [path for path in TARGETS if not path.is_file()]
     if missing:
         names = ", ".join(str(path.relative_to(ROOT)) for path in missing)
         raise SystemExit(f"Missing static product routes: {names}")
-    print(f"Injected product catalog polish into {inject_styles(TARGETS)} page(s).")
+    styled = inject_styles(TARGETS)
+    form_changed = inject_commercial_form(PRODUCTS_PAGE)
+    print(
+        f"Injected product catalog polish into {styled} page(s); "
+        f"commercial form refreshed in {form_changed} page(s)."
+    )
 
 
 if __name__ == "__main__":

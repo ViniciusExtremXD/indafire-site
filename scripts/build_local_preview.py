@@ -30,6 +30,7 @@ from scripts import restore_static_hero_assets as hero_assets
 ROOT = Path(__file__).resolve().parents[1]
 INTERNAL_MARKER = 'id="indafire-internal-page-polish"'
 CATALOG_MARKER = 'id="indafire-product-catalog-polish"'
+COMMERCIAL_FORM_MARKER = 'id="indafire-commercial-whatsapp"'
 HOME_MARKER = 'id="indafire-home-section-polish"'
 HOME_BRIGADA_MARKER = "INDAFIRE HOME BRIGADA REFERENCE"
 HOME_SERVICE_MARKER = 'id="indafire-home-service-sync"'
@@ -69,11 +70,14 @@ def validate_documents(pages: dict[str, str]) -> None:
             for path in catalog.TARGETS
         } and CATALOG_MARKER not in source:
             raise ValueError(f"Missing catalog polish in {route}")
+        if route == "produtos/index.html" and COMMERCIAL_FORM_MARKER not in source:
+            raise ValueError(f"Missing commercial WhatsApp form in {route}")
 
 
 def main() -> None:
     restored = hero_assets.restore_assets()
     catalog_changed = catalog.inject_styles(catalog.TARGETS)
+    commercial_form_changed = catalog.inject_commercial_form(catalog.PRODUCTS_PAGE)
     internal_changed = internal.inject_styles(internal.TARGETS)
     navigation_changed = responsive_navigation.inject_assets(responsive_navigation.TARGETS)
     hero_video_changed = hero_video.inject_assets(hero_video.TARGETS)
@@ -85,6 +89,7 @@ def main() -> None:
     print(
         "Local static preview ready: "
         f"{restored} asset(s) restored, {catalog_changed} catalog page(s) and "
+        f"{commercial_form_changed} commercial form page(s), "
         f"{internal_changed} internal page(s), {home_changed} home page(s), "
         f"{navigation_changed} responsive navigation page(s), "
         f"{hero_video_changed} high-resolution hero video page(s), "

@@ -32,7 +32,8 @@ class BuildLocalPreviewTests(unittest.TestCase):
                 '<head><style id="indafire-internal-page-polish"></style>'
                 '<style id="indafire-responsive-navigation-style"></style>'
                 '<style id="indafire-product-catalog-polish"></style></head>'
-                '<body><script id="indafire-responsive-navigation"></script></body>'
+                '<body><section id="indafire-commercial-whatsapp"></section>'
+                '<script id="indafire-responsive-navigation"></script></body>'
             ),
         }
 
@@ -109,6 +110,15 @@ class BuildLocalPreviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "catalog polish"):
             validate_documents({"produtos/index.html": source})
 
+    def test_rejects_products_page_without_the_commercial_whatsapp_form(self):
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            '<style id="indafire-product-catalog-polish"></style>'
+            f'{NAV_STYLE}</head><body>{NAV_SCRIPT}</body>'
+        )
+        with self.assertRaisesRegex(ValueError, "commercial WhatsApp form"):
+            validate_documents({"produtos/index.html": source})
+
     def test_script_runs_directly_from_the_project_root(self):
         result = subprocess.run(
             [sys.executable, str(SCRIPT)],
@@ -138,7 +148,8 @@ class BuildLocalPreviewTests(unittest.TestCase):
 
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn(
-            "0 catalog page(s) and 0 internal page(s), 0 home page(s), "
+            "0 catalog page(s) and 0 commercial form page(s), "
+            "0 internal page(s), 0 home page(s), "
             "0 responsive navigation page(s), 0 high-resolution hero video page(s), 0 Brigada page(s), "
             "0 service sync script(s), 0 Products carousel page(s) refreshed",
             result.stdout,
