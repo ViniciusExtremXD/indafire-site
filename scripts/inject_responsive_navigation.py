@@ -4,6 +4,11 @@ from __future__ import annotations
 
 from pathlib import Path
 import re
+import sys
+
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts import inject_internal_page_polish as internal
 
@@ -512,6 +517,26 @@ def disable_legacy_scroll_controller(source: str) -> str:
     return pattern.sub("", source)
 
 
+def home_href(page: Path, root: Path = ROOT) -> str:
+    """Return the relative Home URL for a generated static route."""
+    depth = len(page.resolve().relative_to(root.resolve()).parent.parts)
+    return "./" if depth == 0 else "../" * depth
+
+
+def normalize_logo_links(source: str, href: str) -> str:
+    """Rewrite only the first anchor inside each theme site-logo widget."""
+    widget_anchor = re.compile(
+        r'(<div\b[^>]*class=["\'][^"\']*\belementor-widget-theme-site-logo\b[^"\']*["\'][^>]*>'
+        r'.*?<a\b[^>]*\bhref=)(["\'])[^"\']*\2',
+        re.IGNORECASE | re.DOTALL,
+    )
+
+    def replace(match: re.Match[str]) -> str:
+        return f'{match.group(1)}"{href}"'
+
+    return widget_anchor.sub(replace, source)
+
+
 def inject(source: str) -> str:
     style_pattern = re.compile(rf'<style id="{re.escape(STYLE_ID)}">.*?</style>\s*', re.DOTALL)
     script_pattern = re.compile(rf'<script id="{re.escape(SCRIPT_ID)}">.*?</script>\s*', re.DOTALL)
@@ -540,11 +565,19 @@ def inject(source: str) -> str:
     return rendered.replace("</body>", f"{script_tag()}\n</body>", 1)
 
 
-def inject_assets(targets: tuple[Path, ...] | list[Path]) -> int:
+def inject_assets(
+    targets: tuple[Path, ...] | list[Path],
+    root: Path = ROOT,
+) -> int:
     changed = 0
     for page in targets:
         source = page.read_text(encoding="utf-8")
-        rendered = inject(source)
+        try:
+            href = home_href(page, root)
+        except ValueError:
+            # Standalone fixture documents behave as a root route.
+            href = "./"
+        rendered = normalize_logo_links(inject(source), href)
         if rendered != source:
             page.write_text(rendered, encoding="utf-8")
             changed += 1

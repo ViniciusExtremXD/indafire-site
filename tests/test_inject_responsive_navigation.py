@@ -10,6 +10,71 @@ from tempfile import TemporaryDirectory
 
 
 class ResponsiveNavigationInjectionTests(unittest.TestCase):
+    def test_script_runs_directly_from_the_project_root(self):
+        script = Path(__file__).resolve().parents[1] / "scripts" / "inject_responsive_navigation.py"
+        root = script.parents[1]
+
+        result = subprocess.run(
+            ["python", str(script)],
+            cwd=root,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Injected responsive navigation", result.stdout)
+
+    def test_home_href_tracks_the_static_route_depth(self):
+        from scripts import inject_responsive_navigation as subject
+
+        root = Path("C:/site")
+
+        self.assertEqual(subject.home_href(root / "index.html", root), "./")
+        self.assertEqual(subject.home_href(root / "produtos" / "index.html", root), "../")
+        self.assertEqual(
+            subject.home_href(root / "produto" / "extintor" / "index.html", root),
+            "../../",
+        )
+
+    def test_normalizes_only_links_inside_theme_logo_widgets(self):
+        from scripts import inject_responsive_navigation as subject
+
+        source = """
+        <div class="elementor-widget-theme-site-logo elementor-widget-image">
+          <div><a href="./"><img alt="Header logo"></a></div>
+        </div>
+        <nav><a href="/produtos/">Produtos</a></nav>
+        <div class="elementor-widget elementor-widget-theme-site-logo">
+          <div><a href='https://indafire.com.br/'><img alt="Footer logo"></a></div>
+        </div>
+        """
+
+        rendered = subject.normalize_logo_links(source, "../")
+
+        self.assertEqual(rendered.count('href="../"'), 2)
+        self.assertIn('href="/produtos/"', rendered)
+        self.assertNotIn("https://indafire.com.br/", rendered)
+
+    def test_asset_injection_applies_the_route_specific_logo_href_once(self):
+        from scripts import inject_responsive_navigation as subject
+
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            page = root / "produtos" / "index.html"
+            page.parent.mkdir(parents=True)
+            page.write_text(
+                '<html><head></head><body><div class="elementor-widget-theme-site-logo">'
+                '<a href="./"><img alt="Inda Fire"></a></div></body></html>',
+                encoding="utf-8",
+            )
+
+            self.assertEqual(subject.inject_assets((page,), root=root), 1)
+            self.assertEqual(subject.inject_assets((page,), root=root), 0)
+            rendered = page.read_text(encoding="utf-8")
+
+        self.assertIn('href="../"', rendered)
+
     def test_injects_one_compact_navigation_layer_before_the_document_closes(self):
         from scripts import inject_responsive_navigation as subject
 
