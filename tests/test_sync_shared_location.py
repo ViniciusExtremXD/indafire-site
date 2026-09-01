@@ -34,6 +34,12 @@ TARGET = """<html><head><style id="existing">body{margin:0}</style></head><body>
 
 
 class SharedLocationTests(unittest.TestCase):
+    def test_products_and_services_are_both_managed_targets(self):
+        from scripts import sync_shared_location as subject
+
+        self.assertIn(subject.ROOT / "produtos" / "index.html", subject.TARGETS)
+        self.assertIn(subject.ROOT / "servicos" / "index.html", subject.TARGETS)
+
     def test_extracts_the_complete_location_section_with_nested_sections(self):
         from scripts import sync_shared_location as subject
 
@@ -80,6 +86,21 @@ class SharedLocationTests(unittest.TestCase):
 
             self.assertEqual(subject.sync_location(home, (target,)), 1)
             self.assertEqual(subject.sync_location(home, (target,)), 0)
+
+    def test_shared_location_style_stays_before_the_responsive_navigation_layer(self):
+        from scripts import sync_shared_location as subject
+
+        target = TARGET.replace(
+            "</head>",
+            '<style id="indafire-responsive-navigation-style"></style></head>',
+        )
+
+        rendered = subject.render_target(target, HOME)
+
+        self.assertLess(
+            rendered.index(f'id="{subject.STYLE_ID}"'),
+            rendered.index('id="indafire-responsive-navigation-style"'),
+        )
 
     def test_missing_location_fails_loudly(self):
         from scripts import sync_shared_location as subject

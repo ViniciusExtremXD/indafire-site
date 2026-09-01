@@ -19,6 +19,7 @@ As páginas principais a validar são:
 
 - `/`
 - `/produtos/`
+- `/servicos/`
 - `/categoria-produto/extintores/`
 - `/produto/unidade-central-lux-700-1200-24vdc/`
 - `/produto/extintor-pqs-bc-4-kg-20bc/`
@@ -31,12 +32,13 @@ As páginas principais a validar são:
 ## Validação
 
 ```powershell
-python -m unittest tests/test_build_local_preview.py tests/test_inject_product_catalog_polish.py tests/test_inject_internal_page_polish.py tests/test_static_hero_assets.py
+python -m unittest tests/test_build_local_preview.py tests/test_build_services_page.py tests/test_sync_shared_location.py tests/test_services_assets.py tests/test_inject_product_catalog_polish.py tests/test_inject_internal_page_polish.py tests/test_static_hero_assets.py
 ```
 
 ## Publicação
 
 `dist_gh_pages/` é um artefato legado e o exportador histórico depende de um
-WordPress local em `localhost:8080`. A prévia acima não altera essa pasta nem
-publica conteúdo. Sincronização e push devem acontecer somente após a
-validação visual da versão estática.
+WordPress local em `localhost:8080`. A prévia acima não altera essa pasta. O
+workflow `.github/workflows/static.yml` publica diretamente a raiz da branch
+`main`; o push deve acontecer somente após a validação visual da versão
+estática.

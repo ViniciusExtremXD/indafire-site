@@ -13,6 +13,8 @@ SCRIPT = ROOT / "scripts" / "build_local_preview.py"
 NAV_STYLE = '<style id="indafire-responsive-navigation-style"></style>'
 NAV_SCRIPT = '<script id="indafire-responsive-navigation"></script>'
 HERO_VIDEO_SCRIPT = '<script id="indafire-hero-background-video"></script>'
+SHARED_LOCATION_STYLE = '<style id="indafire-shared-location-style"></style>'
+SERVICES_PAGE = '<main id="indafire-services-page"></main>'
 
 
 class BuildLocalPreviewTests(unittest.TestCase):
@@ -31,8 +33,16 @@ class BuildLocalPreviewTests(unittest.TestCase):
             "produtos/index.html": (
                 '<head><style id="indafire-internal-page-polish"></style>'
                 '<style id="indafire-responsive-navigation-style"></style>'
-                '<style id="indafire-product-catalog-polish"></style></head>'
+                '<style id="indafire-product-catalog-polish"></style>'
+                f'{SHARED_LOCATION_STYLE}</head>'
                 '<body><section id="indafire-commercial-whatsapp"></section>'
+                '<script id="indafire-responsive-navigation"></script></body>'
+            ),
+            "servicos/index.html": (
+                '<head><style id="indafire-internal-page-polish"></style>'
+                '<style id="indafire-responsive-navigation-style"></style>'
+                f'{SHARED_LOCATION_STYLE}</head><body>{SERVICES_PAGE}'
+                '<section id="indafire-commercial-whatsapp"></section>'
                 '<script id="indafire-responsive-navigation"></script></body>'
             ),
         }
@@ -119,6 +129,26 @@ class BuildLocalPreviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "commercial WhatsApp form"):
             validate_documents({"produtos/index.html": source})
 
+    def test_rejects_products_page_without_the_shared_home_location(self):
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            '<style id="indafire-product-catalog-polish"></style>'
+            f'{NAV_STYLE}</head><body><section id="indafire-commercial-whatsapp"></section>'
+            f'{NAV_SCRIPT}</body>'
+        )
+        with self.assertRaisesRegex(ValueError, "shared Home location"):
+            validate_documents({"produtos/index.html": source})
+
+    def test_rejects_services_page_without_the_managed_services_content(self):
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            f'{NAV_STYLE}{SHARED_LOCATION_STYLE}</head><body>'
+            '<section id="indafire-commercial-whatsapp"></section>'
+            f'{NAV_SCRIPT}</body>'
+        )
+        with self.assertRaisesRegex(ValueError, "Services page"):
+            validate_documents({"servicos/index.html": source})
+
     def test_script_runs_directly_from_the_project_root(self):
         result = subprocess.run(
             [sys.executable, str(SCRIPT)],
@@ -148,6 +178,7 @@ class BuildLocalPreviewTests(unittest.TestCase):
 
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn(
+            "0 Services page(s), 0 shared location page(s), "
             "0 catalog page(s) and 0 commercial form page(s), "
             "0 internal page(s), 0 home page(s), "
             "0 responsive navigation page(s), 0 high-resolution hero video page(s), 0 Brigada page(s), "

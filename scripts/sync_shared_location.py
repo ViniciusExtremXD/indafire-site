@@ -10,7 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 STYLE_ID = "indafire-shared-location-style"
 LOCATION_CSS_START = "/* Location section aligned with the site's light cards and red accents. */"
 LOCATION_CSS_END = "/* Reveal the full navigation whenever the user reverses scroll direction. */"
-TARGETS = (ROOT / "produtos" / "index.html",)
+TARGETS = (
+    ROOT / "produtos" / "index.html",
+    ROOT / "servicos" / "index.html",
+)
 
 
 def _location_bounds(source: str) -> tuple[int, int]:
@@ -69,7 +72,14 @@ def render_target(target_source: str, home_source: str) -> str:
     )
     if "</head>" not in rendered:
         raise ValueError("Target document is missing </head>")
-    return rendered.replace("</head>", f"{style_tag(home_source)}\n</head>", 1)
+    shared_style = style_tag(home_source) + "\n"
+    for marker in (
+        '<style id="indafire-responsive-navigation-style">',
+        '<style id="indafire-internal-page-polish">',
+    ):
+        if marker in rendered:
+            return rendered.replace(marker, shared_style + marker, 1)
+    return rendered.replace("</head>", f"{shared_style}</head>", 1)
 
 
 def sync_location(home_page: Path, targets: tuple[Path, ...] | list[Path]) -> int:

@@ -107,6 +107,7 @@ class BuildServicesPageTests(unittest.TestCase):
         self.assertIn('id="headerInda"', rendered)
         self.assertEqual(rendered.count('data-elementor-type="footer"'), 1)
         self.assertEqual(rendered.count('id="indafire-services-page"'), 1)
+        self.assertEqual(rendered.count('id="indafire-shared-location-style"'), 1)
         self.assertNotIn('data-elementor-type="wp-page" data-elementor-id="19"', rendered)
 
     def test_page_build_is_idempotent(self):
@@ -120,6 +121,19 @@ class BuildServicesPageTests(unittest.TestCase):
             rendered = output.read_text(encoding="utf-8")
 
         self.assertEqual(rendered.count('id="indafire-services-page"'), 1)
+
+    def test_generated_page_is_already_final_for_shared_injectors(self):
+        from scripts import build_services_page as subject
+        from scripts import inject_internal_page_polish as internal
+        from scripts import inject_responsive_navigation as navigation
+
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "servicos" / "index.html"
+            subject.build_services_page(SHELL, HOME, output)
+
+            self.assertEqual(internal.inject_styles((output,)), 0)
+            self.assertEqual(navigation.inject_assets((output,), root=root), 0)
 
     def test_services_route_is_managed_by_the_shared_internal_layer(self):
         from scripts import inject_internal_page_polish as internal

@@ -25,6 +25,8 @@ from scripts import inject_home_product_carousel as home_products
 from scripts import inject_responsive_navigation as responsive_navigation
 from scripts import inject_hero_background_video as hero_video
 from scripts import restore_static_hero_assets as hero_assets
+from scripts import build_services_page as services_page
+from scripts import sync_shared_location as shared_location
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +40,8 @@ HOME_PRODUCTS_MARKER = 'id="indafire-home-product-carousel"'
 RESPONSIVE_NAV_STYLE_MARKER = 'id="indafire-responsive-navigation-style"'
 RESPONSIVE_NAV_SCRIPT_MARKER = 'id="indafire-responsive-navigation"'
 HERO_VIDEO_MARKER = 'id="indafire-hero-background-video"'
+SERVICES_PAGE_MARKER = 'id="indafire-services-page"'
+SHARED_LOCATION_MARKER = 'id="indafire-shared-location-style"'
 
 
 def documents() -> dict[str, str]:
@@ -72,10 +76,25 @@ def validate_documents(pages: dict[str, str]) -> None:
             raise ValueError(f"Missing catalog polish in {route}")
         if route == "produtos/index.html" and COMMERCIAL_FORM_MARKER not in source:
             raise ValueError(f"Missing commercial WhatsApp form in {route}")
+        if route in {"produtos/index.html", "servicos/index.html"} and SHARED_LOCATION_MARKER not in source:
+            raise ValueError(f"Missing shared Home location in {route}")
+        if route == "servicos/index.html" and SERVICES_PAGE_MARKER not in source:
+            raise ValueError(f"Missing managed Services page in {route}")
+        if route == "servicos/index.html" and COMMERCIAL_FORM_MARKER not in source:
+            raise ValueError(f"Missing commercial WhatsApp form in {route}")
 
 
 def main() -> None:
     restored = hero_assets.restore_assets()
+    services_changed = services_page.build_services_page(
+        ROOT / "sobre-nos" / "index.html",
+        ROOT / "index.html",
+        ROOT / "servicos" / "index.html",
+    )
+    location_changed = shared_location.sync_location(
+        ROOT / "index.html",
+        shared_location.TARGETS,
+    )
     catalog_changed = catalog.inject_styles(catalog.TARGETS)
     commercial_form_changed = catalog.inject_commercial_form(catalog.PRODUCTS_PAGE)
     internal_changed = internal.inject_styles(internal.TARGETS)
@@ -88,7 +107,9 @@ def main() -> None:
     validate_documents(documents())
     print(
         "Local static preview ready: "
-        f"{restored} asset(s) restored, {catalog_changed} catalog page(s) and "
+        f"{restored} asset(s) restored, {services_changed} Services page(s), "
+        f"{location_changed} shared location page(s), "
+        f"{catalog_changed} catalog page(s) and "
         f"{commercial_form_changed} commercial form page(s), "
         f"{internal_changed} internal page(s), {home_changed} home page(s), "
         f"{navigation_changed} responsive navigation page(s), "

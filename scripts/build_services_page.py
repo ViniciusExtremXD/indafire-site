@@ -12,7 +12,7 @@ import sys
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.sync_shared_location import extract_location
+from scripts import sync_shared_location as shared_location
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -653,7 +653,7 @@ def _wp_page_bounds(source: str) -> tuple[int, int]:
 def build_page(shell: str, home: str) -> str:
     """Return the Services document while preserving the shared shell."""
     start, end = _wp_page_bounds(shell)
-    rendered = shell[:start] + render_services_main(extract_location(home)) + shell[end:]
+    rendered = shell[:start] + render_services_main(shared_location.extract_location(home)) + shell[end:]
     rendered = re.sub(
         r"<title>.*?</title>",
         "<title>Serviços - Inda Fire - Equipamentos de Combate a Incêndios</title>",
@@ -688,16 +688,31 @@ def build_page(shell: str, home: str) -> str:
         'referer_title" value="Sobre nós - Inda Fire - Equipamentos de Combate a Incêndios"',
         'referer_title" value="Serviços - Inda Fire - Equipamentos de Combate a Incêndios"',
     )
+    shared_style = re.compile(
+        rf'<style id="{re.escape(shared_location.STYLE_ID)}">.*?</style>\s*',
+        re.DOTALL,
+    )
+    rendered = shared_style.sub("", rendered)
+    rendered = rendered.replace(
+        "</head>",
+        f"{shared_location.style_tag(home)}\n</head>",
+        1,
+    )
     return rendered
 
 
 def build_services_page(shell_page: Path, home_page: Path, output_page: Path) -> int:
     """Write the generated route and return one only when bytes changed."""
+    from scripts import inject_internal_page_polish as internal
+    from scripts import inject_responsive_navigation as navigation
+
     with shell_page.open("r", encoding="utf-8", newline="") as handle:
         shell = handle.read()
     with home_page.open("r", encoding="utf-8", newline="") as handle:
         home = handle.read()
     rendered = build_page(shell, home)
+    rendered = internal.inject(rendered)
+    rendered = navigation.normalize_logo_links(navigation.inject(rendered), "../")
     current = None
     if output_page.is_file():
         with output_page.open("r", encoding="utf-8", newline="") as handle:
