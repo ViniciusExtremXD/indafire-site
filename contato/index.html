@@ -4596,18 +4596,45 @@ i.eicon-close::before,
 }
 
 #contato #contato-whatsapp {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 59px !important;
+  min-height: 59px !important;
+  line-height: 1 !important;
+  padding: 0 36px !important;
+  border-radius: 50px !important;
   background: #25d366 !important;
-  box-shadow: 0 9px 20px rgba(37, 211, 102, .25) !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  box-shadow: 0 9px 20px rgba(37, 211, 102, .28) !important;
+  box-sizing: border-box !important;
+  transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease !important;
 }
 
 #contato #contato-whatsapp:hover,
 #contato #contato-whatsapp:focus {
   background: #1fba59 !important;
   color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 24px rgba(37, 211, 102, .4) !important;
+}
+
+#contato #contato-whatsapp > span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  line-height: 1 !important;
 }
 
 #contato #contato-whatsapp .elementor-button-icon {
-  margin-right: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  font-size: 20px !important;
 }
 
 @media (max-width: 600px) {
@@ -5132,7 +5159,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!form || !whatsappButton) return;
 
-  whatsappButton.addEventListener('click', function () {
+  whatsappButton.addEventListener('click', function (e) {
+    e.preventDefault();
     var field = function (id) {
       var input = form.querySelector('#' + id);
       return input ? input.value.trim() : '';
@@ -5146,7 +5174,8 @@ document.addEventListener('DOMContentLoaded', function () {
       field('form-field-mensagem') && 'Mensagem: ' + field('form-field-mensagem')
     ].filter(Boolean).join('\n');
 
-    whatsappButton.href = 'https://api.whatsapp.com/send?phone=551938341741&text=' + encodeURIComponent(contatoWhatsappMessage);
+    var waUrl = 'https://api.whatsapp.com/send?phone=551938341741&text=' + encodeURIComponent(contatoWhatsappMessage);
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   });
 });
 </script>
