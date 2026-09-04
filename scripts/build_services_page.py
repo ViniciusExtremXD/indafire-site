@@ -226,8 +226,10 @@ def _remove_section_by_id(source: str, section_id: str) -> str:
     raise ValueError(f"Unclosed section #{section_id}")
 
 
-def build_page(shell: str, _home: str) -> str:
+def build_page(shell: str, home: str) -> str:
     """Return the Services document while preserving the approved shared shell."""
+    from scripts import sync_shared_location as shared_location
+
     start, end = _wp_page_bounds(shell)
     rendered = shell[:start] + render_services_main() + shell[end:]
     rendered = re.sub(r"<title>.*?</title>", "<title>Serviços - Inda Fire - Equipamentos de Combate a Incêndios</title>", rendered, count=1, flags=re.S)
@@ -236,8 +238,7 @@ def build_page(shell: str, _home: str) -> str:
     rendered = re.sub(r'(<meta property="og:url" content=")[^"]*("\s*/?>)', r'\1https://indafire.com.br/servicos/\2', rendered, count=1)
     rendered = rendered.replace('<body class="', '<body class="indafire-services-static ', 1)
     rendered = rendered.replace('referer_title" value="Sobre nós - Inda Fire - Equipamentos de Combate a Incêndios"', 'referer_title" value="Serviços - Inda Fire - Equipamentos de Combate a Incêndios"')
-    rendered = _remove_section_by_id(rendered, "localizacao_mapa")
-    return re.sub(r'<style id="indafire-shared-location-style">.*?</style>\s*', "", rendered, flags=re.S)
+    return shared_location.render_target(rendered, home)
 
 
 def build_services_page(shell_page: Path, home_page: Path, output_page: Path) -> int:

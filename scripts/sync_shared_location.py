@@ -17,9 +17,16 @@ LOCATION_CSS_END_MARKERS = (
 )
 TARGETS = (
     ROOT / "produtos" / "index.html",
+    ROOT / "servicos" / "index.html",
+    ROOT / "treinamentos" / "index.html",
+    ROOT / "sobre-nos" / "index.html",
     ROOT / "blog" / "index.html",
     ROOT / "contato" / "index.html",
     ROOT / "area-do-cliente" / "index.html",
+    ROOT / "politica-de-privacidade" / "index.html",
+    ROOT / "categoria-produto" / "extintores" / "index.html",
+    ROOT / "produto" / "extintor-pqs-bc-4-kg-20bc" / "index.html",
+    ROOT / "produto" / "unidade-central-lux-700-1200-24vdc" / "index.html",
 )
 
 
@@ -71,18 +78,51 @@ def style_tag(home_source: str) -> str:
 
 
 def render_target(target_source: str, home_source: str) -> str:
-    """Replace one legacy location section and its managed style layer."""
+    """Replace or insert the shared location section and its managed style layer."""
     style_pattern = re.compile(
         rf'<style id="{re.escape(STYLE_ID)}">.*?</style>\s*',
         re.DOTALL,
     )
     stripped = style_pattern.sub("", target_source)
-    target_start, target_end = _location_bounds(stripped)
-    rendered = (
-        stripped[:target_start]
-        + extract_location(home_source)
-        + stripped[target_end:]
+    loc_markup = extract_location(home_source)
+
+    has_loc = re.search(
+        r'<section\b(?=[^>]*\bid=["\']localizacao_mapa["\'])[^>]*>',
+        stripped,
+        flags=re.IGNORECASE | re.DOTALL,
     )
+    if has_loc:
+        target_start, target_end = _location_bounds(stripped)
+        rendered = (
+            stripped[:target_start]
+            + loc_markup
+            + stripped[target_end:]
+        )
+    else:
+        form_match = re.search(
+            r'<section\b(?=[^>]*\bid=["\']formulariosRodape["\'])[^>]*>',
+            stripped,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        if form_match:
+            insert_pos = form_match.start()
+        else:
+            footer_match = re.search(r'<footer\b', stripped, flags=re.IGNORECASE)
+            if footer_match:
+                insert_pos = footer_match.start()
+            else:
+                body_match = re.search(r'</body\b', stripped, flags=re.IGNORECASE)
+                if body_match:
+                    insert_pos = body_match.start()
+                else:
+                    raise ValueError("Cannot find insertion point for location section")
+        rendered = (
+            stripped[:insert_pos]
+            + loc_markup
+            + "\n"
+            + stripped[insert_pos:]
+        )
+
     if "</head>" not in rendered:
         raise ValueError("Target document is missing </head>")
     shared_style = style_tag(home_source) + "\n"

@@ -124,9 +124,9 @@ class BuildServicesPageTests(unittest.TestCase):
         self.assertIn('id="headerInda"', rendered)
         self.assertEqual(rendered.count('data-elementor-type="footer"'), 1)
         self.assertEqual(rendered.count('id="indafire-services-page"'), 1)
-        self.assertEqual(rendered.count('id="indafire-shared-location-style"'), 0)
-        self.assertNotIn('id="localizacao_mapa"', rendered)
-        self.assertNotIn("Nossa Localização", rendered)
+        self.assertEqual(rendered.count('id="indafire-shared-location-style"'), 1)
+        self.assertEqual(rendered.count('id="localizacao_mapa"'), 1)
+        self.assertIn("Nossa localização", rendered)
         self.assertNotIn('data-elementor-type="wp-page" data-elementor-id="19"', rendered)
 
     def test_page_build_is_idempotent(self):

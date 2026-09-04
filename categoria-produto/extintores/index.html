@@ -1238,6 +1238,108 @@ jQuery(document).ready(function(){
 <link rel='stylesheet' id='elementor-post-702-css' href='../../wp-content/uploads/elementor/css/post-702.css?ver=1693855200' media='all' />
 <link rel='stylesheet' id='e-animations-css' href='../../wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.6.7' media='all' />
 
+<style id="indafire-shared-location-style">
+/* Location section aligned with the site's light cards and red accents. */
+#localizacao_mapa.inda-location-section {
+  background: #f4f4f4 !important;
+  padding: 64px 20px !important;
+  margin: 0 !important;
+}
+
+.inda-location-container {
+  display: grid;
+  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.42fr);
+  gap: 42px;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.inda-location-copy {
+  text-align: left;
+}
+
+.inda-location-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #e30613;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.inda-location-copy h2 {
+  margin: 0 0 14px;
+  color: #333333;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.inda-location-address {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 24px;
+  color: #626a73;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.inda-location-address i {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: #e30613;
+}
+
+.inda-location-route {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  color: #ffffff !important;
+  background: #e30613;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-decoration: none !important;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.inda-location-route:hover,
+.inda-location-route:focus-visible {
+  color: #ffffff !important;
+  background: #c90410;
+  transform: translateY(-2px);
+}
+
+.inda-location-map {
+  height: 360px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+}
+
+.inda-location-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  #localizacao_mapa.inda-location-section { padding: 42px 16px !important; }
+  .inda-location-container { grid-template-columns: 1fr; gap: 28px; }
+  .inda-location-copy { text-align: center; }
+  .inda-location-address { justify-content: center; text-align: left; }
+  .inda-location-route { font-size: 12px; }
+  .inda-location-map { height: 300px; }
+}
+</style>
 <style id="indafire-responsive-navigation-style">
 /* INDAFIRE — adaptive header; full navigation is shown only when it fits. */
 #headerInda {
@@ -3692,7 +3794,20 @@ jQuery("#bannerProdutoINDA").css("background-image","url('https://indafire.com.b
 				</div>
 				<div data-elementor-type="footer" data-elementor-id="596" data-term-id="24" data-obj-id="24" class="elementor elementor-596 dce-elementor-term-24 elementor-location-footer">
 					<div class="elementor-section-wrap">
-								<section data-dce-background-color="#00000000" class="elementor-section elementor-top-section elementor-element elementor-element-1ae154c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1ae154c" data-element_type="section" id="formulariosRodape" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
+								<section class="elementor-section elementor-top-section elementor-element elementor-section-full_width elementor-section-height-default inda-location-section" id="localizacao_mapa">
+						<div class="inda-location-container">
+							<div class="inda-location-copy">
+								<span class="inda-location-eyebrow">Onde estamos</span>
+								<h2>Nossa localização</h2>
+								<p class="inda-location-address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000</p>
+								<a class="inda-location-route" href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i>Traçar rota no Google Maps</a>
+							</div>
+							<div class="inda-location-map">
+								<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
+							</div>
+						</div>
+				</section>
+<section data-dce-background-color="#00000000" class="elementor-section elementor-top-section elementor-element elementor-element-1ae154c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1ae154c" data-element_type="section" id="formulariosRodape" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
 					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-21b9e52" data-id="21b9e52" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">

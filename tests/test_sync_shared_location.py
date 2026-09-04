@@ -32,13 +32,31 @@ TARGET = """<html><head><style id="existing">body{margin:0}</style></head><body>
 <footer><p>Newsletter preservada</p></footer>
 </body></html>"""
 
+TARGET_NO_LOC = """<html><head><style id="existing">body{margin:0}</style></head><body>
+<main><p>Serviços preservados</p></main>
+<section id="formulariosRodape"><p>Newsletter preservada</p></section>
+</body></html>"""
+
 
 class SharedLocationTests(unittest.TestCase):
-    def test_only_products_is_a_managed_target(self):
+    def test_all_internal_routes_are_managed_targets(self):
         from scripts import sync_shared_location as subject
 
-        self.assertIn(subject.ROOT / "produtos" / "index.html", subject.TARGETS)
-        self.assertNotIn(subject.ROOT / "servicos" / "index.html", subject.TARGETS)
+        expected = (
+            subject.ROOT / "produtos" / "index.html",
+            subject.ROOT / "servicos" / "index.html",
+            subject.ROOT / "treinamentos" / "index.html",
+            subject.ROOT / "sobre-nos" / "index.html",
+            subject.ROOT / "blog" / "index.html",
+            subject.ROOT / "contato" / "index.html",
+            subject.ROOT / "area-do-cliente" / "index.html",
+            subject.ROOT / "politica-de-privacidade" / "index.html",
+            subject.ROOT / "categoria-produto" / "extintores" / "index.html",
+            subject.ROOT / "produto" / "extintor-pqs-bc-4-kg-20bc" / "index.html",
+            subject.ROOT / "produto" / "unidade-central-lux-700-1200-24vdc" / "index.html",
+        )
+        for route in expected:
+            self.assertIn(route, subject.TARGETS)
 
     def test_extracts_the_complete_location_section_with_nested_sections(self):
         from scripts import sync_shared_location as subject
@@ -72,6 +90,21 @@ class SharedLocationTests(unittest.TestCase):
         self.assertIn('class="inda-location-map"', rendered)
         self.assertEqual(rendered.count('id="localizacao_mapa"'), 1)
         self.assertEqual(rendered.count(f'id="{subject.STYLE_ID}"'), 1)
+
+    def test_inserts_location_when_missing_before_footer_forms(self):
+        from scripts import sync_shared_location as subject
+
+        rendered = subject.render_target(TARGET_NO_LOC, HOME)
+
+        self.assertIn("Serviços preservados", rendered)
+        self.assertIn("Newsletter preservada", rendered)
+        self.assertIn('class="inda-location-section"', rendered)
+        self.assertIn('id="localizacao_mapa"', rendered)
+        self.assertIn(f'id="{subject.STYLE_ID}"', rendered)
+        self.assertLess(
+            rendered.index('id="localizacao_mapa"'),
+            rendered.index('id="formulariosRodape"'),
+        )
 
     def test_sync_is_idempotent(self):
         from scripts import sync_shared_location as subject
