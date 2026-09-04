@@ -25,7 +25,6 @@ EXPECTED_GROUPS = (
 EXPECTED_SERVICES = (
     "AVCB/CLCB – Obtenção ou renovação",
     "Processo simplificado (PTS)",
-    "Projeto Técnico",
     "Inspeção de Equipamentos",
     "Instalação e venda de extintores",
     "Recarga de Extintores",
@@ -44,7 +43,7 @@ EXPECTED_SERVICES = (
 
 
 class BuildServicesPageTests(unittest.TestCase):
-    def test_renders_all_original_service_groups_and_cards_in_order(self):
+    def test_renders_the_five_original_split_rows_and_service_lists_in_order(self):
         from scripts import build_services_page as subject
 
         rendered = subject.render_services_main(LOCATION)
@@ -53,8 +52,25 @@ class BuildServicesPageTests(unittest.TestCase):
         self.assertEqual(positions, sorted(positions))
         service_positions = [rendered.index(title) for title in EXPECTED_SERVICES]
         self.assertEqual(service_positions, sorted(service_positions))
-        self.assertEqual(rendered.count('class="indafire-service-card"'), 17)
-        self.assertEqual(rendered.count('loading="lazy"'), 17)
+        self.assertEqual(rendered.count('class="indafire-source-service-row'), 5)
+        self.assertEqual(rendered.count('class="indafire-source-service-link"'), 16)
+        self.assertNotIn('class="indafire-service-grid"', rendered)
+        self.assertNotIn('class="indafire-service-card"', rendered)
+
+        feature_images = re.findall(
+            r'<img class="indafire-source-service-image"[^>]+src="([^"]+)"',
+            rendered,
+        )
+        self.assertEqual(
+            feature_images,
+            [
+                "../wp-content/uploads/2021/12/Projeto-Simplificado.jpg",
+                "../wp-content/uploads/2022/01/2.jpg",
+                "../wp-content/uploads/2022/01/3.jpg",
+                "../wp-content/uploads/2022/01/4.jpg",
+                "../wp-content/uploads/2021/11/10639604_1538289183049362_3959369163680743290_n.jpg",
+            ],
+        )
 
     def test_uses_original_local_photography_and_real_service_destinations(self):
         from scripts import build_services_page as subject
@@ -63,26 +79,27 @@ class BuildServicesPageTests(unittest.TestCase):
         sources = re.findall(r'<img[^>]+src="([^"]+)"', rendered)
 
         self.assertIn("../wp-content/uploads/2021/11/servicos.jpg", rendered)
-        self.assertIn("../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png", rendered)
+        self.assertIn("../wp-content/uploads/2021/11/foguim.svg", rendered)
+        self.assertIn("../wp-content/uploads/2021/11/ico-1.svg", rendered)
+        self.assertIn("../wp-content/uploads/2021/11/ico-4-1.svg", rendered)
         self.assertTrue(sources)
         for source in sources:
             with self.subTest(source=source):
                 self.assertTrue(source.startswith("../wp-content/uploads/"))
                 self.assertTrue((ROOT / source.removeprefix("../")).is_file(), source)
-        self.assertIn("https://indafire.com.br/servicos_inda_fire/projeto-tecnico/", rendered)
-        self.assertIn('href="../treinamentos/"', rendered)
+        self.assertNotIn("https://indafire.com.br/servicos_inda_fire/projeto-tecnico/", rendered)
+        self.assertIn('href="https://indafire.com.br/treinamentos/brigada-de-incendio/"', rendered)
         self.assertNotIn("example.com", rendered)
 
-    def test_includes_services_form_and_the_exact_supplied_location_fragment(self):
+    def test_does_not_add_sections_that_are_absent_from_the_original_services_page(self):
         from scripts import build_services_page as subject
 
         rendered = subject.render_services_main(LOCATION)
 
-        self.assertIn('id="indafire-commercial-whatsapp"', rendered)
-        self.assertIn('<option value="Serviço" selected>', rendered)
-        self.assertIn("https://wa.me/551938341741?text=", rendered)
-        self.assertEqual(rendered.count('id="localizacao_mapa"'), 1)
-        self.assertIn(LOCATION, rendered)
+        self.assertNotIn('id="indafire-commercial-whatsapp"', rendered)
+        self.assertNotIn("https://wa.me/551938341741?text=", rendered)
+        self.assertNotIn('id="localizacao_mapa"', rendered)
+        self.assertNotIn(LOCATION, rendered)
 
     def test_css_contract_covers_desktop_portrait_and_landscape_without_global_leaks(self):
         from scripts import build_services_page as subject
@@ -107,7 +124,9 @@ class BuildServicesPageTests(unittest.TestCase):
         self.assertIn('id="headerInda"', rendered)
         self.assertEqual(rendered.count('data-elementor-type="footer"'), 1)
         self.assertEqual(rendered.count('id="indafire-services-page"'), 1)
-        self.assertEqual(rendered.count('id="indafire-shared-location-style"'), 1)
+        self.assertEqual(rendered.count('id="indafire-shared-location-style"'), 0)
+        self.assertNotIn('id="localizacao_mapa"', rendered)
+        self.assertNotIn("Nossa Localização", rendered)
         self.assertNotIn('data-elementor-type="wp-page" data-elementor-id="19"', rendered)
 
     def test_page_build_is_idempotent(self):

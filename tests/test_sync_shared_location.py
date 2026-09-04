@@ -34,11 +34,11 @@ TARGET = """<html><head><style id="existing">body{margin:0}</style></head><body>
 
 
 class SharedLocationTests(unittest.TestCase):
-    def test_products_and_services_are_both_managed_targets(self):
+    def test_only_products_is_a_managed_target(self):
         from scripts import sync_shared_location as subject
 
         self.assertIn(subject.ROOT / "produtos" / "index.html", subject.TARGETS)
-        self.assertIn(subject.ROOT / "servicos" / "index.html", subject.TARGETS)
+        self.assertNotIn(subject.ROOT / "servicos" / "index.html", subject.TARGETS)
 
     def test_extracts_the_complete_location_section_with_nested_sections(self):
         from scripts import sync_shared_location as subject

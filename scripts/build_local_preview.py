@@ -76,12 +76,10 @@ def validate_documents(pages: dict[str, str]) -> None:
             raise ValueError(f"Missing catalog polish in {route}")
         if route == "produtos/index.html" and COMMERCIAL_FORM_MARKER not in source:
             raise ValueError(f"Missing commercial WhatsApp form in {route}")
-        if route in {"produtos/index.html", "servicos/index.html"} and SHARED_LOCATION_MARKER not in source:
+        if route == "produtos/index.html" and SHARED_LOCATION_MARKER not in source:
             raise ValueError(f"Missing shared Home location in {route}")
         if route == "servicos/index.html" and SERVICES_PAGE_MARKER not in source:
             raise ValueError(f"Missing managed Services page in {route}")
-        if route == "servicos/index.html" and COMMERCIAL_FORM_MARKER not in source:
-            raise ValueError(f"Missing commercial WhatsApp form in {route}")
 
 
 def main() -> None:

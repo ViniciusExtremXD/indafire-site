@@ -31,9 +31,22 @@ class InternalPagePolishTests(unittest.TestCase):
 
         self.assertLess(rendered.index(STYLE_ID), rendered.index("indafire-home-section-polish"))
 
-    def test_document_without_head_is_unchanged(self):
-        source = "<html><body>Sem cabeçalho</body></html>"
-        self.assertEqual(inject(source), source)
+    def test_standardizes_footer_forms_and_responsive_css(self):
+        source = (
+            "<html><head><title>Test</title></head><body>"
+            '<div id="formulariosRodape">'
+            '<input type="text" placeholder="Name">'
+            '<input type="radio" value="Concordo em receber conteúdos da Inda Fire">'
+            '<span class="elementor-button-text">RECEBER MATERIAL</span>'
+            "</div></body></html>"
+        )
+        rendered = inject(source)
+        self.assertIn('placeholder="Nome"', rendered)
+        self.assertNotIn('placeholder="Name"', rendered)
+        self.assertIn('type="checkbox" value="Concordo em receber conteúdos da Inda Fire"', rendered)
+        self.assertIn('<span class="elementor-button-text">Receber material</span>', rendered)
+        self.assertIn("#formulariosRodape", rendered)
+        self.assertIn("@media (max-width: 991px)", rendered)
 
 
 if __name__ == "__main__":

@@ -1453,108 +1453,6 @@ jQuery(document).ready(function(){
 <link rel='stylesheet' id='dce-dynamicPosts-grid-css' href='../wp-content/plugins/dynamic-content-for-elementor/assets/css/dynamic-posts-skin-grid.css?ver=2.6.3' media='all' />
 <link rel='stylesheet' id='e-animations-css' href='../wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.6.7' media='all' />
 
-<style id="indafire-shared-location-style">
-/* Location section aligned with the site's light cards and red accents. */
-#localizacao_mapa.inda-location-section {
-  background: #f4f4f4 !important;
-  padding: 64px 20px !important;
-  margin: 0 !important;
-}
-
-.inda-location-container {
-  display: grid;
-  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.42fr);
-  gap: 42px;
-  align-items: center;
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.inda-location-copy {
-  text-align: left;
-}
-
-.inda-location-eyebrow {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: #e30613;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.inda-location-copy h2 {
-  margin: 0 0 14px;
-  color: #333333;
-  font-size: clamp(26px, 3vw, 38px);
-  font-weight: 800;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.inda-location-address {
-  display: flex;
-  gap: 10px;
-  margin: 0 0 24px;
-  color: #626a73;
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.inda-location-address i {
-  flex: 0 0 auto;
-  margin-top: 4px;
-  color: #e30613;
-}
-
-.inda-location-route {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 12px 22px;
-  color: #ffffff !important;
-  background: #e30613;
-  border-radius: 24px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .3px;
-  text-decoration: none !important;
-  transition: background-color .2s ease, transform .2s ease;
-}
-
-.inda-location-route:hover,
-.inda-location-route:focus-visible {
-  color: #ffffff !important;
-  background: #c90410;
-  transform: translateY(-2px);
-}
-
-.inda-location-map {
-  height: 360px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #e1e1e1;
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
-}
-
-.inda-location-map iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-@media (max-width: 767px) {
-  #localizacao_mapa.inda-location-section { padding: 42px 16px !important; }
-  .inda-location-container { grid-template-columns: 1fr; gap: 28px; }
-  .inda-location-copy { text-align: center; }
-  .inda-location-address { justify-content: center; text-align: left; }
-  .inda-location-route { font-size: 12px; }
-  .inda-location-map { height: 300px; }
-}
-</style>
 <style id="indafire-responsive-navigation-style">
 /* INDAFIRE — adaptive header; full navigation is shown only when it fits. */
 .indafire-compact-client {
@@ -1866,6 +1764,342 @@ main textarea:focus {
   /* Elementor marks this as hidden on tablet; the exported responsive
      stylesheet misses the compact landscape range on some routes. */
   #headerInda .elementor-hidden-tablet { display: none !important; }
+}
+
+/* Standardized responsive styling for newsletter and catalog forms (#formulariosRodape) */
+#formulariosRodape {
+  padding: 60px 20px !important;
+  box-sizing: border-box !important;
+}
+
+#formulariosRodape .elementor-container {
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 32px !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+}
+
+#formulariosRodape .elementor-column.elementor-col-50 {
+  flex: 1 1 calc(50% - 16px) !important;
+  max-width: 530px !important;
+  min-width: 290px !important;
+  width: auto !important;
+  display: flex !important;
+}
+
+#formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+#formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+  background: rgba(22, 27, 34, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 36px 30px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+#formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap:hover,
+#formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap:hover {
+  border-color: rgba(227, 6, 19, 0.5) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 45px rgba(227, 6, 19, 0.15) !important;
+}
+
+#formulariosRodape .elementor-widget-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+#formulariosRodape .elementor-element-faab318,
+#formulariosRodape .elementor-element-ba015bc {
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+
+#formulariosRodape .elementor-element-faab318 img,
+#formulariosRodape .elementor-element-ba015bc img {
+  height: 120px !important;
+  width: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) !important;
+}
+
+#formulariosRodape .elementor-widget-heading .elementor-heading-title {
+  color: #ffffff !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 10px !important;
+  letter-spacing: 0.3px !important;
+}
+
+#formulariosRodape .elementor-widget-text-editor {
+  color: #c0c6cc !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+#formulariosRodape .elementor-field-textual {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+#formulariosRodape .elementor-field-textual:focus {
+  border-color: #e30613 !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.25) !important;
+}
+
+#formulariosRodape .elementor-field-textual::placeholder {
+  color: #88939e !important;
+}
+
+#formulariosRodape .elementor-field-group {
+  margin-bottom: 12px !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-field-type-radio,
+#formulariosRodape .elementor-field-type-checkbox {
+  margin-top: 6px !important;
+  margin-bottom: 10px !important;
+}
+
+#formulariosRodape .elementor-field-subgroup {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-field-option {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  width: 100% !important;
+  cursor: pointer !important;
+}
+
+#formulariosRodape .elementor-field-option input[type="radio"],
+#formulariosRodape .elementor-field-option input[type="checkbox"] {
+  margin-top: 3px !important;
+  accent-color: #e30613 !important;
+  flex-shrink: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  cursor: pointer !important;
+}
+
+#formulariosRodape .elementor-field-option label {
+  color: #b0b8c1 !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  cursor: pointer !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+
+#formulariosRodape .elementor-field-option label a {
+  color: #e30613 !important;
+  text-decoration: underline !important;
+}
+
+#formulariosRodape .elementor-button {
+  background-color: #e30613 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 14px 28px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  width: 100% !important;
+  text-align: center !important;
+  display: block !important;
+  box-shadow: 0 4px 16px rgba(227, 6, 19, 0.4) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+#formulariosRodape .elementor-button:hover {
+  background-color: #c40410 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(227, 6, 19, 0.55) !important;
+}
+
+@media (max-width: 991px) {
+  #formulariosRodape {
+    width: 100% !important;
+    padding: 40px 16px !important;
+    overflow: hidden !important;
+  }
+
+  #formulariosRodape .elementor-container,
+  #formulariosRodape .elementor-row,
+  #formulariosRodape .elementor-column,
+  #formulariosRodape .elementor-column-wrap,
+  #formulariosRodape .elementor-widget-wrap,
+  #formulariosRodape .elementor-widget-form,
+  #formulariosRodape .elementor-widget-form .elementor-widget-container,
+  #formulariosRodape .elementor-form,
+  #formulariosRodape .elementor-form-fields-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #formulariosRodape .elementor-container {
+    display: block !important;
+  }
+
+  #formulariosRodape .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 28px !important;
+  }
+
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    width: 100% !important;
+    max-width: 520px !important;
+    min-width: 0 !important;
+    display: block !important;
+  }
+
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 28px 20px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    justify-content: flex-start !important;
+  }
+
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img {
+    height: 100px !important;
+  }
+
+  #formulariosRodape .elementor-widget-heading .elementor-heading-title {
+    font-size: 1.25rem !important;
+  }
+
+  #formulariosRodape .elementor-widget-text-editor {
+    font-size: 0.88rem !important;
+    margin-bottom: 18px !important;
+  }
+
+  #formulariosRodape .elementor-widget-wrap {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  #formulariosRodape .elementor-form-fields-wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #formulariosRodape .elementor-field-group,
+  #formulariosRodape .elementor-field-type-text,
+  #formulariosRodape .elementor-field-type-email,
+  #formulariosRodape .elementor-field-type-radio,
+  #formulariosRodape .elementor-field-type-checkbox,
+  #formulariosRodape .e-form__buttons {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #formulariosRodape .elementor-field-subgroup,
+  #formulariosRodape .elementor-field-option {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #formulariosRodape .elementor-field-option label {
+    font-size: 12px !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape),
+       (max-height: 500px) and (orientation: landscape) {
+  #formulariosRodape {
+    padding: 24px 16px !important;
+  }
+  #formulariosRodape .elementor-row {
+    flex-direction: row !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    flex: 1 1 0 !important;
+    width: 0 !important;
+    max-width: none !important;
+  }
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    padding: 20px 16px !important;
+  }
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img {
+    height: 72px !important;
+  }
+  #formulariosRodape .elementor-widget-heading .elementor-heading-title {
+    font-size: 1.1rem !important;
+  }
+  #formulariosRodape .elementor-widget-text-editor {
+    font-size: 0.8rem !important;
+    margin-bottom: 12px !important;
+  }
+  #formulariosRodape .elementor-field-textual {
+    padding: 9px 11px !important;
+    font-size: 12px !important;
+  }
+  #formulariosRodape .elementor-field-option label {
+    font-size: 11px !important;
+  }
+  #formulariosRodape .elementor-button {
+    padding: 10px 16px !important;
+    font-size: 12px !important;
+    margin-top: 6px !important;
+  }
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -2708,668 +2942,156 @@ main textarea:focus {
 							</div>
 				</div>
 				<main id="indafire-services-page">
-<style id="indafire-services-style">
-#indafire-services-page {
-  --inda-red: #e30613;
-  --inda-ink: #202124;
-  --inda-muted: #626a73;
-  --inda-surface: #f4f4f4;
-  --inda-shadow: 0 14px 34px rgba(24, 26, 29, .12);
-  color: var(--inda-ink);
-  overflow: clip;
-  background: #fff;
+<style id="indafire-services-style">#indafire-services-page{--inda-red:#e30613;color:#333;overflow:clip;background:#fff;font-family:"Open Sans",Arial,sans-serif}
+#indafire-services-page *,#indafire-services-page *::before,#indafire-services-page *::after{box-sizing:border-box}
+#indafire-services-page .indafire-services-hero{position:relative;display:grid;min-height:500px;place-items:center;isolation:isolate;background:url("../wp-content/uploads/2021/11/servicos.jpg") center 48%/cover no-repeat}
+#indafire-services-page .indafire-services-hero::before{position:absolute;inset:0;z-index:-1;content:"";background:rgba(0,0,0,.62)}
+#indafire-services-page .indafire-services-hero h1{margin:0;color:rgba(255,255,255,.33);font-size:clamp(72px,8.3vw,112px);font-weight:700;letter-spacing:-.025em;line-height:1;text-align:center}
+#indafire-services-page .indafire-source-service-row{--row-height:450px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:var(--row-height);background:#fff}
+#indafire-services-page .indafire-source-service-row--sistemas{--row-height:490px}
+#indafire-services-page .indafire-source-service-row--especiais{--row-height:420px}
+#indafire-services-page .indafire-source-service-visual,#indafire-services-page .indafire-source-service-content{min-width:0;min-height:var(--row-height)}
+#indafire-services-page .indafire-source-service-visual{overflow:hidden}
+#indafire-services-page .indafire-source-service-image{display:block;width:100%;height:100%;object-fit:cover}
+#indafire-services-page .indafire-source-service-content{position:relative;display:flex;align-items:center;justify-content:center;padding:104px 32px 42px;background:#fff}
+#indafire-services-page .indafire-source-service-row--muted .indafire-source-service-content{background:#f1f1f1}
+#indafire-services-page .indafire-source-service-row--engineering .indafire-source-service-content{isolation:isolate;background:linear-gradient(180deg,#050505 0%,#3d414a 100%)}
+#indafire-services-page .indafire-source-service-row--engineering .indafire-source-service-content::before{position:absolute;inset:0;z-index:-1;content:"";opacity:.1;background:url("../wp-content/uploads/2021/11/foguim.svg") center 56%/230px auto no-repeat}
+#indafire-services-page .indafire-source-service-stack{position:relative;width:min(500px,100%)}
+#indafire-services-page .indafire-source-service-icon-wrap{position:absolute;top:-104px;left:0;z-index:2;display:grid;width:76px;height:76px;place-items:center;background:#fff;box-shadow:0 0 10px rgba(0,0,0,.5)}
+#indafire-services-page .indafire-source-service-icon{display:block;width:46px;height:46px;object-fit:contain}
+#indafire-services-page .indafire-source-service-panel{min-height:162px;padding:30px 35px;border-radius:10px;color:#f3f3f3;background:#333;box-shadow:0 0 10px rgba(0,0,0,.5)}
+#indafire-services-page .indafire-source-service-row--engineering .indafire-source-service-panel{min-height:230px;color:#737373;background:#fff}
+#indafire-services-page .indafire-source-service-row--manutencoes .indafire-source-service-panel{min-height:254px}
+#indafire-services-page .indafire-source-service-row--sistemas .indafire-source-service-panel{min-height:326px}
+#indafire-services-page .indafire-source-service-row--especiais .indafire-source-service-panel{min-height:230px}
+#indafire-services-page .indafire-source-service-panel h2{margin:0 0 18px;color:var(--inda-red);font-size:24px;font-weight:600;line-height:1;text-transform:uppercase}
+#indafire-services-page .indafire-source-service-hint{margin:0 0 18px;color:inherit;font-family:"Open Sans Condensed","Open Sans",sans-serif;font-size:14px;font-style:italic;line-height:1.5}
+#indafire-services-page .indafire-source-service-list{display:grid;gap:3px;margin:0;padding:0;list-style:none}
+#indafire-services-page .indafire-source-service-link{display:grid;grid-template-columns:14px minmax(0,1fr);gap:8px;align-items:start;color:inherit!important;font-size:16px;line-height:1.45;text-decoration:none!important}
+#indafire-services-page .indafire-source-service-link::before{content:"›";color:var(--inda-red);font-size:24px;font-weight:800;line-height:.9}
+#indafire-services-page .indafire-source-service-link:hover,#indafire-services-page .indafire-source-service-link:focus-visible{color:var(--inda-red)!important}
+@keyframes indafire-source-enter-left{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes indafire-source-enter-right{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@media (min-width: 1025px){#indafire-services-page .indafire-source-service-row:nth-child(even) .indafire-source-service-panel{animation:indafire-source-enter-left 520ms ease both}#indafire-services-page .indafire-source-service-row:nth-child(odd) .indafire-source-service-panel{animation:indafire-source-enter-right 520ms ease both}}
+@media (min-width:768px) and (max-width:1024px){#indafire-services-page .indafire-services-hero{min-height:430px}#indafire-services-page .indafire-services-hero h1{font-size:clamp(70px,10vw,96px)}#indafire-services-page .indafire-source-service-row{--row-height:420px}#indafire-services-page .indafire-source-service-row--sistemas{--row-height:470px}#indafire-services-page .indafire-source-service-stack{width:min(430px,100%)}#indafire-services-page .indafire-source-service-content{padding-inline:24px}#indafire-services-page .indafire-source-service-panel{padding-inline:28px}}
+@media (max-width: 767px){
+  #indafire-services-page .indafire-services-hero{min-height:448px;background-position:53% center}
+  #indafire-services-page .indafire-services-hero h1{color:rgba(255,255,255,.4);font-size:clamp(42px,13vw,58px)}
+  #indafire-services-page .indafire-source-service-row{--row-height:auto;grid-template-columns:1fr}
+  #indafire-services-page .indafire-source-service-visual{min-height:240px}
+  #indafire-services-page .indafire-source-service-content{min-height:430px;padding:132px 10px 32px}
+  #indafire-services-page .indafire-source-service-row--manutencoes .indafire-source-service-content{min-height:437px}
+  #indafire-services-page .indafire-source-service-row--sistemas .indafire-source-service-content{min-height:628px}
+  #indafire-services-page .indafire-source-service-row--treinamentos .indafire-source-service-content{min-height:297px}
+  #indafire-services-page .indafire-source-service-row--especiais .indafire-source-service-content{min-height:443px}
+  #indafire-services-page .indafire-source-service-stack{width:min(341px,100%)}
+  #indafire-services-page .indafire-source-service-icon-wrap{top:-104px;left:50%;transform:translateX(-50%)}
+  #indafire-services-page .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--engineering .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--manutencoes .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--sistemas .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--especiais .indafire-source-service-panel{min-height:0;padding:32px 34px}
+  #indafire-services-page .indafire-source-service-panel h2{margin-bottom:24px;font-size:21px;line-height:1.05}
+  #indafire-services-page .indafire-source-service-hint{margin-bottom:22px}
+  #indafire-services-page .indafire-source-service-link{font-size:15px}
 }
-
-#indafire-services-page *,
-#indafire-services-page *::before,
-#indafire-services-page *::after { box-sizing: border-box; }
-
-#indafire-services-page .indafire-services-hero {
-  position: relative;
-  display: grid;
-  min-height: clamp(330px, 44vw, 590px);
-  place-items: center;
-  padding: 100px 24px 64px;
-  isolation: isolate;
-  background: url("../wp-content/uploads/2021/11/servicos.jpg") center 48% / cover no-repeat;
+@media (orientation: landscape) and (max-height:600px) and (min-width:568px){
+  #indafire-services-page .indafire-services-hero{min-height:300px}#indafire-services-page .indafire-services-hero h1{font-size:68px}
+  #indafire-services-page .indafire-source-service-row,#indafire-services-page .indafire-source-service-row--sistemas,#indafire-services-page .indafire-source-service-row--especiais{--row-height:340px}
+  #indafire-services-page .indafire-source-service-content{padding:78px 22px 24px}#indafire-services-page .indafire-source-service-stack{width:min(390px,100%)}
+  #indafire-services-page .indafire-source-service-icon-wrap{top:-66px;width:58px;height:58px}#indafire-services-page .indafire-source-service-icon{width:36px;height:36px}
+  #indafire-services-page .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--engineering .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--manutencoes .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--sistemas .indafire-source-service-panel,#indafire-services-page .indafire-source-service-row--especiais .indafire-source-service-panel{min-height:0;padding:20px 24px}
+  #indafire-services-page .indafire-source-service-panel h2{margin-bottom:12px;font-size:18px}#indafire-services-page .indafire-source-service-hint{margin-bottom:10px;font-size:12px}#indafire-services-page .indafire-source-service-list{gap:1px}#indafire-services-page .indafire-source-service-link{font-size:12px;line-height:1.3}
 }
-
-#indafire-services-page .indafire-services-hero::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background: linear-gradient(90deg, rgba(12, 13, 15, .74), rgba(12, 13, 15, .38));
-}
-
-#indafire-services-page .indafire-services-hero h1 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(42px, 7vw, 88px);
-  font-weight: 800;
-  letter-spacing: .035em;
-  line-height: .96;
-  text-align: center;
-  text-shadow: 0 5px 24px rgba(0, 0, 0, .3);
-}
-
-#indafire-services-page .indafire-services-intro,
-#indafire-services-page .indafire-services-group-inner,
-#indafire-services-page .indafire-commercial-inner {
-  width: min(1140px, calc(100% - 40px));
-  margin-inline: auto;
-}
-
-#indafire-services-page .indafire-services-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
-  align-items: stretch;
-  margin-top: -58px;
-  padding-bottom: 72px;
-  position: relative;
-  z-index: 2;
-}
-
-#indafire-services-page .indafire-services-intro-media {
-  min-height: 390px;
-  overflow: hidden;
-  border-radius: 16px 0 0 16px;
-  background: #ececec;
-  box-shadow: var(--inda-shadow);
-}
-
-#indafire-services-page .indafire-services-intro-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#indafire-services-page .indafire-services-intro-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(38px, 5vw, 68px);
-  border-radius: 0 16px 16px 0;
-  color: #fff;
-  background: #2f3032;
-  box-shadow: var(--inda-shadow);
-}
-
-#indafire-services-page .indafire-services-eyebrow,
-#indafire-services-page .indafire-services-group-eyebrow,
-#indafire-services-page .indafire-commercial-eyebrow {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--inda-red);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-#indafire-services-page .indafire-services-intro h2,
-#indafire-services-page .indafire-services-group h2,
-#indafire-services-page .indafire-commercial-copy h2 {
-  margin: 0;
-  font-weight: 800;
-  letter-spacing: .015em;
-  line-height: 1.08;
-}
-
-#indafire-services-page .indafire-services-intro h2 {
-  color: #fff;
-  font-size: clamp(30px, 4vw, 50px);
-}
-
-#indafire-services-page .indafire-services-intro p,
-#indafire-services-page .indafire-services-group-heading p,
-#indafire-services-page .indafire-commercial-copy p {
-  margin: 18px 0 0;
-  font-size: 16px;
-  line-height: 1.65;
-}
-
-#indafire-services-page .indafire-services-intro p { color: #d6d8da; }
-
-#indafire-services-page .indafire-services-group {
-  padding: 76px 20px;
-  background: #fff;
-}
-
-#indafire-services-page .indafire-services-group:nth-child(even) { background: var(--inda-surface); }
-
-#indafire-services-page .indafire-services-group-heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
-  gap: 44px;
-  align-items: end;
-  margin-bottom: 34px;
-}
-
-#indafire-services-page .indafire-services-group-heading h2 {
-  max-width: 800px;
-  color: #333;
-  font-size: clamp(28px, 4vw, 46px);
-}
-
-#indafire-services-page .indafire-services-group-heading p {
-  color: var(--inda-muted);
-}
-
-#indafire-services-page .indafire-service-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-#indafire-services-page .indafire-service-card {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid #e5e6e8;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 8px 22px rgba(24, 26, 29, .08);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-#indafire-services-page .indafire-service-card:hover,
-#indafire-services-page .indafire-service-card:focus-within {
-  transform: translateY(-4px);
-  border-color: rgba(227, 6, 19, .32);
-  box-shadow: 0 15px 34px rgba(24, 26, 29, .14);
-}
-
-#indafire-services-page .indafire-service-card-image {
-  display: block;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: #eceeef;
-}
-
-#indafire-services-page .indafire-service-card-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 320ms ease;
-}
-
-#indafire-services-page .indafire-service-card:hover img { transform: scale(1.025); }
-
-#indafire-services-page .indafire-service-card-body {
-  display: flex;
-  min-height: 150px;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 22px;
-}
-
-#indafire-services-page .indafire-service-card h3 {
-  margin: 0 0 22px;
-  color: #303236;
-  font-size: clamp(18px, 2vw, 23px);
-  font-weight: 800;
-  line-height: 1.22;
-}
-
-#indafire-services-page .indafire-service-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  color: var(--inda-red) !important;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-decoration: none !important;
-  text-transform: uppercase;
-}
-
-#indafire-services-page .indafire-commercial-section {
-  padding: 76px 20px;
-  color: #fff;
-  background: #202124;
-}
-
-#indafire-services-page .indafire-commercial-inner {
-  display: grid;
-  grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);
-  gap: 48px;
-  align-items: center;
-}
-
-#indafire-services-page .indafire-commercial-copy h2 {
-  color: #fff;
-  font-size: clamp(28px, 3.6vw, 44px);
-}
-
-#indafire-services-page .indafire-commercial-copy p { color: #c9cbd0; }
-
-#indafire-services-page #indafire-commercial-form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  padding: 28px;
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 14px;
-  background: #2f3032;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, .22);
-}
-
-#indafire-services-page .indafire-commercial-field { min-width: 0; }
-#indafire-services-page .indafire-commercial-field--wide { grid-column: 1 / -1; }
-
-#indafire-services-page .indafire-commercial-field label {
-  display: block;
-  margin-bottom: 7px;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-#indafire-services-page .indafire-commercial-field input,
-#indafire-services-page .indafire-commercial-field select,
-#indafire-services-page .indafire-commercial-field textarea {
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 14px;
-  border: 1px solid #595b60;
-  border-radius: 8px;
-  color: #202124;
-  background: #fff;
-}
-
-#indafire-services-page .indafire-commercial-field textarea {
-  min-height: 116px;
-  resize: vertical;
-}
-
-#indafire-services-page #indafire-commercial-form button {
-  grid-column: 1 / -1;
-  justify-self: start;
-  min-height: 46px;
-  padding: 12px 24px;
-  border: 0;
-  border-radius: 24px;
-  color: #fff;
-  background: var(--inda-red);
-  font-weight: 800;
-  cursor: pointer;
-}
-
-@media (min-width: 1025px) {
-  #indafire-services-page .indafire-service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  #indafire-services-page .indafire-services-intro { grid-template-columns: 1fr 1fr; }
-  #indafire-services-page .indafire-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #indafire-services-page .indafire-services-group-heading { grid-template-columns: 1fr; gap: 12px; }
-}
-
-@media (max-width: 767px) {
-  #indafire-services-page .indafire-services-hero {
-    min-height: 310px;
-    padding-top: 86px;
-    background-position: 58% center;
-  }
-  #indafire-services-page .indafire-services-intro {
-    grid-template-columns: 1fr;
-    width: min(100% - 28px, 620px);
-    margin-top: -34px;
-    padding-bottom: 48px;
-  }
-  #indafire-services-page .indafire-services-intro-media {
-    min-height: 230px;
-    border-radius: 14px 14px 0 0;
-  }
-  #indafire-services-page .indafire-services-intro-copy {
-    padding: 30px 24px;
-    border-radius: 0 0 14px 14px;
-  }
-  #indafire-services-page .indafire-services-group { padding: 52px 14px; }
-  #indafire-services-page .indafire-services-group-inner { width: min(100%, 620px); }
-  #indafire-services-page .indafire-services-group-heading { grid-template-columns: 1fr; gap: 10px; }
-  #indafire-services-page .indafire-service-grid { grid-template-columns: 1fr; gap: 18px; }
-  #indafire-services-page .indafire-service-card-body { min-height: 132px; padding: 20px; }
-  #indafire-services-page .indafire-commercial-section { padding: 52px 14px; }
-  #indafire-services-page .indafire-commercial-inner { grid-template-columns: 1fr; gap: 28px; width: min(100%, 620px); }
-  #indafire-services-page #indafire-commercial-form { grid-template-columns: 1fr; padding: 22px 18px; }
-  #indafire-services-page .indafire-commercial-field--wide,
-  #indafire-services-page #indafire-commercial-form button { grid-column: auto; }
-  #indafire-services-page #indafire-commercial-form button { width: 100%; justify-self: stretch; }
-}
-
-@media (orientation: landscape) and (max-height: 600px) and (min-width: 568px) {
-  #indafire-services-page .indafire-services-hero { min-height: 300px; padding-block: 82px 38px; }
-  #indafire-services-page .indafire-services-intro { width: min(100% - 32px, 1040px); margin-top: -34px; padding-bottom: 42px; }
-  #indafire-services-page .indafire-services-intro-media { min-height: 260px; }
-  #indafire-services-page .indafire-services-intro-copy { padding: 28px; }
-  #indafire-services-page .indafire-services-group { padding: 46px 16px; }
-  #indafire-services-page .indafire-services-group-inner { width: min(100% - 8px, 1040px); }
-  #indafire-services-page .indafire-services-group-heading { grid-template-columns: minmax(0, 1fr) minmax(220px, 340px); gap: 28px; margin-bottom: 24px; }
-  #indafire-services-page .indafire-service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  #indafire-services-page .indafire-service-card-body { min-height: 116px; padding: 16px; }
-  #indafire-services-page .indafire-service-card h3 { margin-bottom: 14px; font-size: 17px; }
-  #indafire-services-page .indafire-commercial-section { padding: 48px 16px; }
-  #indafire-services-page .indafire-commercial-inner { grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); gap: 28px; }
-  #indafire-services-page #indafire-commercial-form { padding: 20px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #indafire-services-page .indafire-service-card,
-  #indafire-services-page .indafire-service-card img { transition: none; }
-}
-</style>
-<section class="indafire-services-hero" aria-labelledby="indafire-services-title">
-  <h1 id="indafire-services-title">SERVIÇOS</h1>
-</section>
-<section class="indafire-services-intro" aria-labelledby="indafire-services-intro-title">
-  <div class="indafire-services-intro-media">
-    <img src="../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png" width="1024" height="467" decoding="async" alt="Equipe de engenharia analisando projeto de segurança contra incêndio">
+@media (prefers-reduced-motion:reduce){#indafire-services-page .indafire-source-service-panel{animation:none!important}}</style>
+<section class="indafire-services-hero" aria-labelledby="indafire-services-title"><h1 id="indafire-services-title">SERVIÇOS</h1></section>
+<div class="indafire-source-services" aria-label="Categorias de serviços"><section class="indafire-source-service-row indafire-source-service-row--engenharia indafire-source-service-row--engineering" id="servicos-engenharia" aria-labelledby="servicos-engenharia-title">
+  <div class="indafire-source-service-visual">
+    <img class="indafire-source-service-image" src="../wp-content/uploads/2021/12/Projeto-Simplificado.jpg" width="960" height="640" loading="eager" decoding="async" alt="Equipe de engenharia analisando um projeto de segurança contra incêndio">
   </div>
-  <div class="indafire-services-intro-copy">
-    <span class="indafire-services-eyebrow">Soluções completas</span>
-    <h2 id="indafire-services-intro-title">ENGENHARIA E CONSULTORIA</h2>
-    <p>Atuamos no mercado de equipamentos de combate a incêndios, realizando uma ampla gama de serviços para proteger pessoas e patrimônios.</p>
-  </div>
-</section>
-<div class="indafire-services-groups">
-<section class="indafire-services-group" id="servicos-engenharia" aria-labelledby="servicos-engenharia-title">
-  <div class="indafire-services-group-inner">
-    <header class="indafire-services-group-heading">
-      <div>
-        <span class="indafire-services-group-eyebrow">Projetos e regularização</span>
+  <div class="indafire-source-service-content">
+    <div class="indafire-source-service-stack">
+      <div class="indafire-source-service-icon-wrap" aria-hidden="true"><img class="indafire-source-service-icon" src="../wp-content/uploads/2021/11/ico-1.svg" width="72" height="72" alt=""></div>
+      <article class="indafire-source-service-panel">
         <h2 id="servicos-engenharia-title">Engenharia e Consultoria</h2>
-      </div>
-      <p>Soluções técnicas para adequação, licenciamento e segurança contra incêndios.</p>
-    </header>
-    <div class="indafire-service-grid">
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/obtencao-ou-renovacao-avcb-clcb/" aria-label="Conhecer AVCB/CLCB – Obtenção ou renovação">
-    <img src="../wp-content/uploads/elementor/thumbs/serv16-pf8x4kbkpnj15xn4m10x25iorm7qr32raj37hdfyjs.jpg" width="720" height="450" loading="lazy" decoding="async" alt="AVCB/CLCB – Obtenção ou renovação">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>AVCB/CLCB – Obtenção ou renovação</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/obtencao-ou-renovacao-avcb-clcb/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/processo-simplificado-pts/" aria-label="Conhecer Processo simplificado (PTS)">
-    <img src="../wp-content/uploads/elementor/thumbs/serv15-pf8wz5qzey4oenhr66x580m9suurhqmbjs1p53ggbs.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Processo simplificado (PTS)">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Processo simplificado (PTS)</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/processo-simplificado-pts/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/projeto-tecnico/" aria-label="Conhecer Projeto Técnico">
-    <img src="../wp-content/uploads/elementor/thumbs/serv14-pf8wm00bqg45v6lw0i56bc5yenprqadlqn8z9myvfs.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Projeto Técnico">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Projeto Técnico</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/projeto-tecnico/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
+        <p class="indafire-source-service-hint">Clique nas opções abaixo</p>
+        <ul class="indafire-source-service-list"><li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/obtencao-ou-renovacao-avcb-clcb/">AVCB/CLCB – Obtenção ou renovação</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/processo-simplificado-pts/">Processo simplificado (PTS)</a></li></ul>
+      </article>
     </div>
   </div>
 </section>
-<section class="indafire-services-group" id="servicos-manutencoes" aria-labelledby="servicos-manutencoes-title">
-  <div class="indafire-services-group-inner">
-    <header class="indafire-services-group-heading">
-      <div>
-        <span class="indafire-services-group-eyebrow">Confiabilidade operacional</span>
+<section class="indafire-source-service-row indafire-source-service-row--manutencoes indafire-source-service-row--muted" id="servicos-manutencoes" aria-labelledby="servicos-manutencoes-title">
+  <div class="indafire-source-service-visual">
+    <img class="indafire-source-service-image" src="../wp-content/uploads/2022/01/2.jpg" width="960" height="640" loading="lazy" decoding="async" alt="Profissional realizando inspeção em um extintor">
+  </div>
+  <div class="indafire-source-service-content">
+    <div class="indafire-source-service-stack">
+      <div class="indafire-source-service-icon-wrap" aria-hidden="true"><img class="indafire-source-service-icon" src="../wp-content/uploads/2021/11/ico-2.svg" width="72" height="72" alt=""></div>
+      <article class="indafire-source-service-panel">
         <h2 id="servicos-manutencoes-title">Manutenções e Inspeções</h2>
-      </div>
-      <p>Equipe especializada para manter equipamentos e instalações em conformidade e prontos para uso.</p>
-    </header>
-    <div class="indafire-service-grid">
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/inspecao-de-equipamentos/" aria-label="Conhecer Inspeção de Equipamentos">
-    <img src="../wp-content/uploads/elementor/thumbs/serv5-pf8yb4gi5lseubtm3fasyew11og19q18h6gnqec8tk.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Inspeção de Equipamentos">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Inspeção de Equipamentos</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/inspecao-de-equipamentos/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/instalacao-e-venda-de-extintores/" aria-label="Conhecer Instalação e venda de extintores">
-    <img src="../wp-content/uploads/elementor/thumbs/serv2-pf8xwh51njqjx33kmld3llyfsin4bivtgoh9i623s8.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Instalação e venda de extintores">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Instalação e venda de extintores</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/instalacao-e-venda-de-extintores/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/recarga-de-extintores/" aria-label="Conhecer Recarga de Extintores">
-    <img src="../wp-content/uploads/elementor/thumbs/serv3-pf8y1a3cl2bb9c4cko4gceb93eynntyfggilt2xnzc.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Recarga de Extintores">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Recarga de Extintores</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/recarga-de-extintores/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/teste-hidrostatico-em-mangueiras-de-incendios/" aria-label="Conhecer Teste Hidrostático em Mangueiras de Incêndios">
-    <img src="../wp-content/uploads/elementor/thumbs/serv4-pf8y4inc4iqv8zf1o2i6xkwer7066at58hetbe4ujs.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Teste Hidrostático em Mangueiras de Incêndios">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Teste Hidrostático em Mangueiras de Incêndios</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/teste-hidrostatico-em-mangueiras-de-incendios/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
+        <p class="indafire-source-service-hint">Clique nas opções abaixo</p>
+        <ul class="indafire-source-service-list"><li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/inspecao-de-equipamentos/">Inspeção de Equipamentos</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/instalacao-e-venda-de-extintores/">Instalação e venda de extintores</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/recarga-de-extintores/">Recarga de Extintores</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/teste-hidrostatico-em-mangueiras-de-incendios/">Teste Hidrostático em Mangueiras de Incêndios</a></li></ul>
+      </article>
     </div>
   </div>
 </section>
-<section class="indafire-services-group" id="servicos-sistemas" aria-labelledby="servicos-sistemas-title">
-  <div class="indafire-services-group-inner">
-    <header class="indafire-services-group-heading">
-      <div>
-        <span class="indafire-services-group-eyebrow">Proteção integrada</span>
+<section class="indafire-source-service-row indafire-source-service-row--sistemas indafire-source-service-row--plain" id="servicos-sistemas" aria-labelledby="servicos-sistemas-title">
+  <div class="indafire-source-service-visual">
+    <img class="indafire-source-service-image" src="../wp-content/uploads/2022/01/3.jpg" width="960" height="640" loading="lazy" decoding="async" alt="Sistema de sprinklers e sinalização de saída de emergência">
+  </div>
+  <div class="indafire-source-service-content">
+    <div class="indafire-source-service-stack">
+      <div class="indafire-source-service-icon-wrap" aria-hidden="true"><img class="indafire-source-service-icon" src="../wp-content/uploads/2021/11/ico-3.svg" width="72" height="72" alt=""></div>
+      <article class="indafire-source-service-panel">
         <h2 id="servicos-sistemas-title">Sistemas de Prevenção e Combate a Incêndio</h2>
-      </div>
-      <p>Projeto, instalação e manutenção dos sistemas que protegem pessoas e patrimônios.</p>
-    </header>
-    <div class="indafire-service-grid">
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/sinalizacao-de-emergencia/" aria-label="Conhecer Sinalização de Emergência">
-    <img src="../wp-content/uploads/2021/10/serv10.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Sinalização de Emergência">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Sinalização de Emergência</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/sinalizacao-de-emergencia/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/sistema-de-alarme-de-incendio/" aria-label="Conhecer Sistema de alarme de incêndio">
-    <img src="../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png" width="720" height="450" loading="lazy" decoding="async" alt="Sistema de alarme de incêndio">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Sistema de alarme de incêndio</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-alarme-de-incendio/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/" aria-label="Conhecer Sistema de detecção de fumaça e calor">
-    <img src="../wp-content/uploads/2021/10/serv9.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Sistema de detecção de fumaça e calor">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Sistema de detecção de fumaça e calor</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/sistema-de-hidrantes/" aria-label="Conhecer Sistema de Hidrantes">
-    <img src="../wp-content/uploads/2021/10/hidrantes.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Sistema de Hidrantes">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Sistema de Hidrantes</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-hidrantes/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/sistema-de-iluminacao-de-emergencia/" aria-label="Conhecer Sistema de iluminação de emergência">
-    <img src="../wp-content/uploads/2021/10/iluminacao.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Sistema de iluminação de emergência">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Sistema de iluminação de emergência</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-iluminacao-de-emergencia/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/sistemas-de-sprinklers/" aria-label="Conhecer Sistemas de Sprinklers">
-    <img src="../wp-content/uploads/2021/10/Sprinkler.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Sistemas de Sprinklers">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Sistemas de Sprinklers</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/sistemas-de-sprinklers/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
+        <p class="indafire-source-service-hint">Clique nas opções abaixo</p>
+        <ul class="indafire-source-service-list"><li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/sinalizacao-de-emergencia/">Sinalização de Emergência</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-alarme-de-incendio/">Sistema de alarme de incêndio</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/">Sistema de detecção de fumaça e calor</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-hidrantes/">Sistema de Hidrantes</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/sistema-de-iluminacao-de-emergencia/">Sistema de iluminação de emergência</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/sistemas-de-sprinklers/">Sistemas de Sprinklers</a></li></ul>
+      </article>
     </div>
   </div>
 </section>
-<section class="indafire-services-group" id="servicos-treinamentos" aria-labelledby="servicos-treinamentos-title">
-  <div class="indafire-services-group-inner">
-    <header class="indafire-services-group-heading">
-      <div>
-        <span class="indafire-services-group-eyebrow">Preparo para agir</span>
+<section class="indafire-source-service-row indafire-source-service-row--treinamentos indafire-source-service-row--muted" id="servicos-treinamentos" aria-labelledby="servicos-treinamentos-title">
+  <div class="indafire-source-service-visual">
+    <img class="indafire-source-service-image" src="../wp-content/uploads/2022/01/4.jpg" width="960" height="640" loading="lazy" decoding="async" alt="Treinamento de brigada de incêndio em campo">
+  </div>
+  <div class="indafire-source-service-content">
+    <div class="indafire-source-service-stack">
+      <div class="indafire-source-service-icon-wrap" aria-hidden="true"><img class="indafire-source-service-icon" src="../wp-content/uploads/2021/11/ico-4.svg" width="72" height="72" alt=""></div>
+      <article class="indafire-source-service-panel">
         <h2 id="servicos-treinamentos-title">Treinamentos</h2>
-      </div>
-      <p>Capacitação teórica e prática para resposta segura e eficiente em emergências.</p>
-    </header>
-    <div class="indafire-service-grid">
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="../treinamentos/" aria-label="Conhecer Brigada de Incêndio">
-    <img src="../wp-content/uploads/2022/01/4.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Brigada de Incêndio">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Brigada de Incêndio</h3>
-    <a class="indafire-service-card-link" href="../treinamentos/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
+        <p class="indafire-source-service-hint">Clique nas opções abaixo</p>
+        <ul class="indafire-source-service-list"><li><a class="indafire-source-service-link" href="https://indafire.com.br/treinamentos/brigada-de-incendio/">Brigada de Incêndio</a></li></ul>
+      </article>
     </div>
   </div>
 </section>
-<section class="indafire-services-group" id="servicos-especiais" aria-labelledby="servicos-especiais-title">
-  <div class="indafire-services-group-inner">
-    <header class="indafire-services-group-heading">
-      <div>
-        <span class="indafire-services-group-eyebrow">Atendimento sob medida</span>
+<section class="indafire-source-service-row indafire-source-service-row--especiais indafire-source-service-row--plain" id="servicos-especiais" aria-labelledby="servicos-especiais-title">
+  <div class="indafire-source-service-visual">
+    <img class="indafire-source-service-image" src="../wp-content/uploads/2021/11/10639604_1538289183049362_3959369163680743290_n.jpg" width="960" height="640" loading="lazy" decoding="async" alt="Fabricação e transporte de caixa d&#x27;água metálica">
+  </div>
+  <div class="indafire-source-service-content">
+    <div class="indafire-source-service-stack">
+      <div class="indafire-source-service-icon-wrap" aria-hidden="true"><img class="indafire-source-service-icon" src="../wp-content/uploads/2021/11/ico-4-1.svg" width="72" height="72" alt=""></div>
+      <article class="indafire-source-service-panel">
         <h2 id="servicos-especiais-title">Serviços Especiais</h2>
-      </div>
-      <p>Estrutura e suporte especializado para necessidades específicas de segurança e operação.</p>
-    </header>
-    <div class="indafire-service-grid">
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/" aria-label="Conhecer Equipe habilitada para eventos ou trabalhos específicos">
-    <img src="../wp-content/uploads/2021/10/serv12.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Equipe habilitada para eventos ou trabalhos específicos">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Equipe habilitada para eventos ou trabalhos específicos</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/" aria-label="Conhecer Fabricação de caixa d’água metálica">
-    <img src="../wp-content/uploads/2021/10/serv13.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Fabricação de caixa d’água metálica">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Fabricação de caixa d’água metálica</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
-<article class="indafire-service-card">
-  <a class="indafire-service-card-image" href="https://indafire.com.br/servicos_inda_fire/locacao-de-equipamentos/" aria-label="Conhecer Locação de equipamentos">
-    <img src="../wp-content/uploads/2021/10/PRONTA-5.png" width="720" height="450" loading="lazy" decoding="async" alt="Locação de equipamentos">
-  </a>
-  <div class="indafire-service-card-body">
-    <h3>Locação de equipamentos</h3>
-    <a class="indafire-service-card-link" href="https://indafire.com.br/servicos_inda_fire/locacao-de-equipamentos/">Veja em detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-  </div>
-</article>
+        <p class="indafire-source-service-hint">Clique nas opções abaixo</p>
+        <ul class="indafire-source-service-list"><li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/">Equipe habilitada para eventos ou trabalhos específicos</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/">Fabricação de caixa d’água metálica</a></li>
+<li><a class="indafire-source-service-link" href="https://indafire.com.br/servicos_inda_fire/locacao-de-equipamentos/">Locação de equipamentos</a></li></ul>
+      </article>
     </div>
   </div>
-</section>
-</div>
-<section class="indafire-commercial-section" id="indafire-commercial-whatsapp" data-context="services" aria-labelledby="indafire-commercial-title">
-  <div class="indafire-commercial-inner">
-    <div class="indafire-commercial-copy">
-      <span class="indafire-commercial-eyebrow">Atendimento comercial</span>
-      <h2 id="indafire-commercial-title">Ficou com dúvida sobre algum serviço?</h2>
-      <p>Envie uma mensagem para nossa equipe. Ajudamos você a encontrar a solução adequada para sua necessidade.</p>
-    </div>
-    <form id="indafire-commercial-form">
-      <div class="indafire-commercial-field">
-        <label for="indafire-commercial-name">Nome ou empresa *</label>
-        <input id="indafire-commercial-name" name="name" type="text" autocomplete="organization" required placeholder="Como podemos chamar você?">
-      </div>
-      <div class="indafire-commercial-field">
-        <label for="indafire-commercial-interest">Assunto *</label>
-        <select id="indafire-commercial-interest" name="interest" required>
-          <option value="Serviço" selected>Serviço</option>
-        </select>
-      </div>
-      <div class="indafire-commercial-field indafire-commercial-field--wide">
-        <label for="indafire-commercial-message">Mensagem *</label>
-        <textarea id="indafire-commercial-message" name="message" required placeholder="Conte brevemente o que você precisa"></textarea>
-      </div>
-      <button type="submit">Enviar mensagem pelo WhatsApp</button>
-    </form>
-  </div>
-</section>
-<section class="elementor-section elementor-top-section elementor-element elementor-section-full_width elementor-section-height-default inda-location-section" id="localizacao_mapa">
-						<div class="inda-location-container">
-							<div class="inda-location-copy">
-								<span class="inda-location-eyebrow">Onde estamos</span>
-								<h2>Nossa localização</h2>
-								<p class="inda-location-address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000</p>
-								<a class="inda-location-route" href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i>Traçar rota no Google Maps</a>
-							</div>
-							<div class="inda-location-map">
-								<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
-							</div>
-						</div>
-				</section>
-<script id="indafire-services-commercial-whatsapp-script">
-(() => {
-  const form = document.getElementById('indafire-commercial-form');
-  if (!form || form.dataset.ready === 'true') return;
-  form.dataset.ready = 'true';
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const name = document.getElementById('indafire-commercial-name').value.trim();
-    const message = document.getElementById('indafire-commercial-message').value.trim();
-    const text = `Olá! Meu nome/empresa é ${name}. Tenho interesse em serviço. ${message}`;
-    window.open(`https://wa.me/551938341741?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
-  });
-})();
-</script>
+</section></div>
 </main>
 				<div data-elementor-type="footer" data-elementor-id="596" data-post-id="19" data-obj-id="19" class="elementor elementor-596 dce-elementor-post-19 elementor-location-footer">
 					<div class="elementor-section-wrap">
-												<section class="elementor-section elementor-top-section elementor-element elementor-section-full_width elementor-section-height-default" id="localizacao_mapa" style="background-color: #12171c; padding: 45px 0 0 0; margin: 0; position: relative;">
-						<div class="elementor-container elementor-column-gap-default" style="max-width: 1140px; margin: 0 auto; padding: 0 20px 25px 20px;">
-							<div style="text-align: center; margin-bottom: 25px;">
-								<span style="display: inline-block; background-color: rgba(227,6,19,0.15); color: #e30613; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(227,6,19,0.3);">Onde Estamos</span>
-								<h2 style="color: #ffffff; font-size: 26px; font-weight: 800; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px;">Nossa Localização</h2>
-								<p style="color: #a0aec0; font-size: 15px; max-width: 650px; margin: 0 auto 18px auto; line-height: 1.5;">
-									<i class="fas fa-map-marker-alt" style="color: #e30613; margin-right: 6px;"></i>
-									Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000
-								</p>
-								<a href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background-color: #e30613; color: #ffffff; padding: 11px 26px; border-radius: 30px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; box-shadow: 0 4px 15px rgba(227,6,19,0.4); transition: background-color 0.2s, transform 0.2s;">
-									<i class="fas fa-directions" style="font-size: 15px;"></i>
-									Traçar Rota no Google Maps
-								</a>
-							</div>
-						</div>
-						<div style="width: 100%; height: 380px; position: relative; overflow: hidden; line-height: 0; box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);">
-							<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" style="border:0; filter: contrast(1.05) saturate(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
-						</div>
-				</section>
+												
 <section data-dce-background-color="#00000000" class="elementor-section elementor-top-section elementor-element elementor-element-1ae154c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1ae154c" data-element_type="section" id="formulariosRodape" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
@@ -3405,7 +3127,7 @@ main textarea:focus {
 								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-nome elementor-col-100 elementor-field-required">
 												<label for="form-field-nome" class="elementor-field-label elementor-screen-only">
 								Nome							</label>
-														<input size="1" type="text" name="form_fields[nome]" id="form-field-nome" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Name" required="required" aria-required="true">
+														<input size="1" type="text" name="form_fields[nome]" id="form-field-nome" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nome" required="required" aria-required="true">
 											</div>
 								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
 												<label for="form-field-email" class="elementor-field-label elementor-screen-only">
@@ -3415,11 +3137,11 @@ main textarea:focus {
 								<div class="elementor-field-type-radio elementor-field-group elementor-column elementor-field-group-quer_receber_conteudo_indafire elementor-col-100">
 												<label for="form-field-quer_receber_conteudo_indafire" class="elementor-field-label elementor-screen-only">
 								Concordo em receber conteúdos da Inda Fire							</label>
-						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="radio" value="Concordo em receber conteúdos da Inda Fire" id="form-field-quer_receber_conteudo_indafire-0" name="form_fields[quer_receber_conteudo_indafire]"> <label for="form-field-quer_receber_conteudo_indafire-0">Concordo em receber conteúdos da Inda Fire</label></span></div>				</div>
+						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="checkbox" value="Concordo em receber conteúdos da Inda Fire" id="form-field-quer_receber_conteudo_indafire-0" name="form_fields[quer_receber_conteudo_indafire]"> <label for="form-field-quer_receber_conteudo_indafire-0">Concordo em receber conteúdos da Inda Fire</label></span></div>				</div>
 								<div class="elementor-field-type-radio elementor-field-group elementor-column elementor-field-group-aceita_politica_de_privacidade elementor-col-100">
 												<label for="form-field-aceita_politica_de_privacidade" class="elementor-field-label elementor-screen-only">
 								Concordo com os termos de uso e Política de Privacidade							</label>
-						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="radio" value="Concordo com os termos de uso e &lt;a href=&quot;./politica-de-privacidade/&quot; target=&quot;_blank&quot;&gt;Política de Privacidade&lt;/a&gt;" id="form-field-aceita_politica_de_privacidade-0" name="form_fields[aceita_politica_de_privacidade]"> <label for="form-field-aceita_politica_de_privacidade-0">Concordo com os termos de uso e <a href="./politica-de-privacidade/" target="_blank">Política de Privacidade</a></label></span></div>				</div>
+						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="checkbox" value="Concordo com os termos de uso e &lt;a href=&quot;./politica-de-privacidade/&quot; target=&quot;_blank&quot;&gt;Política de Privacidade&lt;/a&gt;" id="form-field-aceita_politica_de_privacidade-0" name="form_fields[aceita_politica_de_privacidade]"> <label for="form-field-aceita_politica_de_privacidade-0">Concordo com os termos de uso e <a href="./politica-de-privacidade/" target="_blank">Política de Privacidade</a></label></span></div>				</div>
 								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
 					<button type="submit" class="elementor-button elementor-size-lg">
 						<span >
@@ -3468,7 +3190,7 @@ main textarea:focus {
 								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-nome elementor-col-100 elementor-field-required">
 												<label for="form-field-nome" class="elementor-field-label elementor-screen-only">
 								Nome							</label>
-														<input size="1" type="text" name="form_fields[nome]" id="form-field-nome" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Name" required="required" aria-required="true">
+														<input size="1" type="text" name="form_fields[nome]" id="form-field-nome" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nome" required="required" aria-required="true">
 											</div>
 								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
 												<label for="form-field-email" class="elementor-field-label elementor-screen-only">
@@ -3478,17 +3200,17 @@ main textarea:focus {
 								<div class="elementor-field-type-radio elementor-field-group elementor-column elementor-field-group-quer_receber_conteudo_indafire elementor-col-100">
 												<label for="form-field-quer_receber_conteudo_indafire" class="elementor-field-label elementor-screen-only">
 								Concordo em receber conteúdos da Inda Fire							</label>
-						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="radio" value="Concordo em receber conteúdos da Inda Fire" id="form-field-quer_receber_conteudo_indafire-0" name="form_fields[quer_receber_conteudo_indafire]"> <label for="form-field-quer_receber_conteudo_indafire-0">Concordo em receber conteúdos da Inda Fire</label></span></div>				</div>
+						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="checkbox" value="Concordo em receber conteúdos da Inda Fire" id="form-field-quer_receber_conteudo_indafire-0" name="form_fields[quer_receber_conteudo_indafire]"> <label for="form-field-quer_receber_conteudo_indafire-0">Concordo em receber conteúdos da Inda Fire</label></span></div>				</div>
 								<div class="elementor-field-type-radio elementor-field-group elementor-column elementor-field-group-aceita_politica_de_privacidade elementor-col-100">
 												<label for="form-field-aceita_politica_de_privacidade" class="elementor-field-label elementor-screen-only">
 								Concordo com os termos de uso e Política de Privacidade							</label>
-						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="radio" value="Concordo com os termos de uso e &lt;a href=&quot;./politica-de-privacidade/&quot; target=&quot;_blank&quot;&gt;Política de Privacidade&lt;/a&gt;" id="form-field-aceita_politica_de_privacidade-0" name="form_fields[aceita_politica_de_privacidade]"> <label for="form-field-aceita_politica_de_privacidade-0">Concordo com os termos de uso e <a href="./politica-de-privacidade/" target="_blank">Política de Privacidade</a></label></span></div>				</div>
+						<div class="elementor-field-subgroup  "><span class="elementor-field-option"><input type="checkbox" value="Concordo com os termos de uso e &lt;a href=&quot;./politica-de-privacidade/&quot; target=&quot;_blank&quot;&gt;Política de Privacidade&lt;/a&gt;" id="form-field-aceita_politica_de_privacidade-0" name="form_fields[aceita_politica_de_privacidade]"> <label for="form-field-aceita_politica_de_privacidade-0">Concordo com os termos de uso e <a href="./politica-de-privacidade/" target="_blank">Política de Privacidade</a></label></span></div>				</div>
 								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
 					<button type="submit" class="elementor-button elementor-size-lg">
 						<span >
 															<span class=" elementor-button-icon">
 																										</span>
-																						<span class="elementor-button-text">RECEBER MATERIAL</span>
+																						<span class="elementor-button-text">Receber material</span>
 													</span>
 					</button>
 				</div>

@@ -41,8 +41,7 @@ class BuildLocalPreviewTests(unittest.TestCase):
             "servicos/index.html": (
                 '<head><style id="indafire-internal-page-polish"></style>'
                 '<style id="indafire-responsive-navigation-style"></style>'
-                f'{SHARED_LOCATION_STYLE}</head><body>{SERVICES_PAGE}'
-                '<section id="indafire-commercial-whatsapp"></section>'
+                f'</head><body>{SERVICES_PAGE}'
                 '<script id="indafire-responsive-navigation"></script></body>'
             ),
         }
@@ -142,12 +141,20 @@ class BuildLocalPreviewTests(unittest.TestCase):
     def test_rejects_services_page_without_the_managed_services_content(self):
         source = (
             '<head><style id="indafire-internal-page-polish"></style>'
-            f'{NAV_STYLE}{SHARED_LOCATION_STYLE}</head><body>'
-            '<section id="indafire-commercial-whatsapp"></section>'
+            f'{NAV_STYLE}</head><body>'
             f'{NAV_SCRIPT}</body>'
         )
         with self.assertRaisesRegex(ValueError, "Services page"):
             validate_documents({"servicos/index.html": source})
+
+    def test_accepts_services_without_product_only_location_or_commercial_form(self):
+        source = (
+            '<head><style id="indafire-internal-page-polish"></style>'
+            f'{NAV_STYLE}</head><body>{SERVICES_PAGE}'
+            f'{NAV_SCRIPT}</body>'
+        )
+
+        validate_documents({"servicos/index.html": source})
 
     def test_script_runs_directly_from_the_project_root(self):
         result = subprocess.run(

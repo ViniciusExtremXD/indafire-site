@@ -92,6 +92,68 @@ final result: passed
 
 ---
 
+# Indafire — QA de fidelidade da página Serviços (2026-09-01, revisão final)
+
+Esta seção substitui, para `/servicos/`, as observações da rodada anterior que descreviam uma grade de cards, formulário comercial e mapa. Esses elementos não pertencem ao conteúdo principal da página original e foram removidos desta rota.
+
+## Verdade visual e implementação
+
+- Fonte desktop: `audit/services-origin-2026-09-01/source-services-desktop-full-1366x900.png` (`1351 × 3815` px; viewport CSS `1366 × 900`; DPR `1`; os `15px` restantes são a barra de rolagem).
+- Implementação desktop: `audit/services-qa-2026-09-01/implementation-services-desktop-full-1366x900.png` (`1366 × 3944` px; viewport CSS `1366 × 900`; DPR `1`).
+- Fonte celular vertical: `audit/services-origin-2026-09-01/source-services-mobile-full-390x844.png` (`375 × 5959` px; viewport CSS `390 × 844`; DPR `1`).
+- Implementação celular vertical: `audit/services-qa-2026-09-01/implementation-services-mobile-full-390x844.png` (`375 × 6085` px; viewport CSS `390 × 844`; DPR `1`).
+- Fonte celular horizontal: `audit/services-qa-2026-09-01/source-services-landscape-full-844x390.png` (`829 × 3898` px; viewport CSS `844 × 390`; DPR `1`).
+- Implementação celular horizontal: `audit/services-qa-2026-09-01/implementation-services-landscape-full-844x390.png` (`829 × 3144` px; viewport CSS `844 × 390`; DPR `1`).
+- Estado comparado: topo da rota, conteúdo completo e painéis de categoria após a ativação das animações de entrada do site de origem.
+- Normalização: fonte e implementação foram capturadas no mesmo viewport e DPR; a largura útil de `15px` a menos corresponde à barra de rolagem do navegador.
+
+## Evidência de comparação
+
+- Vista completa desktop: `audit/services-qa-2026-09-01/comparison-services-desktop.png`.
+- Vista completa celular vertical: `audit/services-qa-2026-09-01/comparison-services-mobile.png`.
+- Vista completa celular horizontal: `audit/services-qa-2026-09-01/comparison-services-landscape.png`.
+- Comparação focada de fotografia, ícone, painel, tipografia e lista: `audit/services-qa-2026-09-01/comparison-services-desktop-focus.png`.
+
+O recorte focado foi necessário porque as listas e a tipografia dos painéis ficam pequenas na composição da página completa. O site de origem usa animações de entrada que deixam alguns painéis vazios em capturas full-page; as capturas em etapas foram usadas para confirmar o conteúdo visível desses painéis.
+
+## Superfícies de fidelidade obrigatórias
+
+- Fontes e tipografia: Open Sans, caixa alta, pesos, vermelho dos títulos, itálico do texto auxiliar e hierarquia das listas acompanham a referência.
+- Espaçamento e ritmo: hero de `500px`, cinco faixas 50/50, painéis de `500px` máximos, ícones destacados, raios de `10px` e sombras equivalentes à fonte no desktop. Retrato empilha fotografia e conteúdo; horizontal preserva a composição 50/50 em escala compacta já aprovada.
+- Cores e tokens: branco, cinza-claro, grafite, gradiente escuro e vermelho Indafire foram preservados; não há novos tokens decorativos no conteúdo de Serviços.
+- Qualidade e fidelidade de imagens: hero, cinco fotografias e cinco ícones são ativos locais copiados do site de origem; nenhuma imagem foi recriada, esticada ou substituída por desenho em CSS/SVG artesanal.
+- Conteúdo: cinco categorias e 16 destinos do conteúdo visual de referência aparecem na ordem original. Não há grade moderna, mapa, formulário comercial ou “Projeto Técnico” extra no corpo gerenciado.
+
+## Responsividade e interações
+
+- Desktop `1366 × 900`, vertical `390 × 844` e horizontal `844 × 390`: cinco categorias, 16 links, zero imagem quebrada e zero overflow horizontal.
+- Cabeçalho, newsletter e rodapé compartilhados permanecem no acabamento moderno previamente aprovado; somente o conteúdo principal foi reconduzido à estrutura visual original.
+- O logotipo continua apontando para a Home.
+- O menu compacto foi aberto no horizontal, permaneceu visível por `3,2s` e manteve `aria-expanded="true"`, modal `display:flex` e estado de corpo aberto, sem fechamento espontâneo.
+
+## Histórico de comparação e correções
+
+1. P1 — a primeira implementação usava uma grade moderna de cards, diferente das cinco faixas alternadas do original.
+   - Correção: reconstrução do conteúdo principal com hero e cinco linhas 50/50, fotografias, ícones, textos e links originais.
+   - Evidência pós-correção: as três comparações completas e o recorte focado listados acima.
+2. P1 — o build geral reinjetava o mapa e exigia o formulário comercial de Produtos na rota de Serviços.
+   - Correção: `/servicos/` foi removido dos alvos de sincronização do mapa e o gerador passou a remover integralmente a seção legada de localização.
+   - Evidência pós-correção: DOM renderizado com `5` linhas, `16` links, `0` mapas e `0` formulários; segundo build sem alterações.
+
+## Achados finais
+
+- Não restam diferenças P0, P1 ou P2 acionáveis no conteúdo principal de Serviços.
+- P3/aceito: o cabeçalho, newsletter e rodapé têm o polimento moderno já aprovado e, por decisão anterior do projeto, não reproduzem literalmente os estilos legados da referência.
+
+## Verificação técnica
+
+- Suíte rastreada completa do site: `68/68` testes passaram na rodada final.
+- Build local executado duas vezes; a segunda execução foi no-op.
+
+final result: passed
+
+---
+
 # Indafire — QA visual de Produtos e Serviços (2026-09-01)
 
 ## Escopo validado
@@ -133,3 +195,25 @@ final result: passed
 - A descoberta global também executou testes operacionais não rastreados e encontrou 2 erros por ausência de `scripts.build_baseline_factual_1`, igualmente não rastreado e fora do escopo do site estático.
 
 final result: passed
+
+---
+
+# Indafire — QA de Localização Móvel e Formulários de Rodapé (2026-09-04)
+
+## Escopo validado (Ajuste Focado e Estrito)
+
+- **Localização Mobile**: Remoção definitiva da seção duplicada de localização em `/servicos/` (gerada anteriormente por resquício da casca herdada e injeção redundante), garantindo que Serviços exiba 0 seções duplicadas e Produtos exiba exatamente 1 seção sincronizada com a Home.
+- **Formulários de Rodapé (`#formulariosRodape`)**:
+  - Padronização do placeholder do campo de nome (`placeholder="Nome"` em português).
+  - Padronização do botão de envio do catálogo ("Receber material").
+  - Substituição dos seletores de consentimento de privacidade de `type="radio"` (que não podiam ser desselecionados) por `type="checkbox"` acessíveis e nativos.
+  - Estilos responsivos aplicados universalmente em `inject_internal_page_polish.py` para visualização mobile vertical (`390 × 844`), mobile horizontal (`844 × 390`) e desktop (`1440 × 900`), garantindo alinhamento e consistência sem tocar no cabeçalho ou demais blocos da página.
+
+## Resultados
+- Celular vertical (`390 × 844`): Cards de newsletter e catálogo com margens equilibradas, inputs padronizados, checkboxes funcionais e sem overflow horizontal.
+- Celular horizontal (`844 × 390`): Cards lado a lado compactos e alinhados.
+- Desktop (`1440 × 900`): Layout de duas colunas perfeitamente simétrico com alturas padronizadas e elevação suave.
+- Zero impacto regressivo no cabeçalho, menu móvel ou cards de conteúdo.
+
+final result: passed
+

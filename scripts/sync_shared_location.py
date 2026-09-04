@@ -12,7 +12,6 @@ LOCATION_CSS_START = "/* Location section aligned with the site's light cards an
 LOCATION_CSS_END = "/* Reveal the full navigation whenever the user reverses scroll direction. */"
 TARGETS = (
     ROOT / "produtos" / "index.html",
-    ROOT / "servicos" / "index.html",
 )
 
 
