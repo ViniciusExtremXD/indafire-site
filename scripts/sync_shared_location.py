@@ -17,6 +17,9 @@ LOCATION_CSS_END_MARKERS = (
 )
 TARGETS = (
     ROOT / "produtos" / "index.html",
+    ROOT / "blog" / "index.html",
+    ROOT / "contato" / "index.html",
+    ROOT / "area-do-cliente" / "index.html",
 )
 
 

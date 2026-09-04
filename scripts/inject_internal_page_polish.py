@@ -24,6 +24,7 @@ TARGETS = (
     ROOT / "treinamentos" / "index.html",
     ROOT / "contato" / "index.html",
     ROOT / "area-do-cliente" / "index.html",
+    ROOT / "blog" / "index.html",
     ROOT / "politica-de-privacidade" / "index.html",
 )
 

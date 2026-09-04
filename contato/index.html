@@ -1450,6 +1450,108 @@ jQuery(document).ready(function(){
 <link rel='stylesheet' id='dce-dynamicPosts-grid-css' href='../wp-content/plugins/dynamic-content-for-elementor/assets/css/dynamic-posts-skin-grid.css?ver=2.6.3' media='all' />
 <link rel='stylesheet' id='e-animations-css' href='../wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.6.7' media='all' />
 
+<style id="indafire-shared-location-style">
+/* Location section aligned with the site's light cards and red accents. */
+#localizacao_mapa.inda-location-section {
+  background: #f4f4f4 !important;
+  padding: 64px 20px !important;
+  margin: 0 !important;
+}
+
+.inda-location-container {
+  display: grid;
+  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.42fr);
+  gap: 42px;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.inda-location-copy {
+  text-align: left;
+}
+
+.inda-location-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #e30613;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.inda-location-copy h2 {
+  margin: 0 0 14px;
+  color: #333333;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.inda-location-address {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 24px;
+  color: #626a73;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.inda-location-address i {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: #e30613;
+}
+
+.inda-location-route {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  color: #ffffff !important;
+  background: #e30613;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-decoration: none !important;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.inda-location-route:hover,
+.inda-location-route:focus-visible {
+  color: #ffffff !important;
+  background: #c90410;
+  transform: translateY(-2px);
+}
+
+.inda-location-map {
+  height: 360px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+}
+
+.inda-location-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  #localizacao_mapa.inda-location-section { padding: 42px 16px !important; }
+  .inda-location-container { grid-template-columns: 1fr; gap: 28px; }
+  .inda-location-copy { text-align: center; }
+  .inda-location-address { justify-content: center; text-align: left; }
+  .inda-location-route { font-size: 12px; }
+  .inda-location-map { height: 300px; }
+}
+</style>
 <style id="indafire-responsive-navigation-style">
 /* INDAFIRE — adaptive header; full navigation is shown only when it fits. */
 #headerInda {
@@ -3271,71 +3373,63 @@ há mais de 30 anos, leva segurança contra incêndios para todo o Brasil!</div>
 								</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-abb3204 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="abb3204" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-2bf1100" data-id="2bf1100" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-74944b2 dce_masking-none elementor-widget elementor-widget-image" data-id="74944b2" data-element_type="widget" data-widget_type="image.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-image">
-												<img loading="lazy" decoding="async" decoding="async" width="196" height="233" src="../wp-content/uploads/2021/11/pin.png" class="attachment-large size-large" alt="" />														</div>
-						</div>
-				</div>
-				<div class="elementor-element elementor-element-7a1c16b meio elementor-widget__width-auto elementor-widget elementor-widget-text-editor" data-id="7a1c16b" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-								<div class="elementor-text-editor elementor-clearfix">
-				Rua Emílio Lopes Cruz, 420
-Jardim Belo Horizonte
-Indaiatuba &#8211; SP					</div>
-						</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-ea31b7f" data-id="ea31b7f" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-ccb6b47 elementor-widget elementor-widget-google_maps" data-id="ccb6b47" data-element_type="widget" data-widget_type="google_maps.default">
-				<div class="elementor-widget-container">
-					<div class="elementor-custom-embed">
-			<iframe loading="lazy" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-					src="https://maps.google.com/maps?q=Rua%20Em%C3%ADlio%20Lopes%20Cruz%2C%20420%20Jardim%20Belo%20Horizonte%20Indaiatuba%20-%20SP&#038;t=m&#038;z=10&#038;output=embed&#038;iwloc=near"
-					title="Rua Emílio Lopes Cruz, 420 Jardim Belo Horizonte Indaiatuba - SP"
-					aria-label="Rua Emílio Lopes Cruz, 420 Jardim Belo Horizonte Indaiatuba - SP"
-			></iframe>
-		</div>
-				</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
+				
 									</div>
 			</div>
 					</div>
+				<!-- SEÇÃO WHATSAPP -->
+<section class="indafire-whatsapp-section" style="padding: 60px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+  <div style="max-width: 620px; width: 100%; margin: 0 auto; box-sizing: border-box; font-family: 'Open Sans', sans-serif;">
+    <div class="indafire-whatsapp-card" style="width: 100%; background: #ffffff; border-radius: 16px; padding: 32px 28px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06), 0 8px 10px -6px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; box-sizing: border-box;">
+      <div style="text-align: center; margin-bottom: 22px;">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; background-color: #25D366; border-radius: 50%; color: #fff; font-size: 26px; margin-bottom: 12px; box-shadow: 0 4px 14px rgba(37,211,102,0.35);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#ffffff"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        </div>
+        <h3 style="margin: 0 0 6px 0; color: #1e293b; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Atendimento via WhatsApp</h3>
+        <p style="margin: 0; color: #475569; font-size: 15px; font-weight: 600;">Ficou com alguma dúvida? Entre em contato com o WhatsApp</p>
+      </div>
+      <form onsubmit="sendIndafireWhatsApp(event)" style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="width: 100%; box-sizing: border-box;">
+          <label style="display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px;">Seu Nome / Empresa *</label>
+          <input type="text" class="wa_nome_input" required placeholder="Nome ou empresa" style="width: 100%; height: 44px; padding: 0 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; box-sizing: border-box; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#cbd5e1'">
+        </div>
+        <div style="width: 100%; box-sizing: border-box;">
+          <label style="display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px;">Mensagem / Dúvida *</label>
+          <textarea class="wa_msg_input" required rows="3" placeholder="Como podemos ajudar você hoje?" style="width: 100%; padding: 12px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; box-sizing: border-box; outline: none; resize: vertical; min-height: 80px; transition: border-color 0.2s; font-family: inherit;" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#cbd5e1'"></textarea>
+        </div>
+        <button type="submit" style="background-color: #25D366; color: #ffffff; border: none; border-radius: 50px; height: 48px; padding: 0 24px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background-color 0.2s, transform 0.1s; margin-top: 6px; box-shadow: 0 4px 14px rgba(37,211,102,0.35); width: 100%; box-sizing: border-box;" onmouseover="this.style.backgroundColor='#1ebe5d'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#25D366'; this.style.transform='none';">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Enviar Mensagem
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+  function sendIndafireWhatsApp(e) {
+    e.preventDefault();
+    var form = e.target;
+    var nome = form.querySelector('.wa_nome_input').value.trim();
+    var msg = form.querySelector('.wa_msg_input').value.trim();
+    var text = "Olá! Me chamo " + nome + ". " + msg;
+    var url = "https://wa.me/551938341741?text=" + encodeURIComponent(text);
+    window.open(url, "_blank");
+  }
+</script>
+
 				<div data-elementor-type="footer" data-elementor-id="596" data-post-id="21" data-obj-id="21" class="elementor elementor-596 dce-elementor-post-21 elementor-location-footer">
 					<div class="elementor-section-wrap">
-												<section class="elementor-section elementor-top-section elementor-element elementor-section-full_width elementor-section-height-default" id="localizacao_mapa" style="background-color: #12171c; padding: 45px 0 0 0; margin: 0; position: relative;">
-						<div class="elementor-container elementor-column-gap-default" style="max-width: 1140px; margin: 0 auto; padding: 0 20px 25px 20px;">
-							<div style="text-align: center; margin-bottom: 25px;">
-								<span style="display: inline-block; background-color: rgba(227,6,19,0.15); color: #e30613; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(227,6,19,0.3);">Onde Estamos</span>
-								<h2 style="color: #ffffff; font-size: 26px; font-weight: 800; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px;">Nossa Localização</h2>
-								<p style="color: #a0aec0; font-size: 15px; max-width: 650px; margin: 0 auto 18px auto; line-height: 1.5;">
-									<i class="fas fa-map-marker-alt" style="color: #e30613; margin-right: 6px;"></i>
-									Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000
-								</p>
-								<a href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background-color: #e30613; color: #ffffff; padding: 11px 26px; border-radius: 30px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; box-shadow: 0 4px 15px rgba(227,6,19,0.4); transition: background-color 0.2s, transform 0.2s;">
-									<i class="fas fa-directions" style="font-size: 15px;"></i>
-									Traçar Rota no Google Maps
-								</a>
+												<section class="elementor-section elementor-top-section elementor-element elementor-section-full_width elementor-section-height-default inda-location-section" id="localizacao_mapa">
+						<div class="inda-location-container">
+							<div class="inda-location-copy">
+								<span class="inda-location-eyebrow">Onde estamos</span>
+								<h2>Nossa localização</h2>
+								<p class="inda-location-address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000</p>
+								<a class="inda-location-route" href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i>Traçar rota no Google Maps</a>
 							</div>
-						</div>
-						<div style="width: 100%; height: 380px; position: relative; overflow: hidden; line-height: 0; box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);">
-							<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" style="border:0; filter: contrast(1.05) saturate(1.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
+							<div class="inda-location-map">
+								<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
+							</div>
 						</div>
 				</section>
 <section data-dce-background-color="#00000000" class="elementor-section elementor-top-section elementor-element elementor-element-1ae154c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1ae154c" data-element_type="section" id="formulariosRodape" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
