@@ -10,6 +10,11 @@ ROOT = Path(__file__).resolve().parents[1]
 STYLE_ID = "indafire-shared-location-style"
 LOCATION_CSS_START = "/* Location section aligned with the site's light cards and red accents. */"
 LOCATION_CSS_END = "/* Reveal the full navigation whenever the user reverses scroll direction. */"
+LOCATION_CSS_END_MARKERS = (
+    LOCATION_CSS_END,
+    "/* Mobile newsletter/catalog cards: keep every form control inside its card. */",
+    "</style>",
+)
 TARGETS = (
     ROOT / "produtos" / "index.html",
 )
@@ -46,8 +51,14 @@ def extract_location(source: str) -> str:
 def extract_location_css(source: str) -> str:
     """Return only the location rules from the Home managed style layer."""
     start = source.find(LOCATION_CSS_START)
-    end = source.find(LOCATION_CSS_END, start + len(LOCATION_CSS_START))
-    if start < 0 or end < 0:
+    if start < 0:
+        raise ValueError("Missing Home location CSS start marker")
+    end = -1
+    for marker in LOCATION_CSS_END_MARKERS:
+        pos = source.find(marker, start + len(LOCATION_CSS_START))
+        if pos != -1 and (end == -1 or pos < end):
+            end = pos
+    if end < 0:
         raise ValueError("Missing Home location CSS markers")
     return source[start:end].rstrip()
 

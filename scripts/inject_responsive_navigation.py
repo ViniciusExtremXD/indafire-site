@@ -21,6 +21,31 @@ TARGETS = internal.TARGETS
 
 CSS = r"""
 /* INDAFIRE — adaptive header; full navigation is shown only when it fits. */
+#headerInda {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+}
+
+/* Mobile drawer menu: prevent email from breaking across lines */
+.elementor-2519 a[href*="mailto"],
+#elementor-popup-modal-2519 a[href*="mailto"],
+.elementor-2519 .elementor-icon-list-item a[href*="mailto"],
+#elementor-popup-modal-2519 .elementor-icon-list-item a[href*="mailto"] {
+  white-space: nowrap !important;
+}
+
+.elementor-2519 a[href*="mailto"] .elementor-icon-list-text,
+#elementor-popup-modal-2519 a[href*="mailto"] .elementor-icon-list-text {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  font-size: clamp(11px, 3.2vw, 12.5px) !important;
+  padding-left: 0 !important;
+}
+
 .indafire-compact-client {
   display: none !important;
 }
@@ -410,6 +435,11 @@ JS = r"""
       window.requestAnimationFrame(updateHeaderFromScroll);
     }
 
+    header.style.setProperty('position', 'fixed', 'important');
+    header.style.setProperty('top', '0', 'important');
+    header.style.setProperty('left', '0', 'important');
+    header.style.setProperty('width', '100%', 'important');
+    header.style.setProperty('z-index', '10000', 'important');
     header.style.setProperty(
       'transition',
       'transform 280ms cubic-bezier(.22, .61, .36, 1), box-shadow 240ms ease',
@@ -517,6 +547,17 @@ def disable_legacy_scroll_controller(source: str) -> str:
     return pattern.sub("", source)
 
 
+def disable_legacy_scroll_styles(source: str) -> str:
+    """Remove obsolete location-header scroll rules from static pages."""
+    pattern = re.compile(
+        r"/\* Reveal the full navigation whenever the user reverses scroll direction\. \*/\s*"
+        r"html\.indafire-scroll-header-ready\b body\s*\{[^}]*\}\s*"
+        r"html\.indafire-scroll-header-ready\b.*?box-shadow:\s*0\s+4px\s+18px\s+rgba\(0,\s*0,\s*0,\s*\.12\)\s*!important;\s*\}\s*",
+        re.DOTALL,
+    )
+    return pattern.sub("", source)
+
+
 def home_href(page: Path, root: Path = ROOT) -> str:
     """Return the relative Home URL for a generated static route."""
     depth = len(page.resolve().relative_to(root.resolve()).parent.parts)
@@ -540,9 +581,11 @@ def normalize_logo_links(source: str, href: str) -> str:
 def inject(source: str) -> str:
     style_pattern = re.compile(rf'<style id="{re.escape(STYLE_ID)}">.*?</style>\s*', re.DOTALL)
     script_pattern = re.compile(rf'<script id="{re.escape(SCRIPT_ID)}">.*?</script>\s*', re.DOTALL)
-    stripped = disable_legacy_scroll_controller(
-        disable_legacy_drawer_controller(
-            script_pattern.sub("", style_pattern.sub("", source))
+    stripped = disable_legacy_scroll_styles(
+        disable_legacy_scroll_controller(
+            disable_legacy_drawer_controller(
+                script_pattern.sub("", style_pattern.sub("", source))
+            )
         )
     )
     if "</head>" not in stripped or "</body>" not in stripped:

@@ -402,7 +402,8 @@ window.scrollY = 220;
 if (scrollListener) scrollListener();
 const afterUp = headerStyle.values.transform;
 const hostTransform = headerHostStyle.values.transform;
-console.log(JSON.stringify({{ afterDown, afterUp, hostTransform }}));
+const headerPosition = headerStyle.values.position;
+console.log(JSON.stringify({{ afterDown, afterUp, hostTransform, headerPosition }}));
 """
         result = subprocess.run(
             ["node", "-e", harness],
@@ -418,8 +419,38 @@ console.log(JSON.stringify({{ afterDown, afterUp, hostTransform }}));
                 "afterDown": "translateY(calc(-100% - 12px))",
                 "afterUp": "translateY(0)",
                 "hostTransform": "none",
+                "headerPosition": "fixed",
             },
         )
+
+    def test_css_declares_fixed_header_and_drawer_email_nowrap(self):
+        """Header must be fixed and mobile drawer email must not wrap."""
+        from scripts import inject_responsive_navigation as subject
+
+        self.assertIn("#headerInda {\n  position: fixed !important;", subject.CSS)
+        self.assertIn("z-index: 10000 !important;", subject.CSS)
+        self.assertIn(".elementor-2519 a[href*=\"mailto\"]", subject.CSS)
+        self.assertIn("white-space: nowrap !important;", subject.CSS)
+        self.assertIn("word-break: keep-all !important;", subject.CSS)
+
+    def test_legacy_scroll_styles_are_stripped(self):
+        """Older inline location-header scroll rules must be removed."""
+        from scripts import inject_responsive_navigation as subject
+
+        legacy_block = (
+            "/* Reveal the full navigation whenever the user reverses scroll direction. */\n"
+            "html.indafire-scroll-header-ready body {\n"
+            "  padding-top: var(--indafire-header-height, 0px) !important;\n"
+            "}\n"
+            "html.indafire-scroll-header-ready .elementor-location-header {\n"
+            "  position: fixed !important;\n"
+            "  box-shadow: 0 4px 18px rgba(0, 0, 0, .12) !important;\n"
+            "}\n"
+        )
+        source = f"<html><head><style>{legacy_block}</style></head><body></body></html>"
+        rendered = subject.inject(source)
+        self.assertNotIn(legacy_block, rendered)
+        self.assertNotIn("html.indafire-scroll-header-ready .elementor-location-header", rendered)
 
     def test_legacy_scroll_controller_is_not_initialised(self):
         """Only the managed navigation layer may react to page scrolling."""
