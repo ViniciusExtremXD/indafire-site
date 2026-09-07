@@ -722,6 +722,11 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
     transition-duration: 1ms !important;
   }
 }
+
+/* Ensure WooCommerce product galleries remain fully visible even if JS animations are bypassed */
+.woocommerce-product-gallery {
+  opacity: 1 !important;
+}
 """.strip()
 
 
