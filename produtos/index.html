@@ -8597,6 +8597,93 @@ jQuery(document).ready(function(){
 });
 </script>
 
+<script id="indafire-universal-forms">
+(function() {
+  window.sendIndafireWhatsApp = function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var nome = (form.querySelector('.wa_nome_input') ? form.querySelector('.wa_nome_input').value : '').trim();
+    var msg = (form.querySelector('.wa_msg_input') ? form.querySelector('.wa_msg_input').value : '').trim();
+    var text = "Olá! Me chamo " + nome + ". " + msg;
+    var url = "https://wa.me/551938341741?text=" + encodeURIComponent(text);
+    window.open(url, "_blank");
+  };
+
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    if (!form) return;
+
+    // Intercept Catálogo Form
+    if (form.id === 'formulario_catalogo' || form.getAttribute('name') === 'Catálogo') {
+      e.preventDefault();
+      var nomeInput = form.querySelector('[name="form_fields[nome]"], input[type="text"]');
+      var emailInput = form.querySelector('[name="form_fields[email]"], input[type="email"]');
+      if (nomeInput && !nomeInput.value.trim()) {
+        alert('Por favor, preencha o seu nome.');
+        nomeInput.focus();
+        return;
+      }
+      if (emailInput && !emailInput.value.trim()) {
+        alert('Por favor, preencha o seu email.');
+        emailInput.focus();
+        return;
+      }
+
+      var existingLink = document.querySelector('a[href*="catalogo-inda-fire.pdf"]');
+      var pdfUrl = existingLink ? existingLink.getAttribute('href') : 'wp-content/uploads/2021/11/catalogo-inda-fire.pdf';
+
+      var msgBox = form.querySelector('.indafire-form-feedback');
+      if (!msgBox) {
+        msgBox = document.createElement('div');
+        msgBox.className = 'indafire-form-feedback';
+        msgBox.style.cssText = 'margin-top: 15px; padding: 12px 16px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 6px; font-weight: 600; font-size: 14px; text-align: center;';
+        form.appendChild(msgBox);
+      }
+      msgBox.textContent = 'Solicitação recebida com sucesso! Seu download do catálogo foi iniciado.';
+      msgBox.style.display = 'block';
+
+      var a = document.createElement('a');
+      a.href = pdfUrl;
+      a.download = 'catalogo-inda-fire.pdf';
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      form.reset();
+    }
+
+    // Intercept Newsletter Form
+    if (form.id === 'formulario_newsletter' || form.getAttribute('name') === 'Newsletter') {
+      e.preventDefault();
+      var nomeInput = form.querySelector('[name="form_fields[nome]"], input[type="text"]');
+      var emailInput = form.querySelector('[name="form_fields[email]"], input[type="email"]');
+      if (nomeInput && !nomeInput.value.trim()) {
+        alert('Por favor, preencha o seu nome.');
+        nomeInput.focus();
+        return;
+      }
+      if (emailInput && !emailInput.value.trim()) {
+        alert('Por favor, preencha o seu email.');
+        emailInput.focus();
+        return;
+      }
+
+      var msgBox = form.querySelector('.indafire-form-feedback');
+      if (!msgBox) {
+        msgBox = document.createElement('div');
+        msgBox.className = 'indafire-form-feedback';
+        msgBox.style.cssText = 'margin-top: 15px; padding: 12px 16px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 6px; font-weight: 600; font-size: 14px; text-align: center;';
+        form.appendChild(msgBox);
+      }
+      msgBox.textContent = 'Obrigado! Sua inscrição na newsletter foi confirmada com sucesso.';
+      msgBox.style.display = 'block';
+
+      form.reset();
+    }
+  }, true);
+})();
+</script>
 <script id="indafire-responsive-navigation">
 (function () {
   var compactQuery = window.matchMedia('(max-width: 1100px)');
