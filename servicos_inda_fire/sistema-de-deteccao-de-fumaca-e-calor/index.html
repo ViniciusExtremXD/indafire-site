@@ -1370,106 +1370,214 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
   color: #e30613 !important;
 }
 
-/* Mobile Horizontal / Landscape: Ultra-responsive 2-column layout */
+/* Mobile Horizontal / Landscape: Modern 2-column docked drawer layout */
 @media (max-height: 550px), (orientation: landscape) and (max-width: 1100px) and (max-height: 650px) {
+  html body #elementor-popup-modal-2519 {
+    align-items: stretch !important;
+    justify-content: flex-end !important;
+    padding: 0 !important;
+  }
+
   html body #elementor-popup-modal-2519 .dialog-widget-content {
-    width: min(600px, 94vw) !important;
-    max-width: 600px !important;
-    height: auto !important;
-    max-height: calc(100dvh - 12px) !important;
-    padding: 10px 18px 12px 18px !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(660px, 92vw) !important;
+    max-width: 700px !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: 14px 20px 14px 22px !important;
+    margin: 0 !important;
+    border-radius: 16px 0 0 16px !important;
+    background: #ffffff !important;
+    box-shadow: -8px 0 36px rgba(0, 0, 0, 0.28) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  html body #elementor-popup-modal-2519 .dialog-close-button {
+    position: absolute !important;
+    top: 12px !important;
+    right: 14px !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: #f0f2f5 !important;
+    border: 1px solid #d8dce2 !important;
+    border-radius: 50% !important;
+    color: #000000 !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 180ms ease !important;
+  }
+
+  html body #elementor-popup-modal-2519 .dialog-close-button:hover {
+    background: #e30613 !important;
+    color: #ffffff !important;
+    border-color: #e30613 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-2519 .elementor-widget-wrap {
     display: grid !important;
     grid-template-columns: 1.15fr 1fr !important;
-    grid-column-gap: 18px !important;
-    grid-row-gap: 2px !important;
+    grid-column-gap: 20px !important;
+    grid-row-gap: 6px !important;
     align-items: start !important;
-    height: auto !important;
-    max-height: none !important;
+    height: 100% !important;
+    max-height: 100% !important;
   }
 
-  /* Logo across top */
+  /* Logo across top with subtle bottom line */
   html body #elementor-popup-modal-2519 .elementor-element-0de540b {
     grid-column: 1 / -1 !important;
-    margin-bottom: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 4px !important;
+    border-bottom: 1px solid #edf0f2 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-0de540b img {
-    max-height: 22px !important;
+    max-height: 28px !important;
+    width: auto !important;
   }
 
-  /* Left Column: 7 Navigation Links */
+  /* Left Column: 7 Navigation Links with high contrast & divider lines */
   html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 {
     grid-column: 1 !important;
     grid-row: 2 / span 6 !important;
     margin: 0 !important;
+    padding-right: 6px !important;
+    border-right: 1px solid #f0f2f5 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-items {
-    gap: 1px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item {
-    padding: 1px 0 !important;
-    font-size: 10.5px !important;
-    line-height: 1.2 !important;
+    padding: 5px 8px !important;
+    border-radius: 6px !important;
+    border-bottom: 1px solid #f4f6f8 !important;
+    transition: background 150ms ease !important;
   }
 
-  /* Right Column: Contato & Endereço */
-  html body #elementor-popup-modal-2519 .elementor-element-cd75a00 {
+  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item:hover {
+    background: #fff3f3 !important;
+  }
+
+  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item a {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    color: #000000 !important;
+    font-size: clamp(12px, 1.9vw, 13.5px) !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    width: 100% !important;
+  }
+
+  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item a:hover {
+    color: #e30613 !important;
+  }
+
+  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item .elementor-icon-list-icon {
+    color: #e30613 !important;
+    font-size: 11px !important;
+  }
+
+  /* Right Column: Contato & Endereço in Clean Structured Cards */
+  html body #elementor-popup-modal-2519 .elementor-element-cd75a00,
+  html body #elementor-popup-modal-2519 .elementor-element-b504b34 {
     display: none !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-927d68d {
     grid-column: 2 !important;
     grid-row: 2 !important;
-    margin: 0 0 1px 0 !important;
+    margin: 0 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-927d68d .elementor-heading-title {
-    font-size: 10px !important;
-    margin: 0 0 1px 0 !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    color: #e30613 !important;
+    margin: 0 0 4px 0 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-ad6a302 {
     grid-column: 2 !important;
     grid-row: 3 !important;
-    margin: 0 !important;
+    margin: 0 0 8px 0 !important;
+    background: #f9fafb !important;
+    border: 1px solid #eaedf1 !important;
+    border-radius: 8px !important;
+    padding: 8px 10px !important;
+  }
+
+  html body #elementor-popup-modal-2519 .elementor-element-ad6a302 .elementor-icon-list-items {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-ad6a302 .elementor-icon-list-item {
-    padding: 1px 0 !important;
-    font-size: 9.5px !important;
+    padding: 2px 0 !important;
+    font-size: 11px !important;
   }
 
-  html body #elementor-popup-modal-2519 .elementor-element-b504b34 {
-    grid-column: 2 !important;
-    grid-row: 4 !important;
-    margin: 2px 0 !important;
+  html body #elementor-popup-modal-2519 .elementor-element-ad6a302 .elementor-icon-list-text {
+    color: #000000 !important;
+    font-weight: 600 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-56111dd {
     grid-column: 2 !important;
-    grid-row: 5 !important;
-    margin: 0 0 1px 0 !important;
+    grid-row: 4 !important;
+    margin: 0 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-56111dd .elementor-heading-title {
-    font-size: 10px !important;
-    margin: 0 0 1px 0 !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    color: #e30613 !important;
+    margin: 0 0 4px 0 !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-24f1891 {
     grid-column: 2 !important;
-    grid-row: 6 !important;
+    grid-row: 5 !important;
     margin: 0 !important;
+    background: #f9fafb !important;
+    border: 1px solid #eaedf1 !important;
+    border-radius: 8px !important;
+    padding: 8px 10px !important;
   }
 
   html body #elementor-popup-modal-2519 .elementor-element-24f1891 .elementor-icon-list-item {
-    padding: 1px 0 !important;
-    font-size: 9px !important;
+    padding: 2px 0 !important;
+    font-size: 10.5px !important;
+    line-height: 1.35 !important;
+  }
+
+  html body #elementor-popup-modal-2519 .elementor-element-24f1891 .elementor-icon-list-text {
+    color: #000000 !important;
+    font-weight: 600 !important;
   }
 }
 
