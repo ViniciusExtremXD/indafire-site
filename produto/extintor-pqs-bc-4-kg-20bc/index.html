@@ -2055,6 +2055,33 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 .woocommerce-product-gallery {
   opacity: 1 !important;
 }
+
+/* Ensure background hero video in Treinamentos plays and is fully visible on all viewports */
+.elementor-element-8bc1785 .elementor-background-video-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+}
+
+.elementor-element-8bc1785 video,
+.elementor-element-8bc1785 .elementor-background-video-hosted,
+.elementor-element-8bc1785 .indafire-treinamentos-hero-video {
+  position: absolute !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 1 !important;
+  z-index: 0 !important;
+}
 </style>
 <style id="indafire-internal-page-polish">
 /* INDAFIRE — shared finishing layer; keeps the established visual system. */
@@ -5910,6 +5937,52 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
     if (typeof compactQuery.addEventListener === 'function') compactQuery.addEventListener('change', syncState);
     else compactQuery.addListener(syncState);
     syncState();
+    ensureTreinamentosVideo();
+    var schedule = (typeof window !== 'undefined' && window.setTimeout) || (typeof setTimeout === 'function' ? setTimeout : null);
+    if (typeof schedule === 'function') {
+      schedule(ensureTreinamentosVideo, 250);
+      schedule(ensureTreinamentosVideo, 1000);
+    }
+  }
+
+  function ensureTreinamentosVideo() {
+    var section = document.querySelector('.elementor-element-8bc1785');
+    if (!section) return;
+    var container = section.querySelector('.elementor-background-video-container');
+    if (!container) return;
+    container.classList.remove('elementor-hidden-phone');
+    var isSubdir = window.location.pathname.indexOf('/treinamentos/') !== -1;
+    var videoPath = (isSubdir ? '../' : './') + 'wp-content/uploads/2021/10/Video-4.mp4';
+    var posterPath = (isSubdir ? '../' : './') + 'wp-content/uploads/2021/11/0376995521608309e6ea8922fffecade.jpg';
+    var video = container.querySelector('video');
+    if (!video) {
+      video = document.createElement('video');
+      video.className = 'elementor-background-video-hosted elementor-html5-video indafire-treinamentos-hero-video';
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.poster = posterPath;
+      video.src = videoPath;
+      container.appendChild(video);
+    } else {
+      if (!video.getAttribute('src')) {
+        video.src = videoPath;
+      }
+      if (!video.getAttribute('poster')) {
+        video.poster = posterPath;
+      }
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+    }
+    var playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(function () {});
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupResponsiveNavigation);
