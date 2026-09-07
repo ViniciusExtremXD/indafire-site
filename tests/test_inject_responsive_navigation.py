@@ -376,7 +376,7 @@ const header = {{
 }};
 global.window = {{
   scrollY: 0,
-  matchMedia() {{ return {{ matches: true, addEventListener() {{}} }}; }},
+  matchMedia(query) {{ return {{ matches: query.indexOf('min-width') !== -1, addEventListener() {{}} }}; }},
   getComputedStyle() {{ return {{ display: 'none', visibility: 'hidden' }}; }},
   requestAnimationFrame(callback) {{ callback(); }},
   addEventListener(type, listener) {{ if (type === 'scroll') scrollListener = listener; }}
@@ -432,6 +432,78 @@ console.log(JSON.stringify({{ afterDown, afterUp, hostTransform, headerPosition 
         self.assertIn(".elementor-2519 a[href*=\"mailto\"]", subject.CSS)
         self.assertIn("white-space: nowrap !important;", subject.CSS)
         self.assertIn("word-break: keep-all !important;", subject.CSS)
+        self.assertIn("html.elementor-popup-modal-active", subject.CSS)
+        self.assertIn("grid-template-columns: 1.15fr 1fr !important;", subject.CSS)
+
+    def test_mobile_scroll_keeps_header_fixed(self):
+        """On mobile screens, scrolling down must not hide #headerInda."""
+        from scripts import inject_responsive_navigation as subject
+
+        encoded_script = base64.b64encode(subject.JS.encode("utf-8")).decode("ascii")
+        harness = f"""
+const source = Buffer.from('{encoded_script}', 'base64').toString('utf8');
+let scrollListener = null;
+const classNames = new Set();
+const classList = {{
+  add(...names) {{ names.forEach(name => classNames.add(name)); }},
+  remove(...names) {{ names.forEach(name => classNames.delete(name)); }},
+  toggle(name, force) {{ if (force) classNames.add(name); else classNames.delete(name); }},
+  contains(name) {{ return classNames.has(name); }}
+}};
+const headerStyle = {{
+  values: {{}},
+  setProperty(name, value) {{ this.values[name] = value; }}
+}};
+const hamburgerLink = {{ setAttribute() {{}}, addEventListener() {{}} }};
+const hamburger = {{
+  parentElement: {{ insertBefore() {{}} }},
+  querySelector() {{ return hamburgerLink; }}
+}};
+const header = {{
+  offsetHeight: 80,
+  style: headerStyle,
+  querySelector(selector) {{
+    if (selector === '.elementor-element-20668c0') return {{}};
+    if (selector === '.elementor-element-8755157') return hamburger;
+    if (selector === '.indafire-compact-client') return {{}};
+    return null;
+  }},
+  querySelectorAll() {{ return [{{ textContent: 'Área do cliente', href: '/area-do-cliente/' }}]; }}
+}};
+global.window = {{
+  scrollY: 0,
+  matchMedia(query) {{ return {{ matches: query.indexOf('max-width') !== -1, addEventListener() {{}} }}; }},
+  getComputedStyle() {{ return {{ display: 'none', visibility: 'hidden' }}; }},
+  requestAnimationFrame(callback) {{ callback(); }},
+  addEventListener(type, listener) {{ if (type === 'scroll') scrollListener = listener; }}
+}};
+global.document = {{
+  readyState: 'complete',
+  documentElement: {{ classList, style: {{ setProperty() {{}} }} }},
+  body: {{ classList }},
+  querySelector(selector) {{
+    if (selector === '#headerInda') return header;
+    return null;
+  }},
+  addEventListener() {{}},
+  createElement() {{ return {{ setAttribute() {{}} }}; }}
+}};
+global.MutationObserver = class {{ observe() {{}} }};
+eval(source);
+window.scrollY = 320;
+if (scrollListener) scrollListener();
+const afterDown = headerStyle.values.transform;
+console.log(JSON.stringify({{ afterDown }}));
+"""
+        result = subprocess.run(
+            ["node", "-e", harness],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), {"afterDown": "translateY(0)"})
 
     def test_legacy_scroll_styles_are_stripped(self):
         """Older inline location-header scroll rules must be removed."""

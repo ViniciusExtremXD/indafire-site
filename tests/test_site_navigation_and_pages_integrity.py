@@ -102,3 +102,44 @@ def test_smart_404_reconciliation_script():
         c = fp.read()
     assert "window.location.replace" in c, "404.html must contain auto-redirect logic"
     assert "/servicos/" in c and "/produtos/" in c, "404.html must contain section recovery mappings"
+
+def test_no_external_indafire_links_in_content():
+    pages = get_site_html_files()
+    external_links = []
+    
+    for filepath in pages:
+        rel_file = os.path.relpath(filepath, REPO_DIR).replace('\\', '/')
+        with open(filepath, 'r', encoding='utf-8', errors='ignore') as fp:
+            c = fp.read()
+            
+        for m in re.finditer(r'href=["\']([^"\'#][^"\']*)["\']', c):
+            href = m.group(1).strip()
+            if href.startswith('mailto:') or 'login2.php' in href:
+                continue
+            if 'indafire.com.br' in href or 'indafire.ind.br' in href:
+                external_links.append((rel_file, href))
+                
+    assert len(external_links) == 0, f"Found unwanted external indafire links: {external_links}"
+
+def test_responsive_navigation_injected_in_all_pages():
+    pages = get_site_html_files()
+    missing_script = []
+    missing_style = []
+    missing_modal = []
+    
+    for filepath in pages:
+        rel_file = os.path.relpath(filepath, REPO_DIR).replace('\\', '/')
+        with open(filepath, 'r', encoding='utf-8', errors='ignore') as fp:
+            c = fp.read()
+            
+        if 'id="indafire-responsive-navigation"' not in c:
+            missing_script.append(rel_file)
+        if 'id="indafire-responsive-navigation-style"' not in c:
+            missing_style.append(rel_file)
+        if 'elementor-2519' not in c:
+            missing_modal.append(rel_file)
+            
+    assert len(missing_script) == 0, f"Pages missing responsive script: {missing_script}"
+    assert len(missing_style) == 0, f"Pages missing responsive style: {missing_style}"
+    assert len(missing_modal) == 0, f"Pages missing popup modal 2519: {missing_modal}"
+
