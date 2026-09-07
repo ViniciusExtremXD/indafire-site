@@ -16,12 +16,24 @@ STYLE_ID = "indafire-product-catalog-polish"
 COMMERCIAL_FORM_ID = "indafire-commercial-whatsapp"
 COMMERCIAL_SCRIPT_ID = "indafire-commercial-whatsapp-script"
 PRODUCTS_PAGE = ROOT / "produtos" / "index.html"
-TARGETS = (
-    PRODUCTS_PAGE,
-    ROOT / "categoria-produto" / "extintores" / "index.html",
-    ROOT / "produto" / "unidade-central-lux-700-1200-24vdc" / "index.html",
-    ROOT / "produto" / "extintor-pqs-bc-4-kg-20bc" / "index.html",
-)
+
+
+def discover_targets() -> tuple[Path, ...]:
+    targets = [PRODUCTS_PAGE]
+    cat_dir = ROOT / "categoria-produto"
+    if cat_dir.is_dir():
+        for p in sorted(cat_dir.glob("*/index.html")):
+            if p not in targets:
+                targets.append(p)
+    prod_dir = ROOT / "produto"
+    if prod_dir.is_dir():
+        for p in sorted(prod_dir.glob("*/index.html")):
+            if p not in targets:
+                targets.append(p)
+    return tuple(targets)
+
+
+TARGETS = discover_targets()
 
 
 CSS = r"""
