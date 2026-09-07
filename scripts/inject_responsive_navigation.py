@@ -274,7 +274,7 @@ body.elementor-popup-modal-active {
   overflow: hidden !important;
   overflow-y: hidden !important;
   touch-action: none !important;
-  height: 100% !important;
+  overscroll-behavior: none !important;
 }
 
 /* Mobile Drawer: Full viewport containment with zero overflow */
@@ -286,6 +286,8 @@ html body #elementor-popup-modal-2519 {
   height: 100dvh !important;
   max-height: 100dvh !important;
   overflow: hidden !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
   z-index: 100000 !important;
 }
 
@@ -298,6 +300,8 @@ html body #elementor-popup-modal-2519 .dialog-widget-content {
   height: 100dvh !important;
   max-height: 100dvh !important;
   overflow: hidden !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
   padding: 14px 16px 16px 16px !important;
   box-sizing: border-box !important;
   background: #181818 !important;
@@ -310,18 +314,19 @@ html body #elementor-popup-modal-2519 .dialog-close-button {
   right: 12px !important;
   z-index: 10 !important;
   color: #ffffff !important;
-  opacity: 0.85 !important;
+  opacity: 0.9 !important;
   cursor: pointer !important;
   width: 28px !important;
   height: 28px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   border-radius: 50% !important;
   border: none !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
   line-height: 1 !important;
+  transition: background 150ms ease, opacity 150ms ease !important;
 }
 
 html body #elementor-popup-modal-2519 .dialog-close-button:hover {
@@ -376,28 +381,37 @@ html body #elementor-popup-modal-2519 .elementor-element-0de540b img {
   width: auto !important;
 }
 
-html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 ul.elementor-nav-menu {
+/* Navigation links container and items */
+html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-items {
   display: flex !important;
   flex-direction: column !important;
-  gap: 1px !important;
+  gap: 2px !important;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
 }
 
-html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 ul.elementor-nav-menu li a {
-  display: block !important;
-  padding: 3px 6px !important;
-  font-size: clamp(12px, 2vh, 14px) !important;
+html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 2px 0 !important;
+  font-size: clamp(11.5px, 1.8vh, 13px) !important;
   line-height: 1.25 !important;
+}
+
+html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item a {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  width: 100% !important;
   color: #ffffff !important;
   text-decoration: none !important;
   font-weight: 500 !important;
   transition: color 140ms ease !important;
 }
 
-html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 ul.elementor-nav-menu li a:hover,
-html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 ul.elementor-nav-menu li a:focus {
+html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item a:hover,
+html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item a:focus {
   color: #e30613 !important;
 }
 
@@ -459,7 +473,7 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 }
 
 /* Mobile Horizontal / Landscape: Ultra-responsive 2-column layout */
-@media (max-height: 550px) {
+@media (max-height: 550px), (orientation: landscape) and (max-width: 1100px) and (max-height: 650px) {
   html body #elementor-popup-modal-2519 .dialog-widget-content {
     width: min(600px, 94vw) !important;
     max-width: 600px !important;
@@ -495,10 +509,14 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
     margin: 0 !important;
   }
 
-  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 ul.elementor-nav-menu li a {
-    padding: 2px 4px !important;
-    font-size: 11px !important;
-    line-height: 1.25 !important;
+  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-items {
+    gap: 1px !important;
+  }
+
+  html body #elementor-popup-modal-2519 .elementor-element-6ee6e25 .elementor-icon-list-item {
+    padding: 1px 0 !important;
+    font-size: 10.5px !important;
+    line-height: 1.2 !important;
   }
 
   /* Right Column: Contato & Endereço */
@@ -615,6 +633,7 @@ JS = r"""
     closeButton.className = 'dialog-close-button dialog-close-button-default';
     closeButton.type = 'button';
     closeButton.setAttribute('aria-label', 'Fechar menu');
+    closeButton.innerHTML = '<span aria-hidden="true" style="display:block;font-size:13px;font-weight:700;line-height:1;color:#ffffff;pointer-events:none;">✕</span>';
     var message = document.createElement('div');
     message.className = 'dialog-message dialog-lightbox-message';
     var drawerContent = staticDrawerTemplate.cloneNode(true);
@@ -790,6 +809,8 @@ JS = r"""
       hamburgerLink.setAttribute('aria-expanded', String(compact && modalIsOpen(modal)));
     }
 
+    var savedScrollY = 0;
+
     function closeDrawer() {
       var modal = document.querySelector('#elementor-popup-modal-2519');
       if (!modal) return;
@@ -798,12 +819,16 @@ JS = r"""
       document.body.classList.remove('elementor-popup-modal-active');
       document.documentElement.classList.remove('elementor-popup-modal-active');
       hamburgerLink.setAttribute('aria-expanded', 'false');
+      if (savedScrollY > 0) {
+        window.scrollTo(0, savedScrollY);
+      }
     }
 
     function openDrawer(event) {
       if (!compactQuery.matches) return;
       if (event && event.preventDefault) event.preventDefault();
       if (event && event.stopPropagation) event.stopPropagation();
+      savedScrollY = Math.max(window.scrollY || document.documentElement.scrollTop || 0, 0);
       var modal = ensureStaticDrawer();
       if (!modal || !modal.querySelector('.elementor-2519')) return;
       modal.style.setProperty('display', 'flex', 'important');
@@ -818,6 +843,13 @@ JS = r"""
     hamburgerLink.setAttribute('aria-haspopup', 'dialog');
     hamburgerLink.setAttribute('aria-expanded', 'false');
     hamburgerLink.addEventListener('click', openDrawer);
+
+    document.addEventListener('touchmove', function (event) {
+      var modal = document.querySelector('#elementor-popup-modal-2519');
+      if (modal && modalIsOpen(modal)) {
+        event.preventDefault();
+      }
+    }, { passive: false });
 
     document.addEventListener('click', function (event) {
       var modal = document.querySelector('#elementor-popup-modal-2519');
