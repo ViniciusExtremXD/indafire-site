@@ -896,6 +896,108 @@ jQuery(document).ready(function(){
 <link rel='stylesheet' id='e-animations-css' href='../wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.6.7' media='all' />
 
 <link rel="canonical" href="https://viniciusextremxd.github.io/indafire-site/treinamentos/brigada-de-incendio/" />
+<style id="indafire-shared-location-style">
+/* Location section aligned with the site's light cards and red accents. */
+#localizacao_mapa.inda-location-section {
+  background: #f4f4f4 !important;
+  padding: 64px 20px !important;
+  margin: 0 !important;
+}
+
+.inda-location-container {
+  display: grid;
+  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.42fr);
+  gap: 42px;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.inda-location-copy {
+  text-align: left;
+}
+
+.inda-location-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #e30613;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.inda-location-copy h2 {
+  margin: 0 0 14px;
+  color: #333333;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.inda-location-address {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 24px;
+  color: #626a73;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.inda-location-address i {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: #e30613;
+}
+
+.inda-location-route {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  color: #ffffff !important;
+  background: #e30613;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-decoration: none !important;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.inda-location-route:hover,
+.inda-location-route:focus-visible {
+  color: #ffffff !important;
+  background: #c90410;
+  transform: translateY(-2px);
+}
+
+.inda-location-map {
+  height: 360px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+}
+
+.inda-location-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  #localizacao_mapa.inda-location-section { padding: 42px 16px !important; }
+  .inda-location-container { grid-template-columns: 1fr; gap: 28px; }
+  .inda-location-copy { text-align: center; }
+  .inda-location-address { justify-content: center; text-align: left; }
+  .inda-location-route { font-size: 12px; }
+  .inda-location-map { height: 300px; }
+}
+</style>
 <style id="indafire-responsive-navigation-style">
 /* INDAFIRE — adaptive header; full navigation is shown only when it fits. */
 #headerInda {
@@ -1618,6 +1720,2207 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
   z-index: 0 !important;
 }
 </style>
+<style id="indafire-internal-page-polish">
+/* INDAFIRE — shared finishing layer; keeps the established visual system. */
+:root { --inda-focus-ring: rgba(227, 6, 19, 0.46); }
+
+/* JetMenu keeps the overflow item in the DOM with [hidden]. A legacy flex
+   rule can override the browser default and show a stray ellipsis. */
+#headerInda .jet-responsive-menu-available-items[hidden] {
+  display:none!important;
+}
+
+#headerInda a:focus-visible,
+main a:focus-visible,
+main button:focus-visible,
+main input:focus-visible,
+main select:focus-visible,
+main textarea:focus-visible {
+  outline: 3px solid var(--inda-focus-ring) !important;
+  outline-offset: 3px !important;
+}
+
+/* Preserve page imagery and typography, only making interactive feedback
+   consistent at desktop, portrait and landscape sizes. */
+main .elementor-button,
+main input,
+main select,
+main textarea {
+  transition: border-color 160ms ease, box-shadow 160ms ease,
+              transform 160ms ease, background-color 160ms ease;
+}
+
+main .elementor-button:hover {
+  transform: translateY(-1px);
+}
+
+main input:focus,
+main select:focus,
+main textarea:focus {
+  border-color: #e30613 !important;
+  box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.12) !important;
+}
+
+/* The exported footer lets the brand asset grow to its intrinsic width on
+   some routes. Keep its familiar treatment while giving it a dependable,
+   proportional cap at every breakpoint. */
+.elementor-element.elementor-element-95a2442 .elementor-image {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.elementor-element.elementor-element-95a2442 img {
+  display: block !important;
+  width: min(100%, 260px) !important;
+  max-width: 260px !important;
+  height: auto !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .elementor-element.elementor-element-95a2442 img {
+    width: min(100%, 210px) !important;
+    max-width: 210px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main input:not([type="checkbox"]):not([type="radio"]),
+  main select,
+  main textarea,
+  main .elementor-button {
+    min-height: 44px;
+  }
+
+  main textarea { min-height: 120px; }
+
+  .elementor-element.elementor-element-95a2442 {
+    width: 100% !important;
+    margin: 20px auto 0 !important;
+  }
+
+  .elementor-element.elementor-element-95a2442 .elementor-image {
+    justify-content: center !important;
+  }
+
+  .elementor-element.elementor-element-95a2442 img {
+    width: min(72vw, 230px) !important;
+    max-width: 230px !important;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape),
+       (max-height: 620px) and (orientation: landscape) {
+  main .elementor-button { min-height: 42px; }
+
+  /* The archive sliders already animate inside their viewport.  Contain
+     off-screen slides so a landscape phone never gains a page-wide rail. */
+  main .elementor-widget-dce-dynamicposts-v2 .dce-posts-container {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Elementor marks this as hidden on tablet; the exported responsive
+     stylesheet misses the compact landscape range on some routes. */
+  #headerInda .elementor-hidden-tablet { display: none !important; }
+}
+
+/* Standardized responsive styling for newsletter and catalog forms (#formulariosRodape) */
+#formulariosRodape {
+  padding: 60px 20px !important;
+  box-sizing: border-box !important;
+}
+
+#formulariosRodape .elementor-container {
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 32px !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+}
+
+#formulariosRodape .elementor-column.elementor-col-50 {
+  flex: 1 1 calc(50% - 16px) !important;
+  max-width: 530px !important;
+  min-width: 290px !important;
+  width: auto !important;
+  display: flex !important;
+}
+
+#formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+#formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+  background: rgba(22, 27, 34, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 36px 30px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+#formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap:hover,
+#formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap:hover {
+  border-color: rgba(227, 6, 19, 0.5) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 45px rgba(227, 6, 19, 0.15) !important;
+}
+
+#formulariosRodape .elementor-widget-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+#formulariosRodape .elementor-element-faab318,
+#formulariosRodape .elementor-element-ba015bc {
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+
+#formulariosRodape .elementor-element-faab318 img,
+#formulariosRodape .elementor-element-ba015bc img {
+  height: 120px !important;
+  width: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) !important;
+}
+
+#formulariosRodape .elementor-widget-heading .elementor-heading-title {
+  color: #ffffff !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 10px !important;
+  letter-spacing: 0.3px !important;
+}
+
+#formulariosRodape .elementor-widget-text-editor {
+  color: #c0c6cc !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+#formulariosRodape .elementor-field-textual {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+#formulariosRodape .elementor-field-textual:focus {
+  border-color: #e30613 !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.25) !important;
+}
+
+#formulariosRodape .elementor-field-textual::placeholder {
+  color: #88939e !important;
+}
+
+#formulariosRodape .elementor-field-group {
+  margin-bottom: 12px !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-field-type-radio,
+#formulariosRodape .elementor-field-type-checkbox {
+  margin-top: 6px !important;
+  margin-bottom: 10px !important;
+}
+
+#formulariosRodape .elementor-field-subgroup {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+#formulariosRodape .elementor-field-option {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  width: 100% !important;
+  cursor: pointer !important;
+}
+
+#formulariosRodape .elementor-field-option input[type="radio"],
+#formulariosRodape .elementor-field-option input[type="checkbox"] {
+  margin-top: 3px !important;
+  accent-color: #e30613 !important;
+  flex-shrink: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  cursor: pointer !important;
+}
+
+#formulariosRodape .elementor-field-option label {
+  color: #b0b8c1 !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  cursor: pointer !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+
+#formulariosRodape .elementor-field-option label a {
+  color: #e30613 !important;
+  text-decoration: underline !important;
+}
+
+#formulariosRodape .elementor-button {
+  background-color: #e30613 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 14px 28px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  width: 100% !important;
+  text-align: center !important;
+  display: block !important;
+  box-shadow: 0 4px 16px rgba(227, 6, 19, 0.4) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+#formulariosRodape .elementor-button:hover {
+  background-color: #c40410 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(227, 6, 19, 0.55) !important;
+}
+
+@media (max-width: 991px) {
+  #formulariosRodape {
+    width: 100% !important;
+    padding: 40px 16px !important;
+    overflow: hidden !important;
+  }
+
+  #formulariosRodape .elementor-container,
+  #formulariosRodape .elementor-row,
+  #formulariosRodape .elementor-column,
+  #formulariosRodape .elementor-column-wrap,
+  #formulariosRodape .elementor-widget-wrap,
+  #formulariosRodape .elementor-widget-form,
+  #formulariosRodape .elementor-widget-form .elementor-widget-container,
+  #formulariosRodape .elementor-form,
+  #formulariosRodape .elementor-form-fields-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #formulariosRodape .elementor-container {
+    display: block !important;
+  }
+
+  #formulariosRodape .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 28px !important;
+  }
+
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    width: 100% !important;
+    max-width: 520px !important;
+    min-width: 0 !important;
+    display: block !important;
+  }
+
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 28px 20px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    justify-content: flex-start !important;
+  }
+
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img {
+    height: 100px !important;
+  }
+
+  #formulariosRodape .elementor-widget-heading .elementor-heading-title {
+    font-size: 1.25rem !important;
+  }
+
+  #formulariosRodape .elementor-widget-text-editor {
+    font-size: 0.88rem !important;
+    margin-bottom: 18px !important;
+  }
+
+  #formulariosRodape .elementor-widget-wrap {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  #formulariosRodape .elementor-form-fields-wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #formulariosRodape .elementor-field-group,
+  #formulariosRodape .elementor-field-type-text,
+  #formulariosRodape .elementor-field-type-email,
+  #formulariosRodape .elementor-field-type-radio,
+  #formulariosRodape .elementor-field-type-checkbox,
+  #formulariosRodape .e-form__buttons {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #formulariosRodape .elementor-field-subgroup,
+  #formulariosRodape .elementor-field-option {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #formulariosRodape .elementor-field-option label {
+    font-size: 12px !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape),
+       (max-height: 500px) and (orientation: landscape) {
+  #formulariosRodape {
+    padding: 24px 16px !important;
+  }
+  #formulariosRodape .elementor-row {
+    flex-direction: row !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  #formulariosRodape .elementor-column.elementor-col-50 {
+    flex: 1 1 0 !important;
+    width: 0 !important;
+    max-width: none !important;
+  }
+  #formulariosRodape .elementor-element-21b9e52 > .elementor-column-wrap,
+  #formulariosRodape .elementor-element-f3b6b56 > .elementor-column-wrap {
+    padding: 20px 16px !important;
+  }
+  #formulariosRodape .elementor-element-faab318 img,
+  #formulariosRodape .elementor-element-ba015bc img {
+    height: 72px !important;
+  }
+  #formulariosRodape .elementor-widget-heading .elementor-heading-title {
+    font-size: 1.1rem !important;
+  }
+  #formulariosRodape .elementor-widget-text-editor {
+    font-size: 0.8rem !important;
+    margin-bottom: 12px !important;
+  }
+  #formulariosRodape .elementor-field-textual {
+    padding: 9px 11px !important;
+    font-size: 12px !important;
+  }
+  #formulariosRodape .elementor-field-option label {
+    font-size: 11px !important;
+  }
+  #formulariosRodape .elementor-button {
+    padding: 10px 16px !important;
+    font-size: 12px !important;
+    margin-top: 6px !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+</style>
+<style id="indafire-mobile-portrait-landscape-master-override">
+/* ==========================================================================
+   INDAFIRE - MASTER RESPONSIVE OVERRIDE (DESKTOP & MOBILE)
+   ========================================================================== */
+.elementor-invisible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   DESKTOP HEADER & SECTIONS (>= 768px and >= 1025px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  /* Header Pill */
+  .elementor-element.elementor-element-46583ef {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    max-width: 1200px !important;
+    margin: 12px auto !important;
+    padding: 4px 20px !important;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1) !important;
+    box-sizing: border-box !important;
+    min-height: 56px !important;
+  }
+  .elementor-element.elementor-element-46583ef > .elementor-container,
+  .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-2e5c5af {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 180px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-2e5c5af > .elementor-element-populated > .elementor-widget-wrap,
+  .elementor-element.elementor-element-e171195 {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-e171195 img {
+    height: 38px !important;
+    max-height: 38px !important;
+    width: auto !important;
+    max-width: 160px !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+  .elementor-element.elementor-element-0d060a6 {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    margin: 0 8px !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-20668c0 {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-20668c0 .jet-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+  }
+  .elementor-element.elementor-element-20668c0 .jet-menu > .jet-menu-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+  .elementor-element.elementor-element-20668c0 .jet-menu .jet-menu-item .top-level-link {
+    font-family: inherit !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #222222 !important;
+    padding: 8px 10px !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    transition: color 0.2s ease !important;
+  }
+  .elementor-element.elementor-element-20668c0 .jet-menu .jet-menu-item:hover > .top-level-link {
+    color: #e30613 !important;
+  }
+  .jet-menu-roll-up {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-8755157 {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-3de852d {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-3de852d > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+  .elementor-element.elementor-element-315d4c1 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-315d4c1 .elementor-icon {
+    font-size: 15px !important;
+    width: 28px !important;
+    height: 28px !important;
+    color: #e30613 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: transform 0.2s ease !important;
+  }
+  .elementor-element.elementor-element-315d4c1 .elementor-icon:hover {
+    transform: scale(1.15) !important;
+  }
+  .elementor-element.elementor-element-712ae1c {
+    display: flex !important;
+    align-items: center !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 4px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-grid-item {
+    display: inline-flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icon {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 4px !important;
+    background-color: #e30613 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icon i {
+    font-size: 12px !important;
+    color: #ffffff !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icon:hover {
+    opacity: 0.85 !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* DESKTOP BRIGADA DE INCÊNDIO & BOMBEIRO */
+  .elementor-element.elementor-element-3662fd7 {
+    min-height: 540px !important;
+    padding: 40px 0 20px 0 !important;
+    position: relative !important;
+    background: transparent !important;
+    background-image: none !important;
+  }
+  .elementor-element.elementor-element-3662fd7 > .elementor-container {
+    max-width: 1200px !important;
+    min-height: 520px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 30px !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-169964b {
+    flex: 1 1 52% !important;
+    width: 52% !important;
+    max-width: 52% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding: 0 !important;
+    z-index: 3 !important;
+  }
+  .elementor-element.elementor-element-42aaacd .elementor-heading-title {
+    font-size: 13px !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: #333333 !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    margin: 0 0 6px 0 !important;
+  }
+  .elementor-element.elementor-element-9d7bf30 .elementor-heading-title {
+    font-size: 2.6rem !important;
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    color: #e30613 !important;
+    text-align: left !important;
+    margin: 0 0 14px 0 !important;
+  }
+  .elementor-element.elementor-element-1c2246b,
+  .elementor-element.elementor-element-1c2246b p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    color: #555555 !important;
+    text-align: left !important;
+    max-width: 520px !important;
+    margin: 0 0 20px 0 !important;
+  }
+  .elementor-element.elementor-element-989c3cc {
+    width: 100% !important;
+    max-width: 520px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22) !important;
+    overflow: hidden !important;
+    margin: 0 0 16px 0 !important;
+  }
+  .elementor-element.elementor-element-989c3cc video {
+    display: block !important;
+    width: 100% !important;
+    border-radius: 14px !important;
+  }
+  .elementor-element.elementor-element-44bd2a0 {
+    flex: 1 1 48% !important;
+    width: 48% !important;
+    max-width: 48% !important;
+    min-height: 480px !important;
+    height: 480px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    border-radius: 32px 0 0 32px !important;
+    background: linear-gradient(135deg, #24272c 0%, #15171a 100%) !important;
+    box-shadow: -8px 8px 30px rgba(0, 0, 0, 0.25) !important;
+    overflow: hidden !important;
+  }
+  .elementor-element.elementor-element-44bd2a0::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image: url('./wp-content/uploads/2021/10/bombeiro.jpg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center right !important;
+    z-index: 2 !important;
+  }
+  .elementor-element.elementor-element-44bd2a0::after {
+    content: '• INSTRUTORES CERTIFICADOS • CORPO DE BOMBEIROS' !important;
+    position: absolute !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    border-left: 3px solid #e30613 !important;
+    z-index: 3 !important;
+  }
+  .elementor-element.elementor-element-08f0d01,
+  .elementor-element.elementor-element-d3d2086 {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-207ff2b {
+    padding: 20px 0 30px 0 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .elementor-element.elementor-element-8eed4f7 .elementor-button {
+    padding: 15px 44px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-radius: 50px !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(227, 6, 19, 0.35) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MENU GAVETA / POPUP 2519 (UNIVERSAL)
+   -------------------------------------------------------------------------- */
+body.elementor-popup-modal-active #headerInda,
+body.elementor-popup-modal-active .elementor-location-header {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#elementor-popup-modal-2519:not([style*="display: none"]):not([style*="display:none"]),
+.dialog-type-lightbox.elementor-popup-modal:not([style*="display: none"]):not([style*="display:none"]) {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
+  pointer-events: all !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  z-index: 999999 !important;
+}
+
+#elementor-popup-modal-2519[style*="display: none"],
+#elementor-popup-modal-2519[style*="display:none"],
+.dialog-type-lightbox.elementor-popup-modal[style*="display: none"],
+.dialog-type-lightbox.elementor-popup-modal[style*="display:none"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#elementor-popup-modal-2519 .dialog-widget-content,
+.dialog-type-lightbox.elementor-popup-modal .dialog-widget-content {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  width: 86vw !important;
+  max-width: 330px !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.25) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  position: relative !important;
+}
+
+#elementor-popup-modal-2519 .dialog-message,
+.dialog-type-lightbox .dialog-message {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+#elementor-popup-modal-2519 .elementor-2519,
+.dialog-type-lightbox .elementor-location-popup {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: #ffffff !important;
+  padding: 24px 20px 32px 20px !important;
+  height: auto !important;
+  min-height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#elementor-popup-modal-2519 .dialog-close-button,
+.dialog-type-lightbox .dialog-close-button {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: #f0f0f0 !important;
+  border: none !important;
+  color: #444444 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+  z-index: 1000000 !important;
+  transition: all 0.2s ease !important;
+}
+#elementor-popup-modal-2519 .dialog-close-button:hover,
+#elementor-popup-modal-2519 .dialog-close-button:active {
+  background: #e30613 !important;
+  color: #ffffff !important;
+}
+
+.elementor-2519 .elementor-element.elementor-element-0de540b {
+  margin: 0 0 16px 0 !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  text-align: left !important;
+}
+.elementor-2519 .elementor-element.elementor-element-0de540b img {
+  width: 130px !important;
+  max-width: 130px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 {
+  margin: 0 0 14px 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-items {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item {
+  padding: 10px 8px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  border-bottom: 1px solid #f7f7f7 !important;
+  transition: all 0.2s ease !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item:hover,
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item:active {
+  background: rgba(227, 6, 19, 0.05) !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-item a {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  text-decoration: none !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-text {
+  order: 1 !important;
+  font-family: inherit !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #222222 !important;
+  text-align: left !important;
+}
+.elementor-2519 .elementor-element.elementor-element-6ee6e25 .elementor-icon-list-icon {
+  order: 2 !important;
+  color: #e30613 !important;
+  font-size: 11px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.elementor-2519 .elementor-element.elementor-element-cd75a00,
+.elementor-2519 .elementor-element.elementor-element-b504b34 {
+  margin: 10px 0 8px 0 !important;
+  padding: 0 !important;
+}
+.elementor-2519 .elementor-divider-separator {
+  border-top: 1px solid #f0f0f0 !important;
+}
+
+.elementor-2519 .elementor-element.elementor-element-927d68d,
+.elementor-2519 .elementor-element.elementor-element-56111dd {
+  margin: 12px 0 8px 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-927d68d .elementor-heading-title,
+.elementor-2519 .elementor-element.elementor-element-56111dd .elementor-heading-title {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #e30613 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+.elementor-2519 .elementor-element.elementor-element-ad6a302,
+.elementor-2519 .elementor-element.elementor-element-24f1891 {
+  margin: 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-items,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-items {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-item,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-item {
+  padding: 6px 4px !important;
+  margin: 0 !important;
+  border-bottom: none !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-item a,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-item a {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+  width: 100% !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-icon,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-icon {
+  order: 1 !important;
+  color: #e30613 !important;
+  font-size: 14px !important;
+  width: 22px !important;
+  min-width: 22px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-text,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-text {
+  order: 2 !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #444444 !important;
+  text-align: left !important;
+  word-break: break-word !important;
+}
+.elementor-2519 .elementor-element.elementor-element-ad6a302 .elementor-icon-list-item:hover .elementor-icon-list-text,
+.elementor-2519 .elementor-element.elementor-element-24f1891 .elementor-icon-list-item:hover .elementor-icon-list-text {
+  color: #e30613 !important;
+}
+
+
+/* ==========================================================================
+   MODELO 1: CELULAR NA VERTICAL (PORTRAIT <= 767px)
+   ========================================================================== */
+@media (max-width: 767px) and (orientation: portrait), (max-width: 767px) {
+
+  /* Cabeçalho Perfeitamente Centralizado */
+  .elementor-location-header,
+  .elementor-location-header > .elementor-section-wrap,
+  #headerInda,
+  .elementor-element.elementor-element-c784293 {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 999 !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  #headerInda > .elementor-container,
+  .elementor-element.elementor-element-c784293 > .elementor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 12px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  #headerInda > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-c784293 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-29f20d8,
+  .elementor-element.elementor-element-29f20d8 > .elementor-column-wrap,
+  .elementor-element.elementor-element-29f20d8 > .elementor-column-wrap > .elementor-widget-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-46583ef {
+    height: 46px !important;
+    min-height: 46px !important;
+    max-height: 46px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 14px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  .elementor-element.elementor-element-46583ef > .elementor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-2e5c5af {
+    order: 1 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 150px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-2e5c5af > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-e171195 img,
+  img[src*="logo.svg"] {
+    height: 26px !important;
+    max-height: 26px !important;
+    width: auto !important;
+    max-width: 130px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-3de852d,
+  .elementor-element.elementor-element-315d4c1,
+  .elementor-element.elementor-element-712ae1c,
+  .elementor-element.elementor-element-20668c0 {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-0d060a6 {
+    order: 2 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-8755157 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-8755157 .elementor-icon {
+    font-size: 16px !important;
+    width: 34px !important;
+    height: 34px !important;
+    border: 1.5px solid #d9232a !important;
+    border-radius: 6px !important;
+    color: #d9232a !important;
+    background: rgba(217, 35, 42, 0.04) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+  }
+
+  /* Hero */
+  .elementor-element.elementor-element-1766569,
+  .elementor-element.elementor-element-e4322a0,
+  .elementor-element.elementor-element-e61ec37,
+  .banner_video_home,
+  .elementor-61,
+  .elementor-element.elementor-element-98ce606 {
+    min-height: calc(100vh - 54px) !important;
+    height: calc(100vh - 54px) !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background-color: #1a1a1a !important;
+  }
+  .elementor-element.elementor-element-98ce606 > .elementor-container {
+    min-height: calc(100vh - 54px) !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 2 !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+  }
+  .elementor-element.elementor-element-98ce606 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-88a0cfb,
+  .elementor-element.elementor-element-88a0cfb > .elementor-column-wrap,
+  .elementor-element.elementor-element-88a0cfb > .elementor-column-wrap > .elementor-widget-wrap {
+    height: 100% !important;
+    min-height: 100% !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-ac9c795 {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto 40px auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-affa771 .elementor-heading-title {
+    font-size: 1.45rem !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+    padding: 0 10px !important;
+    margin: 0 0 12px 0 !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-29e9bcc .elementor-heading-title {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+    color: #f0f0f0 !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7) !important;
+    padding: 0 12px !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-e671c55 {
+    position: absolute !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 auto !important;
+    z-index: 10 !important;
+    display: block !important;
+  }
+  .elementor-element.elementor-element-e671c55 .elementor-icon {
+    font-size: 20px !important;
+    width: 44px !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 50% !important;
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* Cards de Experiência (#conteudo) */
+  #conteudo {
+    padding: 24px 12px 10px 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #conteudo > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 14px !important;
+  }
+  .elementor-element.elementor-element-1ffb393 {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-bbbbf1b > .elementor-column-wrap > .elementor-widget-wrap,
+  .elementor-element.elementor-element-bbbbf1b .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  .elementor-element.elementor-element-f195a0e,
+  .elementor-element.elementor-element-c8f1cd7,
+  .elementor-element.elementor-element-8da6b11 {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 16px 18px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(145deg, #2b2b2b 0%, #151515 100%) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
+  .elementor-element.elementor-element-f195a0e > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-c8f1cd7 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-8da6b11 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-a3dab2c,
+  .elementor-element.elementor-element-b2860d9,
+  .elementor-element.elementor-element-03ad2f7 {
+    flex: 0 0 46px !important;
+    width: 46px !important;
+    max-width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .elementor-element.elementor-element-166d00a img,
+  .elementor-element.elementor-element-312be29 img,
+  .elementor-element.elementor-element-3bbd276 img {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+  .elementor-element.elementor-element-0bb67cf,
+  .elementor-element.elementor-element-d21256a,
+  .elementor-element.elementor-element-06d9a11 {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    text-align: left !important;
+  }
+  .elementor-counter-number-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    justify-content: flex-start !important;
+    font-size: 1.8rem !important;
+    line-height: 1.1 !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+  }
+  .elementor-counter-number-prefix,
+  .elementor-counter-number {
+    font-size: 1.8rem !important;
+    line-height: 1.1 !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+  }
+  .elementor-counter-number-suffix {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-d2fc79d,
+  .elementor-element.elementor-element-e676369,
+  .elementor-element.elementor-element-04ea4f9 {
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  .elementor-element.elementor-element-04ea4f9 .elementor-heading-title {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+    color: #e0e0e0 !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    margin: 0 !important;
+  }
+
+  /* Sobre Nós */
+  .elementor-element.elementor-element-c91e9f8 {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px 8px 10px 8px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-c91e9f8 > .elementor-column-wrap,
+  .elementor-element.elementor-element-c91e9f8 > .elementor-element-populated > .elementor-widget-wrap,
+  .elementor-element.elementor-element-c91e9f8 .elementor-widget-wrap {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-83e674d {
+    width: 100% !important;
+    margin: 0 0 14px 0 !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-83e674d .elementor-heading-title {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    color: #222222 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-4d85c96 {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto 20px auto !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-4d85c96 .elementor-text-editor,
+  .elementor-element.elementor-element-4d85c96 p {
+    font-size: 0.94rem !important;
+    line-height: 1.6 !important;
+    color: #555555 !important;
+    text-align: center !important;
+    margin: 0 0 14px 0 !important;
+  }
+  .elementor-element.elementor-element-af40c63 {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-af40c63 .elementor-button-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-af40c63 .elementor-button {
+    display: inline-block !important;
+    margin: 0 auto !important;
+    padding: 13px 40px !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-radius: 50px !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
+  }
+
+  /* SERVIÇOS NO MOBILE VERTICAL */
+  .elementor-element.elementor-element-c629bbc {
+    margin: 10px 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-3432f15 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .elementor-element.elementor-element-3432f15 > .elementor-column-wrap,
+  .elementor-element.elementor-element-3432f15 > .elementor-element-populated {
+    background: #f8f9fa !important;
+    border-radius: 16px !important;
+    padding: 20px 10px !important;
+    box-sizing: border-box !important;
+    width: 96% !important;
+    margin: 0 auto !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+  }
+  .elementor-element.elementor-element-3fbc3d7,
+  .elementor-element.elementor-element-d88d016 {
+    background: transparent !important;
+    background-image: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-99db086 .elementor-heading-title {
+    font-size: 1.65rem !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    color: #e30613 !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    margin: 0 0 6px 0 !important;
+  }
+  .elementor-element.elementor-element-8c1905f,
+  .elementor-element.elementor-element-8c1905f p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: #444444 !important;
+    text-align: center !important;
+    max-width: 440px !important;
+    margin: 0 auto 16px auto !important;
+  }
+  .elementor-element.elementor-element-d88d016 > .elementor-container,
+  .elementor-element.elementor-element-3fbc3d7 > .elementor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row,
+  .elementor-element.elementor-element-3fbc3d7 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 16px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  /* Coluna 1: Carrossel */
+  .elementor-element.elementor-element-c99c7c0 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    display: block !important;
+    float: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  #carrosselServicos {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 4px 30px !important;
+    position: relative !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+  #carrosselServicos .dce-posts-container,
+  #carrosselServicos .swiper-container {
+    width: 100% !important;
+    overflow: hidden !important;
+    padding: 6px 0 !important;
+  }
+  #carrosselServicos .swiper-slide {
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding: 4px !important;
+  }
+  .servico_unidade_carrossel,
+  .elementor-element.elementor-element-1a58808 {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 115px !important;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07) !important;
+    padding: 10px 6px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+  }
+  .servico_unidade_carrossel .elementor-widget-image {
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 6px auto !important;
+  }
+  .servico_unidade_carrossel img {
+    width: 32px !important;
+    height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .servico_unidade_carrossel h4 {
+    font-size: 10.5px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+    color: #222222 !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+  .servico_unidade_carrossel.item_ativo,
+  #carrosselServicos .swiper-slide-active .servico_unidade_carrossel {
+    background-color: #e30613 !important;
+    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
+  }
+  .servico_unidade_carrossel.item_ativo img,
+  #carrosselServicos .swiper-slide-active .servico_unidade_carrossel img {
+    filter: brightness(0) invert(1) !important;
+  }
+  .servico_unidade_carrossel.item_ativo h4,
+  #carrosselServicos .swiper-slide-active .servico_unidade_carrossel h4 {
+    color: #ffffff !important;
+  }
+  #carrosselServicos .swiper-button-prev,
+  #carrosselServicos .swiper-button-next {
+    display: flex !important;
+    width: 26px !important;
+    height: 26px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 20 !important;
+    position: absolute !important;
+  }
+  #carrosselServicos .swiper-button-prev { left: 2px !important; }
+  #carrosselServicos .swiper-button-next { right: 2px !important; }
+
+  /* Coluna 2: Detalhes do Serviço */
+  .elementor-element.elementor-element-c54c22f {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    display: block !important;
+    float: none !important;
+    margin: 8px auto 0 auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+  }
+  div#gridServicos {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+  div#gridServicos .dce-posts-container,
+  div#gridServicos article {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .servicos_exibicao,
+  [id^="visualizacao_"] {
+    width: 100% !important;
+    max-width: 330px !important;
+    background: #222222 !important;
+    border-radius: 14px !important;
+    padding: 18px 16px !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+  .servicos_exibicao .elementor-widget-image img,
+  [id^="visualizacao_"] .elementor-widget-image img {
+    width: 100% !important;
+    max-width: 280px !important;
+    height: 135px !important;
+    max-height: 135px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    display: block !important;
+    margin: 0 auto 10px auto !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  }
+  .servicos_exibicao .elementor-heading-title,
+  .servicos_exibicao h3,
+  [id^="visualizacao_"] h3 {
+    font-size: 1.18rem !important;
+    line-height: 1.25 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    margin: 6px 0 6px 0 !important;
+  }
+  .servicos_exibicao .elementor-widget-text-editor,
+  [id^="visualizacao_"] .elementor-widget-text-editor,
+  .servicos_exibicao p,
+  [id^="visualizacao_"] p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    color: #dddddd !important;
+    text-align: center !important;
+    margin: 0 0 12px 0 !important;
+  }
+  .servicos_exibicao .elementor-button,
+  [id^="visualizacao_"] .elementor-button {
+    display: inline-block !important;
+    padding: 10px 28px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    border-radius: 25px !important;
+    box-shadow: 0 4px 12px rgba(227, 6, 19, 0.4) !important;
+    margin: 4px auto 0 auto !important;
+    text-decoration: none !important;
+  }
+
+  /* BRIGADA DE INCÊNDIO NO MOBILE VERTICAL (ZERO ESPAÇO EM BRANCO) */
+  .elementor-element.elementor-element-3662fd7,
+  .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container,
+  .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+  .elementor-element.elementor-element-3662fd7 > .elementor-background-overlay {
+    background-image: none !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    padding: 24px 16px 0 16px !important;
+    min-height: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 > .elementor-container {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-169964b {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-42aaacd .elementor-heading-title {
+    text-align: center !important;
+    font-size: 11px !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    color: #555555 !important;
+    margin: 0 0 4px 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-9d7bf30 .elementor-heading-title {
+    text-align: center !important;
+    font-size: 1.65rem !important;
+    line-height: 1.2 !important;
+    color: #e30613 !important;
+    font-weight: 800 !important;
+    margin: 0 0 8px 0 !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b,
+  .elementor-element.elementor-element-3662fd7 .elementor-element-1c2246b p {
+    text-align: center !important;
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+    color: #444444 !important;
+    max-width: 440px !important;
+    margin: 0 auto 12px auto !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc {
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+    overflow: hidden !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-989c3cc video {
+    border-radius: 12px !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-3662fd7 .elementor-element-44bd2a0 {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* DEPOIMENTOS VAZIO & ELEMENTOS RESIDUAIS (TOTALMENTE OCULTOS) */
+  .elementor-element.elementor-element-08f0d01,
+  .elementor-element.elementor-element-d3d2086 {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* BOTÃO CONHEÇA MAIS BRIGADA (.elementor-element-207ff2b) */
+  .elementor-element.elementor-element-207ff2b {
+    margin: 0 auto !important;
+    padding: 14px 0 20px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-8eed4f7 {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .elementor-element.elementor-element-8eed4f7 .elementor-button {
+    margin: 0 auto !important;
+    display: inline-block !important;
+    padding: 13px 40px !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-radius: 50px !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
+  }
+
+  /* PRODUTOS (MOBILE VERTICAL) */
+  .elementor-element.elementor-element-f63fa97 {
+    padding: 16px 8px 24px 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .elementor-element.elementor-element-aa7688d > .elementor-column-wrap,
+  .elementor-element.elementor-element-aa7688d > .elementor-element-populated > .elementor-widget-wrap,
+  .elementor-element.elementor-element-aa7688d .elementor-widget-wrap {
+    padding: 16px 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-f46b98f .elementor-heading-title {
+    font-size: 1.65rem !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    color: #222222 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 0 6px 0 !important;
+  }
+  .elementor-element.elementor-element-b44b34f,
+  .elementor-element.elementor-element-b44b34f p {
+    font-size: 0.88rem !important;
+    line-height: 1.4 !important;
+    color: #555555 !important;
+    text-align: center !important;
+    max-width: 440px !important;
+    margin: 0 auto 16px auto !important;
+  }
+  .elementor-element.elementor-element-9218be1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-9218be1 > .elementor-widget-container {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+  .elementor-element.elementor-element-9218be1 .elementor-main-swiper {
+    height: 320px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .elementor-element.elementor-element-9218be1 .swiper-slide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-9218be1 .swiper-slide a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    text-decoration: none !important;
+  }
+  .elementor-element.elementor-element-9218be1 .elementor-carousel-image {
+    width: 240px !important;
+    max-width: 240px !important;
+    height: 270px !important;
+    min-height: 270px !important;
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    margin: 0 auto !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)) !important;
+  }
+  .elementor-element.elementor-element-9218be1 .elementor-swiper-button-prev,
+  .elementor-element.elementor-element-9218be1 .elementor-swiper-button-next {
+    font-size: 26px !important;
+    color: #e30613 !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 20 !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+  .elementor-element.elementor-element-9218be1 .elementor-swiper-button-prev { left: 4px !important; }
+  .elementor-element.elementor-element-9218be1 .elementor-swiper-button-next { right: 4px !important; }
+  .elementor-element.elementor-element-2f6f562 {
+    margin: 16px auto 0 auto !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .elementor-element.elementor-element-2f6f562 .elementor-button-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-2f6f562 .elementor-button {
+    display: inline-block !important;
+    padding: 13px 40px !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border-radius: 50px !important;
+    background-color: #e30613 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35) !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ==========================================================================
+   MODELO 2: CELULAR NA HORIZONTAL (LANDSCAPE)
+   ========================================================================== */
+@media (max-width: 1024px) and (orientation: landscape),
+       (max-height: 620px) and (orientation: landscape),
+       (max-width: 1024px) and (max-height: 620px) and (min-aspect-ratio: 13/10) {
+  html, body {
+    overflow-x: hidden !important;
+  }
+  .elementor-location-header,
+  #headerInda {
+    height: 50px !important;
+    min-height: 50px !important;
+    padding: 0 16px !important;
+    display: block !important;
+    z-index: 999 !important;
+  }
+  .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 50px !important;
+  }
+  .elementor-element.elementor-element-2e5c5af {
+    order: 1 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+  .elementor-element.elementor-element-2e5c5af img {
+    max-height: 28px !important;
+    width: auto !important;
+  }
+  .elementor-element.elementor-element-3de852d {
+    order: 2 !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-3de852d > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-712ae1c {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-social-icons-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-712ae1c .elementor-icon {
+    width: 28px !important;
+    height: 28px !important;
+    line-height: 28px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-315d4c1 {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-0d060a6 {
+    order: 3 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-0d060a6 > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-20668c0,
+  .jet-menu-container {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-8755157 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-8755157 .elementor-icon {
+    font-size: 16px !important;
+    width: 34px !important;
+    height: 34px !important;
+    border: 1.5px solid #d9232a !important;
+    border-radius: 6px !important;
+    color: #d9232a !important;
+    background: rgba(217, 35, 42, 0.04) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Seção Conteúdo (#conteudo) */
+  #conteudo {
+    padding: 24px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #conteudo > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-1ffb393 {
+    flex: 1 1 52% !important;
+    width: 52% !important;
+    max-width: 52% !important;
+  }
+  .elementor-element.elementor-element-c91e9f8 {
+    flex: 1 1 48% !important;
+    width: 48% !important;
+    max-width: 48% !important;
+    padding-left: 10px !important;
+  }
+  .elementor-element.elementor-element-bbbbf1b > .elementor-column-wrap > .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-f195a0e,
+  .elementor-element.elementor-element-c8f1cd7,
+  .elementor-element.elementor-element-8da6b11 {
+    flex: 1 1 32% !important;
+    width: 32% !important;
+    max-width: 32% !important;
+    min-height: 145px !important;
+    padding: 12px 6px !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(145deg, #2b2b2b 0%, #151515 100%) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* SERVIÇOS NO MOBILE HORIZONTAL (LADO A LADO) */
+  .elementor-element.elementor-element-3432f15 > .elementor-column-wrap {
+    background: #f8f9fa !important;
+    border-radius: 16px !important;
+    padding: 20px 16px !important;
+    box-sizing: border-box !important;
+    width: 98% !important;
+    margin: 0 auto !important;
+  }
+  .elementor-element.elementor-element-d88d016 > .elementor-container > .elementor-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  .elementor-element.elementor-element-c99c7c0 {
+    display: block !important;
+    flex: 1 1 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-c54c22f {
+    display: block !important;
+    flex: 1 1 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-08f0d01,
+  .elementor-element.elementor-element-d3d2086 {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-207ff2b {
+    padding: 16px 0 !important;
+    margin: 0 auto !important;
+  }
+}
+</style>
 </head>
 <body class="wp-singular page-template page-template-elementor_header_footer page page-id-1158 page-child parent-pageid-14 wp-custom-logo wp-theme-hello-elementor theme-hello-elementor woocommerce-no-js woolentor_current_theme_hello-elementor jet-desktop-menu-active elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-1158">
 
@@ -2048,16 +4351,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/fabricacao-de-caixa-dagua-metalica\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/fabricacao-de-caixa-dagua-metalica\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="500" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20500'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/serv13.jpg 500w, ../wp-content/uploads/2021/10/serv13-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv13-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv13-150x150.jpg 150w" data-lazy-sizes="(max-width: 500px) 100vw, 500px" data-lazy-src="../wp-content/uploads/2021/10/serv13.jpg" /><noscript><img width="500" height="500" src="../wp-content/uploads/2021/10/serv13.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/serv13.jpg 500w, ../wp-content/uploads/2021/10/serv13-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv13-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv13-150x150.jpg 150w" sizes="(max-width: 500px) 100vw, 500px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/fabricacao-de-caixa-dagua-metalica\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/fabricacao-de-caixa-dagua-metalica/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Fabricação de caixa d’água metálica</h2>		</div>
 				</div>
@@ -2079,16 +4382,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="500" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20500'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/serv12.jpg 500w, ../wp-content/uploads/2021/10/serv12-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv12-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv12-150x150.jpg 150w" data-lazy-sizes="(max-width: 500px) 100vw, 500px" data-lazy-src="../wp-content/uploads/2021/10/serv12.jpg" /><noscript><img width="500" height="500" src="../wp-content/uploads/2021/10/serv12.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/serv12.jpg 500w, ../wp-content/uploads/2021/10/serv12-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv12-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv12-150x150.jpg 150w" sizes="(max-width: 500px) 100vw, 500px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Equipe habilitada para eventos ou trabalhos específicos</h2>		</div>
 				</div>
@@ -2110,16 +4413,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/locacao-de-equipamentos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/locacao-de-equipamentos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/locacao-de-equipamentos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/locacao-de-equipamentos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="774" height="504" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20774%20504'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/PRONTA-5.png 774w, ../wp-content/uploads/2021/10/PRONTA-5-600x391.png 600w, ../wp-content/uploads/2021/10/PRONTA-5-300x195.png 300w, ../wp-content/uploads/2021/10/PRONTA-5-768x500.png 768w" data-lazy-sizes="(max-width: 774px) 100vw, 774px" data-lazy-src="../wp-content/uploads/2021/10/PRONTA-5.png" /><noscript><img width="774" height="504" src="../wp-content/uploads/2021/10/PRONTA-5.png" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/PRONTA-5.png 774w, ../wp-content/uploads/2021/10/PRONTA-5-600x391.png 600w, ../wp-content/uploads/2021/10/PRONTA-5-300x195.png 300w, ../wp-content/uploads/2021/10/PRONTA-5-768x500.png 768w" sizes="(max-width: 774px) 100vw, 774px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/locacao-de-equipamentos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/locacao-de-equipamentos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Locação de equipamentos</h2>		</div>
 				</div>
@@ -2141,16 +4444,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sinalizacao-de-emergencia\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sinalizacao-de-emergencia/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sinalizacao-de-emergencia\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sinalizacao-de-emergencia/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="500" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20500'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/serv10.jpg 500w, ../wp-content/uploads/2021/10/serv10-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv10-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv10-150x150.jpg 150w" data-lazy-sizes="(max-width: 500px) 100vw, 500px" data-lazy-src="../wp-content/uploads/2021/10/serv10.jpg" /><noscript><img width="500" height="500" src="../wp-content/uploads/2021/10/serv10.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/serv10.jpg 500w, ../wp-content/uploads/2021/10/serv10-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv10-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv10-150x150.jpg 150w" sizes="(max-width: 500px) 100vw, 500px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sinalizacao-de-emergencia\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sinalizacao-de-emergencia/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Sinalização de Emergência</h2>		</div>
 				</div>
@@ -2172,16 +4475,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistemas-de-sprinklers\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistemas-de-sprinklers/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistemas-de-sprinklers\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistemas-de-sprinklers/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="550" height="367" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20550%20367'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/Sprinkler.jpg 550w, ../wp-content/uploads/2021/10/Sprinkler-300x200.jpg 300w" data-lazy-sizes="(max-width: 550px) 100vw, 550px" data-lazy-src="../wp-content/uploads/2021/10/Sprinkler.jpg" /><noscript><img width="550" height="367" src="../wp-content/uploads/2021/10/Sprinkler.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/Sprinkler.jpg 550w, ../wp-content/uploads/2021/10/Sprinkler-300x200.jpg 300w" sizes="(max-width: 550px) 100vw, 550px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistemas-de-sprinklers\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistemas-de-sprinklers/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Sistemas de Sprinklers</h2>		</div>
 				</div>
@@ -2203,16 +4506,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-iluminacao-de-emergencia\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-iluminacao-de-emergencia/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-iluminacao-de-emergencia\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-iluminacao-de-emergencia/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="800" height="566" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20566'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/iluminacao.jpg 871w, ../wp-content/uploads/2021/10/iluminacao-600x424.jpg 600w, ../wp-content/uploads/2021/10/iluminacao-300x212.jpg 300w, ../wp-content/uploads/2021/10/iluminacao-768x543.jpg 768w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="../wp-content/uploads/2021/10/iluminacao.jpg" /><noscript><img width="800" height="566" src="../wp-content/uploads/2021/10/iluminacao.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/iluminacao.jpg 871w, ../wp-content/uploads/2021/10/iluminacao-600x424.jpg 600w, ../wp-content/uploads/2021/10/iluminacao-300x212.jpg 300w, ../wp-content/uploads/2021/10/iluminacao-768x543.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-iluminacao-de-emergencia\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-iluminacao-de-emergencia/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Sistema de iluminação de emergência</h2>		</div>
 				</div>
@@ -2234,16 +4537,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-deteccao-de-fumaca-e-calor\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-deteccao-de-fumaca-e-calor\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="500" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20500'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/serv9.jpg 500w, ../wp-content/uploads/2021/10/serv9-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv9-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv9-150x150.jpg 150w" data-lazy-sizes="(max-width: 500px) 100vw, 500px" data-lazy-src="../wp-content/uploads/2021/10/serv9.jpg" /><noscript><img width="500" height="500" src="../wp-content/uploads/2021/10/serv9.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/serv9.jpg 500w, ../wp-content/uploads/2021/10/serv9-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv9-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv9-150x150.jpg 150w" sizes="(max-width: 500px) 100vw, 500px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-deteccao-de-fumaca-e-calor\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-deteccao-de-fumaca-e-calor/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Sistema de detecção de fumaça e calor</h2>		</div>
 				</div>
@@ -2265,16 +4568,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-alarme-de-incendio\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-alarme-de-incendio/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-alarme-de-incendio\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-alarme-de-incendio/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="800" height="365" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20365'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png 1024w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-600x274.png 600w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-300x137.png 300w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-768x350.png 768w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1536x700.png 1536w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1.png 1945w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png" /><noscript><img width="800" height="365" src="../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1024x467.png 1024w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-600x274.png 600w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-300x137.png 300w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-768x350.png 768w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1-1536x700.png 1536w, ../wp-content/uploads/2021/10/shutterstock_1044591571-scaled-1.png 1945w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-alarme-de-incendio\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-alarme-de-incendio/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Sistema de alarme de incêndio</h2>		</div>
 				</div>
@@ -2296,16 +4599,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-hidrantes\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-hidrantes/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-hidrantes\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-hidrantes/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="800" height="498" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20498'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/hidrantes.jpg 989w, ../wp-content/uploads/2021/10/hidrantes-600x374.jpg 600w, ../wp-content/uploads/2021/10/hidrantes-300x187.jpg 300w, ../wp-content/uploads/2021/10/hidrantes-768x478.jpg 768w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="../wp-content/uploads/2021/10/hidrantes.jpg" /><noscript><img width="800" height="498" src="../wp-content/uploads/2021/10/hidrantes.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/hidrantes.jpg 989w, ../wp-content/uploads/2021/10/hidrantes-600x374.jpg 600w, ../wp-content/uploads/2021/10/hidrantes-300x187.jpg 300w, ../wp-content/uploads/2021/10/hidrantes-768x478.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/sistema-de-hidrantes\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/sistema-de-hidrantes/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Sistema de Hidrantes</h2>		</div>
 				</div>
@@ -2327,16 +4630,16 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 								<section class="elementor-section elementor-top-section elementor-element elementor-element-7bc7db8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7bc7db8" data-element_type="section" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/inspecao-de-equipamentos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
+					<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/inspecao-de-equipamentos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3cbc8e4" data-id="3cbc8e4" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/inspecao-de-equipamentos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
+						<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/inspecao-de-equipamentos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-ef40bbc dce_masking-clippath elementor-widget elementor-widget-image" data-id="ef40bbc" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 								<div class="elementor-image">
 												<img width="500" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20500'%3E%3C/svg%3E" class="elementor-animation-grow attachment-large size-large" alt="" data-lazy-srcset="../wp-content/uploads/2021/10/serv5.jpg 500w, ../wp-content/uploads/2021/10/serv5-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv5-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv5-150x150.jpg 150w" data-lazy-sizes="(max-width: 500px) 100vw, 500px" data-lazy-src="../wp-content/uploads/2021/10/serv5.jpg" /><noscript><img width="500" height="500" src="../wp-content/uploads/2021/10/serv5.jpg" class="elementor-animation-grow attachment-large size-large" alt="" srcset="../wp-content/uploads/2021/10/serv5.jpg 500w, ../wp-content/uploads/2021/10/serv5-300x300.jpg 300w, ../wp-content/uploads/2021/10/serv5-100x100.jpg 100w, ../wp-content/uploads/2021/10/serv5-150x150.jpg 150w" sizes="(max-width: 500px) 100vw, 500px" /></noscript>														</div>
 						</div>
 				</div>
-				<div data-ha-element-link="{&quot;url&quot;:&quot;https:\/\/indafire.com.br\/servicos_inda_fire\/inspecao-de-equipamentos\/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
+				<div data-ha-element-link="{&quot;url&quot;:&quot;../servicos_inda_fire/inspecao-de-equipamentos/&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}" style="cursor: pointer" class="elementor-element elementor-element-38e8b16 elementor-widget elementor-widget-heading" data-id="38e8b16" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h2 class="elementor-heading-title elementor-size-default">Inspeção de Equipamentos</h2>		</div>
 				</div>
@@ -2922,18 +5225,18 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 <div data-elementor-type="footer" data-elementor-id="596" data-post-id="1158" data-obj-id="1158" class="elementor elementor-596 dce-elementor-post-1158 elementor-location-footer">
 					<div class="elementor-section-wrap">
 								<section class="elementor-section elementor-top-section elementor-element elementor-section-full_width elementor-section-height-default inda-location-section" id="localizacao_mapa">
-	<div class="inda-location-container">
-		<div class="inda-location-copy">
-			<span class="inda-location-eyebrow">Onde estamos</span>
-			<h2>Nossa localização</h2>
-			<p class="inda-location-address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000</p>
-			<a class="inda-location-route" href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i>Traçar rota no Google Maps</a>
-		</div>
-		<div class="inda-location-map">
-			<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
-		</div>
-	</div>
-</section>
+						<div class="inda-location-container">
+							<div class="inda-location-copy">
+								<span class="inda-location-eyebrow">Onde estamos</span>
+								<h2>Nossa localização</h2>
+								<p class="inda-location-address"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Rua Emílio Lopes Cruz, 420 - Jardim Belo Horizonte, Indaiatuba - SP, 13330-000</p>
+								<a class="inda-location-route" href="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i>Traçar rota no Google Maps</a>
+							</div>
+							<div class="inda-location-map">
+								<iframe src="https://maps.google.com/maps?q=Inda+Fire+-+Rua+Em%C3%ADlio+Lopes+Cruz,+420+-+Jardim+Belo+Horizonte,+Indaiatuba+-+SP,+13330-000&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Inda Fire no Google Maps"></iframe>
+							</div>
+						</div>
+				</section>
 <section data-dce-background-color="#00000000" class="elementor-section elementor-top-section elementor-element elementor-element-1ae154c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1ae154c" data-element_type="section" id="formulariosRodape" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;jet_parallax_layout_list&quot;:[],&quot;_ha_eqh_enable&quot;:false}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
