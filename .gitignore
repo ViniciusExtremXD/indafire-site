@@ -1,0 +1,40 @@
+# Este repositório é PÚBLICO e o Pages publica a raiz da main.
+# Nada de produção (snapshot, dumps, wp-config, currículos, credenciais) pode entrar aqui.
+
+# Auditoria, snapshot de produção e ambientes locais
+/audit/
+/baseline-pristine/
+/baseline-factual-1/
+/staging-local/
+/staging-update-candidate/
+/php84-experiment/
+/dist_gh_pages/
+
+# Relatórios de segurança do servidor do cliente: nunca públicos
+/docs/audits/
+/docs/operacional/
+
+# Bancos, backups e pacotes
+*.sql
+*.sql.gz
+*.gz
+*.zip
+*.rar
+*.bak
+*.pdf
+wp-config.php
+wp-config-*.php
+.env
+.env.*
+
+# Site novo (repositório próprio: ViniciusExtremXD/indafire)
+/site-novo/
+
+# Ferramentas e caches locais
+/.codex-remote-attachments/
+/.worktrees/
+/.superpowers/
+/.pytest_cache/
+/.ruff_cache/
+node_modules/
+__pycache__/
