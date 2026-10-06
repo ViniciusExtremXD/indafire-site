@@ -1,0 +1,541 @@
+/*
+ * Inda Fire — ajustes de celular (em pé e deitado) e tablet.
+ * Revisão de 06/10/2026. Só corrige o que estava quebrado ou desalinhado:
+ * o visual do site (cores, fontes, textos, desktop) não muda.
+ * Carregado no fim de cada página, depois dos estilos do Elementor.
+ */
+
+/* ═══════════ Cabeçalho ═══════════ */
+
+/* celular/tablet deitado: o cabeçalho é fixo, não precisa reservar 50px
+   (sobrava uma faixa branca em cima da foto do topo) */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .elementor-location-header.elementor-37 {
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* botão "Área do cliente" do cabeçalho: legível */
+@media (max-width: 1100px) {
+  #headerInda .indafire-compact-client {
+    font-size: 12px !important;
+  }
+}
+
+/* ═══════════ Rodapé (todas as páginas) ═══════════ */
+
+/* menu do rodapé aberto em links no celular e tablet (algumas páginas mostravam só o ☰) */
+@media (max-width: 1024px) {
+  .elementor-element.elementor-element-ebe09d0 .elementor-menu-toggle {
+    display: none !important;
+  }
+  .elementor-element.elementor-element-ebe09d0 .elementor-nav-menu--main {
+    display: block !important;
+  }
+  .elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px 22px !important;
+    padding: 0 !important;
+    margin: 0 auto 20px auto !important;
+    list-style: none !important;
+    width: 100% !important;
+    max-width: 1140px !important;
+  }
+  .elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu li {
+    display: inline-block !important;
+    flex-grow: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .elementor-element.elementor-element-ebe09d0 ul.elementor-nav-menu li a {
+    color: #fff !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* redes sociais coladas no logo */
+  .elementor-596 .elementor-element.elementor-element-e76954a {
+    margin-top: 14px !important;
+  }
+}
+
+/* formulários do rodapé no celular deitado: texto legível */
+@media (max-width: 900px) and (orientation: landscape) {
+  body #formulariosRodape .elementor-field-option label {
+    font-size: 12.5px !important;
+  }
+  body #formulariosRodape .elementor-field-textual {
+    font-size: 14px !important;
+  }
+  body #formulariosRodape .elementor-button {
+    font-size: 13px !important;
+  }
+  body #formulariosRodape .elementor-widget-text-editor {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ═══════════ Página inicial ═══════════ */
+
+/* números (3 cartões escuros): 3º cartão igual aos outros, legendas legíveis */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .elementor-element.elementor-element-e00b83b {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+  .elementor-element.elementor-element-e00b83b .elementor-widget-container,
+  .elementor-element.elementor-element-e00b83b .elementor-counter {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .elementor-element.elementor-element-e00b83b .elementor-widget-counter .elementor-widget-container {
+    margin: 0 !important;
+  }
+  .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  .elementor-element.elementor-element-ad5453c .elementor-heading-title {
+    max-width: 86px !important;
+    margin: 0 auto !important;
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+}
+
+/* tablet em pé: bloco "Sobre nós" + números em largura cheia (os cartões ficavam com 90px) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  body.home .elementor-2 .elementor-element.elementor-element-1ffb393,
+  body.home .elementor-2 .elementor-element.elementor-element-c91e9f8 {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  body.home .elementor-2 .elementor-element.elementor-element-8cd1f4d.marginRight {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 24px auto 0 !important;
+  }
+  body.home .elementor-2 .elementor-element.elementor-element-c91e9f8 > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 32px 40px !important;
+  }
+  body.home .elementor-element.elementor-element-731cf7e > .elementor-container {
+    max-width: 100% !important;
+  }
+  body.home .elementor-2 .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  body.home .elementor-2 .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  body.home .elementor-2 .elementor-element.elementor-element-ad5453c .elementor-heading-title {
+    max-width: none !important;
+    font-size: 0.8rem !important;
+    overflow-wrap: normal !important;
+  }
+}
+
+/* celular deitado: legendas dos números legíveis; bombeiro da brigada não cobre o texto */
+@media (orientation: landscape) and (max-height: 620px) {
+  body.home .elementor-2 .elementor-element.elementor-element-d2fc79d .elementor-heading-title,
+  body.home .elementor-2 .elementor-element.elementor-element-e676369 .elementor-heading-title,
+  body.home .elementor-2 .elementor-element.elementor-element-ad5453c .elementor-heading-title {
+    max-width: none !important;
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    /* mesma regra repetida abaixo para o tablet deitado */
+    left: auto !important;
+    right: 0 !important;
+    width: 50% !important;
+    transform: none !important;
+    background-size: contain !important;
+    background-position: center bottom !important;
+  }
+  body.home .elementor-2 .elementor-element.elementor-element-24ac6f3 > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 30px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* tablet deitado: bombeiro da brigada à direita, sem cobrir o texto */
+  body.home .elementor-2 .elementor-element.elementor-element-3662fd7 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    left: auto !important;
+    right: 0 !important;
+    width: 50% !important;
+    transform: none !important;
+    background-size: contain !important;
+    background-position: center bottom !important;
+  }
+}
+
+@media (max-width: 767px), (orientation: landscape) and (max-height: 620px) {
+  /* buraco grande antes do "Conheça mais" */
+  body.home .elementor-2 .elementor-element.elementor-element-207ff2b {
+    padding-top: 28px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* números alinhados com as legendas, sem encostar nos ícones */
+  body.home .elementor-element.elementor-element-937bbbc > .elementor-widget-container,
+  body.home .elementor-element.elementor-element-7bcc8f3 > .elementor-widget-container,
+  body.home .elementor-element.elementor-element-a8399ee > .elementor-widget-container {
+    margin: 0 !important;
+  }
+  body.home #conteudo .elementor-counter-number-prefix {
+    flex-grow: 0 !important;
+    text-align: left !important;
+  }
+  body.home .elementor-element.elementor-element-e00b83b {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    text-align: left !important;
+  }
+  body.home .elementor-element.elementor-element-ad5453c {
+    margin: 2px 0 0 !important;
+    padding: 0 !important;
+  }
+  body.home .elementor-element.elementor-element-ad5453c .elementor-heading-title {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+    color: #e0e0e0 !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    margin: 0 !important;
+  }
+  /* seta "rolar para baixo" centralizada */
+  body.home .elementor-element.elementor-element-e671c55 .elementor-icon {
+    display: inline-flex !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* carrossel de serviços em telas estreitas: sem quebrar palavra no meio */
+@media (max-width: 400px) {
+  #carrosselServicos .corFundo > .elementor-column-wrap > .elementor-widget-wrap {
+    padding: 8px 5px !important;
+  }
+  #carrosselServicos .elementor-element-ea01fe3 .elementor-heading-title {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
+
+/* ═══════════ Produtos, categorias e produto ═══════════ */
+
+/* bloco solto (sobra da exportação) embaixo dos cartões da categoria */
+.tax-product_cat .elementor-location-archive > .elementor-section-wrap > .elementor-element-88101a2 {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  /* "Atendimento comercial" passava da borda direita em telas de 360px */
+  #indafire-commercial-whatsapp .indafire-commercial-inner,
+  #indafire-commercial-whatsapp form {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  #indafire-commercial-whatsapp button {
+    white-space: normal !important;
+    text-align: center;
+    line-height: 1.3;
+  }
+  /* cartão "Atendimento via WhatsApp" sem moldura dupla */
+  #indafire-commercial-whatsapp.indafire-whatsapp-section .indafire-whatsapp-card {
+    padding: 24px 16px !important;
+  }
+  #indafire-commercial-whatsapp.indafire-whatsapp-section form {
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  /* banner do produto da altura dos outros */
+  .single-product #bannerProdutoINDA {
+    min-height: 264px !important;
+    padding: 104px 18px 54px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  #indafire-commercial-whatsapp.indafire-whatsapp-section p {
+    margin: 0 auto !important;
+  }
+  .elementor-1489 .elementor-element.elementor-element-3292be6 .ha-breadcrumbs li span.ha-breadcrumbs-text {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  /* banner do produto não ocupa a tela toda deitado */
+  .single-product #bannerProdutoINDA {
+    min-height: 210px !important;
+    padding-top: 76px !important;
+    padding-bottom: 38px !important;
+  }
+  .single-product #bannerProdutoINDA > .elementor-container {
+    min-height: 210px !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* busca, filtro e lupa alinhados */
+  .woocommerce-shop .jet-ajax-search__categories,
+  .tax-product_cat .jet-ajax-search__categories,
+  .woocommerce-shop .jet-ajax-search__submit,
+  .tax-product_cat .jet-ajax-search__submit {
+    margin-left: 0 !important;
+  }
+  .woocommerce-shop .jet-ajax-search__categories,
+  .tax-product_cat .jet-ajax-search__categories,
+  .woocommerce-shop .jet-ajax-search__categories .chosen-container,
+  .tax-product_cat .jet-ajax-search__categories .chosen-container {
+    width: 100% !important;
+  }
+  .elementor-1489 .elementor-element.elementor-element-2cad422 > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 0 0 10px !important;
+  }
+  /* vão de 150px antes dos cartões */
+  .elementor-1489 .elementor-element.elementor-element-2f61581 > .elementor-widget-container {
+    margin-top: 0 !important;
+  }
+}
+
+/* ═══════════ Serviços, treinamentos e brigada ═══════════ */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* "Níveis de manutenção": 2 colunas cheias em vez de 2 espremidas */
+  .elementor-831 .elementor-element.elementor-element-b890d2b .dce-acf-repeater-grid .dce-acf-repeater-item {
+    flex: 1 1 50% !important;
+  }
+}
+
+/* cartões escuros dos treinamentos: texto branco e centralizado, igual ao da brigada */
+@media (max-width: 1024px) {
+  .elementor-14 .elementor-element-23d699d .elementor-widget-text-editor,
+  .elementor-14 .elementor-element-1302736 .elementor-widget-text-editor {
+    color: var(--e-global-color-b275883);
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  /* "TREINAMENTOS" do topo cabe na tela */
+  .elementor-14 .elementor-element.elementor-element-66b9b6d .elementor-heading-title {
+    font-size: clamp(30px, 10.5vw, 48px) !important;
+  }
+  /* brigada: números da seção "Em números" visíveis (ficavam brancos no fundo claro) */
+  .elementor-1158 .elementor-widget-counter .elementor-counter-number-wrapper,
+  .elementor-1158 .elementor-widget-counter .elementor-counter-number-prefix,
+  .elementor-1158 .elementor-widget-counter .elementor-counter-number,
+  .elementor-1158 .elementor-widget-counter .elementor-counter-number-suffix {
+    color: var(--e-global-color-primary) !important;
+  }
+  .elementor-1158 .elementor-widget-counter .elementor-counter-number-wrapper {
+    justify-content: center !important;
+  }
+  .elementor-1158 .elementor-widget-counter .elementor-counter-number-suffix {
+    display: block !important;
+  }
+}
+
+@media (max-width: 420px) {
+  /* caixa vermelha "Conhecimento que espalha segurança" */
+  .elementor-14 .elementor-element.elementor-element-ec4c2b9 > .elementor-element-populated > .elementor-widget-wrap {
+    padding: 40px 20px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* perguntas frequentes: linhas sem encostar */
+  .elementor-1158 .elementor-element-99dba5c .elementor-tab-title,
+  .elementor-1158 .elementor-element-99dba5c .elementor-accordion-title {
+    line-height: 1.35 !important;
+  }
+}
+
+/* ═══════════ Sobre nós ═══════════ */
+
+@media (max-width: 767px) {
+  /* "Nossa história": slide inteiro dentro do cartão */
+  #timelineInda .swiper-slide.slide_central {
+    min-width: 0 !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  #timelineInda .swiper-slide.slide_central .dce-post-block {
+    width: 100% !important;
+  }
+  #timelineInda .swiper-slide.slide_central .elementor-container {
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* "Inda Fire em números": faixa escura à direita, como no desktop */
+  .elementor-19 .elementor-element.elementor-element-54e5929 > .elementor-motion-effects-container > .elementor-motion-effects-layer,
+  .elementor-19 .elementor-element.elementor-element-54e5929:not(.elementor-motion-effects-element-type-background) {
+    background-position: 75vw 0 !important;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  /* título "Sobre nós" inteiro na primeira tela deitado */
+  .elementor-element.elementor-element-abf71cf > .elementor-container {
+    min-height: 320px !important;
+  }
+  /* área do cliente: cartão abaixo do cabeçalho */
+  .elementor-element.elementor-element-eaecb4a {
+    padding-top: 84px !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+/* ═══════════ Blog (posts) ═══════════ */
+
+@media (max-width: 1100px) {
+  /* quadros da lateral (catálogo, serviços, WhatsApp) lado a lado sem vazar */
+  [data-elementor-type="single-post"] > section:nth-of-type(2) > .elementor-container > .elementor-column + .elementor-column {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+  }
+  [data-elementor-type="single-post"] > section:nth-of-type(2) > .elementor-container > .elementor-column + .elementor-column > div {
+    margin-bottom: 0 !important;
+  }
+  /* etiqueta da categoria abaixo da trilha */
+  [data-elementor-type="single-post"] > section:first-of-type .elementor-widget-wrap {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  /* trilha do topo não fica atrás do cabeçalho */
+  [data-elementor-type="single-post"] > section:first-of-type {
+    padding-top: 104px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  [data-elementor-type="single-post"] > section:nth-of-type(2) > .elementor-container > .elementor-column + .elementor-column {
+    grid-template-columns: 1fr;
+  }
+  /* texto do artigo com largura de leitura */
+  [data-elementor-type="single-post"] > section {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  [data-elementor-type="single-post"] > section:nth-of-type(2) > .elementor-container > .elementor-column:first-child {
+    min-width: 0 !important;
+    padding: 24px 18px !important;
+  }
+}
+
+/* ═══════════ Página 404 ═══════════ */
+
+@media (max-width: 1024px) {
+  .elementor-page-404 > section > .elementor-container {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .elementor-page-404 > section > .elementor-container > * {
+    width: 100%;
+  }
+}
+
+/* ═══════════ Correções que apareceram na conferência ═══════════ */
+
+/* formulários do rodapé: uma coluna só (nos posts do blog o botão ia para o lado e vazava) */
+@media (max-width: 1024px) {
+  #formulariosRodape .elementor-widget-wrap {
+    flex-wrap: nowrap !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* serviços, "Diferenciais": a foto das estrelas fica dentro da tela */
+  .elementor-element.elementor-element-72e4ee5 > .elementor-widget-container {
+    width: auto !important;
+    max-width: 100% !important;
+  }
+  .elementor-element.elementor-element-72e4ee5 img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* ═══════════ Cursos online e Unidade móvel (páginas refeitas) ═══════════ */
+
+/* o conteúdo usa .elementor-container, que o Elementor deixa em linha:
+   aqui ele empilha (trilha, etiqueta, título, texto) como foi desenhado */
+.elementor-training-cursos-online > section > .elementor-container,
+.elementor-training-unidade-de-treinamento-movel > section > .elementor-container {
+  display: block !important;
+}
+.elementor-training-cursos-online > section:first-of-type,
+.elementor-training-unidade-de-treinamento-movel > section:first-of-type {
+  padding-top: 120px !important;
+}
+.elementor-training-cursos-online > section:first-of-type span[style*="border-radius"],
+.elementor-training-unidade-de-treinamento-movel > section:first-of-type span[style*="border-radius"] {
+  display: inline-block !important;
+  margin-bottom: 14px !important;
+}
+.elementor-training-cursos-online h1,
+.elementor-training-cursos-online h2,
+.elementor-training-cursos-online h3,
+.elementor-training-unidade-de-treinamento-movel h1,
+.elementor-training-unidade-de-treinamento-movel h2,
+.elementor-training-unidade-de-treinamento-movel h3 {
+  font-family: inherit !important;
+}
+@media (max-width: 767px) {
+  .elementor-training-cursos-online > section:first-of-type,
+  .elementor-training-unidade-de-treinamento-movel > section:first-of-type {
+    padding-top: 90px !important;
+  }
+}
+@media (orientation: landscape) and (max-height: 620px) {
+  .elementor-training-cursos-online > section:first-of-type,
+  .elementor-training-unidade-de-treinamento-movel > section:first-of-type {
+    padding-top: 84px !important;
+  }
+}
+@media (min-width: 600px) and (max-width: 1100px) {
+  /* 4 cartões em 2 colunas (antes ficavam 3 + 1 esticado) */
+  .elementor-training-cursos-online div[style*="flex: 1 1 240px"],
+  .elementor-training-unidade-de-treinamento-movel div[style*="flex: 1 1 240px"] {
+    flex: 1 1 calc(50% - 25px) !important;
+  }
+}
