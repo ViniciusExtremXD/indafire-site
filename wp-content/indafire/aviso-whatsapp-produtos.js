@@ -1,16 +1,11 @@
 /*
- * Inda Fire — aviso de WhatsApp nos produtos (pedido do Wellington, 06/10/2026).
+ * Inda Fire — pedido de orçamento dos produtos pelo WhatsApp (06/10/2026).
  *
- * Na área de produtos, o clique não leva mais à página do produto nem envia
- * formulário: a tela fica fosca e aparece o aviso "Entre em contato pelo
- * nosso WhatsApp. Nossa equipe vai te atender.", com o botão que abre o
- * WhatsApp já com o nome do produto (e, no formulário, com os dados que a
- * pessoa digitou).
- *
- * Vale para:
- *  - listas (produtos/ e categoria-produto/*): cartão do produto, "Veja +" e "Conheça";
- *  - página do produto (produto/*): "Solicite orçamento", formulário de
- *    orçamento e produtos relacionados.
+ * Os produtos continuam abrindo normalmente (lista → página de detalhes).
+ * Só o formulário "Solicite seu orçamento" da página do produto muda: ao
+ * enviar, a tela fica fosca e aparece o aviso "Entre em contato pelo nosso
+ * WhatsApp. Nossa equipe vai te atender.", com o botão que abre o WhatsApp
+ * já com o produto e os dados que a pessoa digitou.
  *
  * Arquivo único, sem dependências: injeta o próprio CSS e o HTML do aviso.
  */
@@ -18,10 +13,8 @@
   'use strict';
 
   var WHATSAPP = '551938341741';
-  var caminho = location.pathname;
-  var naLista = /\/(produtos|categoria-produto)\//.test(caminho);
-  var naPagina = /\/produto\//.test(caminho);
-  if (!naLista && !naPagina) return;
+  // só na página do produto (é onde fica o formulário de orçamento)
+  if (!document.querySelector('form[name="Produto"]')) return;
 
   /* ── Estilo (mesma linha visual do site: Open Sans, vermelho #e30613,
         cartão branco arredondado e botão verde do WhatsApp) ── */
@@ -156,15 +149,6 @@
     return (t || '').replace(/\s+/g, ' ').trim();
   }
 
-  function nomeDoCartao(el) {
-    var cartao = el.closest('article.product, .product, .dce-post, .areaProduto');
-    if (cartao) {
-      var titulo = cartao.querySelector('.tituloProduto .elementor-heading-title, .woocommerce-loop-product__title, h2, h3, h4');
-      if (titulo) return limpar(titulo.textContent);
-    }
-    return '';
-  }
-
   function nomeDaPagina() {
     var h1 = document.querySelector('.product_title, h1.elementor-heading-title, h1');
     var nome = h1 ? limpar(h1.textContent) : '';
@@ -174,65 +158,6 @@
     if (doTitulo && doTitulo.toUpperCase() === nome.toUpperCase()) nome = doTitulo;
     return nome;
   }
-
-  function nomeDoLink(a) {
-    var m = (a.getAttribute('href') || '').match(/produto\/([a-z0-9-]+)\/?/i);
-    if (!m) return '';
-    var s = m[1].replace(/-/g, ' ');
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-
-  /* ── Cliques: tudo que levaria a um produto abre o aviso ── */
-  function ehLinkDeProduto(a) {
-    var href = a.getAttribute('href') || '';
-    return /(^|\/)produto\/[a-z0-9-]+\/?(#.*)?$/i.test(href) && !/categoria-produto/i.test(href);
-  }
-
-  document.addEventListener(
-    'click',
-    function (e) {
-      if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      var alvo = e.target;
-      if (!alvo || !alvo.closest || alvo.closest('.if-aviso')) return;
-
-      var a = alvo.closest('a[href]');
-      var produto = '';
-
-      if (naPagina) {
-        // "Solicite orçamento" (âncora #orcamento) e botões de orçamento
-        if (a && /#orcamento\b/i.test(a.getAttribute('href') || '')) {
-          produto = nomeDaPagina();
-        } else if (a && ehLinkDeProduto(a)) {
-          // produtos relacionados
-          produto = nomeDoCartao(a) || nomeDoLink(a);
-        } else if (!a && alvo.closest('article.product [data-ha-element-link]')) {
-          produto = nomeDoCartao(alvo);
-        } else {
-          return;
-        }
-      } else {
-        // listas: cartão inteiro (o cartão é clicável pelo Happy Addons), "Veja +" e "Conheça"
-        if (a && ehLinkDeProduto(a)) {
-          produto = nomeDoCartao(a) || nomeDoLink(a);
-        } else if (!a && alvo.closest('article.product')) {
-          produto = nomeDoCartao(alvo);
-        } else if (!a) {
-          var link = alvo.closest('[data-ha-element-link]');
-          if (!link || !/produto\\?\/[a-z0-9-]+/i.test(link.getAttribute('data-ha-element-link') || '') ||
-              /categoria-produto/i.test(link.getAttribute('data-ha-element-link') || '')) return;
-          produto = nomeDoCartao(alvo);
-        } else {
-          return;
-        }
-      }
-
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      abrir(produto);
-    },
-    true,
-  );
 
   /* ── Formulário "Solicite seu orçamento": vai pelo WhatsApp com os dados ── */
   document.addEventListener(
