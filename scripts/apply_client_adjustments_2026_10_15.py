@@ -6,6 +6,7 @@
 3. Deixa um único bloco "Atendimento via WhatsApp" na home e tira o card
    genérico das páginas de produto (o orçamento do produto já é pelo WhatsApp).
 4. Botão "Atendimento via WhatsApp" abaixo de cada produto do menu "Produtos" (cabeçalho).
+4b. Botão "Atendimento via WhatsApp" no banner de produtos, categorias e produto.
 5. CTA do produto: "Solicite orçamento via WhatsApp".
 6. "Produtos relacionados" e páginas de categoria montados por categoria/afinidade.
 
@@ -20,7 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "4"
+ASSET_VERSION = "5"
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -237,6 +238,40 @@ def add_menu_button(article):
     return article[:end] + menu_button(htmllib.unescape(m.group(1)).strip()) + article[end:]
 
 
+# ── botão "Atendimento via WhatsApp" na imagem (banner) de produtos/categorias/produto ──
+HERO_BTN_RE = re.compile(r'\n<div class="if-hero-whats-wrap">.*?</div>', re.S)
+
+
+def hero_button(path, text):
+    parts = Path(path).parts
+    produto = ""
+    if parts[0] == "produto":
+        produto = product_name(text)
+        msg = "Olá! Vim pelo site da Inda Fire e gostaria de atendimento sobre: %s." % produto
+    elif parts[0] == "categoria-produto":
+        h1 = re.search(r'id="tituloCategoriaProdutos".*?<h1[^>]*>([^<]+)</h1>', text, re.S)
+        cat = htmllib.unescape(h1.group(1)).strip() if h1 else parts[1]
+        msg = "Olá! Vim pelo site da Inda Fire e gostaria de atendimento sobre a categoria: %s." % cat
+    else:
+        msg = "Olá! Vim pelo site da Inda Fire e gostaria de atendimento sobre os produtos."
+    href = "https://wa.me/%s?text=%s" % (WHATSAPP, urllib.parse.quote(msg))
+    attr = ' data-if-produto="%s"' % htmllib.escape(produto, quote=True) if produto else ""
+    return (
+        '\n<div class="if-hero-whats-wrap">'
+        '<a class="if-hero-whats" href="%s" target="_blank" rel="noopener"%s>%s<span>Atendimento via WhatsApp</span></a></div>'
+        % (href, attr, WA_SVG.format(s=24))
+    )
+
+
+def apply_hero_button(text, path):
+    text = HERO_BTN_RE.sub("", text)
+    w = re.search(r'<div class="elementor-element [^>]*id="tituloCategoriaProdutos"[^>]*>', text)
+    if not w:
+        return text, False
+    end = balanced_end(text, w.start(), "div")
+    return text[:end] + hero_button(path, text) + text[end:], True
+
+
 def apply_menu_buttons(text):
     new = MENU_ARTICLE.sub(lambda m: add_menu_button(m.group(0)), text)
     return new, new != text
@@ -396,7 +431,7 @@ def link_assets(text, path):
         r"\1?v=" + ASSET_VERSION,
         text,
     )
-    needs_js = ("if-menu-whats" in text) or ("if-cta-whats" in text) or ('name="Produto"' in text)
+    needs_js = ("if-menu-whats" in text) or ("if-hero-whats" in text) or ("if-cta-whats" in text) or ('name="Produto"' in text)
     js_tag = '<script src="%swp-content/indafire/aviso-whatsapp-produtos.js?v=%s" defer></script>' % (prefix, ASSET_VERSION)
     if needs_js:
         if "aviso-whatsapp-produtos.js" in text:
@@ -433,6 +468,9 @@ def main(argv):
         stats["menu"] = stats.get("menu", 0) + ch
         text, ch = dedupe_whatsapp(text, is_prod)
         stats["wa"] = stats.get("wa", 0) + ch
+        if f.startswith(("produto/", "categoria-produto/", "produtos/")):
+            text, ch = apply_hero_button(text, f)
+            stats["hero"] = stats.get("hero", 0) + ch
         if is_prod:
             text, ch = apply_cta(text)
             stats["cta"] = stats.get("cta", 0) + ch

@@ -70,3 +70,12 @@ def test_products_menu_has_whatsapp_button_under_each_product():
             continue
         assert text.count('class="if-menu-whats"') == 5, rel
         assert "aviso-whatsapp-produtos.js?v=" in text, rel
+
+
+def test_banner_has_whatsapp_button_on_products_categories_and_product_pages():
+    for rel in PAGES:
+        if not rel.startswith(("produto/", "categoria-produto/", "produtos/")):
+            continue
+        text = read(rel)
+        assert text.count('class="if-hero-whats"') == 1, rel
+        assert text.index('id="tituloCategoriaProdutos"') < text.index('class="if-hero-whats"'), rel

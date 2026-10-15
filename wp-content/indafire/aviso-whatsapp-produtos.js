@@ -14,7 +14,7 @@
 
   var WHATSAPP = '551938341741';
   // só onde há orçamento de produto: formulário, botão "via WhatsApp" na página ou no menu Produtos
-  if (!document.querySelector('form[name="Produto"], .if-menu-whats, .if-cta-whats')) return;
+  if (!document.querySelector('form[name="Produto"], .if-menu-whats, .if-hero-whats, .if-cta-whats')) return;
 
   /* ── Menu "Produtos": ao abrir, a página atrás desfoca (com animação) ──
         O menu fica por cima (cabeçalho z-index 10000); a camada é só visual e não pega o mouse. */
@@ -189,7 +189,7 @@
   document.addEventListener(
     'click',
     function (e) {
-      var link = e.target.closest ? e.target.closest('.if-menu-whats, .if-cta-whats') : null;
+      var link = e.target.closest ? e.target.closest('.if-menu-whats, .if-hero-whats, .if-cta-whats') : null;
       if (!link || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       e.stopPropagation(); // o card inteiro é clicável (abre o produto); aqui não
