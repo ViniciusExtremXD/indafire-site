@@ -9,7 +9,8 @@
 4b. Botão "Atendimento via WhatsApp" no banner de produtos, categorias e produto.
 5. Página de produto: sai o botão ao lado da foto (repetia o do banner); o formulário vira
    "Solicite seu orçamento via WhatsApp".
-6. "Produtos relacionados" e páginas de categoria montados por categoria/afinidade.
+6. "Produtos relacionados" em carrossel (10 produtos, por afinidade).
+7. Abas Informações Técnicas / Quando usar / Garantia preenchidas onde o original está vazio.
 
 Idempotente: pode rodar de novo sem duplicar nada.
 """
@@ -22,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "5"
+ASSET_VERSION = "6"
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -359,12 +360,33 @@ def apply_cta(text):
 # ───────────────────────── 6. relacionados e lista de produtos ─────────────────────────
 def grid_bounds(text):
     """(início do miolo, fim do miolo) da primeira grade DCE que tem cards de produto."""
-    for m in re.finditer(r'<div class="dce-posts-wrapper dce-wrapper-grid">', text):
+    for m in re.finditer(r'<div class="(?:dce-posts-wrapper dce-wrapper-grid|if-rel-track)"[^>]*>', text):
         end = balanced_end(text, m.start(), "div")
         inner = text[m.end() : end - len("</div>")]
         if ARTICLE.search(inner):
             return m.end(), end - len("</div>")
     return None
+
+
+RELATED_COUNT = 10
+TRACK_OPEN = '<div class="if-rel-track" data-if-carrossel tabindex="0" aria-label="Produtos relacionados">'
+
+
+def related_order(slug):
+    """Os 3 mais próximos (RELATED) e depois os vizinhos deles, em ondas, até 10 produtos."""
+    order, fila = [], list(RELATED[slug])
+    while fila and len(order) < RELATED_COUNT:
+        s = fila.pop(0)
+        if s == slug or s in order:
+            continue
+        order.append(s)
+        fila.extend(RELATED.get(s, []))
+    for s in CATEGORIES:  # completa com o resto do catálogo, se faltar
+        if len(order) >= RELATED_COUNT:
+            break
+        if s != slug and s not in order:
+            order.append(s)
+    return order
 
 
 def collect_cards(files):
@@ -404,13 +426,15 @@ def apply_related(text, path, cards):
     parts = Path(path).parts
     prefix = prefix_of(path)
     if parts[0] == "produto":
-        # relacionados: sempre 3, escolhidos por afinidade de categoria (tabela RELATED)
+        # relacionados: carrossel com 10, na ordem de afinidade (tabela RELATED)
         b = grid_bounds(text)
         slug = parts[1]
         if not b or slug not in RELATED:
             return text, False
-        new_inner = build_cards(RELATED[slug], cards, prefix)
+        new_inner = build_cards(related_order(slug), cards, prefix)
         new = text[: b[0]] + new_inner + text[b[1] :]
+        # a grade vira trilho do carrossel (fora do layout automático do plugin, que posiciona os cards sozinho)
+        new = new.replace('<div class="dce-posts-wrapper dce-wrapper-grid">', TRACK_OPEN, 1) if TRACK_OPEN not in new else new
     elif parts[0] == "categoria-produto":
         # a categoria mostra os produtos dela (já estavam certos); só ganham o botão
         new = ARTICLE.sub(lambda m: add_card_button(m.group(0)), text)
@@ -437,6 +461,111 @@ def apply_related(text, path, cards):
 
 
 # ───────────────────────── assets compartilhados ─────────────────────────
+# ───────────────────────── 7. abas do produto (Informações Técnicas / Quando usar / Garantia) ─────────────────────────
+# No site original (indafire.com.br) a maioria destas abas está vazia. O que existe lá foi mantido.
+# Os textos abaixo só entram nas abas VAZIAS e foram escritos a partir da descrição do próprio
+# produto no site original (nada de especificação inventada). Garantia: só o extintor tem prazo
+# informado pelo fabricante; nos demais o texto manda confirmar com a equipe.
+GARANTIA_PADRAO = (
+    "<p>Produto com garantia contra defeitos de fabricação, conforme as condições do fabricante.</p>"
+    "<p>Para saber o prazo e as condições deste item, fale com a nossa equipe pelo WhatsApp.</p>"
+)
+ABAS = {
+    "extintor-pqs-bc-4-kg-20bc": {
+        "uso": "<p>Para apagar o começo de incêndio em <strong>líquidos e gases inflamáveis</strong> (gasolina, óleo, gás) "
+        "e em <strong>equipamentos elétricos ligados</strong> (classes B e C).</p>"
+        "<p>Indicado para garagens, casas de máquinas e locais com quadros de energia.</p>",
+    },
+    "abrigo-para-extintor": {
+        "uso": "<p>Quando o extintor fica preso na parede e precisa ficar protegido de batidas, poeira e uso indevido.</p>"
+        "<p>O visor na porta deixa o extintor sempre à vista e a placa “INCÊNDIO” ajuda a encontrá-lo rápido.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    "suporte-de-solo-para-extintor": {
+        "uso": "<p>Quando o extintor deve ficar no chão, sem furar ou danificar a parede.</p>"
+        "<p>Serve para extintores portáteis de pó químico, água e CO2 e evita que o equipamento caia.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    "placa-extintor-e5": {
+        "tec": "<ul><li>Material: PVC fotoluminescente (brilha no escuro)</li><li>Espessura: 2 mm</li>"
+        "<li>Superfície antiestática</li><li>Não propaga chamas: classificada como “Retardador” (IEC 60092-01:2002)</li></ul>",
+        "gar": GARANTIA_PADRAO,
+    },
+    "armario-corta-fogo": {
+        "tec": "<ul><li>Chapas de aço carbono por dentro e por fora, com isolante resistente entre elas</li>"
+        "<li>Resiste a 900 °C por 1 hora</li>"
+        "<li>Respiros com duplo sistema corta-chama, certificado pela FM Global Technologies LLC</li>"
+        "<li>Duas portas com trinco Cremona antifaiscante e 2 chaves</li>"
+        "<li>Prateleiras móveis e reguláveis, com 4 réguas de 15 em 15 cm</li>"
+        "<li>Base reforçada com 4 pés niveladores</li></ul>",
+        "uso": "<p>Para guardar <strong>produtos inflamáveis</strong> (tintas, solventes, combustíveis e produtos químicos) "
+        "com segurança, longe de faíscas e do fogo.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    "capacete-gallet": {
+        "tec": "<ul><li>Casco em termoplástico injetado, totalmente reforçado</li>"
+        "<li>Acabamento com camada brilhante de poliuretano</li>"
+        "<li>Crista no topo que ajuda a absorver impactos</li><li>Protetor de nuca aluminizado</li>"
+        "<li>Viseira refletiva que protege rosto e olhos do calor</li>"
+        "<li>Normas: EN 443, EN 166, EN 14458, EN 170 e EN 171</li></ul>",
+        "uso": "<p>Combate a incêndios em edificações, atendimento em estradas, operações de resgate e demais atividades de bombeiros.</p>"
+        "<p>Protege a cabeça contra calor, chama, frio, eletricidade, água e objetos pesados ou pontiagudos.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    CILINDRO: {
+        "uso": "<p>Como cilindro de ar para <strong>aparelho de respiração autônoma</strong> de 300 bar, usado no combate a incêndio, "
+        "no resgate e em locais com fumaça ou pouco oxigênio.</p>"
+        "<p>Atenção: o cilindro é vendido <strong>vazio</strong> e precisa ser carregado antes do uso.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    CINTURAO: {
+        "uso": "<p>Trabalhos em altura, espaços confinados, resgate técnico, acesso por cordas, evacuação e posicionamento.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    COLETE: {
+        "uso": "<p>No atendimento pré-hospitalar, para imobilizar a coluna e o pescoço do paciente adulto com segurança e conforto, "
+        "por exemplo na retirada de vítimas que estão sentadas em veículos.</p>"
+        "<p>Não tem pregos nem parafusos: pode ficar no paciente durante o raio X.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    "mangueira-tipo-i": {"gar": GARANTIA_PADRAO},
+    CHAVES: {
+        "tec": "<ul><li>Para conexões com engate rápido tipo Storz</li>"
+        "<li>Faz o acoplamento e o desacoplamento de duas ou mais conexões</li></ul>",
+        "uso": "<p>Para conectar e soltar mangueiras, esguichos e outras conexões Storz nos hidrantes, com rapidez e sem esforço.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    "botoeira-de-bomba": {
+        "uso": "<p>Para acionar o alarme de incêndio na mão: basta quebrar o vidro.</p>"
+        "<p>Funciona com todas as centrais de alarme convencionais, em ambientes internos ou externos protegidos.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+    UNIDADE: {
+        "uso": "<p>Para manter a iluminação de emergência acesa quando falta energia, em edifícios, supermercados, boates, "
+        "restaurantes, salões, hospitais e farmácias.</p>",
+        "gar": GARANTIA_PADRAO,
+    },
+}
+TAB_CONTENT = re.compile(r'(<div id="elementor-tab-content-\d+" class="elementor-tab-content[^"]*"[^>]*>)(.*?)(</div>)', re.S)
+
+
+def fill_tabs(text, path):
+    parts = Path(path).parts
+    extra = ABAS.get(parts[1]) if parts[0] == "produto" else None
+    if not extra:
+        return text, False
+    keys = iter(["tec", "uso", "gar"])
+
+    def fill(m):
+        key = next(keys, None)
+        if key and not m.group(2).strip() and extra.get(key):
+            return m.group(1) + extra[key] + m.group(3)
+        return m.group(0)
+
+    new = TAB_CONTENT.sub(fill, text)
+    return new, new != text
+
+
 def link_assets(text, path):
     prefix = prefix_of(path)
     text = re.sub(
@@ -453,6 +582,14 @@ def link_assets(text, path):
             css_tag = re.search(r'<link rel="stylesheet" id="indafire-ajustes-responsivos"[^>]*>', text)
             if css_tag:
                 text = text[: css_tag.start()] + js_tag + "\n" + text[css_tag.start() :]
+    if "data-if-carrossel" in text:
+        if "carrossel-relacionados.js" in text:
+            text = re.sub(r"(carrossel-relacionados\.js)\?v=\d+", r"\1?v=" + ASSET_VERSION, text)
+        else:
+            css_tag = re.search(r'<link rel="stylesheet" id="indafire-ajustes-responsivos"[^>]*>', text)
+            if css_tag:
+                tag = '<script src="%swp-content/indafire/carrossel-relacionados.js?v=%s" defer></script>' % (prefix, ASSET_VERSION)
+                text = text[: css_tag.start()] + tag + "\n" + text[css_tag.start() :]
     return text
 
 
@@ -489,6 +626,8 @@ def main(argv):
             stats["cta"] = stats.get("cta", 0) + ch
             text, ch = remove_product_cta(text)
             stats["cta_removido"] = stats.get("cta_removido", 0) + ch
+            text, ch = fill_tabs(text, f)
+            stats["abas"] = stats.get("abas", 0) + ch
         if f.startswith(("produto/", "categoria-produto/", "produtos/")):
             text, ch = apply_related(text, f, cards)
             stats["cards"] = stats.get("cards", 0) + ch

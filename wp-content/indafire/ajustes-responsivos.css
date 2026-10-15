@@ -841,3 +841,128 @@
     font-size: 15px;
   }
 }
+
+/* ── Banner: desfoque ao chegar perto do WhatsApp + carrossel de relacionados ── */
+#bannerProdutoINDA.if-hero-desfoque > .elementor-container {
+  position: relative;
+  z-index: 2;
+}
+.if-hero-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(0, 0, 0, var(--if-hero-escuro, 0));
+  -webkit-backdrop-filter: blur(var(--if-hero-blur, 0px));
+  backdrop-filter: blur(var(--if-hero-blur, 0px));
+  transition: background-color 0.3s ease-out, -webkit-backdrop-filter 0.3s ease-out, backdrop-filter 0.3s ease-out;
+}
+
+/* "Produtos relacionados" em carrossel: rolagem nativa + setas */
+.if-rel-carrossel {
+  position: relative;
+}
+.if-rel-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 6px 4px 18px;
+}
+.if-rel-track::-webkit-scrollbar {
+  display: none;
+}
+.if-rel-track:focus-visible {
+  outline: 3px solid #1e293b;
+  outline-offset: 4px;
+}
+.if-rel-track > article.dce-post-item {
+  flex: 0 0 calc((100% - 48px) / 3) !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+  transform: none !important;
+  scroll-snap-align: start;
+}
+.if-rel-track .dce-post-block,
+.if-rel-track .dce-post-block > [data-elementor-type],
+.if-rel-track .elementor-section-wrap,
+.if-rel-track .elementor-top-section,
+.if-rel-track .elementor-container,
+.if-rel-track .elementor-row,
+.if-rel-track .areaProduto,
+.if-rel-track .areaProduto > .elementor-column-wrap {
+  height: 100%;
+}
+.if-rel-seta {
+  position: absolute;
+  top: 38%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #e30613;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  transition: opacity 0.25s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+.if-rel-seta:hover {
+  background: #b9050f;
+  transform: scale(1.06);
+}
+.if-rel-seta:focus-visible {
+  outline: 3px solid #1e293b;
+  outline-offset: 2px;
+}
+.if-rel-seta--anterior {
+  left: -22px;
+}
+.if-rel-seta--proximo {
+  right: -22px;
+}
+.if-rel-seta--proximo svg {
+  transform: rotate(180deg);
+}
+.if-rel-seta:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+.if-rel-sem-setas .if-rel-seta {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .if-rel-track > article.dce-post-item {
+    flex-basis: calc((100% - 24px) / 2) !important;
+  }
+  .if-rel-seta--anterior {
+    left: -8px;
+  }
+  .if-rel-seta--proximo {
+    right: -8px;
+  }
+}
+@media (max-width: 767px) {
+  .if-rel-track {
+    gap: 16px;
+  }
+  /* mostra um pedaço do próximo card: dá a dica de que dá para arrastar */
+  .if-rel-track > article.dce-post-item {
+    flex-basis: 82% !important;
+  }
+  .if-rel-seta {
+    width: 42px;
+    height: 42px;
+  }
+}

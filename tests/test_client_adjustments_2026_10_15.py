@@ -42,7 +42,9 @@ def test_product_pages_cta_and_related():
         shown = []
         for art in adj.ARTICLE.finditer(grid):
             shown.append(adj.article_slug(art.group(0)))
-        assert shown == related, (slug, shown)
+        assert shown == adj.related_order(slug), (slug, shown)
+        assert len(shown) == 10 and shown[:3] == related, (slug, shown)
+        assert 'data-if-carrossel' in text and "carrossel-relacionados.js?v=" in text, slug
         assert slug not in shown
 
 
@@ -82,3 +84,12 @@ def test_banner_has_whatsapp_button_on_products_categories_and_product_pages():
         text = read(rel)
         assert text.count('class="if-hero-whats"') == 1, rel
         assert text.index('id="tituloCategoriaProdutos"') < text.index('class="if-hero-whats"'), rel
+
+
+def test_every_product_tab_is_filled():
+    pat = re.compile(r'<div id="elementor-tab-content-\d+" class="elementor-tab-content[^"]*"[^>]*>(.*?)</div>', re.S)
+    for slug in adj.RELATED:
+        tabs = pat.findall(read("produto/%s/index.html" % slug))
+        assert len(tabs) == 3, slug
+        for i, tab in enumerate(tabs):
+            assert tab.strip(), (slug, ["Informações Técnicas", "Quando usar", "Garantia"][i])

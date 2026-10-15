@@ -16,6 +16,53 @@
   // só onde há orçamento de produto: formulário, botão "via WhatsApp" na página ou no menu Produtos
   if (!document.querySelector('form[name="Produto"], .if-menu-whats, .if-hero-whats, .if-cta-whats')) return;
 
+  /* ── Banner (imagem do topo): quanto mais o mouse chega perto do botão do WhatsApp,
+        mais a foto desfoca; em cima do botão o desfoque é total. O título e o botão ficam nítidos. ── */
+  (function () {
+    var botao = document.querySelector('.if-hero-whats');
+    var banner = botao && botao.closest('#bannerProdutoINDA');
+    if (!banner) return;
+    var MAX = 9; // px de desfoque
+    var RAIO = 380; // distância (px) em que o desfoque começa
+    // desfoque não é movimento na tela: fica ativo mesmo com "reduzir animações" ligado no sistema
+
+    function aplicar(nivel) {
+      banner.style.setProperty('--if-hero-blur', (nivel * MAX).toFixed(2) + 'px');
+      banner.style.setProperty('--if-hero-escuro', (nivel * 0.25).toFixed(3));
+    }
+    function perto(e) {
+      var r = botao.getBoundingClientRect();
+      var dx = Math.max(r.left - e.clientX, 0, e.clientX - r.right);
+      var dy = Math.max(r.top - e.clientY, 0, e.clientY - r.bottom);
+      var d = Math.sqrt(dx * dx + dy * dy);
+      aplicar(Math.max(0, 1 - d / RAIO));
+    }
+    // camada só da foto (fica entre a imagem e o conteúdo): é ela que desfoca
+    var camada = document.createElement('div');
+    camada.className = 'if-hero-blur';
+    camada.setAttribute('aria-hidden', 'true');
+    banner.insertBefore(camada, banner.querySelector('.elementor-container'));
+    banner.classList.add('if-hero-desfoque');
+    banner.addEventListener('mousemove', perto);
+    banner.addEventListener('mouseleave', function () {
+      aplicar(0);
+    });
+    // teclado e toque: foco/toque no botão = desfoque total
+    botao.addEventListener('focus', function () {
+      aplicar(1);
+    });
+    botao.addEventListener('blur', function () {
+      aplicar(0);
+    });
+    botao.addEventListener(
+      'touchstart',
+      function () {
+        aplicar(1);
+      },
+      { passive: true },
+    );
+  })();
+
   /* ── Menu "Produtos": ao abrir, a página atrás desfoca (com animação) ──
         O menu fica por cima (cabeçalho z-index 10000); a camada é só visual e não pega o mouse. */
   (function () {
