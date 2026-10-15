@@ -93,3 +93,11 @@ def test_every_product_tab_is_filled():
         assert len(tabs) == 3, slug
         for i, tab in enumerate(tabs):
             assert tab.strip(), (slug, ["Informações Técnicas", "Quando usar", "Garantia"][i])
+
+
+def test_no_outdated_manufacturing_year_in_product_info():
+    for slug in adj.RELATED:
+        text = read("produto/%s/index.html" % slug)
+        assert "Fab 2020" not in text, slug
+    cil = read("produto/%s/index.html" % adj.CILINDRO)
+    assert "Validade: 5 anos a partir da data de fabricação" in cil

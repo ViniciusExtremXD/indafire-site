@@ -549,7 +549,15 @@ ABAS = {
 TAB_CONTENT = re.compile(r'(<div id="elementor-tab-content-\d+" class="elementor-tab-content[^"]*"[^>]*>)(.*?)(</div>)', re.S)
 
 
+# Informação que envelhece (ano de fabricação de um lote antigo): vira regra que vale sempre.
+TEXT_FIXES = {
+    "&#8211; Fab 2020 &#8211; 5 anos de validade<br />": "&#8211; Validade: 5 anos a partir da data de fabricação<br />",
+}
+
+
 def fill_tabs(text, path):
+    for antigo, novo in TEXT_FIXES.items():
+        text = text.replace(antigo, novo)
     parts = Path(path).parts
     extra = ABAS.get(parts[1]) if parts[0] == "produto" else None
     if not extra:
