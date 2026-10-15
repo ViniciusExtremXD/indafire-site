@@ -117,8 +117,12 @@
     '.if-aviso :focus-visible{outline:3px solid #1e293b;outline-offset:2px}' +
     'html.if-aviso-trava,html.if-aviso-trava body{overflow:hidden}' +
     '@media (max-width:420px){.if-aviso__caixa{padding:32px 20px 22px}.if-aviso__titulo{font-size:19px}.if-aviso__texto{font-size:16px}}' +
-    '@media (max-height:480px){.if-aviso__caixa{padding:22px 22px 16px}.if-aviso__icone{width:48px;height:48px;margin-bottom:8px}' +
-    '.if-aviso__botao{margin-top:14px;min-height:48px}.if-aviso__fechar-texto{margin-top:6px}}';
+    // celular deitado: caixa mais larga e mais baixa, para caber inteira sem rolar
+    '@media (max-height:480px){.if-aviso{padding:10px}.if-aviso__caixa{max-width:560px;max-height:calc(100vh - 20px);padding:14px 24px 8px}' +
+    '.if-aviso__icone{width:40px;height:40px;margin-bottom:4px}.if-aviso__icone svg{width:24px;height:24px}' +
+    '.if-aviso__titulo{font-size:18px;margin-bottom:4px}.if-aviso__texto{font-size:15px;line-height:1.35;margin-bottom:0}' +
+    '.if-aviso__produto{margin-top:8px;padding:6px 12px;font-size:14px}' +
+    '.if-aviso__botao{margin-top:10px;min-height:46px}.if-aviso__fechar-texto{margin-top:2px;padding:4px 14px}}';
 
   var estilo = document.createElement('style');
   estilo.id = 'if-aviso-css';
