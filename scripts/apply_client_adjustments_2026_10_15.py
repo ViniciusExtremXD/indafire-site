@@ -5,7 +5,7 @@
 2. Remove a assinatura Bee Creative do rodapé.
 3. Deixa um único bloco "Atendimento via WhatsApp" na home e tira o card
    genérico das páginas de produto (o orçamento do produto já é pelo WhatsApp).
-4. Botão "Atendimento via WhatsApp" logo abaixo de cada card de produto.
+4. Botão "Atendimento via WhatsApp" abaixo de cada produto do menu "Produtos" (cabeçalho).
 5. CTA do produto: "Solicite orçamento via WhatsApp".
 6. "Produtos relacionados" e páginas de categoria montados por categoria/afinidade.
 
@@ -20,7 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "3"
+ASSET_VERSION = "4"
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -205,14 +205,41 @@ def card_button(title):
 
 
 def add_card_button(article):
-    article = BTN_RE.sub("", article)
-    title = card_title(article)
-    m = re.search(r'<div class="dce-post-block">', article)
-    if not m or not title:
+    """O cliente quer o botão no menu "Produtos", não embaixo dos cards da lista:
+    esta função só remove o botão que a 1ª versão (15/10) tinha colocado nos cards."""
+    return BTN_RE.sub("", article)
+
+
+# ── botão "Atendimento via WhatsApp" no menu Produtos (carrossel do cabeçalho) ──
+MENU_ARTICLE = re.compile(r'<article class="[^"]*\bproduct\b[^"]*\bswiper-slide\b[^"]*"[^>]*>.*?</article>', re.S)
+MENU_BTN_RE = re.compile(r'\n<div class="if-menu-whats-wrap">.*?</div>', re.S)
+
+
+def menu_button(title):
+    msg = "Olá! Vim pelo site da Inda Fire e gostaria de atendimento sobre: %s." % title
+    href = "https://wa.me/%s?text=%s" % (WHATSAPP, urllib.parse.quote(msg))
+    t = htmllib.escape(title, quote=True)
+    return (
+        '\n<div class="if-menu-whats-wrap">'
+        '<a class="if-menu-whats" href="%s" target="_blank" rel="noopener" data-if-produto="%s" '
+        'aria-label="Atendimento via WhatsApp: %s">%s<span>Atendimento via WhatsApp</span></a></div>'
+        % (href, t, t, WA_SVG.format(s=18))
+    )
+
+
+def add_menu_button(article):
+    article = MENU_BTN_RE.sub("", article)
+    m = re.search(r'<h2 class="elementor-heading-title elementor-size-default">([^<]+)</h2>', article)
+    w = re.search(r'<div class="elementor-element [^"]*elementor-widget-button"[^>]*>', article)
+    if not m or not w:
         return article
-    end = balanced_end(article, m.start(), "div")
-    close = end - len("</div>")
-    return article[:close] + "\n\t\t\t\t" + card_button(title) + "\n\t\t\t" + article[close:]
+    end = balanced_end(article, w.start(), "div")
+    return article[:end] + menu_button(htmllib.unescape(m.group(1)).strip()) + article[end:]
+
+
+def apply_menu_buttons(text):
+    new = MENU_ARTICLE.sub(lambda m: add_menu_button(m.group(0)), text)
+    return new, new != text
 
 
 def article_slug(article):
@@ -308,12 +335,12 @@ def collect_cards(files):
     return cards
 
 
-def build_cards(slugs, cards, dst_prefix, with_button=True):
+def build_cards(slugs, cards, dst_prefix):
     out = []
     for s in slugs:
         art, pre = cards[s]
         art = with_prefix(art, pre, dst_prefix)
-        out.append(add_card_button(art) if with_button else art)
+        out.append(art)
     return "\n".join(out) + "\n"
 
 
@@ -369,7 +396,7 @@ def link_assets(text, path):
         r"\1?v=" + ASSET_VERSION,
         text,
     )
-    needs_js = ("if-card-whats" in text) or ("if-cta-whats" in text) or ('name="Produto"' in text)
+    needs_js = ("if-menu-whats" in text) or ("if-cta-whats" in text) or ('name="Produto"' in text)
     js_tag = '<script src="%swp-content/indafire/aviso-whatsapp-produtos.js?v=%s" defer></script>' % (prefix, ASSET_VERSION)
     if needs_js:
         if "aviso-whatsapp-produtos.js" in text:
@@ -402,6 +429,8 @@ def main(argv):
         ):
             text, ch = fn(text)
             stats[name] = stats.get(name, 0) + ch
+        text, ch = apply_menu_buttons(text)
+        stats["menu"] = stats.get("menu", 0) + ch
         text, ch = dedupe_whatsapp(text, is_prod)
         stats["wa"] = stats.get("wa", 0) + ch
         if is_prod:

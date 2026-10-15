@@ -1,5 +1,5 @@
 """Ajustes do cliente (15/10/2026): catálogo/newsletter/Bee Creative fora, WhatsApp único,
-botão de atendimento nos produtos e relacionados por afinidade."""
+botão de atendimento no menu Produtos e relacionados por afinidade."""
 import re
 import subprocess
 import sys
@@ -10,7 +10,6 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import apply_client_adjustments_2026_10_15 as adj  # noqa: E402
 
 PAGES = [f for f in subprocess.check_output(["git", "ls-files", "*.html"], cwd=ROOT, text=True).split("\n") if f]
-CARD_BUTTON = re.compile(r'class="if-card-whats" href="[^"]*" target="_blank" rel="noopener" data-if-produto="')
 
 
 def read(rel):
@@ -36,7 +35,7 @@ def test_product_pages_cta_and_related():
         assert "Solicite seu orçamento via WhatsApp" in text, slug
         start, end = adj.grid_bounds(text)
         grid = text[start:end]
-        assert len(CARD_BUTTON.findall(grid)) == 3, slug
+        assert "if-card-whats" not in grid, slug  # botão fica no menu Produtos, não nos cards
         shown = []
         for art in adj.ARTICLE.finditer(grid):
             shown.append(adj.article_slug(art.group(0)))
@@ -54,7 +53,7 @@ def test_product_list_shows_every_product_with_button():
     start, end = adj.grid_bounds(text)
     slugs = [adj.article_slug(m.group(0)) for m in adj.ARTICLE.finditer(text[start:end])]
     assert set(slugs) == set(adj.CATEGORIES)
-    assert len(CARD_BUTTON.findall(text[start:end])) == len(adj.CATEGORIES)
+    assert "if-card-whats" not in text
 
 
 def test_script_is_idempotent():
@@ -62,3 +61,12 @@ def test_script_is_idempotent():
         [sys.executable, str(ROOT / "scripts" / "apply_client_adjustments_2026_10_15.py"), "--dry"], text=True
     )
     assert "'files'" not in out, out
+
+
+def test_products_menu_has_whatsapp_button_under_each_product():
+    for rel in PAGES:
+        text = read(rel)
+        if "swiper-slide dce-item-carousel" not in text:
+            continue
+        assert text.count('class="if-menu-whats"') == 5, rel
+        assert "aviso-whatsapp-produtos.js?v=" in text, rel

@@ -13,8 +13,27 @@
   'use strict';
 
   var WHATSAPP = '551938341741';
-  // só onde há orçamento de produto: formulário, botão "via WhatsApp" ou cards de produto
-  if (!document.querySelector('form[name="Produto"], .if-card-whats, .if-cta-whats')) return;
+  // só onde há orçamento de produto: formulário, botão "via WhatsApp" na página ou no menu Produtos
+  if (!document.querySelector('form[name="Produto"], .if-menu-whats, .if-cta-whats')) return;
+
+  /* ── Menu "Produtos": ao abrir, a página atrás desfoca (com animação) ──
+        O menu fica por cima (cabeçalho z-index 10000); a camada é só visual e não pega o mouse. */
+  (function () {
+    var itens = document.querySelectorAll('li.jet-mega-menu-item');
+    if (!itens.length || !window.MutationObserver) return;
+    var camada = document.createElement('div');
+    camada.className = 'if-menu-desfoque';
+    camada.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(camada);
+    function atualizar() {
+      var aberto = document.querySelector('li.jet-mega-menu-item.jet-menu-hover');
+      camada.classList.toggle('if-aberto', !!aberto);
+    }
+    var obs = new MutationObserver(atualizar);
+    Array.prototype.forEach.call(itens, function (li) {
+      obs.observe(li, { attributes: true, attributeFilter: ['class'] });
+    });
+  })();
 
   /* ── Estilo (mesma linha visual do site: Open Sans, vermelho #e30613,
         cartão branco arredondado e botão verde do WhatsApp) ── */
@@ -170,7 +189,7 @@
   document.addEventListener(
     'click',
     function (e) {
-      var link = e.target.closest ? e.target.closest('.if-card-whats, .if-cta-whats') : null;
+      var link = e.target.closest ? e.target.closest('.if-menu-whats, .if-cta-whats') : null;
       if (!link || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       e.stopPropagation(); // o card inteiro é clicável (abre o produto); aqui não
