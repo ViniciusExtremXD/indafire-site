@@ -101,3 +101,12 @@ def test_no_outdated_manufacturing_year_in_product_info():
         assert "Fab 2020" not in text, slug
     cil = read("produto/%s/index.html" % adj.CILINDRO)
     assert "Validade: 5 anos a partir da data de fabricação" in cil
+
+
+def test_gtm_replaces_hardcoded_gtag_on_every_page():
+    for rel in PAGES:
+        text = read(rel)
+        assert "gtag/js?id=G-RBGKBY9PJR" not in text, rel
+        assert text.count("GTM-WTKSN3VL") == 2, rel  # <head> + <noscript> no <body>
+        assert text.index("GTM-WTKSN3VL") < text.index("<body"), rel
+        assert "wp-content/indafire/medicao.js?v=" in text, rel

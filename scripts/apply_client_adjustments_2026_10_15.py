@@ -11,6 +11,7 @@
    "Solicite seu orçamento via WhatsApp".
 6. "Produtos relacionados" em carrossel (10 produtos, por afinidade).
 7. Abas Informações Técnicas / Quando usar / Garantia preenchidas onde o original está vazio.
+8. Medição: Google Tag Manager (GTM-WTKSN3VL) no lugar do gtag fixo + medicao.js (eventos de contato).
 
 Idempotente: pode rodar de novo sem duplicar nada.
 """
@@ -23,7 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "8"
+ASSET_VERSION = "9"
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -581,6 +582,65 @@ def fill_tabs(text, path):
     return new, new != text
 
 
+# ───────────────────────── 8. medição: Google Tag Manager no lugar do gtag ─────────────────────────
+# O gtag fixo (G-RBGKBY9PJR) mandava as visitas do site de teste para o GA4 de produção.
+# Agora tudo passa pelo contêiner GTM-WTKSN3VL, que só dispara as tags no domínio oficial.
+GTM_ID = "GTM-WTKSN3VL"
+GTAG_BLOCK = re.compile(
+    r"<!-- Google tag \(gtag\.js\) -->\s*"
+    r'<script async src="https://www\.googletagmanager\.com/gtag/js\?id=G-RBGKBY9PJR"></script>\s*'
+    r"<script>.*?gtag\('config', 'G-RBGKBY9PJR'\);\s*</script>",
+    re.S,
+)
+GTM_HEAD = (
+    "<!-- Google Tag Manager -->\n"
+    "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n"
+    "new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n"
+    "j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n"
+    "'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n"
+    "})(window,document,'script','dataLayer','%s');</script>\n"
+    "<!-- End Google Tag Manager -->" % GTM_ID
+)
+GTM_BODY = (
+    "<!-- Google Tag Manager (noscript) -->\n"
+    '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s"\n'
+    'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n'
+    "<!-- End Google Tag Manager (noscript) -->" % GTM_ID
+)
+
+
+# variante "atrasada" do WP Rocket, presente em parte das páginas
+GTAG_ROCKET = re.compile(
+    r"<!-- Google tag \(gtag\.js\) -->\s*"
+    r'<script type="rocketlazyloadscript" async src="https://www\.googletagmanager\.com/gtag/js\?id=G-RBGKBY9PJR"></script>\s*'
+    r'<script type="rocketlazyloadscript">.*?gtag\(\'config\', \'G-RBGKBY9PJR\'\);\s*</script>',
+    re.S,
+)
+
+
+def install_gtm(text, path):
+    changed = False
+    new = GTAG_ROCKET.sub("", text)
+    if new != text:
+        text, changed = new, True
+    if GTM_ID not in text:
+        new, n = GTAG_BLOCK.subn(lambda _m: GTM_HEAD, text, count=1)
+        if n == 0:  # página sem o gtag antigo: entra logo depois do <head>
+            new = re.sub(r"(<head[^>]*>)", lambda m: m.group(1) + "\n" + GTM_HEAD, text, count=1)
+        new = re.sub(r"(<body[^>]*>)", lambda m: m.group(1) + "\n" + GTM_BODY, new, count=1)
+        text, changed = new, True
+    prefix = prefix_of(path)
+    tag = '<script src="%swp-content/indafire/medicao.js?v=%s" defer></script>' % (prefix, ASSET_VERSION)
+    if "wp-content/indafire/medicao.js" in text:
+        text = re.sub(r"(wp-content/indafire/medicao\.js)\?v=\d+", r"\1?v=" + ASSET_VERSION, text)
+    else:
+        css_tag = re.search(r'<link rel="stylesheet" id="indafire-ajustes-responsivos"[^>]*>', text)
+        if css_tag:
+            text = text[: css_tag.start()] + tag + "\n" + text[css_tag.start() :]
+            changed = True
+    return text, changed
+
+
 def link_assets(text, path):
     prefix = prefix_of(path)
     text = re.sub(
@@ -646,6 +706,8 @@ def main(argv):
         if f.startswith(("produto/", "categoria-produto/", "produtos/")):
             text, ch = apply_related(text, f, cards)
             stats["cards"] = stats.get("cards", 0) + ch
+        text, ch = install_gtm(text, f)
+        stats["gtm"] = stats.get("gtm", 0) + ch
         text = link_assets(text, f)
         if text != orig:
             stats["files"] = stats.get("files", 0) + 1
