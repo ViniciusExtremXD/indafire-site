@@ -13,20 +13,26 @@
   'use strict';
 
   var WHATSAPP = '551938341741';
-  // só na página do produto (é onde fica o formulário de orçamento)
-  if (!document.querySelector('form[name="Produto"]')) return;
+  // só onde há orçamento de produto: formulário, botão "via WhatsApp" ou cards de produto
+  if (!document.querySelector('form[name="Produto"], .if-card-whats, .if-cta-whats')) return;
 
   /* ── Estilo (mesma linha visual do site: Open Sans, vermelho #e30613,
         cartão branco arredondado e botão verde do WhatsApp) ── */
   var css =
     '.if-aviso{position:fixed;inset:0;z-index:2147483646;display:flex;align-items:center;justify-content:center;padding:20px;' +
-    'background:rgba(15,15,18,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;visibility:hidden;' +
-    'transition:opacity .25s ease,visibility 0s linear .25s}' +
-    '.if-aviso.if-aberto{opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s}' +
+    // o desfoque entra devagar (0 → 10px) junto com o escurecimento; a caixa "foca" ao aparecer
+    'background:rgba(15,15,18,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);opacity:0;visibility:hidden;' +
+    'transition:opacity .3s ease,background-color .5s ease,-webkit-backdrop-filter .55s ease,backdrop-filter .55s ease,visibility 0s linear .55s}' +
+    '.if-aviso.if-aberto{background:rgba(15,15,18,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:1;visibility:visible;' +
+    'transition:opacity .3s ease,background-color .5s ease,-webkit-backdrop-filter .55s ease,backdrop-filter .55s ease,visibility 0s}' +
     '.if-aviso__caixa{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 40px);overflow-y:auto;background:#fff;' +
     'border-radius:16px;padding:36px 28px 28px;text-align:center;font-family:"Open Sans",Arial,sans-serif;color:#1e293b;' +
-    'box-shadow:0 24px 60px rgba(0,0,0,.28);border-top:5px solid #e30613;transform:translateY(16px) scale(.97);transition:transform .3s ease}' +
-    '.if-aviso.if-aberto .if-aviso__caixa{transform:none}.if-aviso__caixa:focus,.if-aviso__caixa:focus-visible{outline:none !important;box-shadow:0 24px 60px rgba(0,0,0,.28) !important}' +
+    'box-shadow:0 24px 60px rgba(0,0,0,.28);border-top:5px solid #e30613;transform:translateY(22px) scale(.95);filter:blur(8px);opacity:0;' +
+    'transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .5s ease,opacity .35s ease}' +
+    '.if-aviso.if-aberto .if-aviso__caixa{transform:none;filter:none;opacity:1}' +
+    '.if-aviso__caixa:focus,.if-aviso__caixa:focus-visible{outline:none !important;box-shadow:0 24px 60px rgba(0,0,0,.28) !important}' +
+    '@media (prefers-reduced-motion:reduce){.if-aviso,.if-aviso.if-aberto,.if-aviso__caixa,.if-aviso.if-aberto .if-aviso__caixa{transition-duration:.01ms !important}' +
+    '.if-aviso__caixa{filter:none;transform:none}}' +
     '.if-aviso__icone{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:14px;' +
     'border-radius:50%;background:#25D366}' +
     '.if-aviso__titulo{margin:0 0 10px;font-size:22px;font-weight:700;line-height:1.25;text-transform:uppercase;letter-spacing:.3px;color:#1e293b}' +
@@ -158,6 +164,26 @@
     if (doTitulo && doTitulo.toUpperCase() === nome.toUpperCase()) nome = doTitulo;
     return nome;
   }
+
+  /* ── Botões "via WhatsApp" (cards e página do produto): tela desfocada + aviso ──
+        Sem JavaScript o link já abre o WhatsApp com a mensagem pronta. */
+  document.addEventListener(
+    'click',
+    function (e) {
+      var link = e.target.closest ? e.target.closest('.if-card-whats, .if-cta-whats') : null;
+      if (!link || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      e.stopPropagation(); // o card inteiro é clicável (abre o produto); aqui não
+      var texto = '';
+      try {
+        texto = new URL(link.href).searchParams.get('text') || '';
+      } catch (err) {
+        texto = '';
+      }
+      abrir(link.getAttribute('data-if-produto') || '', texto);
+    },
+    true,
+  );
 
   /* ── Formulário "Solicite seu orçamento": vai pelo WhatsApp com os dados ── */
   document.addEventListener(

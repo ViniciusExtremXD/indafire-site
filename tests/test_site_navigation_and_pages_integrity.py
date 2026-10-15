@@ -82,9 +82,7 @@ def test_mandatory_elements_in_all_pages():
     elements = {
         "map": ['id="localizacao_mapa"', "inda-location-section", "google.com/maps", "maps.google"],
         "whatsapp": ["indafire-whatsapp-section", "indafire-commercial-whatsapp", "sendIndafireWhatsApp", "api.whatsapp.com"],
-        "newsletter": ["formulario_newsletter", "Assine nossa newsletter", "newsletter"],
-        "catalogo": ["formulario_catalogo", "Baixe nosso catálogo", "catalogo-inda-fire", "modal_catalogo"]
-    }
+    }  # newsletter e catálogo saíram do site em 15/10/2026 (veja test_client_adjustments_2026_10_15.py)
     
     for filepath in pages:
         rel_file = os.path.relpath(filepath, REPO_DIR).replace('\\', '/')
