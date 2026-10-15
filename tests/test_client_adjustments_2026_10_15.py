@@ -31,7 +31,10 @@ def test_single_whatsapp_card_per_page():
 def test_product_pages_cta_and_related():
     for slug, related in adj.RELATED.items():
         text = read("produto/%s/index.html" % slug)
-        assert "Solicite orçamento via WhatsApp" in text, slug
+        # WhatsApp na página do produto: só banner, formulário e botão flutuante
+        assert "if-cta-whats" not in text and 'href="#orcamento"' not in text, slug
+        assert text.count('class="if-hero-whats"') == 1, slug
+        assert 'id="ht-ctc-chat"' in text, slug
         assert "Solicite seu orçamento via WhatsApp" in text, slug
         start, end = adj.grid_bounds(text)
         grid = text[start:end]

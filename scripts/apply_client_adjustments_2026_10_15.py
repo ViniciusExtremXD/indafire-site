@@ -7,7 +7,8 @@
    genérico das páginas de produto (o orçamento do produto já é pelo WhatsApp).
 4. Botão "Atendimento via WhatsApp" abaixo de cada produto do menu "Produtos" (cabeçalho).
 4b. Botão "Atendimento via WhatsApp" no banner de produtos, categorias e produto.
-5. CTA do produto: "Solicite orçamento via WhatsApp".
+5. Página de produto: sai o botão ao lado da foto (repetia o do banner); o formulário vira
+   "Solicite seu orçamento via WhatsApp".
 6. "Produtos relacionados" e páginas de categoria montados por categoria/afinidade.
 
 Idempotente: pode rodar de novo sem duplicar nada.
@@ -311,6 +312,18 @@ def product_name(text):
     return htmllib.unescape(m.group(1)).strip() if m else ""
 
 
+def remove_product_cta(text):
+    """Página de produto: o WhatsApp fica só no banner, no formulário e no botão flutuante.
+    O botão ao lado da foto ("Solicite orçamento via WhatsApp") repetia o do banner."""
+    m = re.search(r'<div class="elementor-element elementor-element-6f4fdbb [^>]*>', text)
+    if not m:
+        return text, False
+    end = balanced_end(text, m.start(), "div")
+    if "if-cta-whats" not in text[m.start() : end] and 'href="#orcamento"' not in text[m.start() : end]:
+        return text, False
+    return text[: m.start()] + text[end:], True
+
+
 def apply_cta(text):
     name = product_name(text)
     if not name:
@@ -474,6 +487,8 @@ def main(argv):
         if is_prod:
             text, ch = apply_cta(text)
             stats["cta"] = stats.get("cta", 0) + ch
+            text, ch = remove_product_cta(text)
+            stats["cta_removido"] = stats.get("cta_removido", 0) + ch
         if f.startswith(("produto/", "categoria-produto/", "produtos/")):
             text, ch = apply_related(text, f, cards)
             stats["cards"] = stats.get("cards", 0) + ch
