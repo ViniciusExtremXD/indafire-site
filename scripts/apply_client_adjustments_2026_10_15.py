@@ -9,7 +9,7 @@
 4b. Botão "Atendimento via WhatsApp" no banner de produtos, categorias e produto.
 5. Página de produto: sai o botão ao lado da foto (repetia o do banner); o formulário vira
    "Solicite seu orçamento via WhatsApp".
-6. "Produtos relacionados" em carrossel (10 produtos, por afinidade).
+6. "Mais opções" (antigo "Produtos relacionados") em carrossel: 10 produtos, por afinidade.
 7. Abas Informações Técnicas / Quando usar / Garantia preenchidas onde o original está vazio.
 8. Medição: Google Tag Manager (GTM-WTKSN3VL) no lugar do gtag fixo + medicao.js (eventos de contato).
 
@@ -24,7 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "9"
+ASSET_VERSION = "10"
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -370,8 +370,8 @@ def grid_bounds(text):
 
 
 RELATED_COUNT = 10
-RELATED_TITLE = "Produtos relacionados e mais opções"
-TRACK_OPEN = '<div class="if-rel-track" data-if-carrossel tabindex="0" aria-label="Produtos relacionados">'
+RELATED_TITLE = "Mais opções"
+TRACK_OPEN = '<div class="if-rel-track" data-if-carrossel tabindex="0" aria-label="Mais opções">'
 
 
 def related_order(slug):
@@ -434,13 +434,14 @@ def apply_related(text, path, cards):
         if not b or slug not in RELATED:
             return text, False
         new_inner = build_cards(related_order(slug), cards, prefix)
-        # os 3 primeiros combinam de verdade com o produto: ganham o selo "Combina com este produto"
-        new_inner = re.sub(r'<article class="', '<article class="if-rel-destaque ', new_inner, count=len(RELATED[slug]))
         new = text[: b[0]] + new_inner + text[b[1] :]
-        new = new.replace(
-            '<h3 class="elementor-heading-title elementor-size-default">Produtos relacionados</h3>',
-            '<h3 class="elementor-heading-title elementor-size-default">%s</h3>' % RELATED_TITLE,
-        )
+        # o catálogo é pequeno: não são "relacionados" de verdade, são outras opções da loja
+        for antigo in ("Produtos relacionados", "Produtos relacionados e mais opções"):
+            new = new.replace(
+                '<h3 class="elementor-heading-title elementor-size-default">%s</h3>' % antigo,
+                '<h3 class="elementor-heading-title elementor-size-default">%s</h3>' % RELATED_TITLE,
+            )
+        new = new.replace('data-if-carrossel tabindex="0" aria-label="Produtos relacionados">', TRACK_OPEN[len('<div class="if-rel-track" '):])
         # a grade vira trilho do carrossel (fora do layout automático do plugin, que posiciona os cards sozinho)
         new = new.replace('<div class="dce-posts-wrapper dce-wrapper-grid">', TRACK_OPEN, 1) if TRACK_OPEN not in new else new
     elif parts[0] == "categoria-produto":

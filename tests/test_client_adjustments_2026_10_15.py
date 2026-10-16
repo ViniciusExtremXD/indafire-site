@@ -46,6 +46,8 @@ def test_product_pages_cta_and_related():
         assert len(shown) == 10 and shown[:3] == related, (slug, shown)
         assert 'data-if-carrossel' in text and "carrossel-relacionados.js?v=" in text, slug
         assert slug not in shown
+        assert '>Mais opções</h3>' in text and 'Produtos relacionados' not in text, slug
+        assert 'if-rel-destaque' not in text, slug
 
 
 def test_cylinder_related_are_not_the_whole_rescue_family():
