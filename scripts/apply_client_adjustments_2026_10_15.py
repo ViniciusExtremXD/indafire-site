@@ -12,6 +12,8 @@
 6. "Mais opções" (antigo "Produtos relacionados") em carrossel: 10 produtos, por afinidade.
 7. Abas Informações Técnicas / Quando usar / Garantia preenchidas onde o original está vazio.
 8. Medição: Google Tag Manager (GTM-WTKSN3VL) no lugar do gtag fixo + medicao.js (eventos de contato).
+9. Responsividade (12/11): número de WhatsApp errado corrigido, catálogo fora do blog e páginas
+   cursos/lorem-ipsum-* (quebradas) redirecionadas para /cursos-online/.
 
 Idempotente: pode rodar de novo sem duplicar nada.
 """
@@ -24,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "10"
+ASSET_VERSION = "11"
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -126,6 +128,47 @@ def remove_catalog_popup(text):
     if not m:
         return text, False
     return remove_block(text, m.start(), "div"), True
+
+
+# Número de WhatsApp que entrou numa geração automática antiga (blog, cursos, unidade móvel, 404) e que
+# NÃO existe no site original nem no banco do WordPress. O oficial do site é o (19) 3834-1741.
+NUMERO_ERRADO = {
+    "api.whatsapp.com/send?phone=5519999015942": "api.whatsapp.com/send?phone=" + WHATSAPP,
+    "(19) 99901-5942": "(19) 3834-1741",
+}
+
+
+def fix_wrong_whatsapp(text):
+    new = text
+    for antigo, novo in NUMERO_ERRADO.items():
+        new = new.replace(antigo, novo)
+    return new, new != text
+
+
+# Textos do WooCommerce que ficaram em inglês (o filtro de categorias aparece no celular e no tablet)
+TRADUCOES = {
+    ">Select a category</option>": ">Selecione uma categoria</option>",
+    "placeholder: 'Select a category'": "placeholder: 'Selecione uma categoria'",
+    '"i18n_view_cart":"View cart"': '"i18n_view_cart":"Ver carrinho"',
+}
+
+
+def translate_leftovers(text):
+    new = text
+    for antigo, novo in TRADUCOES.items():
+        new = new.replace(antigo, novo)
+    return new, new != text
+
+
+def remove_blog_catalog_box(text):
+    """Posts do blog: quadro lateral "Catálogo Completo / Baixar Catálogo" (o catálogo saiu do site)."""
+    i = text.find("<!-- Catalogue Widget Box -->")
+    if i < 0:
+        return text, False
+    start = text.index("<div", i)
+    end = balanced_end(text, start, "div")
+    line_start = text.rfind("\n", 0, i) + 1
+    return text[:line_start] + text[end:].lstrip("\r\n"), True
 
 
 UNIVERSAL_FORMS_TAIL = re.compile(
@@ -669,6 +712,36 @@ def link_assets(text, path):
     return text
 
 
+# ───────────────────────── 9. páginas de curso "lorem-ipsum" (12/11/2026) ─────────────────────────
+# As 15 páginas cursos/lorem-ipsum-* vieram de testes do WordPress e, na geração antiga, o conteúdo
+# ficou dentro do menu suspenso do cabeçalho: abrem em branco em qualquer tela. Nenhuma página do
+# site aponta para elas; o conteúdo é o mesmo de /cursos-online/. Viram um redirecionamento para lá.
+REDIRECT_MARK = "<!-- indafire: redirecionamento de página de teste -->"
+
+
+def redirect_placeholder(text, path):
+    if not path.startswith("cursos/lorem-ipsum") or REDIRECT_MARK in text:
+        return text, False
+    prefix = prefix_of(path)
+    destino = prefix + "cursos-online/"
+    page = (
+        "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n" + GTM_HEAD + "\n"
+        + REDIRECT_MARK + "\n"
+        '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        '<meta name="robots" content="noindex, follow">\n'
+        '<meta http-equiv="refresh" content="0; url=%s">\n'
+        '<link rel="canonical" href="https://indafire.com.br/cursos-online/">\n'
+        "<title>Cursos Online de Prevenção e Combate a Incêndios - Inda Fire</title>\n"
+        '<script src="%swp-content/indafire/medicao.js?v=%s" defer></script>\n'
+        '<link rel="stylesheet" id="indafire-ajustes-responsivos" href="%swp-content/indafire/ajustes-responsivos.css?v=%s" media="all">\n'
+        "</head>\n<body>\n" + GTM_BODY + "\n"
+        '<p style="font:16px/1.5 \'Open Sans\',Arial,sans-serif;text-align:center;margin:40px 16px">'
+        'Esta página mudou de endereço. <a href="%s">Ver os cursos online da Inda Fire</a>.</p>\n'
+        "<script>location.replace(%s);</script>\n</body>\n</html>\n"
+    ) % (destino, prefix, ASSET_VERSION, prefix, ASSET_VERSION, destino, repr(destino))
+    return page, True
+
+
 def main(argv):
     dry = "--dry" in argv
     files = [f for f in subprocess.check_output(["git", "ls-files", "*.html"], cwd=ROOT, text=True).split("\n") if f]
@@ -681,12 +754,17 @@ def main(argv):
         p = ROOT / f
         text = p.read_text(encoding="utf-8")
         orig = text
+        text, ch = redirect_placeholder(text, f)
+        stats["curso_redirect"] = stats.get("curso_redirect", 0) + ch
         is_prod = f.startswith("produto/")
         for name, fn in (
             ("rodape", remove_forms_rodape),
             ("popup", remove_catalog_popup),
             ("formsjs", strip_forms_js),
             ("bee", remove_bee),
+            ("blog_catalogo", remove_blog_catalog_box),
+            ("numero_whatsapp", fix_wrong_whatsapp),
+            ("traducoes", translate_leftovers),
         ):
             text, ch = fn(text)
             stats[name] = stats.get(name, 0) + ch

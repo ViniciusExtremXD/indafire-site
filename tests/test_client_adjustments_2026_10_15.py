@@ -112,3 +112,19 @@ def test_gtm_replaces_hardcoded_gtag_on_every_page():
         assert text.count("GTM-WTKSN3VL") == 2, rel  # <head> + <noscript> no <body>
         assert text.index("GTM-WTKSN3VL") < text.index("<body"), rel
         assert "wp-content/indafire/medicao.js?v=" in text, rel
+
+
+def test_responsividade_2026_11_12():
+    for rel in PAGES:
+        text = read(rel)
+        # número que não existe no site original
+        assert "5519999015942" not in text and "99901-5942" not in text, rel
+        # catálogo fora também dos posts do blog
+        assert "Catalogue Widget Box" not in text and "btn-abrir-catalogo" not in text, rel
+        # textos do WooCommerce em português
+        assert "Select a category" not in text and '"View cart"' not in text, rel
+        if rel.startswith("cursos/lorem-ipsum"):
+            assert adj.REDIRECT_MARK in text and "cursos-online/" in text, rel
+    css = (ROOT / "wp-content/indafire/ajustes-responsivos.css").read_text(encoding="utf-8")
+    assert "Menu aberto no celular e no tablet" in css
+    assert "#ht-ctc-chat" in css  # botão flutuante some com o menu aberto

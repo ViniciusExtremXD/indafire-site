@@ -966,3 +966,220 @@
     height: 42px;
   }
 }
+
+/* ── Menu aberto no celular e no tablet (12/11/2026) ── */
+/* seletores mais fortes que os de scripts/inject_responsive_navigation.py, que montou o menu */
+@media (max-width: 1100px) {
+  /* sem as margens internas herdadas do Elementor (40px de cada lado): o espaço vai para o conteúdo */
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-section {
+    padding: 0 !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-container,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-column,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-column-wrap,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-widget-wrap {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 {
+    width: 100% !important;
+  }
+  /* itens do menu: texto à esquerda, seta encostada na direita, uma linha só, área de toque de 40px */
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item {
+    padding: 0 !important;
+    min-height: 40px !important;
+    width: 100% !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    padding: 6px 8px !important;
+    box-sizing: border-box !important;
+    gap: 10px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-text {
+    flex: 1 1 auto !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 15px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-icon {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    justify-content: flex-end !important;
+  }
+  /* contatos e endereço: textos longos quebram dentro do quadro */
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-ad6a302 .elementor-icon-list-item,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-24f1891 .elementor-icon-list-item {
+    min-width: 0 !important;
+    align-items: flex-start !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-ad6a302 .elementor-icon-list-item a,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-24f1891 .elementor-icon-list-item a {
+    white-space: normal !important;
+    min-width: 0 !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-ad6a302 .elementor-icon-list-text,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-24f1891 .elementor-icon-list-text {
+    white-space: normal !important;
+    min-width: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    overflow-wrap: anywhere !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-ad6a302 .elementor-icon-list-icon,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-24f1891 .elementor-icon-list-icon {
+    flex: 0 0 18px !important;
+    width: 18px !important;
+  }
+}
+
+/* menu aberto: o botão flutuante do WhatsApp some (ficava por cima do endereço do menu) */
+html.elementor-popup-modal-active #ht-ctc-chat,
+body.elementor-popup-modal-active #ht-ctc-chat {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease !important;
+}
+/* tablet deitado e telas sem regra própria: blocos em sequência, sem espaço vazio distribuído */
+@media (max-width: 1100px) and (min-height: 651px) {
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-content: flex-start !important;
+    height: auto !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-cd75a00,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-b504b34 {
+    margin: 14px 0 !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-927d68d,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-56111dd {
+    margin: 6px 0 8px !important;
+  }
+}
+
+/* celular e tablet em pé: blocos em sequência, sem o espaço vazio distribuído entre eles */
+@media (max-width: 1100px) and (orientation: portrait) {
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-widget-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-content: flex-start !important;
+    height: auto !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-0de540b {
+    margin-bottom: 10px !important;
+    padding-right: 44px !important; /* não encosta no botão fechar */
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-cd75a00,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-b504b34 {
+    margin: 14px 0 !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-927d68d,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-56111dd {
+    margin: 6px 0 8px !important;
+  }
+}
+
+/* celular deitado: duas colunas (menu | contato), mesma condição do menu deitado do injetor */
+@media (max-height: 550px), (orientation: landscape) and (max-width: 1100px) and (max-height: 650px) {
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-widget-content {
+    padding: 14px 18px 16px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-widget-wrap {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-column-gap: 18px !important;
+    padding-right: 34px !important; /* espaço do botão fechar */
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item a {
+    min-height: 34px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item a {
+    padding: 4px 8px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-text {
+    font-size: 14px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-ad6a302 .elementor-icon-list-text,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-24f1891 .elementor-icon-list-text {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* ── Posts do blog: coluna lateral (12/11/2026) ── */
+/* a coluna lateral herdava display:flex em linha do Elementor e espremia os quadros lado a lado */
+.elementor-container > .elementor-column[style*="flex: 0 0 320px"] {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+}
+.elementor-container > .elementor-column[style*="flex: 0 0 320px"] > div {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 1024px) {
+  /* tablet e celular: a lateral desce para baixo do texto, ocupando a largura toda */
+  .elementor-container > .elementor-column[style*="flex: 0 0 320px"] {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* ── Serviços: listas em tabela dentro dos blocos (12/11/2026) ── */
+/* a tabela de 2 colunas forçava o bloco a ficar mais largo que a tela no celular */
+.dce-acf-repeater-item {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+.dce-acf-repeater-item table {
+  max-width: 100% !important;
+  table-layout: fixed !important;
+}
+@media (max-width: 600px) {
+  /* celular: as duas colunas viram uma lista só */
+  .dce-acf-repeater-item table,
+  .dce-acf-repeater-item tbody,
+  .dce-acf-repeater-item tr,
+  .dce-acf-repeater-item td {
+    display: block !important;
+    width: 100% !important;
+  }
+  .dce-acf-repeater-item td ul {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* ── Formulários em 2 colunas no celular (12/11/2026) ── */
+@media (max-width: 600px) {
+  /* grades de 2 colunas escritas direto na página (cotação, carrinho...): uma coluna no celular */
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  /* botões dos formulários: ocupam a largura e quebram o texto se precisar, sem vazar do quadro */
+  form [style*="flex-wrap: wrap"] > button,
+  form [style*="flex-wrap: wrap"] > a {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+}
