@@ -64,7 +64,7 @@ CSS = r"""
   display: none !important;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1279px), (hover: none) and (pointer: coarse) and (max-width: 1366px) {
   #headerInda .elementor-element.elementor-element-46583ef > .elementor-container > .elementor-row {
     display: flex !important;
     flex-flow: row nowrap !important;
@@ -195,7 +195,7 @@ CSS = r"""
   }
 }
 
-@media (min-width: 768px) and (max-width: 1100px) {
+@media (min-width: 768px) and (max-width: 1279px), (hover: none) and (pointer: coarse) and (min-width: 768px) and (max-width: 1366px) {
   #headerInda .elementor-element.elementor-element-46583ef {
     width: calc(100% - 24px) !important;
     min-height: 56px !important;
@@ -226,7 +226,7 @@ CSS = r"""
   }
 }
 
-@media (min-width: 1101px) {
+@media (min-width: 1367px), (min-width: 1280px) and (hover: hover), (min-width: 1280px) and (pointer: fine), (min-width: 1280px) and (pointer: none) {
   #headerInda .elementor-element.elementor-element-20668c0,
   #headerInda .jet-menu-container {
     display: block !important;
@@ -257,7 +257,7 @@ CSS = r"""
 #headerInda .elementor-social-icons-wrapper .elementor-grid-item:nth-child(3) .elementor-social-icon { animation-delay: 140ms; }
 #headerInda .elementor-social-icons-wrapper .elementor-grid-item:nth-child(4) .elementor-social-icon { animation-delay: 210ms; }
 
-@media (max-width: 1100px) {
+@media (max-width: 1279px), (hover: none) and (pointer: coarse) and (max-width: 1366px) {
   #headerInda {
     position: fixed !important;
     top: 0 !important;
@@ -759,8 +759,8 @@ html body #elementor-popup-modal-2519 a:hover .elementor-icon-list-text {
 
 JS = r"""
 (function () {
-  var compactQuery = window.matchMedia('(max-width: 1100px)');
-  var desktopQuery = window.matchMedia('(min-width: 1101px)');
+  var compactQuery = window.matchMedia('(max-width: 1279px), (hover: none) and (pointer: coarse) and (max-width: 1366px)'); // compacto até 1279px e em telas de toque até 1366px (tablet/celular deitado)
+  var desktopQuery = window.matchMedia('(min-width: 1367px), (min-width: 1280px) and (hover: hover), (min-width: 1280px) and (pointer: fine), (min-width: 1280px) and (pointer: none)');
   var staticDrawerSource = document.querySelector('.elementor-2519');
   var staticDrawerTemplate = staticDrawerSource && staticDrawerSource.cloneNode(true);
 

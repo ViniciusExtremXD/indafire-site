@@ -18,7 +18,7 @@
 }
 
 /* botão "Área do cliente" do cabeçalho: legível */
-@media (max-width: 1100px) {
+@media (max-width: 1279px), (hover: none) and (pointer: coarse) and (max-width: 1366px) {
   #headerInda .indafire-compact-client {
     font-size: 12px !important;
   }
@@ -969,7 +969,7 @@
 
 /* ── Menu aberto no celular e no tablet (12/11/2026) ── */
 /* seletores mais fortes que os de scripts/inject_responsive_navigation.py, que montou o menu */
-@media (max-width: 1100px) {
+@media (max-width: 1279px), (hover: none) and (pointer: coarse) and (max-width: 1366px) {
   /* sem as margens internas herdadas do Elementor (40px de cada lado): o espaço vai para o conteúdo */
   html body #elementor-popup-modal-2519.dialog-widget .elementor-2519,
   html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-section {
@@ -1051,7 +1051,7 @@ body.elementor-popup-modal-active #ht-ctc-chat {
   transition: opacity 0.2s ease !important;
 }
 /* tablet deitado e telas sem regra própria: blocos em sequência, sem espaço vazio distribuído */
-@media (max-width: 1100px) and (min-height: 651px) {
+@media (max-width: 1279px) and (min-height: 651px), (hover: none) and (pointer: coarse) and (max-width: 1366px) and (min-height: 651px) {
   html body #elementor-popup-modal-2519.dialog-widget .elementor-2519 .elementor-widget-wrap {
     display: flex !important;
     flex-direction: column !important;
@@ -1181,5 +1181,66 @@ body.elementor-popup-modal-active #ht-ctc-chat {
     white-space: normal !important;
     text-align: center !important;
     box-sizing: border-box !important;
+  }
+}
+
+/* ── Menu aberto em tela baixa: rola por dentro (13/11/2026) ── */
+/* o conteúdo do menu ficava travado na altura da tela e o que sobrava sumia (celular deitado);
+   agora o miolo rola e o botão de fechar fica sempre visível no canto */
+@media (max-width: 1279px), (hover: none) and (pointer: coarse) and (max-width: 1366px) {
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-widget-content {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    padding-bottom: 12px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-2519,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-section-wrap,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-section,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-container,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-row,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-column,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-column-wrap,
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-message .elementor-widget-wrap {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-close-button {
+    position: absolute !important;
+    z-index: 30 !important;
+  }
+}
+/* tela muito baixa (celular deitado com a barra do navegador): itens mais compactos */
+@media (max-height: 340px) {
+  html body #elementor-popup-modal-2519.dialog-widget .dialog-widget-content {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-0de540b {
+    padding-bottom: 4px !important;
+    margin-bottom: 2px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-0de540b img {
+    max-height: 22px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item,
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item a {
+    min-height: 30px !important;
+  }
+  html body #elementor-popup-modal-2519.dialog-widget .elementor-element-6ee6e25 .elementor-icon-list-item a {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
   }
 }
