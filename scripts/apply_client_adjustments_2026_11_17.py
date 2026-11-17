@@ -120,8 +120,49 @@ COLUNAS_TREINAMENTO = ("23d699d", "1302736")
 # coluna "Produtos" (produtos específicos) do menu suspenso "Produtos"
 COLUNA_MENU_PRODUTOS = "db7b976"
 
-# carrossel de serviços da home: exatamente a ordem do site original (pedido do Wellington, 17/11)
-ORDEM_SERVICOS = [179, 188, 191, 194, 197, 200, 203, 206, 209, 212, 216, 219, 222, 228, 231, 234]  # mesma ordem do site original (indafire.com.br)
+# Carrosséis de serviços (home e menu Serviços): "serviços que vendem mais vêm na frente;
+# fabricação de caixa d'água é o último" (Wellington, 17/11). Extintores primeiro, depois
+# regularização, manutenção, sistemas e os serviços especiais. Mudar a ordem = mexer só aqui.
+ORDEM_SERVICOS = [
+    197,  # Recarga de extintores
+    194,  # Instalação e venda de extintores
+    191,  # AVCB/CLCB – Obtenção ou renovação
+    179,  # Projeto Técnico
+    200,  # Teste hidrostático em mangueiras
+    203,  # Inspeção de equipamentos
+    188,  # Processo simplificado (PTS)
+    206,  # Sistema de hidrantes
+    209,  # Sistema de alarme de incêndio
+    212,  # Detecção de fumaça e calor
+    216,  # Iluminação de emergência
+    219,  # Sprinklers
+    222,  # Sinalização de emergência
+    228,  # Locação de equipamentos
+    231,  # Equipe habilitada para eventos
+    234,  # Fabricação de caixa d'água metálica (sempre o último)
+]
+# Cards do menu Serviços. O WordPress só mostrava 10 serviços (e tirava o da própria página);
+# agora o menu mostra todos. id -> (endereço, foto a partir de wp-content/, título como no site original)
+MENU_SERVICOS_CARDS = {
+    179: ("projeto-tecnico", "uploads/2021/10/serv14.jpg", "Projeto Técnico"),
+    188: ("processo-simplificado-pts", "uploads/2021/10/serv15.jpg", "Processo simplificado (PTS)"),
+    191: ("obtencao-ou-renovacao-avcb-clcb", "uploads/2021/10/serv16.jpg", "AVCB/CLCB – Obtenção ou renovação"),
+    194: ("instalacao-e-venda-de-extintores", "uploads/2021/10/serv2.jpg", "Instalação e venda de extintores"),
+    197: ("recarga-de-extintores", "uploads/2021/10/serv3.jpg", "Recarga de Extintores"),
+    200: ("teste-hidrostatico-em-mangueiras-de-incendios", "uploads/2021/10/serv4.jpg", "Teste Hidrostático em Mangueiras de Incêndios"),
+    203: ("inspecao-de-equipamentos", "uploads/2021/10/serv5.jpg", "Inspeção de Equipamentos"),
+    206: ("sistema-de-hidrantes", "uploads/2021/10/hidrantes.jpg", "Sistema de Hidrantes"),
+    209: ("sistema-de-alarme-de-incendio", "indafire/img/alarme-acionador.jpg", "Sistema de alarme de incêndio"),
+    212: ("sistema-de-deteccao-de-fumaca-e-calor", "uploads/2021/10/serv9.jpg", "Sistema de detecção de fumaça e calor"),
+    216: ("sistema-de-iluminacao-de-emergencia", "uploads/2021/10/iluminacao.jpg", "Sistema de iluminação de emergência"),
+    219: ("sistemas-de-sprinklers", "uploads/2021/10/Sprinkler.jpg", "Sistemas de Sprinklers"),
+    222: ("sinalizacao-de-emergencia", "uploads/2021/10/serv10.jpg", "Sinalização de Emergência"),
+    228: ("locacao-de-equipamentos", "uploads/2021/10/PRONTA-5.png", "Locação de equipamentos"),
+    231: ("disponibilizacao-de-equipe-habilitada-para-eventos-ou-trabalhos-especificos", "uploads/2021/10/serv12.jpg",
+          "Equipe habilitada para eventos ou trabalhos específicos"),
+    234: ("fabricacao-de-caixa-dagua-metalica", "uploads/2021/10/serv13.jpg", "Fabricação de caixa d’água metálica"),
+}
+MENU_SERVICOS_WIDGET = 'data-id="b7b83cb"'
 
 
 def log(*a):
@@ -630,18 +671,72 @@ def ordenar_carrossel_servicos(text):
     start = text.rfind("<div", 0, w)
     end = balanced_end(text, start, "div")
     bloco = text[start:end]
-    arts = list(re.finditer(r'<article\b[^>]*\bpost-(\d+)\b[^>]*>', bloco))
-    if len(arts) != len(ORDEM_SERVICOS):
-        raise SystemExit("carrossel de serviços: esperava %d itens, achei %d" % (len(ORDEM_SERVICOS), len(arts)))
-    pecas = {}
-    for m in arts:
-        pecas[int(m.group(1))] = bloco[m.start(): element_end(bloco, m.start())]
+    bloco_novo = ordenar_artigos(bloco)
+    return text[:start] + bloco_novo + text[end:], bloco_novo != bloco
+
+
+ARTIGO_POST = re.compile(r'<article\b[^>]*\bpost-(\d+)\b[^>]*>')
+
+
+def card_menu_novo(modelo, pid_modelo, pid):
+    """Card do menu Serviços para um serviço que faltava, feito a partir de um card que já existe."""
+    slug_m = MENU_SERVICOS_CARDS[pid_modelo][0]
+    slug, foto, titulo = MENU_SERVICOS_CARDS[pid]
+    card = modelo.replace("post-%d" % pid_modelo, "post-%d" % pid)
+    card = re.sub(r'(data-(?:dce-post-id|post-id|obj-id))="%d"' % pid_modelo, r'\g<1>="%d"' % pid, card)
+    card = card.replace("/" + slug_m + "\\/", "/" + slug + "\\/").replace("/" + slug_m + "/", "/" + slug + "/")
+    card = re.sub(r'\btipos-[\w-]+ ', "", card, count=1)
+    img = re.search(r'<img\b[^>]*>', card)
+    tag = img.group(0)
+    base = re.search(r'="([^"]*?)wp-content/', tag).group(1)  # mesmo prefixo de pasta da página
+    url = "%swp-content/%s" % (base, foto)
+
+    def trocar(m):  # src/srcset e as versões de carregamento tardio (data-lazy-*); o marcador svg fica
+        nome, valor = m.group(1), m.group(2)
+        if "wp-content/" not in valor:
+            return m.group(0)
+        return '%s="%s"' % (nome, url + " 500w" if nome.endswith("srcset") else url)
+
+    nova = re.sub(r'(?<![\w-])((?:data-lazy-)?(?:src|srcset))="([^"]*)"', trocar, tag)
+    card = card[: img.start()] + nova + card[img.end():]
+    card = re.sub(r'(<noscript><img\b[^>]*>)', lambda m: re.sub(
+        r'(?<![\w-])(src|srcset)="([^"]*)"', trocar, m.group(1)), card)
+    card, n = re.subn(r'(<h2 class="elementor-heading-title[^"]*">)[^<]*(</h2>)',
+                      lambda m: m.group(1) + htmllib.escape(titulo, quote=False) + m.group(2), card, count=1)
+    if n != 1 or slug not in card:
+        raise SystemExit("menu Serviços: não consegui montar o card %d" % pid)
+    return card
+
+
+def ordenar_artigos(bloco, completar=None):
+    arts = list(ARTIGO_POST.finditer(bloco))
+    pecas = {int(m.group(1)): bloco[m.start(): element_end(bloco, m.start())] for m in arts}
+    if completar:
+        pid_modelo = int(arts[0].group(1))
+        modelo = pecas[pid_modelo]
+        for pid in ORDEM_SERVICOS:
+            if pid not in pecas:
+                pecas[pid] = completar(modelo, pid_modelo, pid)
+    if set(pecas) != set(ORDEM_SERVICOS):
+        raise SystemExit("carrossel de serviços: itens inesperados %s" % sorted(set(pecas) ^ set(ORDEM_SERVICOS)))
     a0 = arts[0].start()
     a1 = element_end(bloco, arts[-1].start())
     sep = bloco[element_end(bloco, arts[0].start()): arts[1].start()]
-    novo = sep.join(pecas[pid] for pid in ORDEM_SERVICOS)
-    bloco_novo = bloco[:a0] + novo + bloco[a1:]
-    return text[:start] + bloco_novo + text[end:], bloco_novo != bloco
+    novos = [re.sub(r'data-dce-post-index="\d+"', 'data-dce-post-index="%d"' % i, pecas[pid], count=1)
+             for i, pid in enumerate(ORDEM_SERVICOS)]
+    return bloco[:a0] + sep.join(novos) + bloco[a1:]
+
+
+def ordenar_menu_servicos(text):
+    """Menu suspenso Serviços: todos os serviços, na ordem de ORDEM_SERVICOS."""
+    w = text.find(MENU_SERVICOS_WIDGET)
+    if w < 0:
+        return text, False
+    start = text.rfind("<div", 0, w)
+    end = balanced_end(text, start, "div")
+    bloco = text[start:end]
+    novo = ordenar_artigos(bloco, card_menu_novo)
+    return text[:start] + novo + text[end:], novo != bloco
 
 
 # ───────────────────────── CSS (bloco gerenciado no ajustes-responsivos.css) ─────────────────────────
@@ -1401,6 +1496,8 @@ def main(argv):
             conta("alarme", ch)
             text, ch = versao_assets(text)
             conta("versao_assets", ch)
+            text, ch = ordenar_menu_servicos(text)
+            conta("menu_servicos", ch)
             if f == "treinamentos/index.html":
                 text, n = treinamentos(text)
                 conta("treinamentos", n)
