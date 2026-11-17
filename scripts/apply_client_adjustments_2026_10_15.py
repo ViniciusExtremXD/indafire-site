@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "12"
+ASSET_VERSION = "13"  # 17/11/2026: subiu junto com o apply_client_adjustments_2026_11_17.py
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
@@ -721,6 +721,9 @@ REDIRECT_MARK = "<!-- indafire: redirecionamento de página de teste -->"
 
 def redirect_placeholder(text, path):
     if not path.startswith("cursos/lorem-ipsum"):
+        return text, False
+    if "<!-- indafire: redirecionamento" in text[:3000]:
+        # já é redirecionamento (desde 17/11/2026 vai para /treinamentos/: /cursos-online/ saiu do site)
         return text, False
     if REDIRECT_MARK in text and "indafire-responsive-navigation" not in text:
         return text, False  # já é o redirecionamento enxuto

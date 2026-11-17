@@ -1244,3 +1244,624 @@ body.elementor-popup-modal-active #ht-ctc-chat {
     padding-bottom: 2px !important;
   }
 }
+
+/* INDAFIRE 17/11/2026 — início (gerado por scripts/apply_client_adjustments_2026_11_17.py) */
+/* categoria = página estática: a foto na tela inteira, o nome no meio, consulte-nos e o WhatsApp */
+.tax-product_cat #bannerProdutoINDA,
+.tax-product_cat #bannerProdutoINDA > .elementor-container {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+}
+.tax-product_cat #bannerProdutoINDA {
+  background-position: var(--if-foco, 50%) center !important;
+}
+@media (max-width: 767px) and (orientation: portrait) {
+  .tax-product_cat #bannerProdutoINDA {
+    background-position: var(--if-foco-m, var(--if-foco, 50%)) center !important;
+  }
+}
+.tax-product_cat #bannerProdutoINDA > .elementor-container {
+  padding-top: 72px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+.tax-product_cat #tituloCategoriaProdutos .elementor-heading-title {
+  color: #fff !important;
+  font-size: clamp(30px, 10vw, 104px) !important;
+  overflow-wrap: break-word;
+  line-height: 1.02 !important;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+/* sinal discreto no banner: "Conheça a linha" leva às especialidades */
+.if-hero-cue-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.if-hero-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  color: #fff !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-decoration: none !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  text-transform: uppercase;
+  animation: if-hero-entrada 0.9s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.if-hero-cue i {
+  display: block;
+  width: 2px;
+  height: 46px;
+  background: linear-gradient(#fff, rgba(255, 255, 255, 0));
+  transform-origin: top;
+  animation: if-cue 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.if-hero-cue:hover,
+.if-hero-cue:focus-visible {
+  color: #fff !important;
+  opacity: 0.85;
+}
+@keyframes if-cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* /produtos/: mosaico editorial — cada seção leva à página da linha */
+.if-secoes {
+  position: relative;
+  padding: clamp(64px, 8vw, 128px) clamp(16px, 4vw, 48px);
+  overflow: hidden;
+  isolation: isolate;
+  background: #0e0e10;
+  color: #fff;
+}
+.if-secoes::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: radial-gradient(55% 45% at 88% 0%, rgba(227, 6, 19, 0.2), transparent 70%);
+}
+.if-secoes__topo {
+  display: grid;
+  gap: 12px;
+  max-width: 1280px;
+  margin: 0 auto clamp(32px, 4vw, 60px);
+}
+.if-secoes__kicker,
+.if-linha__kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 !important;
+  color: #e30613;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.if-secoes__kicker::before,
+.if-linha__kicker::before {
+  width: 38px;
+  height: 2px;
+  content: "";
+  background: #e30613;
+}
+.if-secoes__topo h2 {
+  margin: 0 !important;
+  color: #fff !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: clamp(36px, 5.4vw, 72px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+  line-height: 1 !important;
+}
+.if-secoes__topo p {
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(16px, 1.5vw, 19px);
+}
+.if-secoes__grade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(200px, 17vw, 250px);
+  gap: clamp(10px, 1.2vw, 16px);
+  max-width: 1280px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.if-secao {
+  position: relative;
+  margin: 0 !important;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #1a1a1d;
+}
+.if-secao--grande {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.if-secao--larga {
+  grid-column: span 2;
+}
+.if-secao__link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(18px, 2vw, 30px);
+  isolation: isolate;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.if-secao__foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover;
+  filter: saturate(0.85) brightness(0.92);
+  transform: scale(1.02);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), scale 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+.if-secao__link::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: linear-gradient(180deg, rgba(10, 10, 12, 0) 25%, rgba(10, 10, 12, 0.55) 62%, rgba(10, 10, 12, 0.92));
+}
+.if-secao__link::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  content: "";
+  background: #e30613;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.if-secao__num {
+  position: absolute;
+  top: clamp(16px, 1.8vw, 26px);
+  left: clamp(18px, 2vw, 30px);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.if-secao__texto {
+  display: grid;
+  gap: 6px;
+}
+.if-secao__titulo {
+  margin: 0 !important;
+  color: #fff !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: clamp(20px, 1.9vw, 28px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.05 !important;
+  text-transform: uppercase;
+}
+.if-secao--grande .if-secao__titulo {
+  font-size: clamp(30px, 3.6vw, 54px) !important;
+}
+.if-secao__desc {
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.if-secao__chamada {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.if-secao__chamada i {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #e30613;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.if-secao__chamada i::after {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  content: "";
+  border-top: 2px solid #e30613;
+  border-right: 2px solid #e30613;
+  transform: rotate(45deg);
+}
+.if-secao__link:hover .if-secao__foto,
+.if-secao__link:focus-visible .if-secao__foto {
+  filter: saturate(1.05) brightness(1);
+  transform: scale(1.09);
+}
+.if-secao__link:hover::after,
+.if-secao__link:focus-visible::after {
+  transform: scaleX(1);
+}
+.if-secao__link:hover .if-secao__chamada i,
+.if-secao__link:focus-visible .if-secao__chamada i {
+  width: 48px;
+}
+.if-secao__link:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -3px;
+}
+/* entrada: a seção abre como cortina, de baixo para cima, e a foto assenta */
+html.if-movimento .if-secao[data-if-revelar] {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+html.if-movimento .if-secao[data-if-revelar] .if-secao__foto {
+  scale: 1.22;
+}
+html.if-movimento .if-secao[data-if-revelar].is-visivel {
+  clip-path: inset(0 0 0 0);
+}
+html.if-movimento .if-secao[data-if-revelar].is-visivel .if-secao__foto {
+  scale: 1;
+}
+@media (max-width: 1024px) {
+  .if-secoes__grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 230px;
+  }
+  .if-secao--grande {
+    grid-row: span 1;
+  }
+}
+@media (max-width: 600px) {
+  .if-secoes__grade {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 210px;
+  }
+  .if-secao--grande,
+  .if-secao--larga {
+    grid-column: span 1;
+  }
+}
+
+/* página da linha: o que a Inda Fire oferece + um único convite para o WhatsApp */
+.if-linha {
+  padding: clamp(64px, 9vw, 140px) clamp(16px, 4vw, 48px);
+  scroll-margin-top: 60px;
+  background: #fff;
+}
+.if-linha__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 100px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.if-linha__kicker {
+  margin-bottom: 16px !important;
+}
+.if-linha__titulo {
+  margin: 0 0 18px !important;
+  color: #151517 !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: clamp(32px, 4.2vw, 56px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.02 !important;
+}
+.if-linha__intro {
+  max-width: 52ch;
+  margin: 0 0 30px !important;
+  color: #4a4a50;
+  font-size: clamp(17px, 1.45vw, 19px);
+  line-height: 1.6;
+}
+.if-linha__itens {
+  margin: 0 0 32px !important;
+  padding: 0 !important;
+  border-top: 1px solid #e4e4e7;
+  list-style: none !important;
+}
+.if-linha__itens li {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  align-items: baseline;
+  margin: 0 !important;
+  padding: 17px 0;
+  border-bottom: 1px solid #e4e4e7;
+  color: #1c1c1f;
+  font-size: clamp(17px, 1.45vw, 20px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.if-linha__itens li span {
+  color: #e30613;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.if-linha__servicos p {
+  margin: 0 0 12px !important;
+  color: #6a6a72;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.if-linha__servicos ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.if-linha__servicos li {
+  margin: 0 !important;
+}
+.if-linha__servicos a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid #d6d6db;
+  border-radius: 999px;
+  color: #1c1c1f !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: border-color 0.3s, color 0.3s;
+}
+.if-linha__servicos a::after {
+  content: "→";
+  color: #e30613;
+  transition: transform 0.3s;
+}
+.if-linha__servicos a:hover,
+.if-linha__servicos a:focus-visible {
+  border-color: #e30613;
+  color: #e30613 !important;
+}
+.if-linha__servicos a:hover::after {
+  transform: translateX(4px);
+}
+.if-linha__visual {
+  position: relative;
+  width: 100%;
+  margin: 0 !important;
+  aspect-ratio: 4 / 5;
+}
+.if-linha__visual::after {
+  position: absolute;
+  right: -16px;
+  bottom: -16px;
+  width: 44%;
+  height: 44%;
+  content: "";
+  border-right: 3px solid #e30613;
+  border-bottom: 3px solid #e30613;
+  pointer-events: none;
+}
+.if-linha__fundo {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  border-radius: 6px;
+  object-fit: cover;
+  filter: brightness(0.5) saturate(0.85);
+}
+.if-linha__produto {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  width: auto !important;
+  max-width: 76% !important;
+  height: auto !important;
+  max-height: 80%;
+  filter: drop-shadow(0 32px 40px rgba(0, 0, 0, 0.55));
+  transform: translateX(-50%);
+}
+.if-linha__produto--pequeno {
+  max-height: 46%;
+}
+/* vitrine: o produto real sobre um fundo de estúdio escuro, com o brilho vermelho da marca no chão */
+.if-linha__visual--estudio {
+  border-radius: 6px;
+  background: radial-gradient(120% 90% at 50% 32%, #3c3c43 0%, #1c1c20 55%, #0e0e10 100%);
+}
+.if-linha__visual--estudio::before {
+  position: absolute;
+  right: 14%;
+  bottom: 5%;
+  left: 14%;
+  height: 12%;
+  content: "";
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(227, 6, 19, 0.5), transparent);
+  filter: blur(10px);
+}
+html.if-movimento .if-linha__visual--estudio[data-if-revelar] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.if-movimento .if-linha__visual--estudio[data-if-revelar].is-visivel {
+  clip-path: inset(0 -24px -24px 0);
+}
+html.if-movimento .if-linha__texto[data-if-revelar] > * {
+  opacity: 0;
+  translate: 0 26px;
+  transition: opacity 0.8s ease, translate 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.if-movimento .if-linha__texto[data-if-revelar] > :nth-child(2) { transition-delay: 0.08s; }
+html.if-movimento .if-linha__texto[data-if-revelar] > :nth-child(3) { transition-delay: 0.16s; }
+html.if-movimento .if-linha__texto[data-if-revelar] > :nth-child(4) { transition-delay: 0.24s; }
+html.if-movimento .if-linha__texto[data-if-revelar] > :nth-child(5) { transition-delay: 0.32s; }
+html.if-movimento .if-linha__texto[data-if-revelar].is-visivel > * {
+  opacity: 1;
+  translate: 0 0;
+}
+html.if-movimento .if-linha__visual[data-if-revelar] .if-linha__fundo {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.if-movimento .if-linha__visual[data-if-revelar] .if-linha__produto {
+  opacity: 0;
+  translate: 0 70px;
+  transition: opacity 0.9s ease 0.35s, translate 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+}
+html.if-movimento .if-linha__visual[data-if-revelar].is-visivel .if-linha__fundo {
+  clip-path: inset(0 0 0 0);
+}
+html.if-movimento .if-linha__visual[data-if-revelar].is-visivel .if-linha__produto {
+  opacity: 1;
+  translate: 0 0;
+}
+.if-linha-cta {
+  position: relative;
+  padding: clamp(56px, 7vw, 104px) clamp(16px, 4vw, 48px);
+  overflow: hidden;
+  isolation: isolate;
+  background: #0e0e10;
+  color: #fff;
+}
+.if-linha-cta::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: radial-gradient(50% 90% at 100% 100%, rgba(227, 6, 19, 0.3), transparent 70%);
+}
+.if-linha-cta__caixa {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px 56px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.if-linha-cta h2 {
+  margin: 0 0 10px !important;
+  color: #fff !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: clamp(30px, 3.6vw, 48px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.05 !important;
+}
+.if-linha-cta p {
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: clamp(16px, 1.45vw, 19px);
+}
+.if-linha-cta__acoes {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+.if-linha-cta__whats {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 60px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  background: #128a45;
+  box-shadow: 0 16px 36px rgba(18, 138, 69, 0.35);
+  color: #fff !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.if-linha-cta__whats svg {
+  flex: 0 0 auto;
+  fill: #fff;
+}
+.if-linha-cta__whats:hover,
+.if-linha-cta__whats:focus-visible {
+  background: #0e7439;
+  transform: translateY(-3px);
+}
+.if-linha-cta__tel {
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-size: 15px;
+  text-decoration: none !important;
+}
+.if-linha-cta__tel strong {
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .if-linha__grade {
+    grid-template-columns: 1fr;
+  }
+  .if-linha__visual {
+    order: -1;
+    max-width: 560px;
+    margin: 0 auto !important;
+    aspect-ratio: 4 / 3;
+  }
+  .if-linha__visual::after {
+    right: -10px;
+    bottom: -10px;
+  }
+  .if-linha-cta__caixa {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .if-hero-cue,
+  .if-hero-cue i {
+    animation: none;
+  }
+  .if-secao__foto,
+  .if-secao__link::after,
+  .if-secao__chamada i {
+    transition: none;
+  }
+}
+
+
+/* menu "Produtos": só as categorias (saiu o carrossel de produtos específicos) */
+.elementor-element.elementor-element-7ed0e60 {
+  width: 100% !important;
+}
+
+/* /treinamentos/: ficou só o card da Brigada de Incêndio, centralizado */
+.elementor-element-f2c61a3 > .elementor-container > .elementor-row,
+.elementor-element-f2c61a3 > .elementor-container {
+  justify-content: center;
+}
+/* INDAFIRE 17/11/2026 — fim */

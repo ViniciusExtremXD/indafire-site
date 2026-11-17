@@ -18,17 +18,23 @@ COMMERCIAL_SCRIPT_ID = "indafire-commercial-whatsapp-script"
 PRODUCTS_PAGE = ROOT / "produtos" / "index.html"
 
 
+def _is_redirect(path: Path) -> bool:
+    """Páginas que viraram só redirecionamento (ex.: Resgate em altura, 17/11/2026) ficam de fora."""
+    with path.open("r", encoding="utf-8", errors="ignore") as handle:
+        return "<!-- indafire: redirecionamento" in handle.read(3000)
+
+
 def discover_targets() -> tuple[Path, ...]:
     targets = [PRODUCTS_PAGE]
     cat_dir = ROOT / "categoria-produto"
     if cat_dir.is_dir():
         for p in sorted(cat_dir.glob("*/index.html")):
-            if p not in targets:
+            if p not in targets and not _is_redirect(p):
                 targets.append(p)
     prod_dir = ROOT / "produto"
     if prod_dir.is_dir():
         for p in sorted(prod_dir.glob("*/index.html")):
-            if p not in targets:
+            if p not in targets and not _is_redirect(p):
                 targets.append(p)
     return tuple(targets)
 

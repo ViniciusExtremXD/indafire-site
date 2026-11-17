@@ -42,6 +42,7 @@
   function origemDo(el) {
     if (!el || !el.closest) return 'outro';
     if (el.closest('.if-aviso')) return 'aviso';
+    if (el.closest('.if-linha-cta')) return 'pagina_da_linha';
     if (el.closest('.if-hero-whats-wrap, #bannerProdutoINDA')) return 'banner';
     if (el.closest('.if-menu-whats-wrap, .jet-menu, .jet-sub-mega-menu')) return 'menu_produtos';
     if (el.closest('#ht-ctc-chat, .ht-ctc')) return 'botao_flutuante';

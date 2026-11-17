@@ -27,6 +27,10 @@ def get_site_targets(root: Path = ROOT) -> tuple[Path, ...]:
     for path in root.rglob('*.html'):
         if any(part in ignore for part in path.parts):
             continue
+        # páginas que viraram só redirecionamento (17/11/2026) não recebem o cabeçalho
+        with path.open('r', encoding='utf-8', errors='ignore') as handle:
+            if '<!-- indafire: redirecionamento' in handle.read(3000):
+                continue
         targets.append(path)
     return tuple(sorted(targets))
 

@@ -1,0 +1,8 @@
+# Prévia na Vercel: publica só o site; o resto do repositório fica de fora
+scripts/
+tests/
+screenshots/
+templates/
+.github/
+README.md
+design-qa.md

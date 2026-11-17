@@ -121,9 +121,19 @@ CSS = r"""
 #indafire-services-page .indafire-source-service-link{display:grid;grid-template-columns:14px minmax(0,1fr);gap:8px;align-items:start;color:inherit!important;font-size:16px;line-height:1.45;text-decoration:none!important}
 #indafire-services-page .indafire-source-service-link::before{content:"›";color:var(--inda-red);font-size:24px;font-weight:800;line-height:.9}
 #indafire-services-page .indafire-source-service-link:hover,#indafire-services-page .indafire-source-service-link:focus-visible{color:var(--inda-red)!important}
-@keyframes indafire-source-enter-left{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
-@keyframes indafire-source-enter-right{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
-@media (min-width: 1025px){#indafire-services-page .indafire-source-service-row:nth-child(even) .indafire-source-service-panel{animation:indafire-source-enter-left 520ms ease both}#indafire-services-page .indafire-source-service-row:nth-child(odd) .indafire-source-service-panel{animation:indafire-source-enter-right 520ms ease both}}
+/* 17/11/2026: cada uma das cinco faixas entra quando chega na tela, em qualquer tamanho de tela. A foto abre de dentro, o ícone cai no lugar, o quadro desliza e a lista sobe item a item.
+   Sem JavaScript (ou com "reduzir movimento") nada fica escondido: o estado inicial só vale com html.if-movimento. */
+html.if-movimento #indafire-services-page .indafire-source-service-visual{clip-path:inset(0 0 0 0)}
+html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-image{opacity:0;scale:1.18;transition:opacity .8s ease,scale 1.4s cubic-bezier(.2,.7,.2,1)}
+html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-icon-wrap{opacity:0;translate:0 -22px;scale:.6;transition:opacity .5s ease .35s,translate .7s cubic-bezier(.3,1.4,.5,1) .35s,scale .7s cubic-bezier(.3,1.4,.5,1) .35s}
+html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-panel{opacity:0;translate:56px 0;transition:opacity .7s ease .15s,translate .9s cubic-bezier(.2,.7,.2,1) .15s}
+html.if-movimento #indafire-services-page .indafire-source-service-row:nth-child(even) .indafire-source-service-panel{translate:-56px 0}
+html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-list li{opacity:0;translate:0 12px;transition:opacity .5s ease,translate .6s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.55s + var(--n,0) * 80ms)}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-image{opacity:1;scale:1}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-icon-wrap{opacity:1;translate:0 0;scale:1}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-panel{opacity:1;translate:0 0}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-list li{opacity:1;translate:0 0}
+@media (max-width:767px){html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-panel,html.if-movimento #indafire-services-page .indafire-source-service-row:nth-child(even) .indafire-source-service-panel{translate:0 40px}}
 @media (min-width:768px) and (max-width:1024px){#indafire-services-page .indafire-services-hero{min-height:430px}#indafire-services-page .indafire-services-hero h1{font-size:clamp(70px,10vw,96px)}#indafire-services-page .indafire-source-service-row{--row-height:420px}#indafire-services-page .indafire-source-service-row--sistemas{--row-height:470px}#indafire-services-page .indafire-source-service-stack{width:min(430px,100%)}#indafire-services-page .indafire-source-service-content{padding-inline:24px}#indafire-services-page .indafire-source-service-panel{padding-inline:28px}}
 @media (max-width: 767px){
   #indafire-services-page .indafire-services-hero{min-height:448px;background-position:53% center}
@@ -153,16 +163,25 @@ CSS = r"""
 @media (prefers-reduced-motion:reduce){#indafire-services-page .indafire-source-service-panel{animation:none!important}}
 """.strip()
 
+# Revela cada faixa ao chegar na tela (mesmo script do mosaico de /produtos/).
+REVEAL_JS = (
+    "(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||"
+    "window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('if-movimento');"
+    "var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){"
+    "e.target.classList.add('is-visivel');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});"
+    "document.querySelectorAll('[data-if-revelar]').forEach(function(el){io.observe(el);});})();"
+)
 
-def _render_service(service: Service) -> str:
-    return ('<li><a class="indafire-source-service-link" '
+
+def _render_service(service: Service, position: int = 0) -> str:
+    return (f'<li style="--n:{position}"><a class="indafire-source-service-link" '
             f'href="{escape(service.href, quote=True)}">{escape(service.title)}</a></li>')
 
 
 def _render_group(group: ServiceGroup, index: int) -> str:
-    links = "\n".join(_render_service(service) for service in group.services)
+    links = "\n".join(_render_service(service, position) for position, service in enumerate(group.services))
     loading = "eager" if index == 0 else "lazy"
-    return f"""<section class="indafire-source-service-row indafire-source-service-row--{group.slug} indafire-source-service-row--{group.tone}" id="servicos-{group.slug}" aria-labelledby="servicos-{group.slug}-title">
+    return f"""<section class="indafire-source-service-row indafire-source-service-row--{group.slug} indafire-source-service-row--{group.tone}" id="servicos-{group.slug}" aria-labelledby="servicos-{group.slug}-title" data-if-revelar>
   <div class="indafire-source-service-visual">
     <img class="indafire-source-service-image" src="{escape(group.feature_image, quote=True)}" width="960" height="640" loading="{loading}" decoding="async" alt="{escape(group.image_alt, quote=True)}">
   </div>
@@ -186,6 +205,7 @@ def render_services_main(_location_section: str = "") -> str:
 <style id="{STYLE_ID}">{CSS}</style>
 <section class="indafire-services-hero" aria-labelledby="indafire-services-title"><h1 id="indafire-services-title">SERVIÇOS</h1></section>
 <div class="indafire-source-services" aria-label="Categorias de serviços">{rows}</div>
+<script id="indafire-services-reveal">{REVEAL_JS}</script>
 </main>"""
 
 

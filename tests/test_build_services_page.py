@@ -107,7 +107,10 @@ class BuildServicesPageTests(unittest.TestCase):
         rendered = subject.render_services_main(LOCATION)
 
         self.assertIn('id="indafire-services-style"', rendered)
-        self.assertIn("@media (min-width: 1025px)", rendered)
+        # 17/11/2026: a entrada das faixas vale em todos os tamanhos (antes só no desktop) e só com JS ligado
+        self.assertIn("html.if-movimento #indafire-services-page", rendered)
+        self.assertEqual(rendered.count("data-if-revelar"), 6)  # 5 faixas + o script que as observa
+        self.assertIn('<script id="indafire-services-reveal">', rendered)
         self.assertIn("@media (max-width: 767px)", rendered)
         self.assertIn("orientation: landscape", rendered)
         self.assertIn("#indafire-services-page", rendered)
