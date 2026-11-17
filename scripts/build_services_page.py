@@ -178,9 +178,14 @@ REVEAL_JS = (
 )
 
 
+def _local_href(href: str) -> str:
+    # a réplica tem as páginas de cada serviço; o link não pode sair para o site em WordPress
+    return href.replace("https://indafire.com.br/", "../", 1)
+
+
 def _render_service(service: Service, position: int = 0) -> str:
     return (f'<li style="--n:{position}"><a class="indafire-source-service-link" '
-            f'href="{escape(service.href, quote=True)}">{escape(service.title)}</a></li>')
+            f'href="{escape(_local_href(service.href), quote=True)}">{escape(service.title)}</a></li>')
 
 
 def _render_group(group: ServiceGroup, index: int) -> str:

@@ -88,7 +88,10 @@ class BuildServicesPageTests(unittest.TestCase):
                 self.assertTrue(source.startswith("../wp-content/uploads/"))
                 self.assertTrue((ROOT / source.removeprefix("../")).is_file(), source)
         self.assertNotIn("https://indafire.com.br/servicos_inda_fire/projeto-tecnico/", rendered)
-        self.assertIn('href="https://indafire.com.br/treinamentos/brigada-de-incendio/"', rendered)
+        # links ficam dentro da réplica (as páginas de cada serviço existem nela)
+        self.assertNotIn('href="https://indafire.com.br/', rendered)
+        self.assertIn('href="../treinamentos/brigada-de-incendio/"', rendered)
+        self.assertIn('href="../servicos_inda_fire/obtencao-ou-renovacao-avcb-clcb/"', rendered)
         self.assertNotIn("example.com", rendered)
 
     def test_does_not_add_sections_that_are_absent_from_the_original_services_page(self):

@@ -752,6 +752,12 @@ def main(argv):
     files = [f for f in subprocess.check_output(["git", "ls-files", "*.html"], cwd=ROOT, text=True).split("\n") if f]
     cards = collect_cards(files)
     missing = set(CATEGORIES) - set(cards)
+    if missing == {CINTURAO}:
+        # 17/11/2026: o catálogo foi isolado e o resgate em altura saiu do site.
+        # Daqui em diante quem cuida dessas páginas é apply_client_adjustments_2026_11_17.py;
+        # rodar este script de novo desfaria a reunião (botões no banner, cards, menu Produtos).
+        print("catálogo isolado em 17/11: nada a fazer aqui (veja apply_client_adjustments_2026_11_17.py)")
+        return
     if missing:
         sys.exit("cards-fonte ausentes: %s" % sorted(missing))
     stats = {}

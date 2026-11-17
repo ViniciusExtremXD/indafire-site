@@ -1,8 +1,9 @@
 import os
 import re
+import subprocess
 import pytest
 
-REPO_DIR = r"c:\Users\Vini_\OneDrive - Instituto Presbiteriano Mackenzie\Área de Trabalho\Vesta\Projeto\Freelance\Sites Grupo Alvo\Indafire"
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 IGNORE_DIRS = {
     '.git', 'node_modules', 'audit', 'baseline', 'baseline-factual-1', 
@@ -11,13 +12,19 @@ IGNORE_DIRS = {
 }
 
 def get_site_html_files():
+    # só o que é publicado: arquivos versionados no Git (pastas soltas como docs/ e site-essencial/ ficam de fora)
+    out = subprocess.check_output(["git", "ls-files", "*.html"], cwd=REPO_DIR, text=True)
     html_files = []
-    for root, dirs, files in os.walk(REPO_DIR):
-        dirs[:] = [d for d in dirs if d not in IGNORE_DIRS]
-        for f in files:
-            if f.endswith('.html'):
-                html_files.append(os.path.join(root, f))
+    for rel in out.split("\n"):
+        if not rel or rel.split("/")[0] in IGNORE_DIRS:
+            continue
+        html_files.append(os.path.join(REPO_DIR, rel))
     return html_files
+
+
+def is_redirect(content):
+    # 17/11/2026: páginas removidas viraram redirecionamentos simples (sem cabeçalho, mapa ou menu)
+    return "<!-- indafire: redirecionamento" in content[:3000]
 
 def test_site_pages_count_and_core_routes():
     pages = get_site_html_files()
@@ -89,6 +96,8 @@ def test_mandatory_elements_in_all_pages():
         with open(filepath, 'r', encoding='utf-8', errors='ignore') as fp:
             content = fp.read()
         
+        if is_redirect(content):
+            continue
         for el_name, patterns in elements.items():
             found = any(k in content for k in patterns)
             assert found, f"Page '{rel_file}' is missing mandatory element '{el_name}'"
@@ -109,7 +118,8 @@ def test_no_external_indafire_links_in_content():
         rel_file = os.path.relpath(filepath, REPO_DIR).replace('\\', '/')
         with open(filepath, 'r', encoding='utf-8', errors='ignore') as fp:
             c = fp.read()
-            
+        if is_redirect(c):
+            continue  # o redirecionamento leva <link rel="canonical"> para o domínio da Inda Fire
         for m in re.finditer(r'href=["\']([^"\'#][^"\']*)["\']', c):
             href = m.group(1).strip()
             if href.startswith('mailto:') or 'login2.php' in href:
@@ -129,7 +139,8 @@ def test_responsive_navigation_injected_in_all_pages():
         rel_file = os.path.relpath(filepath, REPO_DIR).replace('\\', '/')
         with open(filepath, 'r', encoding='utf-8', errors='ignore') as fp:
             c = fp.read()
-            
+        if is_redirect(c):
+            continue
         if 'id="indafire-responsive-navigation"' not in c:
             missing_script.append(rel_file)
         if 'id="indafire-responsive-navigation-style"' not in c:
