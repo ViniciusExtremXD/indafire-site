@@ -169,9 +169,12 @@ html.if-movimento #indafire-services-page .indafire-source-service-row.is-visive
 # Revela cada faixa ao chegar na tela. Como o site atual, não depende de "reduzir movimento" do sistema.
 REVEAL_JS = (
     "(function(){var d=document.documentElement;if(!('IntersectionObserver' in window))return;d.classList.add('if-movimento');"
-    "var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){"
+    "var ok=false,els=document.querySelectorAll('[data-if-revelar]');"
+    "var io=new IntersectionObserver(function(es){ok=true;es.forEach(function(e){if(e.isIntersecting){"
     "e.target.classList.add('is-visivel');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});"
-    "document.querySelectorAll('[data-if-revelar]').forEach(function(el){io.observe(el);});})();"
+    "els.forEach(function(el){io.observe(el);});"
+    # proteção: se o observador nunca responder (aba sem desenhar, navegador estranho), mostra tudo sem animação
+    "setTimeout(function(){if(!ok){els.forEach(function(el){el.classList.add('is-visivel');});}},3000);})();"
 )
 
 

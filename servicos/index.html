@@ -3432,7 +3432,7 @@ html.if-movimento #indafire-services-page .indafire-source-service-row.is-visive
     </div>
   </div>
 </section></div>
-<script id="indafire-services-reveal">(function(){var d=document.documentElement;if(!('IntersectionObserver' in window))return;d.classList.add('if-movimento');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visivel');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});document.querySelectorAll('[data-if-revelar]').forEach(function(el){io.observe(el);});})();</script>
+<script id="indafire-services-reveal">(function(){var d=document.documentElement;if(!('IntersectionObserver' in window))return;d.classList.add('if-movimento');var ok=false,els=document.querySelectorAll('[data-if-revelar]');var io=new IntersectionObserver(function(es){ok=true;es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visivel');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});els.forEach(function(el){io.observe(el);});setTimeout(function(){if(!ok){els.forEach(function(el){el.classList.add('is-visivel');});}},3000);})();</script>
 </main>
 				<!-- SEÇÃO WHATSAPP -->
 <section class="indafire-whatsapp-section" id="indafire-commercial-whatsapp" style="padding: 60px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">

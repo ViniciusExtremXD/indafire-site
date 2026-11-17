@@ -427,9 +427,11 @@ SECOES_RE = re.compile(r'\n?<section class="if-secoes".*?</section><!-- /if-seco
 REVELAR_JS = (
     "<script>(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||"
     "window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('if-movimento');"
-    "var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){"
+    "var ok=false,els=document.querySelectorAll('[data-if-revelar]');"
+    "var io=new IntersectionObserver(function(es){ok=true;es.forEach(function(e){if(e.isIntersecting){"
     "e.target.classList.add('is-visivel');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});"
-    "document.querySelectorAll('[data-if-revelar]').forEach(function(el){io.observe(el);});})();</script>"
+    "els.forEach(function(el){io.observe(el);});"
+    "setTimeout(function(){if(!ok){els.forEach(function(el){el.classList.add('is-visivel');});}},3000);})();</script>"
 )
 
 
