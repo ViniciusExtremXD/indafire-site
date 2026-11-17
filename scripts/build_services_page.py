@@ -121,19 +121,22 @@ CSS = r"""
 #indafire-services-page .indafire-source-service-link{display:grid;grid-template-columns:14px minmax(0,1fr);gap:8px;align-items:start;color:inherit!important;font-size:16px;line-height:1.45;text-decoration:none!important}
 #indafire-services-page .indafire-source-service-link::before{content:"›";color:var(--inda-red);font-size:24px;font-weight:800;line-height:.9}
 #indafire-services-page .indafire-source-service-link:hover,#indafire-services-page .indafire-source-service-link:focus-visible{color:var(--inda-red)!important}
-/* 17/11/2026: cada uma das cinco faixas entra quando chega na tela, em qualquer tamanho de tela. A foto abre de dentro, o ícone cai no lugar, o quadro desliza e a lista sobe item a item.
-   Sem JavaScript (ou com "reduzir movimento") nada fica escondido: o estado inicial só vale com html.if-movimento. */
-html.if-movimento #indafire-services-page .indafire-source-service-visual{clip-path:inset(0 0 0 0)}
-html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-image{opacity:0;scale:1.18;transition:opacity .8s ease,scale 1.4s cubic-bezier(.2,.7,.2,1)}
-html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-icon-wrap{opacity:0;translate:0 -22px;scale:.6;transition:opacity .5s ease .35s,translate .7s cubic-bezier(.3,1.4,.5,1) .35s,scale .7s cubic-bezier(.3,1.4,.5,1) .35s}
-html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-panel{opacity:0;translate:56px 0;transition:opacity .7s ease .15s,translate .9s cubic-bezier(.2,.7,.2,1) .15s}
-html.if-movimento #indafire-services-page .indafire-source-service-row:nth-child(even) .indafire-source-service-panel{translate:-56px 0}
-html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-list li{opacity:0;translate:0 12px;transition:opacity .5s ease,translate .6s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.55s + var(--n,0) * 80ms)}
-html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-image{opacity:1;scale:1}
-html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-icon-wrap{opacity:1;translate:0 0;scale:1}
-html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-panel{opacity:1;translate:0 0}
-html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-list li{opacity:1;translate:0 0}
-@media (max-width:767px){html.if-movimento #indafire-services-page .indafire-source-service-row .indafire-source-service-panel,html.if-movimento #indafire-services-page .indafire-source-service-row:nth-child(even) .indafire-source-service-panel{translate:0 40px}}
+/* 17/11/2026: a mesma entrada da página Serviços do site atual (Elementor): em cada faixa a foto entra deslizando de um lado,
+   o conteúdo do outro e o quadro 0,25 s depois, alternando o lado a cada faixa; o título sobe. Dispara quando a faixa chega na tela.
+   Como no site atual, roda mesmo com "reduzir movimento" ligado no sistema (os !important vencem a regra global da réplica).
+   Sem JavaScript nada fica escondido: o estado inicial só vale com html.if-movimento. */
+@keyframes indafire-fadeInLeft{from{opacity:0;transform:translate3d(-100%,0,0)}to{opacity:1;transform:none}}
+@keyframes indafire-fadeInRight{from{opacity:0;transform:translate3d(100%,0,0)}to{opacity:1;transform:none}}
+@keyframes indafire-fadeInUp{from{opacity:0;transform:translate3d(0,100%,0)}to{opacity:1;transform:none}}
+@keyframes indafire-sobe{from{opacity:0;transform:translate3d(0,48px,0)}to{opacity:1;transform:none}}
+html.if-movimento #indafire-services-page .indafire-services-hero h1{animation:indafire-fadeInUp 1.25s both!important;animation-duration:1.25s!important}
+html.if-movimento #indafire-services-page .indafire-source-service-row:not(.is-visivel) .indafire-source-service-visual,html.if-movimento #indafire-services-page .indafire-source-service-row:not(.is-visivel) .indafire-source-service-content,html.if-movimento #indafire-services-page .indafire-source-service-row:not(.is-visivel) .indafire-source-service-stack{opacity:0}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-visual{animation:indafire-fadeInLeft 1.25s both!important;animation-duration:1.25s!important}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-content{animation:indafire-fadeInRight 1.25s both!important;animation-duration:1.25s!important}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-stack{animation:indafire-fadeInRight 1.25s .25s both!important;animation-duration:1.25s!important}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel:nth-child(even) .indafire-source-service-visual{animation-name:indafire-fadeInRight!important}
+html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel:nth-child(even) .indafire-source-service-content,html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel:nth-child(even) .indafire-source-service-stack{animation-name:indafire-fadeInLeft!important}
+@media (max-width:1024px){html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-visual,html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-content,html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel .indafire-source-service-stack,html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel:nth-child(even) .indafire-source-service-visual,html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel:nth-child(even) .indafire-source-service-content,html.if-movimento #indafire-services-page .indafire-source-service-row.is-visivel:nth-child(even) .indafire-source-service-stack{animation-name:indafire-sobe!important;animation-duration:.9s!important}}
 @media (min-width:768px) and (max-width:1024px){#indafire-services-page .indafire-services-hero{min-height:430px}#indafire-services-page .indafire-services-hero h1{font-size:clamp(70px,10vw,96px)}#indafire-services-page .indafire-source-service-row{--row-height:420px}#indafire-services-page .indafire-source-service-row--sistemas{--row-height:470px}#indafire-services-page .indafire-source-service-stack{width:min(430px,100%)}#indafire-services-page .indafire-source-service-content{padding-inline:24px}#indafire-services-page .indafire-source-service-panel{padding-inline:28px}}
 @media (max-width: 767px){
   #indafire-services-page .indafire-services-hero{min-height:448px;background-position:53% center}
@@ -163,10 +166,9 @@ html.if-movimento #indafire-services-page .indafire-source-service-row.is-visive
 @media (prefers-reduced-motion:reduce){#indafire-services-page .indafire-source-service-panel{animation:none!important}}
 """.strip()
 
-# Revela cada faixa ao chegar na tela (mesmo script do mosaico de /produtos/).
+# Revela cada faixa ao chegar na tela. Como o site atual, não depende de "reduzir movimento" do sistema.
 REVEAL_JS = (
-    "(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||"
-    "window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('if-movimento');"
+    "(function(){var d=document.documentElement;if(!('IntersectionObserver' in window))return;d.classList.add('if-movimento');"
     "var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){"
     "e.target.classList.add('is-visivel');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});"
     "document.querySelectorAll('[data-if-revelar]').forEach(function(el){io.observe(el);});})();"
