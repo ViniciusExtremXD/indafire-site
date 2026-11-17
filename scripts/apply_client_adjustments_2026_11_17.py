@@ -678,21 +678,34 @@ CSS = """
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* /produtos/: mosaico editorial — cada seção leva à página da linha */
+/* /produtos/: mosaico editorial — cada seção leva à página da linha.
+   Fundo: a foto da sala da Inda Fire (a mesma do banner), clareada, que se funde em branco. */
 .if-secoes {
   position: relative;
   padding: clamp(64px, 8vw, 128px) clamp(16px, 4vw, 48px);
   overflow: hidden;
   isolation: isolate;
-  background: #0e0e10;
-  color: #fff;
+  background: #fff;
+  color: #151517;
+}
+.if-secoes::before,
+.if-secoes::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: clamp(560px, 62vw, 800px);
+  content: "";
 }
 .if-secoes::before {
-  position: absolute;
-  inset: 0;
+  z-index: -2;
+  background: url("../uploads/2021/11/produtos.jpg") center 40% / cover no-repeat;
+  filter: blur(2px) saturate(0.9);
+  transform: scale(1.03);
+}
+.if-secoes::after {
   z-index: -1;
-  content: "";
-  background: radial-gradient(55% 45% at 88% 0%, rgba(227, 6, 19, 0.2), transparent 70%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.8) 42%, #fff 100%);
 }
 .if-secoes__topo {
   display: grid;
@@ -722,7 +735,7 @@ CSS = """
 }
 .if-secoes__topo h2 {
   margin: 0 !important;
-  color: #fff !important;
+  color: #151517 !important;
   font-family: "Open Sans", Arial, sans-serif;
   font-size: clamp(36px, 5.4vw, 72px) !important;
   font-weight: 800 !important;
@@ -731,7 +744,7 @@ CSS = """
 }
 .if-secoes__topo p {
   margin: 0 !important;
-  color: rgba(255, 255, 255, 0.72);
+  color: #3f3f45;
   font-size: clamp(16px, 1.5vw, 19px);
 }
 .if-secoes__grade {
@@ -750,6 +763,7 @@ CSS = """
   overflow: hidden;
   border-radius: 6px;
   background: #1a1a1d;
+  box-shadow: 0 18px 40px rgba(20, 20, 24, 0.16);
 }
 .if-secao--grande {
   grid-column: span 2;
@@ -1276,7 +1290,7 @@ def atualizar_css(dry):
 
 
 # versão nos links dos arquivos da Inda Fire (o navegador não fica com o CSS velho em cache)
-ASSET_VERSION = "14"
+ASSET_VERSION = "15"
 VERSAO_RE = re.compile(r"(wp-content/indafire/(?:ajustes-responsivos\.css|medicao\.js|aviso-whatsapp-produtos\.js|carrossel-relacionados\.js))\?v=\d+")
 
 
