@@ -55,16 +55,35 @@ SECOES = [
 ]
 
 # foto de fundo trocada (o resto continua com a foto original da categoria)
-FOTO_CATEGORIA = {
-    "epi": "wp-content/indafire/img/epi-bombeiro.jpg",
+# Melhor original disponível para o banner de cada linha (o banner ocupa a tela inteira).
+# Extintores e Mangueiras: as mesmas fotos em PNG sem perda e mais altas (~1930×880) que o site
+# usa nas páginas de serviço; EPI: roupa e capacete de bombeiro (banner original); Iluminações:
+# a placa de saída (o banner antigo repetia a foto dos extintores). O resto só existe em 1920×616.
+ORIGEM_BANNER = {
+    "extintores": "wp-content/uploads/2021/10/fire-extinguisher-training-delaware-valley-safety-council-nj-pa-de.png",
+    "mangueiras": "wp-content/uploads/2021/10/shutterstock_525389752.png",
+    "abrigos": "wp-content/uploads/2021/12/abrigos.jpg",
+    "hidrantes": "wp-content/uploads/2021/12/hidrantes.jpg",
+    "sinalizacoes": "wp-content/uploads/2021/12/4894_Banners_Produtos_INDAFIRE5_Sinalizacoes.jpg",
+    "alarmes-de-incendio": "wp-content/uploads/2021/12/4894_Banners_Produtos_INDAFIRE4_Alarmes.jpg",
     "iluminacoes-de-emergencia": "wp-content/uploads/2021/12/iluminacao.jpg",
+    "sistema-de-bomba-de-incendio": "wp-content/uploads/2021/12/sistema-bomba.jpg",
+    "acessorios": "wp-content/uploads/2021/12/acessorios.jpg",
+    "epi": "media/original/2021/12/4894_Banners_Produtos_INDAFIRE8_EPI.jpg",
+    "epr": "wp-content/uploads/2021/12/4894_Banners_Produtos_INDAFIRE9_EPR.jpg",
+    "aph": "wp-content/uploads/2021/12/4894_Banners_Produtos_INDAFIRE10_APH.jpg",
+    "epc": "wp-content/uploads/2021/12/epc.jpg",
+    "incendio-florestal": "wp-content/uploads/2021/12/incendio-florestal.jpg",
 }
+# o banner publicado: tratado para a tela cheia (ver preparar_imagens)
+FOTO_CATEGORIA = {slug: "wp-content/indafire/img/categorias/%s.jpg" % slug for slug in ORIGEM_BANNER}
+ALTURA_BANNER = 880  # px: abaixo disso a foto é ampliada com qualidade e ganha nitidez leve
 
 # Onde está o assunto em cada foto (posição horizontal, %). A foto é larga (1920×616) e, na tela
 # inteira e no celular em pé, só um pedaço aparece: este é o pedaço que precisa aparecer.
 FOCO = {
     "extintores": 35,
-    "mangueiras": 60,
+    "mangueiras": 50,
     "abrigos": 27,
     "hidrantes": 50,
     "sinalizacoes": 30,
@@ -186,13 +205,34 @@ def preparar_imagens(dry):
             im.save(destino, "JPEG", quality=qualidade, optimize=True, progressive=True)
         log("imagem", destino.relative_to(ROOT))
 
-    salvar(MEDIA / "2021/12/4894_Banners_Produtos_INDAFIRE8_EPI.jpg", ROOT / FOTO_CATEGORIA["epi"])
+    from PIL import ImageFilter
+
+    def banner(origem, destino):
+        """Banner de tela cheia: sem perda de cor no vermelho (4:4:4) e, se a foto for baixa,
+        ampliação Lanczos até ALTURA_BANNER com nitidez leve (não inventa detalhe: só evita que o
+        navegador estique a foto pequena e a deixe borrada)."""
+        if destino.exists() and destino.stat().st_mtime >= origem.stat().st_mtime:
+            return
+        im = Image.open(origem).convert("RGB")
+        if im.height < ALTURA_BANNER:
+            im = im.resize((round(im.width * ALTURA_BANNER / im.height), ALTURA_BANNER), Image.LANCZOS)
+            im = im.filter(ImageFilter.UnsharpMask(radius=2, percent=55, threshold=3))
+        if not dry:
+            destino.parent.mkdir(parents=True, exist_ok=True)
+            im.save(destino, "JPEG", quality=86, optimize=True, progressive=True, subsampling=0)
+        log("imagem", destino.relative_to(ROOT), im.size)
+
     salvar(MEDIA / "2021/11/central-alarme-incendio-02.jpg", ROOT / ALARME_IMG)
     for slug, _ in SECOES:
+        banner(ROOT / ORIGEM_BANNER[slug], ROOT / FOTO_CATEGORIA[slug])
+    for slug, _ in SECOES:
         origem = ROOT / foto_da_categoria(slug)
+        destino = IMG_DIR / "secoes" / ("%s.jpg" % slug)
         if dry and not origem.exists():
             continue  # no --dry a foto nova ainda não foi gravada
-        salvar(origem, IMG_DIR / "secoes" / ("%s.jpg" % slug), largura=1440, qualidade=76)
+        if destino.exists() and origem.exists() and destino.stat().st_mtime < origem.stat().st_mtime:
+            destino.unlink()  # o banner mudou: refaz a foto do mosaico
+        salvar(origem, destino, largura=1440, qualidade=78)
 
     # fotos recortadas do catálogo (fundo transparente) → WebP leve, no máximo 720 px de altura
     for slug, _ in SECOES:
@@ -678,14 +718,39 @@ CSS = """
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
+/* /produtos/: a parte de baixo do banner clareia e desfoca, encontrando o fundo claro do mosaico
+   (o mosaico começa com a mesma foto, clareada), sem a emenda reta entre os dois */
+#bannerProdutoINDA:has(+ .if-secoes) > .elementor-container {
+  position: relative;
+  z-index: 2;
+}
+#bannerProdutoINDA:has(+ .if-secoes)::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 58%;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.22) 40%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.66) 100%);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+}
+
 /* /produtos/: mosaico editorial — cada seção leva à página da linha.
    Fundo: a foto da sala da Inda Fire (a mesma do banner), clareada, que se funde em branco. */
 .if-secoes {
+  --if-sobrepor: 150px; /* o fundo do mosaico sobe por cima da base do banner e surge aos poucos */
   position: relative;
-  padding: clamp(64px, 8vw, 128px) clamp(16px, 4vw, 48px);
+  z-index: 2; /* por cima da base do banner (o banner do Elementor tem camada própria) */
+  margin-top: calc(-1 * var(--if-sobrepor)) !important;
+  padding: calc(clamp(64px, 8vw, 128px) + var(--if-sobrepor)) clamp(16px, 4vw, 48px) clamp(64px, 8vw, 128px);
   overflow: hidden;
   isolation: isolate;
-  background: #fff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) var(--if-sobrepor), #fff var(--if-sobrepor)); /* transparente no trecho da transição */
   color: #151517;
 }
 .if-secoes::before,
@@ -694,8 +759,15 @@ CSS = """
   top: 0;
   right: 0;
   left: 0;
-  height: clamp(560px, 62vw, 800px);
+  height: calc(clamp(560px, 62vw, 800px) + var(--if-sobrepor));
   content: "";
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 var(--if-sobrepor));
+  mask-image: linear-gradient(180deg, transparent 0, #000 var(--if-sobrepor));
+}
+@media (max-width: 767px) {
+  .if-secoes {
+    --if-sobrepor: 44px;
+  }
 }
 .if-secoes::before {
   z-index: -2;
@@ -705,7 +777,7 @@ CSS = """
 }
 .if-secoes::after {
   z-index: -1;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.8) 42%, #fff 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.82) 42%, #fff 100%);
 }
 .if-secoes__topo {
   display: grid;

@@ -1314,14 +1314,39 @@ body.elementor-popup-modal-active #ht-ctc-chat {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
+/* /produtos/: a parte de baixo do banner clareia e desfoca, encontrando o fundo claro do mosaico
+   (o mosaico começa com a mesma foto, clareada), sem a emenda reta entre os dois */
+#bannerProdutoINDA:has(+ .if-secoes) > .elementor-container {
+  position: relative;
+  z-index: 2;
+}
+#bannerProdutoINDA:has(+ .if-secoes)::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 58%;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.22) 40%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.66) 100%);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+}
+
 /* /produtos/: mosaico editorial — cada seção leva à página da linha.
    Fundo: a foto da sala da Inda Fire (a mesma do banner), clareada, que se funde em branco. */
 .if-secoes {
+  --if-sobrepor: 150px; /* o fundo do mosaico sobe por cima da base do banner e surge aos poucos */
   position: relative;
-  padding: clamp(64px, 8vw, 128px) clamp(16px, 4vw, 48px);
+  z-index: 2; /* por cima da base do banner (o banner do Elementor tem camada própria) */
+  margin-top: calc(-1 * var(--if-sobrepor)) !important;
+  padding: calc(clamp(64px, 8vw, 128px) + var(--if-sobrepor)) clamp(16px, 4vw, 48px) clamp(64px, 8vw, 128px);
   overflow: hidden;
   isolation: isolate;
-  background: #fff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) var(--if-sobrepor), #fff var(--if-sobrepor)); /* transparente no trecho da transição */
   color: #151517;
 }
 .if-secoes::before,
@@ -1330,8 +1355,15 @@ body.elementor-popup-modal-active #ht-ctc-chat {
   top: 0;
   right: 0;
   left: 0;
-  height: clamp(560px, 62vw, 800px);
+  height: calc(clamp(560px, 62vw, 800px) + var(--if-sobrepor));
   content: "";
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 var(--if-sobrepor));
+  mask-image: linear-gradient(180deg, transparent 0, #000 var(--if-sobrepor));
+}
+@media (max-width: 767px) {
+  .if-secoes {
+    --if-sobrepor: 44px;
+  }
 }
 .if-secoes::before {
   z-index: -2;
@@ -1341,7 +1373,7 @@ body.elementor-popup-modal-active #ht-ctc-chat {
 }
 .if-secoes::after {
   z-index: -1;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.8) 42%, #fff 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.82) 42%, #fff 100%);
 }
 .if-secoes__topo {
   display: grid;
