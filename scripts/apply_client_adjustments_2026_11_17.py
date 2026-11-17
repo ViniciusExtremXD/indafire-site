@@ -120,9 +120,8 @@ COLUNAS_TREINAMENTO = ("23d699d", "1302736")
 # coluna "Produtos" (produtos específicos) do menu suspenso "Produtos"
 COLUNA_MENU_PRODUTOS = "db7b976"
 
-# carrossel de serviços da home = ordem da página Serviços
-# (Engenharia, Manutenções, Sistemas, Especiais; o Projeto Técnico entra na Engenharia)
-ORDEM_SERVICOS = [191, 188, 179, 203, 194, 197, 200, 222, 209, 212, 206, 216, 219, 231, 234, 228]
+# carrossel de serviços da home: exatamente a ordem do site original (pedido do Wellington, 17/11)
+ORDEM_SERVICOS = [179, 188, 191, 194, 197, 200, 203, 206, 209, 212, 216, 219, 222, 228, 231, 234]  # mesma ordem do site original (indafire.com.br)
 
 
 def log(*a):
