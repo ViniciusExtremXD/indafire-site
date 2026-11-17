@@ -1314,8 +1314,8 @@ body.elementor-popup-modal-active #ht-ctc-chat {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* /produtos/: a parte de baixo do banner clareia e desfoca, encontrando o fundo claro do mosaico
-   (o mosaico começa com a mesma foto, clareada), sem a emenda reta entre os dois */
+/* /produtos/: a base do banner se dissolve em branco, logo abaixo do botão; o mosaico começa no
+   mesmo branco. As duas fotos nunca se encontram, então não existe emenda. */
 #bannerProdutoINDA:has(+ .if-secoes) > .elementor-container {
   position: relative;
   z-index: 2;
@@ -1323,57 +1323,47 @@ body.elementor-popup-modal-active #ht-ctc-chat {
 #bannerProdutoINDA:has(+ .if-secoes)::after {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   z-index: 1;
-  height: 58%;
+  height: 30%;
   content: "";
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.22) 40%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.66) 100%);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 28%, rgba(255, 255, 255, 0.5) 55%, rgba(255, 255, 255, 0.86) 80%, #fff 100%);
+}
+@media (max-width: 767px) {
+  #bannerProdutoINDA:has(+ .if-secoes) {
+    padding-bottom: 104px !important; /* espaço para a transição sem encostar no botão */
+  }
+  #bannerProdutoINDA:has(+ .if-secoes)::after {
+    height: 120px;
+  }
 }
 
 /* /produtos/: mosaico editorial — cada seção leva à página da linha.
-   Fundo: a foto da sala da Inda Fire (a mesma do banner), clareada, que se funde em branco. */
+   Fundo: a foto da sala da Inda Fire, clareada, que surge do branco e volta ao branco. */
 .if-secoes {
-  --if-sobrepor: 150px; /* o fundo do mosaico sobe por cima da base do banner e surge aos poucos */
   position: relative;
-  z-index: 2; /* por cima da base do banner (o banner do Elementor tem camada própria) */
-  margin-top: calc(-1 * var(--if-sobrepor)) !important;
-  padding: calc(clamp(64px, 8vw, 128px) + var(--if-sobrepor)) clamp(16px, 4vw, 48px) clamp(64px, 8vw, 128px);
+  padding: clamp(64px, 8vw, 128px) clamp(16px, 4vw, 48px);
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) var(--if-sobrepor), #fff var(--if-sobrepor)); /* transparente no trecho da transição */
+  background: #fff;
   color: #151517;
 }
-.if-secoes::before,
-.if-secoes::after {
+.if-secoes::before {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  height: calc(clamp(560px, 62vw, 800px) + var(--if-sobrepor));
-  content: "";
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 var(--if-sobrepor));
-  mask-image: linear-gradient(180deg, transparent 0, #000 var(--if-sobrepor));
-}
-@media (max-width: 767px) {
-  .if-secoes {
-    --if-sobrepor: 44px;
-  }
-}
-.if-secoes::before {
-  z-index: -2;
-  background: url("../uploads/2021/11/produtos.jpg") center 40% / cover no-repeat;
-  filter: blur(2px) saturate(0.9);
-  transform: scale(1.03);
-}
-.if-secoes::after {
   z-index: -1;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.82) 42%, #fff 100%);
+  height: clamp(620px, 66vw, 880px);
+  content: "";
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url("../uploads/2021/11/produtos.jpg") center 40% / cover no-repeat;
+  filter: blur(2px) saturate(0.9);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 50%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 50%, transparent 100%);
 }
 .if-secoes__topo {
   display: grid;
