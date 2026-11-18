@@ -71,8 +71,13 @@ def test_cylinder_related_are_not_the_whole_rescue_family():
 def test_products_page_shows_the_lines_not_the_catalog():
     # 17/11: /produtos/ mostra as linhas em seções (cada uma leva à página da linha), sem catálogo
     text = read("produtos/index.html")
-    assert 'id="if-produtos-secoes"' in text
-    assert text.count("if-secao__link") >= 12
+    if "<!-- if-produtos-faixas -->" in text:
+        # variante da prévia na Vercel (scripts/variante_produtos_estilo_servicos.py): faixas como em Serviços
+        assert 'id="if-produtos-secoes"' not in text
+        assert text.count('href="../categoria-produto/') >= 14
+    else:
+        assert 'id="if-produtos-secoes"' in text
+        assert text.count("if-secao__link") >= 12
     assert "if-card-whats" not in text
     for slug in adj.CATEGORIES:
         assert "produto/%s/" % slug not in text, slug
