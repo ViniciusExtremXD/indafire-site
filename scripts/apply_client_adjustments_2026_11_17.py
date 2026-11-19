@@ -385,21 +385,21 @@ LINHAS = {
             ("Gás carbônico (CO₂)", "Para equipamentos elétricos e eletrônicos. Capacidades: consulte-nos"),
             ("Água", "Para papel, madeira e tecido. Capacidades: consulte-nos"),
             ("Espuma", "Para líquidos inflamáveis e sólidos. Capacidades: consulte-nos"),
-            ("Classe K e classe D", "K: óleos e gorduras de cozinha. D: metais combustíveis"),
+            ("Classe K e classe D", "K: óleos e gorduras de cozinha. D: metais combustíveis. Capacidades: consulte-nos"),
         ],
         ["instalacao-e-venda-de-extintores", "recarga-de-extintores", "inspecao-de-equipamentos"],
     ),
     "mangueiras": (
         [
-            ("Mangueiras de incêndio até o tipo 5", "Do tipo 1 ao tipo 5"),
-            ("Comprimentos", "De 15 a 30 metros"),
+            ("Mangueiras de incêndio até o tipo 5", "Do tipo 1 ao tipo 5. Outras especificações: consulte-nos"),
+            ("Comprimentos", "De 15 a 30 metros. Para outros comprimentos, consulte-nos"),
             ("Diâmetros", "De 1,5 a 2,5 polegadas. Para diâmetros maiores, consulte-nos"),
         ],
         ["teste-hidrostatico-em-mangueiras-de-incendios"],
     ),
     "abrigos": (
         [
-            ("Abrigos para extintor", "De sobrepor, em chapa de aço pintada de vermelho, com porta e visor"),
+            ("Abrigos para extintor", "De sobrepor, em chapa de aço pintada de vermelho, com porta e visor. Outras medidas: consulte-nos"),
             ("Abrigos para mangueira", OUTROS),
         ],
         [],
@@ -407,7 +407,7 @@ LINHAS = {
     "hidrantes": (
         [
             ("Esguichos", OUTROS),
-            ("Chaves Storz", "Acoplam e desacoplam conexões de engate rápido Storz"),
+            ("Chaves Storz", "Acoplam e desacoplam conexões de engate rápido Storz. Outros modelos: consulte-nos"),
             ("Adaptadores", OUTROS),
             ("Canhões", OUTROS),
         ],
@@ -422,7 +422,7 @@ LINHAS = {
     ),
     "alarmes-de-incendio": (
         [
-            ("Acionadores manuais", "De quebra de vidro, para uso com centrais convencionais"),
+            ("Acionadores manuais", "De quebra de vidro, para uso com centrais convencionais. Outros modelos: consulte-nos"),
             ("Detectores", "De fumaça e de calor. Modelos: consulte-nos"),
             ("Centrais de alarme", OUTROS),
             ("Sirenes", OUTROS),
@@ -433,28 +433,28 @@ LINHAS = {
         [
             ("Blocos autônomos", OUTROS),
             ("Luminárias de LED", OUTROS),
-            ("Centrais de iluminação", "Unidade central Lux 700 e Lux 1200, 24 VDC"),
+            ("Centrais de iluminação", "Unidade central Lux 700 e Lux 1200, 24 VDC. Outros modelos: consulte-nos"),
         ],
         ["sistema-de-iluminacao-de-emergencia"],
     ),
     "sistema-de-bomba-de-incendio": (
         [
-            ("Bombas jockey", "Mantêm a rede de hidrantes pressurizada"),
+            ("Bombas jockey", "Mantêm a rede de hidrantes pressurizada. Modelos e vazões: consulte-nos"),
             ("Sistemas de bomba completos", "Conforme a vazão e a pressão do seu projeto: consulte-nos"),
         ],
         ["sistema-de-hidrantes", "sistemas-de-sprinklers"],
     ),
     "acessorios": (
         [
-            ("Suportes para extintor", "Suporte de solo em aço carbono, tamanhos grande e pequeno"),
-            ("Portas corta-fogo", "Medidas sob consulta"),
+            ("Suportes para extintor", "Suporte de solo em aço carbono, tamanhos grande e pequeno. Outros modelos: consulte-nos"),
+            ("Portas corta-fogo", "Medidas e modelos: consulte-nos"),
             ("Barras antipânico", "Para portas de saída de emergência. Modelos: consulte-nos"),
         ],
         [],
     ),
     "epi": (
         [
-            ("Capacetes", "Capacete Gallet: casco reforçado, protetor de nuca e viseira refletiva"),
+            ("Capacetes", "Capacete Gallet: casco reforçado, protetor de nuca e viseira refletiva. Outros modelos: consulte-nos"),
             ("Luvas", "Tamanhos e modelos: consulte-nos"),
             ("Botas", "Numerações e modelos: consulte-nos"),
             ("Roupas de combate a incêndio", "Tamanhos e modelos: consulte-nos"),
@@ -464,7 +464,7 @@ LINHAS = {
     "epr": (
         [
             ("Equipamentos de respiração autônoma", OUTROS),
-            ("Cilindros de ar", "Cilindro de 6 litros, em aço, com válvula de 300 bar"),
+            ("Cilindros de ar", "Cilindro de 6 litros, em aço, com válvula de 300 bar. Outras capacidades: consulte-nos"),
         ],
         [],
     ),
