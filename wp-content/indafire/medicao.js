@@ -68,6 +68,7 @@
     if (!link) return;
     var tipo = tipoDoLink(link.getAttribute('href'));
     if (!tipo) return;
+    if (link.hasAttribute('data-if-nao-conta')) return; // ex.: e-mail de currículo (Trabalhe Conosco) não é contato comercial
     if (e.defaultPrevented) return; // abriu o aviso, ainda não é contato
     enviar(tipo, { origem: origemDo(link), produto: produtoDo(link), link_url: link.href });
   });

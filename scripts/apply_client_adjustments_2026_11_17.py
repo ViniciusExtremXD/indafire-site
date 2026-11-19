@@ -1594,8 +1594,24 @@ def atualizar_css(dry):
 
 
 # versão nos links dos arquivos da Inda Fire (o navegador não fica com o CSS velho em cache)
-ASSET_VERSION = "17"
-VERSAO_RE = re.compile(r"(wp-content/indafire/(?:ajustes-responsivos\.css|medicao\.js|aviso-whatsapp-produtos\.js|carrossel-relacionados\.js))\?v=\d+")
+ASSET_VERSION = "18"
+VERSAO_RE = re.compile(r"(wp-content/indafire/(?:ajustes-responsivos\.css|medicao\.js|aviso-whatsapp-produtos\.js|carrossel-relacionados\.js|contato-formularios\.js))\?v=\d+")
+
+
+CONTATO_TAG_RE = re.compile(r'\n?<script src="[^"]*contato-formularios\.js[^"]*"[^>]*></script>')
+
+
+def contato_formularios(text):
+    """/contato/: os formulários eram enviados por e-mail pelo WordPress (que saiu). Vão por WhatsApp / e-mail pronto."""
+    tag = '\n<script src="../wp-content/indafire/contato-formularios.js?v=%s" defer></script>' % ASSET_VERSION
+    if CONTATO_TAG_RE.search(text):
+        novo = CONTATO_TAG_RE.sub(lambda _m: tag, text, count=1)
+        return novo, novo != text
+    i = text.rfind("</body>")
+    if i < 0:
+        raise SystemExit("contato/index.html sem </body>")
+    novo = text[:i] + tag.lstrip("\n") + "\n" + text[i:]
+    return novo, True
 
 
 def versao_assets(text):
@@ -1646,6 +1662,9 @@ def main(argv):
             conta("versao_assets", ch)
             text, ch = ordenar_menu_servicos(text)
             conta("menu_servicos", ch)
+            if f == "contato/index.html":
+                text, ch = contato_formularios(text)
+                conta("contato_formularios", ch)
             if f == "treinamentos/index.html":
                 text, n = treinamentos(text)
                 conta("treinamentos", n)
