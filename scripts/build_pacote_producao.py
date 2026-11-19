@@ -34,6 +34,9 @@ TEXTO = (".html", ".js", ".css", ".json", ".xml", ".txt", ".svg")
 CANONICAL = re.compile(rb'(<link rel="canonical" href=")[^"]*(")')
 OG_URL = re.compile(rb'(<meta property="og:url" content=")[^"]*(")')
 STUB = b"<!-- indafire: redirecionamento"
+# o endereço de teste (GitHub Pages) fica com noindex; no site oficial a página volta a ser indexável
+ROBOTS_TESTE = b"<meta name='robots' content='noindex, nofollow, noarchive' />"
+ROBOTS_OFICIAL = b"<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />"
 # a busca do cabeçalho (lupa + janela 2434) usa o WordPress para procurar; sem ele não funcionaria
 BUSCA_ID = b"eyJpZCI6IjI0MzQi"  # base64 de {"id":"2434"...}, que está no link da lupa
 TAG_DIV = re.compile(rb"<(/?)div\b[^>]*?(/?)>", re.I)
@@ -109,6 +112,7 @@ def main() -> None:
         if m.name.endswith(".html"):
             stub = STUB in dados[:3000]
             if not stub:
+                dados = dados.replace(ROBOTS_TESTE, ROBOTS_OFICIAL)
                 dados, n = tirar_busca(dados)
                 sem_busca += bool(n)
                 alvo = url_da_pagina(m.name).encode()

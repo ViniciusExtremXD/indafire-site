@@ -1614,6 +1614,18 @@ def contato_formularios(text):
     return novo, True
 
 
+# O endereço de teste (GitHub Pages) tem o mesmo conteúdo do site oficial: fica com noindex para o Google não
+# indexar duas cópias. O pacote de produção (scripts/build_pacote_producao.py) volta a trocar para "index".
+ROBOTS_OFICIAL = "<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />"
+ROBOTS_TESTE = "<meta name='robots' content='noindex, nofollow, noarchive' />"
+
+
+def robots_teste(text):
+    if ROBOTS_OFICIAL not in text:
+        return text, False
+    return text.replace(ROBOTS_OFICIAL, ROBOTS_TESTE), True
+
+
 def versao_assets(text):
     new = VERSAO_RE.sub(r"\1?v=" + ASSET_VERSION, text)
     return new, new != text
@@ -1662,6 +1674,8 @@ def main(argv):
             conta("versao_assets", ch)
             text, ch = ordenar_menu_servicos(text)
             conta("menu_servicos", ch)
+            text, ch = robots_teste(text)
+            conta("robots_teste", ch)
             if f == "contato/index.html":
                 text, ch = contato_formularios(text)
                 conta("contato_formularios", ch)
