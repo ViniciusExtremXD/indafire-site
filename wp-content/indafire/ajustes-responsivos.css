@@ -1642,6 +1642,18 @@ html.if-movimento .if-secao[data-if-revelar].is-visivel .if-secao__foto {
   font-weight: 700;
   letter-spacing: 0.14em;
 }
+.if-linha__itens li b {
+  display: block;
+  font-weight: 600;
+}
+.if-linha__itens li small {
+  display: block;
+  margin-top: 4px;
+  color: #6a6a72;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 400;
+  line-height: 1.45;
+}
 .if-linha__servicos p {
   margin: 0 0 12px !important;
   color: #6a6a72;

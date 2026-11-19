@@ -373,29 +373,124 @@ def hero_cue(text):
 
 # ── o que cada linha oferece: itens do catálogo oficial (os mesmos do site-novo/src/data/conteudo.ts) ──
 # e os serviços que a própria Inda Fire já descreve no site (links para as páginas de serviço).
+OUTROS = "Outros modelos e medidas: consulte-nos"
+
+# Cada item é (título, subtítulo). O subtítulo dá o modelo, a medida ou o uso; o que não está definido
+# fica como "consulte-nos", para a lista não limitar o que a Inda Fire vende. As medidas de mangueiras
+# e os itens de alarme vêm do retorno do Wellington (reunião de 17/11); o resto, das páginas de produto.
 LINHAS = {
     "extintores": (
-        ["Pó químico ABC e BC", "Gás carbônico (CO₂)", "Água", "Espuma", "Classe K (cozinhas) e classe D (metais)"],
+        [
+            ("Pó químico ABC e BC", "Modelo 4 kg, 2-A 20-BC (NBR 15808). Outras capacidades: consulte-nos"),
+            ("Gás carbônico (CO₂)", "Para equipamentos elétricos e eletrônicos. Capacidades: consulte-nos"),
+            ("Água", "Para papel, madeira e tecido. Capacidades: consulte-nos"),
+            ("Espuma", "Para líquidos inflamáveis e sólidos. Capacidades: consulte-nos"),
+            ("Classe K e classe D", "K: óleos e gorduras de cozinha. D: metais combustíveis"),
+        ],
         ["instalacao-e-venda-de-extintores", "recarga-de-extintores", "inspecao-de-equipamentos"],
     ),
-    "mangueiras": (["Mangueiras de incêndio do tipo 1 ao tipo 4", "Comprimentos de 15 a 30 metros"],
-                   ["teste-hidrostatico-em-mangueiras-de-incendios"]),
-    "abrigos": (["Abrigos para extintor", "Abrigos para mangueira"], []),
-    "hidrantes": (["Esguichos", "Chaves Storz", "Adaptadores", "Canhões"], ["sistema-de-hidrantes"]),
-    "sinalizacoes": (["Placas fotoluminescentes de rota de fuga", "Placas de identificação de equipamentos"],
-                     ["sinalizacao-de-emergencia"]),
-    "alarmes-de-incendio": (["Centrais de alarme", "Sirenes", "Acionadores manuais"],
-                            ["sistema-de-alarme-de-incendio", "sistema-de-deteccao-de-fumaca-e-calor"]),
-    "iluminacoes-de-emergencia": (["Blocos autônomos", "Luminárias de LED", "Centrais de iluminação"],
-                                  ["sistema-de-iluminacao-de-emergencia"]),
-    "sistema-de-bomba-de-incendio": (["Bombas jockey", "Sistemas de bomba completos"],
-                                     ["sistema-de-hidrantes", "sistemas-de-sprinklers"]),
-    "acessorios": (["Suportes para extintor", "Portas corta-fogo", "Barras antipânico"], []),
-    "epi": (["Capacetes", "Luvas", "Botas", "Roupas de combate a incêndio"], []),
-    "epr": (["Equipamentos de respiração autônoma", "Cilindros de ar"], []),
-    "aph": (["Pranchas", "Colares cervicais", "Colete imobilizador (KED)"], []),
-    "epc": (["Chuveiro lava-olhos", "Armário corta-fogo"], []),
-    "incendio-florestal": (["Abafadores", "Rastelos", "Ferramentas de combate"], []),
+    "mangueiras": (
+        [
+            ("Mangueiras de incêndio até o tipo 5", "Do tipo 1 ao tipo 5"),
+            ("Comprimentos", "De 15 a 30 metros"),
+            ("Diâmetros", "De 1,5 a 2,5 polegadas. Para diâmetros maiores, consulte-nos"),
+        ],
+        ["teste-hidrostatico-em-mangueiras-de-incendios"],
+    ),
+    "abrigos": (
+        [
+            ("Abrigos para extintor", "De sobrepor, em chapa de aço pintada de vermelho, com porta e visor"),
+            ("Abrigos para mangueira", OUTROS),
+        ],
+        [],
+    ),
+    "hidrantes": (
+        [
+            ("Esguichos", OUTROS),
+            ("Chaves Storz", "Acoplam e desacoplam conexões de engate rápido Storz"),
+            ("Adaptadores", OUTROS),
+            ("Canhões", OUTROS),
+        ],
+        ["sistema-de-hidrantes"],
+    ),
+    "sinalizacoes": (
+        [
+            ("Placas fotoluminescentes de rota de fuga", "Brilham no escuro, em PVC de 2 mm. Outros tamanhos: consulte-nos"),
+            ("Placas de identificação de equipamentos", "Como a placa de extintor E5. Outros modelos: consulte-nos"),
+        ],
+        ["sinalizacao-de-emergencia"],
+    ),
+    "alarmes-de-incendio": (
+        [
+            ("Acionadores manuais", "De quebra de vidro, para uso com centrais convencionais"),
+            ("Detectores", "De fumaça e de calor. Modelos: consulte-nos"),
+            ("Centrais de alarme", OUTROS),
+            ("Sirenes", OUTROS),
+        ],
+        ["sistema-de-alarme-de-incendio", "sistema-de-deteccao-de-fumaca-e-calor"],
+    ),
+    "iluminacoes-de-emergencia": (
+        [
+            ("Blocos autônomos", OUTROS),
+            ("Luminárias de LED", OUTROS),
+            ("Centrais de iluminação", "Unidade central Lux 700 e Lux 1200, 24 VDC"),
+        ],
+        ["sistema-de-iluminacao-de-emergencia"],
+    ),
+    "sistema-de-bomba-de-incendio": (
+        [
+            ("Bombas jockey", "Mantêm a rede de hidrantes pressurizada"),
+            ("Sistemas de bomba completos", "Conforme a vazão e a pressão do seu projeto: consulte-nos"),
+        ],
+        ["sistema-de-hidrantes", "sistemas-de-sprinklers"],
+    ),
+    "acessorios": (
+        [
+            ("Suportes para extintor", "Suporte de solo em aço carbono, tamanhos grande e pequeno"),
+            ("Portas corta-fogo", "Medidas sob consulta"),
+            ("Barras antipânico", "Para portas de saída de emergência. Modelos: consulte-nos"),
+        ],
+        [],
+    ),
+    "epi": (
+        [
+            ("Capacetes", "Capacete Gallet: casco reforçado, protetor de nuca e viseira refletiva"),
+            ("Luvas", "Tamanhos e modelos: consulte-nos"),
+            ("Botas", "Numerações e modelos: consulte-nos"),
+            ("Roupas de combate a incêndio", "Tamanhos e modelos: consulte-nos"),
+        ],
+        [],
+    ),
+    "epr": (
+        [
+            ("Equipamentos de respiração autônoma", OUTROS),
+            ("Cilindros de ar", "Cilindro de 6 litros, em aço, com válvula de 300 bar"),
+        ],
+        [],
+    ),
+    "aph": (
+        [
+            ("Pranchas", OUTROS),
+            ("Colares cervicais", "Tamanhos: consulte-nos"),
+            ("Colete imobilizador (KED)", "Modelo adulto. Outros tamanhos: consulte-nos"),
+        ],
+        [],
+    ),
+    "epc": (
+        [
+            ("Chuveiro lava-olhos", OUTROS),
+            ("Armário corta-fogo", "Resiste a 900 °C por 1 hora. Outras medidas: consulte-nos"),
+        ],
+        [],
+    ),
+    "incendio-florestal": (
+        [
+            ("Abafadores", OUTROS),
+            ("Rastelos", OUTROS),
+            ("Ferramentas de combate", OUTROS),
+        ],
+        [],
+    ),
 }
 
 SERVICOS = {
@@ -428,7 +523,10 @@ def recorte(slug):
 
 def bloco_linha(slug, nome):
     itens, servicos = LINHAS[slug]
-    lista = "".join('<li><span>%02d</span>%s</li>' % (i + 1, htmllib.escape(t)) for i, t in enumerate(itens))
+    lista = "".join(
+        '<li><span>%02d</span><div><b>%s</b><small>%s</small></div></li>' % (i + 1, htmllib.escape(t), htmllib.escape(sub))
+        for i, (t, sub) in enumerate(itens)
+    )
     serv = ""
     if servicos:
         serv = (
@@ -1140,6 +1238,18 @@ html.if-movimento .if-secao[data-if-revelar].is-visivel .if-secao__foto {
   font-weight: 700;
   letter-spacing: 0.14em;
 }
+.if-linha__itens li b {
+  display: block;
+  font-weight: 600;
+}
+.if-linha__itens li small {
+  display: block;
+  margin-top: 4px;
+  color: #6a6a72;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 400;
+  line-height: 1.45;
+}
 .if-linha__servicos p {
   margin: 0 0 12px !important;
   color: #6a6a72;
@@ -1446,7 +1556,7 @@ def atualizar_css(dry):
 
 
 # versão nos links dos arquivos da Inda Fire (o navegador não fica com o CSS velho em cache)
-ASSET_VERSION = "15"
+ASSET_VERSION = "16"
 VERSAO_RE = re.compile(r"(wp-content/indafire/(?:ajustes-responsivos\.css|medicao\.js|aviso-whatsapp-produtos\.js|carrossel-relacionados\.js))\?v=\d+")
 
 
