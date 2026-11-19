@@ -600,6 +600,39 @@ def pagina_categoria(text, slug, nome):
     return new, new != text
 
 
+# Cada produto termina a aba "Informações Técnicas" dizendo que há outros modelos/medidas sob consulta
+# (pedido do Wellington, 19/11: a ficha não pode parecer o único item vendido).
+CONSULTE_PRODUTO = {
+    "extintor-pqs-bc-4-kg-20bc": "Outras capacidades e tipos de extintor: consulte-nos.",
+    "mangueira-tipo-i": "Outros tipos (até o tipo 5), comprimentos e diâmetros: consulte-nos.",
+    "abrigo-para-extintor": "Outras medidas e modelos de abrigo: consulte-nos.",
+    "suporte-de-solo-para-extintor": "Outros tamanhos e modelos: consulte-nos.",
+    "placa-extintor-e5": "Outros tamanhos e modelos de placa: consulte-nos.",
+    "armario-corta-fogo": "Outras medidas e modelos: consulte-nos.",
+    "capacete-gallet": "Outros modelos de capacete: consulte-nos.",
+    "cilindro-p-aparelho-de-respiracao-autonoma-6l-aco-c-valvula-300-bar": "Outras capacidades de cilindro: consulte-nos.",
+    "colete-imobilizador-dorsal-ked-adulto": "Outros tamanhos e modelos: consulte-nos.",
+    "chaves-para-engate-rapido-storz": "Outros modelos de chave: consulte-nos.",
+    "botoeira-de-bomba": "Outros modelos de acionador: consulte-nos.",
+    "unidade-central-lux-700-1200-24vdc": "Outros modelos de central: consulte-nos.",
+}
+CONSULTE_RE = re.compile(r'<p class="if-produto-consulte">.*?</p>', re.S)
+ABA_TECNICA = re.compile(r'<div id="elementor-tab-content-\d+"[^>]*data-tab="1"[^>]*>')
+
+
+def produto_consulte(text, slug):
+    frase = CONSULTE_PRODUTO.get(slug)
+    if not frase:
+        return text, False
+    novo = CONSULTE_RE.sub("", text)
+    m = ABA_TECNICA.search(novo)
+    if not m:
+        raise SystemExit("produto %s: não achei a aba Informações Técnicas" % slug)
+    fim = element_end(novo, m.start()) - len("</div>")
+    novo = novo[:fim] + '<p class="if-produto-consulte">%s</p>' % htmllib.escape(frase) + novo[fim:]
+    return novo, novo != text
+
+
 SECOES_RE = re.compile(r'\n?<section class="if-secoes".*?</section><!-- /if-secoes -->', re.S)
 
 REVELAR_JS = (
@@ -1242,6 +1275,11 @@ html.if-movimento .if-secao[data-if-revelar].is-visivel .if-secao__foto {
   display: block;
   font-weight: 600;
 }
+.if-produto-consulte {
+  margin: 16px 0 0 !important;
+  color: #6a6a72;
+  font-weight: 600;
+}
 .if-linha__itens li small {
   display: block;
   margin-top: 4px;
@@ -1556,7 +1594,7 @@ def atualizar_css(dry):
 
 
 # versão nos links dos arquivos da Inda Fire (o navegador não fica com o CSS velho em cache)
-ASSET_VERSION = "16"
+ASSET_VERSION = "17"
 VERSAO_RE = re.compile(r"(wp-content/indafire/(?:ajustes-responsivos\.css|medicao\.js|aviso-whatsapp-produtos\.js|carrossel-relacionados\.js))\?v=\d+")
 
 
@@ -1617,6 +1655,9 @@ def main(argv):
             if f == "produtos/index.html":
                 text, ch = pagina_produtos(text, titulos)
                 conta("produtos_secoes", ch)
+            if f.startswith("produto/"):
+                text, ch = produto_consulte(text, f.split("/")[1])
+                conta("produto_consulte", ch)
             if f.startswith("categoria-produto/"):
                 slug = f.split("/")[1]
                 text, ch = pagina_categoria(text, slug, titulos[slug])

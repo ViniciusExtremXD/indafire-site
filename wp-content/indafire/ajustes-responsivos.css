@@ -1646,6 +1646,11 @@ html.if-movimento .if-secao[data-if-revelar].is-visivel .if-secao__foto {
   display: block;
   font-weight: 600;
 }
+.if-produto-consulte {
+  margin: 16px 0 0 !important;
+  color: #6a6a72;
+  font-weight: 600;
+}
 .if-linha__itens li small {
   display: block;
   margin-top: 4px;

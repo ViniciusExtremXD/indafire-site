@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WHATSAPP = "551938341741"
-ASSET_VERSION = "16"  # 17/11/2026: subiu junto com o apply_client_adjustments_2026_11_17.py
+ASSET_VERSION = "17"  # 17/11/2026: subiu junto com o apply_client_adjustments_2026_11_17.py
 
 WA_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 24 24" fill="#fff" aria-hidden="true" focusable="false">'
